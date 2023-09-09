@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { fonts } from './components/constants/fonts';
+import { fonts } from './constants';
 import { GlobalStyle } from './components/GlobalStyle/GlobalStyle';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { useFont, useTheme } from './hooks';

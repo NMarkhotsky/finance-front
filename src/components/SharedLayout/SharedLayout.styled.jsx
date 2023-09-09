@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  selectPhone,
-  selectTablet,
-  selectDesktop,
-} from '../utils/mediaRequest';
+import { selectPhone, selectTablet, selectDesktop } from '../../utils';
 
 export const Main = styled.main`
   width: 100%;
