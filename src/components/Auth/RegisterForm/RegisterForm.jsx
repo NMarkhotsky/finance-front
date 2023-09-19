@@ -1,5 +1,13 @@
 import { useForm } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
 import { registerUser } from '../../../services/authApi';
+import { AuthForm } from '../AuthForm/AuthForm';
+import { AuthTitle } from '../AuthTitile/AuthTitle';
+import { AuthButtonGoogle } from '../AuthButtonGoogle/AuthButtonGoogle';
+import { AuthLabel } from '../AuthLabel/AuthLabel';
+import { AuthInput } from '../AuthInput/AuthInput';
+import { AuthButton } from '../AuthButton/AuthButton';
+import { AuthButtonContainer } from '../AuthButton/AuthButton.styled';
 
 export const RegisterForm = () => {
   const { register, handleSubmit, reset } = useForm({
@@ -22,28 +30,43 @@ export const RegisterForm = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        style={{ outline: '1px solid red' }}
-      >
-        <p>You can log in with your Google Account:</p>
-        <button type="button">Google</button>
-        <p>Or log in using an email and password, after registering:</p>
-        <label>
-          <input type="text" {...register('name', { required: true })} />
-        </label>
-        <label>
-          <input type="text" {...register('email', { required: true })} />
-        </label>
-        <label>
-          <input
-            type="password"
-            {...register('password', { required: true })}
+      <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <AuthTitle>You can log in with your Google Account:</AuthTitle>
+        <AuthButtonGoogle type="button">Google</AuthButtonGoogle>
+        <AuthTitle>
+          Or log in using an email and password, after registering:
+        </AuthTitle>
+        <AuthLabel>
+          Name:
+          <AuthInput
+            type="text"
+            placeholder="Your name"
+            props={{ ...register('name', { required: true }) }}
           />
-        </label>
-        <button>Register</button>
-        <button type="button">Log in</button>
-      </form>
+        </AuthLabel>
+        <AuthLabel>
+          Email:
+          <AuthInput
+            type="email"
+            placeholder="your@email.com"
+            props={{ ...register('email', { required: true }) }}
+          />
+        </AuthLabel>
+        <AuthLabel>
+          Password:
+          <AuthInput
+            type="password"
+            placeholder="your password"
+            props={{ ...register('password', { required: true }) }}
+          />
+        </AuthLabel>
+        <AuthButtonContainer>
+          <AuthButton type="submit">REGISTRATION</AuthButton>
+          <NavLink to="/login">
+            <AuthButton type="button">LOG IN</AuthButton>
+          </NavLink>
+        </AuthButtonContainer>
+      </AuthForm>
     </>
   );
 };

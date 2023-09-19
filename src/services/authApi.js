@@ -14,14 +14,20 @@ const authHeader = {
 
 export const registerUser = async (credentials) => {
   const { data } = await axios.post('api/auth/register', credentials);
+
   authHeader.set(data.token);
+
+  localStorage.setItem('token', data.token);
 
   return data;
 };
 
 export const loginUser = async (credentials) => {
   const { data } = await axios.post('api/auth/login', credentials);
-  // authHeader.set(data.token);
+
+  authHeader.set(data.token);
+
+  localStorage.setItem('token', data.token);
 
   return data;
 };
