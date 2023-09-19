@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import icons from '../../assets/icons/sprite.svg';
+import icons from '../../../assets/icons/sprite.svg';
 
 export const Icon = ({ iconName, width, height, stroke, fill }) => {
   return (
@@ -11,8 +11,8 @@ export const Icon = ({ iconName, width, height, stroke, fill }) => {
 
 Icon.propTypes = {
   iconName: PropTypes.string.isRequired,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
   stroke: PropTypes.string,
   fill: PropTypes.string,
 };

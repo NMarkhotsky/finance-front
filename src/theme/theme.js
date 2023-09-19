@@ -11,6 +11,7 @@ const media = {
 };
 
 const fontSizes = {
+  xxs: '10px',
   xs: '12px',
   sm: '14px',
   md: '16px',
@@ -49,6 +50,11 @@ export const lightTheme = {
     orangeLight: '#FFDAC0',
     borderColor: '#FFFFFF',
     borderSecondaryColor: '#F5F6FB',
+    inputBgdColor: '#F6F7FB',
+    inputPlaceholderColor: '#A6ABB9',
+    btnBgdMainColor: '#F5F6FB',
+    btnBgdSecondaryColor: '#FF751D',
+    btnGoogleColor: '#F6F7FB',
   },
   media,
   fonts,

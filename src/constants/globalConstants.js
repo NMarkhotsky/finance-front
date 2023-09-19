@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://finance-backend-eight.vercel.app';
+export const BASE_URL = 'https://finance-backend-eight.vercel.app';
