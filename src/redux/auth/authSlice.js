@@ -4,6 +4,7 @@ import { login, logout, registration } from './operations';
 const initialState = {
   user: { name: null, email: null },
   token: null,
+  isVerified: false,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
