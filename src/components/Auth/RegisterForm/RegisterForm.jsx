@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
-import { registerUser } from '../../../services/authApi';
+import { useDispatch } from 'react-redux';
 import { AuthForm } from '../AuthForm/AuthForm';
 import { AuthTitle } from '../AuthTitile/AuthTitle';
 import { AuthButtonGoogle } from '../AuthButtonGoogle/AuthButtonGoogle';
@@ -8,6 +8,7 @@ import { AuthLabel } from '../AuthLabel/AuthLabel';
 import { AuthInput } from '../AuthInput/AuthInput';
 import { AuthButton } from '../AuthButton/AuthButton';
 import { AuthButtonContainer } from '../AuthButton/AuthButton.styled';
+import { registration } from '../../../redux/auth/operations';
 
 export const RegisterForm = () => {
   const { register, handleSubmit, reset } = useForm({
@@ -18,12 +19,12 @@ export const RegisterForm = () => {
     },
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (data) => {
     console.log(data);
 
-    const response = await registerUser(data);
-
-    console.log(response);
+    dispatch(registration(data));
 
     reset();
   };

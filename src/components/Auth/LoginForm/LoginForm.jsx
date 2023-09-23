@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
-import { loginUser } from '../../../services/authApi';
+import { useDispatch } from 'react-redux';
 import { AuthInput } from '../AuthInput/AuthInput';
 import { AuthLabel } from '../AuthLabel/AuthLabel';
 import { AuthForm } from '../AuthForm/AuthForm';
@@ -8,6 +8,7 @@ import { AuthTitle } from '../AuthTitile/AuthTitle';
 import { AuthButton } from '../AuthButton/AuthButton';
 import { AuthButtonGoogle } from '../AuthButtonGoogle/AuthButtonGoogle';
 import { AuthButtonContainer } from '../AuthButton/AuthButton.styled';
+import { login } from '../../../redux/auth/operations';
 
 export const LoginForm = () => {
   const { register, handleSubmit, reset } = useForm({
@@ -17,12 +18,12 @@ export const LoginForm = () => {
     },
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (data) => {
     console.log(data);
 
-    const response = await loginUser(data);
-
-    console.log(response);
+    dispatch(login(data));
 
     reset();
   };
@@ -40,7 +41,9 @@ export const LoginForm = () => {
           <AuthInput
             type="email"
             placeholder="your@email.com"
-            props={{ ...register('email', { required: true }) }}
+            props={{
+              ...register('email', { required: 'This field is required' }),
+            }}
           />
         </AuthLabel>
         <AuthLabel>
