@@ -1,0 +1,49 @@
+import axios from 'axios';
+import { BASE_URL } from '../constants';
+
+axios.defaults.baseURL = BASE_URL;
+
+export const getIncome = async () => {
+    try {
+        const response = await axios.get('/transactions/income');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getIncomeMonth = async () => {
+    try {
+        const response = await axios.get('/transactions/income/month');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getIncomeSummary = async () => {
+    try {
+        const response = await axios.get('/transactions/income/summary');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getIncomeCategory = async () => {
+    try {
+        const response = await axios.get('/transactions/income/category');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getIncomeDescription = async () => {
+    try {
+        const response = await axios.get('/transactions/income/description');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
