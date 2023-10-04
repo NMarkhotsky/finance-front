@@ -8,7 +8,7 @@ export const Form = styled.form`
   justify-content: space-between;
 
   max-width: 480px;
-  height: 496px;
+  height: 600px;
 
   padding: 40px 20px;
 
@@ -19,7 +19,7 @@ export const Form = styled.form`
 
   @media ${selectTablet} {
     width: 426px;
-    height: 552px;
+    /* height: 600px; */
 
     padding: 56px 84px;
 
