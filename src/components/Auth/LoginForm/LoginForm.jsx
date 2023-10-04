@@ -4,14 +4,21 @@ import { useDispatch } from 'react-redux';
 import { AuthInput } from '../AuthInput/AuthInput';
 import { AuthLabel } from '../AuthLabel/AuthLabel';
 import { AuthForm } from '../AuthForm/AuthForm';
-import { AuthTitle } from '../AuthTitile/AuthTitle';
+import { AuthTitle } from '../AuthTitle/AuthTitle';
 import { AuthButton } from '../AuthButton/AuthButton';
 import { AuthButtonGoogle } from '../AuthButtonGoogle/AuthButtonGoogle';
 import { AuthButtonContainer } from '../AuthButton/AuthButton.styled';
 import { login } from '../../../redux/auth/operations';
+import { AuthRequiredField } from '../AuthRequiredField/AuthRequiredField';
+import { authValidation } from '../../../constants';
 
 export const LoginForm = () => {
-  const { register, handleSubmit, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -42,17 +49,23 @@ export const LoginForm = () => {
             type="email"
             placeholder="your@email.com"
             props={{
-              ...register('email', { required: 'This field is required' }),
+              ...register('email', { required: authValidation }),
             }}
           />
+          {errors.email && <AuthRequiredField errors={errors.email.message} />}
         </AuthLabel>
         <AuthLabel>
           Password:
           <AuthInput
             type="password"
             placeholder="your password"
-            props={{ ...register('password', { required: true }) }}
+            props={{
+              ...register('password', { required: authValidation }),
+            }}
           />
+          {errors.password && (
+            <AuthRequiredField errors={errors.password.message} />
+          )}
         </AuthLabel>
         <AuthButtonContainer>
           <AuthButton type="submit">LOG IN</AuthButton>

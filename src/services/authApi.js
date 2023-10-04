@@ -15,7 +15,7 @@ const authHeader = {
 };
 
 export const registerUser = async (credentials) => {
-  const { data } = await axios.post('api/auth/register', credentials);
+  const { data } = await axios.post('auth/register', credentials);
 
   localStorage.setItem('token', data.token);
 
@@ -25,7 +25,7 @@ export const registerUser = async (credentials) => {
 };
 
 export const loginUser = async (credentials) => {
-  const { data } = await axios.post('api/auth/login', credentials);
+  const { data } = await axios.post('auth/login', credentials);
 
   localStorage.setItem('token', data.token);
 
@@ -35,7 +35,7 @@ export const loginUser = async (credentials) => {
 };
 
 export const logoutUser = async () => {
-  const { data } = await axios.post('api/auth/logout');
+  const { data } = await axios.post('auth/logout');
   authHeader.unset();
 
   localStorage.removeItem('token');

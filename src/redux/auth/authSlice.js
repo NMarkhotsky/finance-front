@@ -13,14 +13,17 @@ const handleFulfilled = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
+  state.isRefreshing = false;
   state.error = null;
 };
 
 const handlePending = (state) => {
+  state.isRefreshing = true;
   state.error = null;
 };
 
 const handleRejected = (state, action) => {
+  state.isRefreshing = false;
   state.error = action.payload;
 };
 
