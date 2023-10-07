@@ -30,6 +30,13 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    googleAuth: {
+      reducer(state, action) {
+        state.token = action.payload;
+      },
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, () => initialState)
@@ -55,3 +62,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { googleAuth } = authSlice.actions;
