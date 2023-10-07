@@ -33,3 +33,21 @@ export const logout = createAsyncThunk(
     }
   }
 );
+
+// export const fetchCurrentUser = createAsyncThunk(
+//   'auth/fetchCurrentUser',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
+
+//     if (persistedToken === null) {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
+//     try {
+//       return fetchUserByToken(persistedToken);
+//     } catch (e) {
+//       errorMessage(e.response.data.message);
+//       return thunkAPI.rejectWithValue(e.response.data.message);
+//     }
+//   }
+// );
