@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { login, logout, registration } from './operations';
+import { fetchCurrentUser, login, logout, registration } from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -40,6 +40,12 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, () => initialState)
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.error = null;
+        state.user = action.payload;
+        state.isLoggedIn = true;
+      })
       .addMatcher(
         isAnyOf(login.fulfilled, registration.fulfilled),
         (state, action) => {
@@ -47,13 +53,23 @@ const authSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(login.pending, registration.pending, logout.pending),
+        isAnyOf(
+          login.pending,
+          registration.pending,
+          logout.pending,
+          fetchCurrentUser.pending
+        ),
         (state) => {
           handlePending(state);
         }
       )
       .addMatcher(
-        isAnyOf(login.rejected, registration.rejected, logout.rejected),
+        isAnyOf(
+          login.rejected,
+          registration.rejected,
+          logout.rejected,
+          fetchCurrentUser.rejected
+        ),
         (state, action) => {
           handleRejected(state, action);
         }
