@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { loginUser, logoutUser, registerUser } from '../../services/authApi';
+import { fetchUserByToken, loginUser, logoutUser, registerUser } from '../../services/authApi';
+// import { useAuth } from '../../hooks/useAuth/useAuth';
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -34,20 +35,26 @@ export const logout = createAsyncThunk(
   }
 );
 
-// export const fetchCurrentUser = createAsyncThunk(
-//   'auth/fetchCurrentUser',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
+export const fetchCurrentUser = createAsyncThunk(
+  '/current',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    console.log("state", state);
+    const persistedToken = state.auth.token;
+    
+// const { token } = useAuth();
 
-//     if (persistedToken === null) {
-//       return thunkAPI.rejectWithValue('Unable to fetch user');
-//     }
-//     try {
-//       return fetchUserByToken(persistedToken);
-//     } catch (e) {
-//       errorMessage(e.response.data.message);
-//       return thunkAPI.rejectWithValue(e.response.data.message);
-//     }
-//   }
-// );
+    console.log("persistedToken", persistedToken);
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      return fetchUserByToken(persistedToken);
+    } catch (e) {
+      console.log(e.response.data.message);
+      // errorMessage(e.response.data.message);
+      return thunkAPI.rejectWithValue(e.response.data.message);
+    }
+  }
+);

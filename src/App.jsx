@@ -8,7 +8,7 @@ import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { useFont, useTheme } from './hooks';
 import { lightTheme, darkTheme } from './theme/theme';
 import { googleAuth } from './redux/auth/authSlice';
-// import { fetchCurrentUser } from './redux/auth/operations';
+import { fetchCurrentUser } from './redux/auth/operations';
 
 function App() {
   const fontsLoaded = useFont(fonts);
@@ -19,15 +19,17 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get('token');
 
+  console.log("tokenApp", token);
+
   useEffect(() => {
     if (token) {
       dispatch(googleAuth(token));
       setSearchParams('');
-      // dispatch(fetchCurrentUser());
+      dispatch(fetchCurrentUser());
       navigation('/');
     } else {
-      console.log("dispatch(fetchCurrentUser())");
-      // dispatch(fetchCurrentUser());
+      // console.log("dispatch(fetchCurrentUser())");
+      dispatch(fetchCurrentUser());
     }
   }, [dispatch, navigation, setSearchParams, token]);
 

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { login, logout, registration } from './operations';
+import { fetchCurrentUser, login, logout, registration } from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -41,19 +41,41 @@ const authSlice = createSlice({
     builder
       .addCase(logout.fulfilled, () => initialState)
       .addMatcher(
-        isAnyOf(login.fulfilled, registration.fulfilled),
+        isAnyOf(
+          login.fulfilled,
+          registration.fulfilled,
+        ),
         (state, action) => {
+          console.log("action", action);
+          console.log("state", state);
           handleFulfilled(state, action);
         }
       )
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.error = null;
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        state.isVerified = true; 
+      })
       .addMatcher(
-        isAnyOf(login.pending, registration.pending, logout.pending),
+        isAnyOf(
+          login.pending,
+          registration.pending,
+          logout.pending,
+          fetchCurrentUser.pending
+        ),
         (state) => {
           handlePending(state);
         }
       )
       .addMatcher(
-        isAnyOf(login.rejected, registration.rejected, logout.rejected),
+        isAnyOf(
+          login.rejected,
+          registration.rejected,
+          logout.rejected,
+          fetchCurrentUser.rejected
+        ),
         (state, action) => {
           handleRejected(state, action);
         }
@@ -61,5 +83,6 @@ const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer;
 export const { googleAuth } = authSlice.actions;
+export const authReducer = authSlice.reducer;
+
