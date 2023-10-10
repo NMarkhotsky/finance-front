@@ -45,6 +45,7 @@ const authSlice = createSlice({
         state.error = null;
         state.user = action.payload;
         state.isLoggedIn = true;
+        state.token = action.payload.token;
       })
       .addMatcher(
         isAnyOf(login.fulfilled, registration.fulfilled),

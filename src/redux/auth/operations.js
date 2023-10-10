@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchUserByToken, loginUser, logoutUser, registerUser } from '../../services/authApi';
+import { useAuth } from '../../hooks/useAuth/useAuth';
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -39,6 +40,8 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
+    
+// const { token } = useAuth();
 
     console.log("persistedToken", persistedToken);
 
