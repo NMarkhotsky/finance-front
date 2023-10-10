@@ -49,7 +49,6 @@ export const fetchUserByToken = async persistedToken => {
   const {
     data: { user },
   } = await axios.get('/current');
-  localStorage.setItem('token', persistedToken);
 
   return user;
 };
