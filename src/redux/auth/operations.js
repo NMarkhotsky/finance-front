@@ -45,7 +45,7 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      return fetchUserByToken(persistedToken);
+      return await fetchUserByToken(persistedToken);
     } catch (e) {
       console.log(e.response.data.message);
       // errorMessage(e.response.data.message);

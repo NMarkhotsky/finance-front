@@ -44,11 +44,14 @@ export const logoutUser = async () => {
 };
 
 export const fetchUserByToken = async persistedToken => {
-  authHeader.set(persistedToken);
-  console.log("persistedTokenInUserByToken", persistedToken)
   const {
     data: { user },
   } = await axios.get('/current');
+
+  console.log("user", user);
+
+  authHeader.set(persistedToken);
+  console.log("persistedTokenInUserByToken", persistedToken)
 
   return user;
 };
