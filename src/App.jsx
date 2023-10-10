@@ -25,11 +25,11 @@ function App() {
     if (token) {
       dispatch(googleAuth(token));
       setSearchParams('');
-      dispatch(fetchCurrentUser());
+      // dispatch(fetchCurrentUser());
       navigation('/');
     } else {
-      console.log("dispatch(fetchCurrentUser())");
-      dispatch(fetchCurrentUser());
+      // console.log("dispatch(fetchCurrentUser())");
+      // dispatch(fetchCurrentUser());
     }
   }, [dispatch, navigation, setSearchParams, token]);
 
