@@ -40,15 +40,12 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, () => initialState)
-      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        state.isRefreshing = false;
-        state.error = null;
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.token = action.payload.token;
-      })
       .addMatcher(
-        isAnyOf(login.fulfilled, registration.fulfilled),
+        isAnyOf(
+          login.fulfilled,
+          registration.fulfilled,
+          fetchCurrentUser.fulfilled
+        ),
         (state, action) => {
           handleFulfilled(state, action);
         }
