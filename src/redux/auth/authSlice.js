@@ -44,12 +44,20 @@ const authSlice = createSlice({
         isAnyOf(
           login.fulfilled,
           registration.fulfilled,
-          fetchCurrentUser.fulfilled
         ),
         (state, action) => {
+          console.log("action", action);
+          console.log("state", state);
           handleFulfilled(state, action);
         }
       )
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.error = null;
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        state.isVerified = true; 
+      })
       .addMatcher(
         isAnyOf(
           login.pending,
@@ -75,5 +83,6 @@ const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer;
 export const { googleAuth } = authSlice.actions;
+export const authReducer = authSlice.reducer;
+
