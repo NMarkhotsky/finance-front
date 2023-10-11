@@ -19,7 +19,6 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get('token');
 
-
   useEffect(() => {
     if (token) {
       
@@ -31,6 +30,7 @@ function App() {
     } else {
       // console.log("dispatch(fetchCurrentUser())");
       dispatch(fetchCurrentUser());
+      return;
     }
   }, [dispatch, navigation, setSearchParams, token]);
 

@@ -50,8 +50,8 @@ const authSlice = createSlice({
       .addMatcher(
         isAnyOf(login.fulfilled, registration.fulfilled),
         (state, action) => {
-          console.log("action", action);
-          console.log("state", state);
+          console.log('action', action);
+          console.log('state', state);
           handleFulfilled(state, action);
         }
       )
@@ -82,4 +82,3 @@ const authSlice = createSlice({
 
 export const { googleAuth } = authSlice.actions;
 export const authReducer = authSlice.reducer;
-
