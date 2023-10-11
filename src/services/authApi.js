@@ -41,14 +41,14 @@ export const logoutUser = async () => {
   return data;
 };
 
-export const fetchUserByToken = async (persistedToken) => {
-  localStorage.setItem('token', persistedToken);
+export const fetchUserByToken = async (token) => {
+  localStorage.setItem('token', token);
 
-  authHeader.set(persistedToken);
+  authHeader.set(token);
+
   const {
     data: { user },
   } = await axios.get('/current');
 
-  console.log('user: ', user);
   return user;
 };

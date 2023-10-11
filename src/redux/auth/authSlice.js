@@ -19,12 +19,14 @@ const handleFulfilled = (state, action) => {
 
 const handlePending = (state) => {
   state.isRefreshing = true;
+  state.isLoggedIn = false;
   state.error = null;
 };
 
 const handleRejected = (state, action) => {
   state.isRefreshing = false;
   state.error = action.payload;
+  state.isLoggedIn = false;
 };
 
 const authSlice = createSlice({
@@ -40,18 +42,16 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, () => initialState)
-      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
+      .addCase(registration.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = false;
         state.isRefreshing = false;
         state.error = null;
-        state.user = action.payload;
-        // state.isVerified = true;
       })
       .addMatcher(
-        isAnyOf(login.fulfilled, registration.fulfilled),
+        isAnyOf(login.fulfilled, fetchCurrentUser.fulfilled),
         (state, action) => {
-          console.log('action', action);
-          console.log('state', state);
           handleFulfilled(state, action);
         }
       )
