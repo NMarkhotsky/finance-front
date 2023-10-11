@@ -26,13 +26,14 @@ export const RegisterForm = () => {
     },
   });
 
-  console.log('errors: ', errors);
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     console.log(data);
 
     dispatch(registration(data));
+
+    alert('Confirm your email');
 
     reset();
   };
