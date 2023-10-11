@@ -19,10 +19,10 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get('token');
 
-  console.log('tokenApp', token);
-
   useEffect(() => {
     if (token) {
+      
+  console.log("tokenApp", token);
       dispatch(googleAuth(token));
       setSearchParams('');
       dispatch(fetchCurrentUser());

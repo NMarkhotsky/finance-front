@@ -44,7 +44,6 @@ export const fetchCurrentUser = createAsyncThunk(
   'auth/fetchCurrentUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log('state: ', state);
 
     const persistedToken = state.auth.token;
     console.log('persistedToken: ', persistedToken);
@@ -53,7 +52,7 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      return fetchUserByToken(persistedToken);
+      return await fetchUserByToken(persistedToken);
     } catch (e) {
       // errorMessage(e.response.data.message);
       return thunkAPI.rejectWithValue(e.response.data.message);
