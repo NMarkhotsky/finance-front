@@ -4,10 +4,8 @@ import { BASE_URL } from '../constants';
 axios.defaults.baseURL = BASE_URL;
 
 const authHeader = {
-  set() {
-    axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-      'token'
-    )}`;
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
@@ -19,7 +17,7 @@ export const registerUser = async (credentials) => {
 
   localStorage.setItem('token', data.token);
 
-  authHeader.set();
+  authHeader.set(localStorage.getItem('token'));
 
   return data;
 };
@@ -29,7 +27,7 @@ export const loginUser = async (credentials) => {
 
   localStorage.setItem('token', data.token);
 
-  authHeader.set();
+  authHeader.set(localStorage.getItem('token'));
 
   return data;
 };
@@ -43,13 +41,14 @@ export const logoutUser = async () => {
   return data;
 };
 
-export const fetchUserByToken = async persistedToken => {
+export const fetchUserByToken = async (persistedToken) => {
+  localStorage.setItem('token', persistedToken);
+
   authHeader.set(persistedToken);
-  console.log("persistedTokenInUserByToken", persistedToken)
   const {
     data: { user },
   } = await axios.get('/current');
-  localStorage.setItem('token', persistedToken);
 
+  console.log('user: ', user);
   return user;
 };

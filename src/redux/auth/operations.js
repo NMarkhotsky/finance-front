@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchUserByToken, loginUser, logoutUser, registerUser } from '../../services/authApi';
+import {
+  fetchUserByToken,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from '../../services/authApi';
 // import { useAuth } from '../../hooks/useAuth/useAuth';
 
 export const login = createAsyncThunk(
@@ -36,15 +41,13 @@ export const logout = createAsyncThunk(
 );
 
 export const fetchCurrentUser = createAsyncThunk(
-  '/current',
+  'auth/fetchCurrentUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log("state", state);
-    const persistedToken = state.auth.token;
-    
-// const { token } = useAuth();
+    console.log('state: ', state);
 
-    console.log("persistedToken", persistedToken);
+    const persistedToken = state.auth.token;
+    console.log('persistedToken: ', persistedToken);
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -52,7 +55,6 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       return fetchUserByToken(persistedToken);
     } catch (e) {
-      console.log(e.response.data.message);
       // errorMessage(e.response.data.message);
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
