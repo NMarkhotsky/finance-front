@@ -44,7 +44,7 @@ export const logoutUser = async () => {
 export const fetchUserByToken = async (token) => {
   localStorage.setItem('token', token);
 
-  authHeader.set(token);
+  authHeader.set(localStorage.getItem('token'));
 
   const {
     data: { user },
