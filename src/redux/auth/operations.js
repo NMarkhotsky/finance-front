@@ -43,17 +43,21 @@ export const logout = createAsyncThunk(
 export const fetchCurrentUser = createAsyncThunk(
   'auth/fetchCurrentUser',
   async (_, thunkAPI) => {
-    const token = localStorage.getItem('token');
+    // const state = thunkAPI.getState();
+    // console.log('state: ', state);
 
-    console.log('fetchCurrentUser-->token: ', token);
+    // const token = state.auth.token;
+    // console.log('fetchCurrentUser-token: ', token);
+
+    const token = localStorage.getItem('token');
 
     if (token === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-
     try {
       return await fetchUserByToken(token);
     } catch (e) {
+      console.log(e);
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
