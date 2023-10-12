@@ -11,7 +11,7 @@ const initialState = {
 };
 const handleFulfilled = (state, action) => {
   state.user = action.payload;
-  state.token = action.payload.token;
+  state.token = action.payload;
   state.isLoggedIn = true;
   state.isRefreshing = false;
   state.error = null;
@@ -49,12 +49,12 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = null;
       })
-      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        handleFulfilled(state, action);
-      })
-      .addMatcher(isAnyOf(login.fulfilled), (state, action) => {
-        handleFulfilled(state, action);
-      })
+      .addMatcher(
+        isAnyOf(login.fulfilled, fetchCurrentUser.fulfilled),
+        (state, action) => {
+          handleFulfilled(state, action);
+        }
+      )
       .addMatcher(
         isAnyOf(
           login.pending,
