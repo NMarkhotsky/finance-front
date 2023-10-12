@@ -40,43 +40,19 @@ export const logout = createAsyncThunk(
   }
 );
 
-// export const fetchCurrentUser = createAsyncThunk(
-//   'auth/fetchCurrentUser',
-//   async (_, thunkAPI) => {
-//     // const state = thunkAPI.getState();
-//     // console.log('state: ', state);
-
-//     // const token = state.auth.token;
-//     // console.log('fetchCurrentUser-token: ', token);
-
-//     const token = localStorage.getItem('token');
-
-//     if (token === null) {
-//       return thunkAPI.rejectWithValue('Unable to fetch user');
-//     }
-//     try {
-//       return await fetchUserByToken(token);
-//     } catch (e) {
-//       console.log(e);
-//       return thunkAPI.rejectWithValue(e.response.data.message);
-//     }
-//   }
-// );
 export const fetchCurrentUser = createAsyncThunk(
   'auth/fetchCurrentUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
 
-    const persistedToken = state.auth.token;
-    console.log('persistedToken: ', persistedToken);
+    const token = state.auth.token;
 
-    if (persistedToken === null) {
+    if (token === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      return await fetchUserByToken(persistedToken);
+      return await fetchUserByToken(token);
     } catch (e) {
-      // errorMessage(e.response.data.message);
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
