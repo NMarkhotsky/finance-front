@@ -23,6 +23,7 @@ const fontSizes = {
   big: '36px',
   huge: '48px',
   gigantic: '68px',
+  mega: '102px',
 };
 
 const boxShadowColor = {
