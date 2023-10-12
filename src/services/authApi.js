@@ -15,9 +15,7 @@ const authHeader = {
 export const registerUser = async (credentials) => {
   const { data } = await axios.post('auth/register', credentials);
 
-  localStorage.setItem('token', data.token);
-
-  authHeader.set(localStorage.getItem('token'));
+  authHeader.set(data.token);
 
   return data;
 };
@@ -25,9 +23,7 @@ export const registerUser = async (credentials) => {
 export const loginUser = async (credentials) => {
   const { data } = await axios.post('auth/login', credentials);
 
-  localStorage.setItem('token', data.token);
-
-  authHeader.set(localStorage.getItem('token'));
+  authHeader.set(data.token);
 
   return data;
 };
@@ -36,15 +32,11 @@ export const logoutUser = async () => {
   const { data } = await axios.post('auth/logout');
   authHeader.unset();
 
-  localStorage.removeItem('token');
-
   return data;
 };
 
-export const fetchUserByToken = async (token) => {
-  localStorage.setItem('token', token);
-
-  authHeader.set(localStorage.getItem('token'));
+export const fetchUserByToken = async (persistedToken) => {
+  authHeader.set(persistedToken);
 
   const {
     data: { user },
