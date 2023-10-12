@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      console.log('tokenApp', token);
       dispatch(googleAuth(token));
       setSearchParams('');
       dispatch(fetchCurrentUser());
