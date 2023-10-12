@@ -18,23 +18,23 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(4px);
 `;
 
-export const Modal = styled.div`
-  min-width: 80%;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
+// export const Modal = styled.div`
+//   min-width: 80%;
+//   border-radius: 20px;
+//   display: flex;
+//   justify-content: center;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.colors.inputPlaceholderColor};
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   background-color: ${({ theme }) => theme.colors.inputPlaceholderColor};
 
-  @media ${selectTablet} {
-    min-width: auto;
-    width: 681px;
-  }
-`;
+//   @media ${selectTablet} {
+//     min-width: auto;
+//     width: 681px;
+//   }
+// `;
 
 export const CloseBtn = styled.button`
   width: 24px;

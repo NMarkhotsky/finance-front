@@ -23,13 +23,13 @@ export const ModalGlobal = ({
           <Title>{title}</Title>
           <BtnWrapper>
             <Button onClick={handleModal}>
-              <ButtonText>{t('other_cancel')}</ButtonText>
+              <ButtonText>{t('other_cancel')}No</ButtonText>
             </Button>
             <Button onClick={handleDelete}>
-              <ButtonText>{t('other_yes')}</ButtonText>
+              <ButtonText>{t('other_yes')}Yes</ButtonText>
             </Button>
           </BtnWrapper>
-          <IconWrapper>
+          <IconWrapper onClick={handleModal} >
             <StyledIcon iconName="icon-close" width="12" height="12" />
           </IconWrapper>
         </Modal>
@@ -40,5 +40,5 @@ export const ModalGlobal = ({
     handleModal: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    // name: PropTypes.string.isRequired,
   };

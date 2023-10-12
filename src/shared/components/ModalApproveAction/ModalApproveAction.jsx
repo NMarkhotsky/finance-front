@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 import { Icon } from '../../../shared/components/Icon/Icon';
-import { Backdrop, Modal, CloseBtn } from './ModalApproveAction.styled';
+import { Backdrop, CloseBtn } from './ModalApproveAction.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -27,7 +27,7 @@ export const ModalApproveAction = ({ children, onClose }) => {
 
   return createPortal(
     <Backdrop onClick={handleClose}>
-      <Modal>
+      {/* <Modal> */}
         <CloseBtn type="button" onClick={onClose} aria-label="close">
           <Icon
             iconName="icon-cross-small"
@@ -37,7 +37,7 @@ export const ModalApproveAction = ({ children, onClose }) => {
           />
         </CloseBtn>
         {children}
-      </Modal>
+      {/* </Modal> */}
     </Backdrop>,
     modalRoot
   );

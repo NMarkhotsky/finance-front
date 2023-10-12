@@ -11,8 +11,10 @@ export const Icon = ({ iconName, width, height, stroke, fill }) => {
 
 Icon.propTypes = {
   iconName: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.any,
+  // width: PropTypes.string,
+  height: PropTypes.any,
+  // height: PropTypes.string,
   stroke: PropTypes.string,
   fill: PropTypes.string,
 };
