@@ -43,12 +43,6 @@ export const logout = createAsyncThunk(
 export const fetchCurrentUser = createAsyncThunk(
   'auth/fetchCurrentUser',
   async (_, thunkAPI) => {
-    // const state = thunkAPI.getState();
-    // console.log('state: ', state);
-
-    // const token = state.auth.token;
-    // console.log('fetchCurrentUser-token: ', token);
-
     const token = localStorage.getItem('token');
 
     console.log('fetchCurrentUser-->token: ', token);
