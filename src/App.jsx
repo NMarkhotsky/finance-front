@@ -28,6 +28,7 @@ function App() {
       navigation('/');
     } else {
       dispatch(fetchCurrentUser());
+      return;
     }
   }, [dispatch, navigation, setSearchParams, token]);
 
