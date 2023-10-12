@@ -25,11 +25,7 @@ function App() {
       setSearchParams('');
       dispatch(fetchCurrentUser());
       navigation('/');
-    } else {
-      // console.log("dispatch(fetchCurrentUser())");
-      dispatch(fetchCurrentUser());
-      return;
-    }
+    } else dispatch(fetchCurrentUser());
   }, [dispatch, navigation, setSearchParams, token]);
 
   return fontsLoaded ? (

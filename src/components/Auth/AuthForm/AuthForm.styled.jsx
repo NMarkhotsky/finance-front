@@ -21,6 +21,7 @@ export const Form = styled.form`
     width: 426px;
     /* height: 600px; */
 
+    margin: 0 auto;
     padding: 56px 84px;
 
     border-radius: 30px;
@@ -29,6 +30,8 @@ export const Form = styled.form`
   }
 
   @media ${selectDesktop} {
+    margin: 117px 91px 0 auto;
+
     box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
   }
 `;
