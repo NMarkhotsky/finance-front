@@ -23,8 +23,8 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(googleAuth(token));
-      dispatch(fetchCurrentUser());
       setSearchParams('');
+      dispatch(fetchCurrentUser());
       navigation('/');
     } else dispatch(fetchCurrentUser());
   }, [dispatch, navigation, setSearchParams, token]);

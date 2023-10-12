@@ -11,7 +11,7 @@ const initialState = {
 };
 const handleFulfilled = (state, action) => {
   state.user = action.payload;
-  state.token = action.payload;
+  state.token = action.payload.token;
   state.isLoggedIn = true;
   state.isRefreshing = false;
   state.error = null;
