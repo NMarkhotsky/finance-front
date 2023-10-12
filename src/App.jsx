@@ -20,14 +20,14 @@ function App() {
   const token = searchParams.get('token');
   console.log('APP-token: ', token);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(googleAuth(token));
-      setSearchParams('');
-      dispatch(fetchCurrentUser());
-      navigation('/');
-    } else dispatch(fetchCurrentUser());
-  }, [dispatch, navigation, setSearchParams, token]);
+  // useEffect(() => {
+  if (token) {
+    dispatch(googleAuth(token));
+    setSearchParams('');
+    dispatch(fetchCurrentUser());
+    navigation('/');
+  } else dispatch(fetchCurrentUser());
+  // }, [dispatch, navigation, setSearchParams, token]);
 
   return fontsLoaded ? (
     <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
