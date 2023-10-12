@@ -18,6 +18,7 @@ function App() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get('token');
+  console.log('token: ', token);
 
   useEffect(() => {
     if (token) {
