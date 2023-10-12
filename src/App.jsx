@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { fonts } from './constants';
