@@ -83,7 +83,6 @@
 // export const authReducer = authSlice.reducer;
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchCurrentUser, login, logout, registration } from './operations';
-
 const initialState = {
   user: { name: null, email: null },
   token: null,
@@ -99,19 +98,14 @@ const handleFulfilled = (state, action) => {
   state.isRefreshing = false;
   state.error = null;
 };
-
 const handlePending = (state) => {
   state.isRefreshing = true;
-  state.isLoggedIn = false;
   state.error = null;
 };
-
 const handleRejected = (state, action) => {
   state.isRefreshing = false;
   state.error = action.payload;
-  state.isLoggedIn = false;
 };
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -125,16 +119,18 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, () => initialState)
-      .addCase(registration.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = false;
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
+        state.user = action.payload;
+        // state.isVerified = true;
       })
       .addMatcher(
-        isAnyOf(login.fulfilled, fetchCurrentUser.fulfilled),
+        isAnyOf(login.fulfilled, registration.fulfilled),
         (state, action) => {
+          console.log('action', action);
+          console.log('state', state);
           handleFulfilled(state, action);
         }
       )

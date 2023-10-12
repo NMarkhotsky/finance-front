@@ -26,7 +26,10 @@ function App() {
       setSearchParams('');
       dispatch(fetchCurrentUser());
       navigation('/');
-    } else dispatch(fetchCurrentUser());
+    } else {
+      dispatch(fetchCurrentUser());
+      return;
+    }
   }, [dispatch, navigation, setSearchParams, token]);
 
   return fontsLoaded ? (
