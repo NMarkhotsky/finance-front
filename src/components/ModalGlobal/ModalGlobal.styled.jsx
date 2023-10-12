@@ -7,8 +7,7 @@ export const Modal = styled.div`
   /* padding: 60px 12px; */
   position: relative;
   border-radius: 30px;
-  /* background-color: ${({ theme }) => theme.colors.mainBgdColor}; */
-  background-color: ${({ theme }) => theme.colors.greyLightTextColor};
+  background-color: ${({ theme }) => theme.colors.mainBgdColor};
 
   @media ${selectTablet} {
     padding-top: 50px;
@@ -20,7 +19,7 @@ export const Modal = styled.div`
 
 export const Title = styled.h2`
 text-align: center;
-color: ${({ theme }) => theme.colors.mainBgdColor};
+color: ${({ theme }) => theme.colors.mainTextColor};
 font-size: ${props => props.theme.fontSizes.sm};
 font-family: ${props => props.theme.fonts.medium};
 letter-spacing: 0.28px;
@@ -45,6 +44,15 @@ margin-top: 20px;
     flex-direction: row;
     gap: 15px;
   } 
+
+  :hover {
+background-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};  
+border-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};
+}
+
+:hover p {
+  color: ${({ theme }) => theme.colors.mainBgdColor}; 
+}
 `;
 
 export const Button = styled.button`
@@ -52,6 +60,7 @@ width: 125px;
 border-radius: 16px;
 padding: 12px 0;
 border: 2px solid ${({ theme }) => theme.colors.whiteTextColor};
+
 
   /* position: relative; */
   /* width: 100%;
@@ -89,10 +98,11 @@ font-size: ${props => props.theme.fontSizes.xs};
 letter-spacing: 0.24px;
 text-transform: uppercase;
 font-family: ${props => props.theme.fonts.bold};
-  z-index: 5;
+z-index: 5;
 `;
 
 export const IconWrapper = styled.div`
+  cursor: pointer;
   position: absolute;
   top: 20px;
   right: 20px;
