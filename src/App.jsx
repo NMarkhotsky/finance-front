@@ -7,7 +7,7 @@ import { GlobalStyle } from './components/GlobalStyle/GlobalStyle';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { useFont, useTheme } from './hooks';
 import { lightTheme, darkTheme } from './theme/theme';
-import { googleAuth } from './redux/auth/authSlice';
+import { googleAuth, verifyAuth } from './redux/auth/authSlice';
 import { fetchCurrentUser } from './redux/auth/operations';
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(googleAuth(token));
+      dispatch(verifyAuth(token)); 
       setSearchParams('');
       dispatch(fetchCurrentUser());
       navigation('/');

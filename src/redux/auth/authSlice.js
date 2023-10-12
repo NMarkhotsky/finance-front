@@ -36,8 +36,13 @@ const authSlice = createSlice({
     googleAuth: {
       reducer(state, action) {
         state.token = action.payload;
-      },
+      }
     },
+    verifyAuth: {
+      reducer(state, action) {
+        state.token = action.payload;
+      }    
+    }
   },
   extraReducers: (builder) => {
     builder
