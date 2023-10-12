@@ -50,6 +50,7 @@ export const fetchCurrentUser = createAsyncThunk(
     // console.log('fetchCurrentUser-token: ', token);
 
     const token = localStorage.getItem('token');
+
     console.log('fetchCurrentUser-->token: ', token);
 
     if (token === null) {
