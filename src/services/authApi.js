@@ -41,11 +41,12 @@ export const logoutUser = async () => {
   return data;
 };
 
-export const fetchUserByToken = async (persistedToken) => {
-  console.log('fetchUserByToken-->token: ', persistedToken);
-  localStorage.setItem('token', persistedToken);
+export const fetchUserByToken = async (token) => {
+  console.log('fetchUserByToken-->token: ', token);
 
-  authHeader.set(persistedToken);
+  localStorage.setItem('token', token);
+
+  authHeader.set(token);
 
   const {
     data: { user },
