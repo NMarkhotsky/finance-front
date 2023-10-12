@@ -33,8 +33,6 @@ export const RegisterForm = () => {
 
     dispatch(registration(data));
 
-    alert('Confirm your email');
-
     reset();
   };
 
