@@ -49,12 +49,12 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = null;
       })
-      .addMatcher(
-        isAnyOf(login.fulfilled, fetchCurrentUser.fulfilled),
-        (state, action) => {
-          handleFulfilled(state, action);
-        }
-      )
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        handleFulfilled(state, action);
+      })
+      .addMatcher(isAnyOf(login.fulfilled), (state, action) => {
+        handleFulfilled(state, action);
+      })
       .addMatcher(
         isAnyOf(
           login.pending,
