@@ -23,10 +23,10 @@ export const ModalGlobal = ({
           <Title>{title}</Title>
           <BtnWrapper>
             <Button onClick={handleModal}>
-              <ButtonText>{t("other_cancel")}Yes</ButtonText>
+              <ButtonText>{t('other_cancel')}</ButtonText>
             </Button>
             <Button onClick={handleDelete}>
-              <ButtonText>{t("other_yes")}No</ButtonText>
+              <ButtonText>{t('other_yes')}</ButtonText>
             </Button>
           </BtnWrapper>
           <IconWrapper>
