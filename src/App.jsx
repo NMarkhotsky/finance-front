@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { fonts } from './constants';
@@ -19,15 +19,16 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get('token');
   console.log('APP-token: ', token);
+  dispatch(googleAuth(token));
 
-  // useEffect(() => {
-  if (token) {
-    dispatch(googleAuth(token));
-    setSearchParams('');
-    dispatch(fetchCurrentUser());
-    navigation('/');
-  } else dispatch(fetchCurrentUser());
-  // }, [dispatch, navigation, setSearchParams, token]);
+  useEffect(() => {
+    if (token) {
+      dispatch(googleAuth(token));
+      setSearchParams('');
+      dispatch(fetchCurrentUser());
+      navigation('/');
+    } else dispatch(fetchCurrentUser());
+  }, [dispatch, navigation, setSearchParams, token]);
 
   return fontsLoaded ? (
     <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
