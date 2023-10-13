@@ -1,8 +1,8 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchCurrentUser, login, logout, registration } from './operations';
+import { fetchCurrentUser, login, logout, registration, addStartBalance } from './operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, balance: null },
   token: null,
   isVerified: false,
   isLoggedIn: false,
@@ -47,6 +47,17 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
+      })
+      .addCase(addStartBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload
+      })
+      .addCase(addStartBalance.pending, (state) => {
+          state.isRefreshing = true;
+          state.error = null;
+      })
+      .addCase(addStartBalance.rejected, (state, action) => {
+          state.isRefreshing = false;
+          state.error = action.payload;
       })
       .addMatcher(
         isAnyOf(login.fulfilled, registration.fulfilled),
