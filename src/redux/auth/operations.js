@@ -5,7 +5,7 @@ import {
   logoutUser,
   registerUser,
 } from '../../services/authApi';
-// import { useAuth } from '../../hooks/useAuth/useAuth';
+import { addBalance } from '../../services/balanceApi';
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -54,6 +54,20 @@ export const fetchCurrentUser = createAsyncThunk(
       return fetchUserByToken(persistedToken);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.response.data.message);
+    }
+  }
+);
+
+
+export const addStartBalance = createAsyncThunk(
+  'auth/addStartBalance',
+  async (startBalance, { rejectWithValue }) => {
+    try {
+      const { balance }  = await addBalance(startBalance);   
+      return balance
+
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );

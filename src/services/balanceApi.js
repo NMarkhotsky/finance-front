@@ -5,17 +5,17 @@ axios.defaults.baseURL = BASE_URL;
 
 export const getBalance = async () => {
     try {
-        const response = await axios.get('/transactions/balance');
-        return response;
+        const { data } = await axios.get('/transactions/balance');
+        return data;
     } catch (error) {
         console.log(error);
     }
 };
 
-export const addTransaction = async () => {
+export const addBalance = async (start_balance) => {
     try {
-        const response = await axios.post('/transactions/balance');
-        return response;
+        const {data: {user}} = await axios.post('/transactions/balance', {start_balance});
+        return user;
     } catch (error) {
         console.log(error);
     }
