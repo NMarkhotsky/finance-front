@@ -8,11 +8,35 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { useState, useEffect } from "react";
 import { SectionChart, ContainerChart } from "./BarChart.styled";
 
 ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
 export const BarChart = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    // Підписка на подію зміни розміру вікна
+    window.addEventListener('resize', handleResize);
+
+    // Ініціалізація
+    handleResize();
+
+    return () => {
+      // Відписка від події при розмонтовці компонента
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const dataMoney = [1700, 1500, 800, 500, 300, 4800, 4500, 3200, 2100, 1800];
   const sortData = dataMoney.sort((a, b) => b - a);
 
@@ -57,6 +81,7 @@ export const BarChart = () => {
           lineWidth: 2,
         },
         ticks: {
+          display: !isMobile,
           // display: false, // Приховати показники діаграми зліва
         }
       },
