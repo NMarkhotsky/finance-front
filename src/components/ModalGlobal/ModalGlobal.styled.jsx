@@ -3,16 +3,14 @@ import { Icon } from '../../shared/components/Icon/Icon';
 import { selectTablet } from '../../utils/mediaRequest';
 
 export const Modal = styled.div`
-  /* width: 380px; */
-  /* padding: 60px 12px; */
+  width: 380px;
+  padding-top: 50px;
+  padding-bottom: 60px;
   position: relative;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.mainBgdColor};
 
   @media ${selectTablet} {
-    padding-top: 50px;
-    padding-bottom: 60px;
-    width: 380px;
     height: 194px; 
   }
 `;
