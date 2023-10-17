@@ -9,7 +9,7 @@ import { useFont, useTheme } from './hooks';
 import { lightTheme, darkTheme } from './theme/theme';
 import { googleAuth } from './redux/auth/authSlice';
 import { fetchCurrentUser } from './redux/auth/operations';
-import { BarChart } from './components/BarChart/BarChart';
+
 
 function App() {
   const fontsLoaded = useFont(fonts);
@@ -35,7 +35,7 @@ function App() {
   return fontsLoaded ? (
     <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <BarChart/>
+
       <SharedLayout />
     </ThemeProvider>
   ) : (
