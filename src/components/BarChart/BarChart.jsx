@@ -73,11 +73,12 @@ export const BarChart = () => {
       y: {
         beginAtZero: true,
         grid: {
-          // drawOnChartArea: false,
+     drawOnChartArea: isMobile ? false : true,
           color: "#F5F6FB",
           lineWidth: 2,
         },
         ticks: {
+          display: isMobile ? true : false, // Приховати показники діаграми зліва
           // display: false, // Приховати показники діаграми зліва
         }
       },
@@ -87,6 +88,7 @@ export const BarChart = () => {
         },
         ticks: {
           display: isMobile ? false : true,
+          // display: false,
           maxRotation: 0, // Робить підписи під колонками рівними (горизонтальними)
           minRotation: 0,
         }
@@ -106,11 +108,27 @@ export const BarChart = () => {
         offset: 4,
         padding: 0,
         formatter: (value, context) => {
+          // const price = context.dataset.data[context.dataIndex];
+          // const labels = data.labels;
+          // if(!isMobile) {
+          //   return price + " грн";
+          // } else {
+          //   return `${value}\n ${labels[context.dataIndex]}`;
+
+          // }
           const price = context.dataset.data[context.dataIndex];
           return price + " грн";
         },
       },
     },
+    layout: {
+      padding: {
+        // left: 20, // Відступ ліворуч
+        // right: 20, // Відступ праворуч
+        top: 20, // Відступ зверху
+        // bottom: 20 // Відступ знизу
+      }
+    }
   };
 
   return (
