@@ -10,6 +10,7 @@ import { lightTheme, darkTheme } from './theme/theme';
 import { googleAuth } from './redux/auth/authSlice';
 import { fetchCurrentUser } from './redux/auth/operations';
 
+
 function App() {
   const fontsLoaded = useFont(fonts);
   const currentTheme = useTheme();
@@ -34,6 +35,7 @@ function App() {
   return fontsLoaded ? (
     <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
+
       <SharedLayout />
     </ThemeProvider>
   ) : (
