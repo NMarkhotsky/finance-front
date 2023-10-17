@@ -17,25 +17,21 @@ export const BarChart = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 480) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 480);
+      console.log(window.innerWidth);
     };
 
-    // Підписка на подію зміни розміру вікна
-    window.addEventListener('resize', handleResize);
+    checkScreenSize();
 
-    // Ініціалізація
-    handleResize();
+    window.addEventListener('resize', checkScreenSize);
 
     return () => {
-      // Відписка від події при розмонтовці компонента
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
+
+  console.log("isMobile", isMobile);
 
   const dataMoney = [1700, 1500, 800, 500, 300, 4800, 4500, 3200, 2100, 1800];
   const sortData = dataMoney.sort((a, b) => b - a);
@@ -70,7 +66,7 @@ export const BarChart = () => {
   };
 
   const options = {
-    indexAxis: 'y',
+    indexAxis: isMobile ? 'y' : 'x',
     responsive: true,
     scales: {
       y: {
@@ -81,7 +77,7 @@ export const BarChart = () => {
           lineWidth: 2,
         },
         ticks: {
-          display: !isMobile,
+          display: isMobile ? false : true,
           // display: false, // Приховати показники діаграми зліва
         }
       },
