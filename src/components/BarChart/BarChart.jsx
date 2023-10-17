@@ -18,8 +18,11 @@ export const BarChart = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 480);
-      console.log(window.innerWidth);
+      const newIsMobile = window.visualViewport.width <= 480;
+    
+      if (newIsMobile !== isMobile) {
+        setIsMobile(newIsMobile);
+      }
     };
 
     checkScreenSize();
@@ -29,9 +32,7 @@ export const BarChart = () => {
     return () => {
       window.removeEventListener('resize', checkScreenSize);
     };
-  }, []);
-
-  console.log("isMobile", isMobile);
+  }, [isMobile]);
 
   const dataMoney = [1700, 1500, 800, 500, 300, 4800, 4500, 3200, 2100, 1800];
   const sortData = dataMoney.sort((a, b) => b - a);
@@ -58,7 +59,7 @@ export const BarChart = () => {
         borderWidth: 0,
         borderRadius: 10,
         data: sortData,
-        barThickness: 38,
+        // barThickness: window.visualViewport.width > 480 && 38,
         // barPercentage: 0.6, // Всі стовпці повністю заповнюють доступну ширину
         // categoryPercentage: 0.5, // Змініть це значення для відступів між колонками
       },
@@ -77,7 +78,6 @@ export const BarChart = () => {
           lineWidth: 2,
         },
         ticks: {
-          display: isMobile ? false : true,
           // display: false, // Приховати показники діаграми зліва
         }
       },
@@ -86,6 +86,7 @@ export const BarChart = () => {
           display: false,
         },
         ticks: {
+          display: isMobile ? false : true,
           maxRotation: 0, // Робить підписи під колонками рівними (горизонтальними)
           minRotation: 0,
         }
@@ -100,7 +101,8 @@ export const BarChart = () => {
         display: true,
         color: "#52555F",
         anchor: "end",
-        align: "top",
+        // align: "top",
+        align: "end",
         offset: 4,
         padding: 0,
         formatter: (value, context) => {
