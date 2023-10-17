@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./balanceFormSchema";
-import { BalanceWrapper, FormBalance, BalanceLabel, BalanceInput, BalanceCurrency, Button } from "./BalanceForm.styled";
+import { BalanceWrapper, FormBalance, BalanceLabel, BalanceInput, BalanceCurrency, Button, BalanceBar } from "./BalanceForm.styled";
 import { cutValue, normalizeValue } from "./balanceFormServices";
 import { useEffect, useCallback } from "react";
 import { useAuth } from "../../hooks/useAuth/useAuth";
@@ -64,7 +64,8 @@ export const BalanceForm = () => {
         <>
             <FormBalance onSubmit={handleSubmit(onSubmit)}>
                 <BalanceLabel>Balance:</BalanceLabel>
-                <BalanceWrapper>
+                <BalanceBar>
+                    <BalanceWrapper>
                     <BalanceInput
                         {...register('balance')}
                         type="text"
@@ -75,6 +76,7 @@ export const BalanceForm = () => {
                     <BalanceCurrency>UAH</BalanceCurrency>
                 </BalanceWrapper>
                 <Button disabled={isDisabled()}>Confirm</Button>
+            </BalanceBar>        
                 <p>{errors.balance?.message}</p>
             </FormBalance>
         </>
