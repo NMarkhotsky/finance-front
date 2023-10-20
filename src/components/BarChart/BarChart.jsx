@@ -7,7 +7,7 @@ import {
   LinearScale,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+// import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useState, useEffect } from "react";
 import { SectionChart, ContainerChart } from "./BarChart.styled";
 
@@ -73,7 +73,7 @@ export const BarChart = () => {
       y: {
         beginAtZero: true,
         grid: {
-     drawOnChartArea: isMobile ? false : true,
+          drawOnChartArea: isMobile ? false : true,
           color: "#F5F6FB",
           lineWidth: 2,
         },
@@ -95,46 +95,30 @@ export const BarChart = () => {
       },
   
     },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      datalabels: {
-        display: true,
-        color: "#52555F",
-        anchor: "end",
-        // align: "top",
-        align: "end",
-        offset: 4,
-        padding: 0,
-        formatter: (value, context) => {
-          // const price = context.dataset.data[context.dataIndex];
-          // const labels = data.labels;
-          // if(!isMobile) {
-          //   return price + " грн";
-          // } else {
-          //   return `${value}\n ${labels[context.dataIndex]}`;
-
-          // }
-          const price = context.dataset.data[context.dataIndex];
-          return price + " грн";
-        },
-      },
-    },
-    layout: {
-      padding: {
-        // left: 20, // Відступ ліворуч
-        // right: 20, // Відступ праворуч
-        top: 20, // Відступ зверху
-        // bottom: 20 // Відступ знизу
-      }
-    }
   };
+  const valueFormatter = (value) => `${value} грн`;
 
   return (
     <SectionChart>
       <ContainerChart>
-        <Bar data={data} plugins={[ChartDataLabels]} options={options}/>
+        <Bar data={data} plugins={[{
+          beforeDraw: (chart) => {
+            const ctx = chart.ctx;
+            chart.data.datasets[0].data.forEach((value, dataIndex) => {
+              const label = labelsList[dataIndex];
+              const x = chart.getDatasetMeta(0).data[dataIndex].x;
+              const y = chart.getDatasetMeta(0).data[dataIndex].y; 
+
+              const maxValue = Math.max(...dataMoney);
+              const spaceWeight = 275 / maxValue;
+              const valueWeight = value * spaceWeight;
+              
+              
+              ctx.fillText(label, x - valueWeight, y -10); // Відступ вліво/вгору
+              ctx.fillText(valueFormatter(value), x, y-10); // Відступ вгору
+            });
+          },
+        }]} options={options}/>
       </ContainerChart>
     </SectionChart>
   );
