@@ -6,15 +6,17 @@ export const FormBalance = styled.form`
     font-size: ${({ theme }) => theme.fontSizes.xs};
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    /* gap: 8px; */
+    padding: 11px;
+    
 
         @media ${selectTablet} {
             font-size: ${({ theme }) => theme.fontSizes.sm};
             flex-direction: row;
+            justify-content: center;
         }        
-            @media ${selectDesktop} {
-        flex-direction: row;
-        gap: 20px;
+        @media ${selectDesktop} {
+            gap: 20px;
         
     }    
 
@@ -98,12 +100,12 @@ export const Button = styled.button`
     height: 44px;
     margin-left: -2px;
     text-transform: uppercase;
-    enabled {
+    &:enabled {
         background-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};
         color: ${({ theme }) => theme.colors.whiteTextColor};
     }
 
-    disabled {
+    &:disabled {
         cursor: auto;
     }
 
