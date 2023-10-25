@@ -3,9 +3,9 @@ import { BASE_URL } from '../constants';
 
 axios.defaults.baseURL = BASE_URL;
 
-export const addTransaction = async () => {
+export const addTransaction = async (data) => {
     try {
-        const response = await axios.post('/transactions');
+        const response = await axios.post('/transactions', data);
         return response;
     } catch (error) {
         console.log(error);

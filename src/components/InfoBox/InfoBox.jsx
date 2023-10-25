@@ -4,7 +4,6 @@ import { InfoBoxWrapper, TextInfoBox } from "./InfoBox.styled";
 export const InfoBox = () => {
 
     const { user } = useAuth();
-    console.log(user);
 
     return (
         <>
