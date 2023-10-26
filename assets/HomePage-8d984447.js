@@ -1,4 +1,4 @@
-import{s as T,a as B,b as Oe,r as b,_ as F,c as Nr,d as Rn,m as Hr,u as zr,R as en,e as Re,f as Ur,g as Ct,h as ft,i as qr,j as Wr,k as Ln,B as Gr,P as tn,l as $t,n as O,o as _n,C as Yr,I as Zr,p as Kr,q as Bn,t as Xr}from"./index-f287bfcb.js";function D(){return D=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(t[i]=n[i])}return t},D.apply(this,arguments)}function Jr(t,e){if(t==null)return{};var n={},i=Object.keys(t),r,a;for(a=0;a<i.length;a++)r=i[a],!(e.indexOf(r)>=0)&&(n[r]=t[r]);return n}const Qr=T.form`
+import{s as T,a as B,b as Oe,r as b,_ as F,c as Nr,d as Rn,m as Hr,u as zr,R as en,e as Re,f as Ur,g as Ct,h as ft,i as qr,j as Wr,k as Ln,B as Gr,P as tn,l as $t,n as O,o as _n,C as Yr,I as Zr,p as Kr,q as Bn,t as Xr}from"./index-b378ff72.js";function D(){return D=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(t[i]=n[i])}return t},D.apply(this,arguments)}function Jr(t,e){if(t==null)return{};var n={},i=Object.keys(t),r,a;for(a=0;a<i.length;a++)r=i[a],!(e.indexOf(r)>=0)&&(n[r]=t[r]);return n}const Qr=T.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -164,8 +164,6 @@ attempted value: ${o}
     height: 100vh;
     background-color: transparent;
     position: absolute;
-    top: 0;
-    left: 0;
 `,zu=T.form`
     width: 210px;
     background-color: #C7CCDC;
@@ -173,8 +171,8 @@ attempted value: ${o}
     font-size: 16px;
     position: absolute;
     top: 320px;
-    right: 50%;
-    transform: translate(-50%, 0);
+    /* right: 50%; */
+    transform: translate(50%, 0);
     border-radius: 16px 0 16px 16px;
     box-shadow: 5px 10px 20px 0px rgba(170, 178, 197, 0.40);
 
