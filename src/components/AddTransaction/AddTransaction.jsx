@@ -23,6 +23,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { transactionSchema } from "../../constants/validationSchemas";
 import { addTransaction } from '../../services/transactionsApi';
 import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalConstants";
+import { CalcForm } from "../CalcForm/CalcForm";
 
 
 export const AddTransaction = () => {
@@ -35,6 +36,7 @@ export const AddTransaction = () => {
     }
 
     const [data, setData] = useState(initialValues);
+    const [isOpenCalc, setIsOpenCalc] = useState(false);
     const dispatch = useDispatch();
 
     const {
@@ -77,54 +79,72 @@ export const AddTransaction = () => {
         setValue('category', selectedOption);
     };
 
+    const handleCalcSubmit = (value) => {
+        console.log(value);
+        setValue('sum', value)
+    }
+
+    const handleClickCalc = () => {
+        setIsOpenCalc(prev => !prev);
+    }
+
+    const closeCalc = () => {
+        setIsOpenCalc(prev => !prev);
+    }
+
     return (
-        <AddTransactionForm onSubmit={handleSubmit(onSubmit)}>
-            <DataWrapper>
-                <DescriptionInput 
-                    {...register('description')}
-                    type="text"
-                    placeholder="Product description"
-                /> 
-                
-                <CategoryInput>
-                    <Select
-                        {...register('category')}
-                        options={type === 'expense'? CATEGORIES_EXPENSES : CATEGORIES_INCOME}
-                        placeholder="Product category"
-                        value={data.category}
-                        onChange={handleCategoryChange}
-                        styles={SelectListStyles}
-                    />
-
-                </CategoryInput>
-
-                <SumInput>
-                    <SumWrapper>
-                        <Sum 
-                        {...register('sum')}
+        <>
+            <AddTransactionForm onSubmit={handleSubmit(onSubmit)}>
+                <DataWrapper>
+                    <DescriptionInput 
+                        {...register('description')}
                         type="text"
-                        onChange={onSumChange}
-                        onBlur={handleSumBlur}
+                        placeholder="Product description"
+                    /> 
+                    
+                    <CategoryInput>
+                        <Select
+                            {...register('category')}
+                            options={type === 'expense'? CATEGORIES_EXPENSES : CATEGORIES_INCOME}
+                            placeholder="Product category"
+                            value={data.category}
+                            onChange={handleCategoryChange}
+                            styles={SelectListStyles}
                         />
 
-                        <Currency>UAH</Currency>
-                    </SumWrapper>
+                    </CategoryInput>
 
-                    <CalcIconWrapper>
-                        <Icon iconName="icon-calculator" width={18} height={18}/>
-                    </CalcIconWrapper>                
-                </SumInput>
+                    <SumInput>
+                        <SumWrapper>
+                            <Sum 
+                            {...register('sum')}
+                            type="text"
+                            onChange={onSumChange}
+                            onBlur={handleSumBlur}
+                            />
 
-                <p>{errors.description?.message}</p>
-                <p>{errors.category?.message}</p>
-                <p>{errors.sum?.message}</p>                
-            </DataWrapper>
+                            <Currency>UAH</Currency>
+                        </SumWrapper>
 
-            <ButtonsWrapper>
-                <AcceptButton type="submit">Input</AcceptButton>
-                <ClearButton type="button" onClick={onClear}>Clear</ClearButton>
-            </ButtonsWrapper>
-        </AddTransactionForm>
+                        <CalcIconWrapper>
+                            <div onClick={handleClickCalc}>
+                                <Icon iconName="icon-calculator" width={18} height={18}  />
+                            </div>
+                        </CalcIconWrapper>                
+                    </SumInput>
+
+                    <p>{errors.description?.message}</p>
+                    <p>{errors.category?.message}</p>
+                    <p>{errors.sum?.message}</p>                
+                </DataWrapper>
+
+                <ButtonsWrapper>
+                    <AcceptButton type="submit">Input</AcceptButton>
+                    <ClearButton type="button" onClick={onClear}>Clear</ClearButton>
+                </ButtonsWrapper>
+            </AddTransactionForm> 
+            {isOpenCalc && <CalcForm handleCalcSubmit={handleCalcSubmit} closeCalc={closeCalc}/>}
+        </>
     )
 
 }
