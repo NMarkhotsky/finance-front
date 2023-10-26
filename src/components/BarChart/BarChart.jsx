@@ -60,7 +60,7 @@ export const BarChart = () => {
     datasets: [
       {
         label: "Chart",
-        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
+        backgroundColor: ["#000000", "#FFDAC0", "#FFDAC0"],
         borderWidth: 0,
         borderRadius: 10,
         data: sortData,
@@ -222,7 +222,7 @@ export const BarChart = () => {
       </ContainerChart>
     </SectionChart>) : (<SectionChart>
       <ContainerChart>
-        <ChartContainer>
+        {/* <ChartContainer>
           {data.labels.map((label, index) => (
             <ColumnContainer key={index}>
              <BoxLabel>
@@ -245,11 +245,11 @@ export const BarChart = () => {
                     },
                   ],
                 }}
-                options={optionsMobile}
+                // options={optionsMobile}
               />
               </ColumnContainer>
           ))}
-        </ChartContainer>
+        </ChartContainer> */}
       </ContainerChart>
     </SectionChart>)}
     </>
