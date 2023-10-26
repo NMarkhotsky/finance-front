@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import { ArrowBack, CalcButton, CalcButtonItem, CalcButtonList, CalcInput, CalcStyledForm, SubmitButton, CalcContainer } from "./CalcForm.styled"
-import { normalizeValue } from "../../services/balanceFormServices"
+import { normalizeValue, cutValue } from "../../services/balanceFormServices"
 import { useEffect } from "react"
 import PropTypes from 'prop-types';
 
@@ -44,6 +44,12 @@ export const CalcForm = ({ handleCalcSubmit, closeCalc }) => {
                 setValue('sum', prevValue + value);
     }
 
+    const handleChangeSum = (e) => {
+        const value = e.target.value;
+        const normalizedValue = cutValue(value);
+        setValue('sum', normalizedValue);
+    }
+
     const onSubmit = ({sum}) => {
         const normalizedValue = normalizeValue(sum);
         handleCalcSubmit(normalizedValue);
@@ -64,6 +70,8 @@ export const CalcForm = ({ handleCalcSubmit, closeCalc }) => {
                     {...register('sum')}
                     type="text"
                     placeholder="00.00"
+                    value={getValues('sum')}
+                    onChange={handleChangeSum}
                 />
                 <CalcButtonList>
                     {buttons.map(button =>
