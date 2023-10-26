@@ -22,7 +22,7 @@ export const DataWrapper = styled.div`
 `
 export const DescriptionInput = styled.input`
     width: 280px;
-    height: 44px;
+    height: 40px;
     background-color: transparent;
     border-radius: 20px 20px 0 0;
     padding: 10px 20px;
@@ -34,7 +34,6 @@ export const DescriptionInput = styled.input`
     }
 
     @media ${selectTablet} {
-        height: 40px;
         border-radius: 16px 0 0 0;
         width: 180px;
     }
@@ -45,7 +44,7 @@ export const DescriptionInput = styled.input`
 `
 export const CategoryInput = styled.div`
     width: 280px;
-    height: 44px;
+    height: 40px;
     background-color: transparent;
     border-radius: 0 0 20px 0;
     padding: 0 10px;
@@ -53,7 +52,6 @@ export const CategoryInput = styled.div`
     margin-bottom: 32px;
     
     @media ${selectTablet} {
-        height: 40px;
         border-radius: 0;
         border-left: none;
         width: 186px;
@@ -69,12 +67,11 @@ export const SumInput = styled.div`
     display: flex;
     margin: 0 auto;
     max-width: 183px;
-    height: 44px;
+    height: 40px;
     display: flex;
     align-items: center;
 
     @media ${selectTablet} {
-        height: 40px;
         border-radius: 0 16px 16px 0;
         margin-left: -2px;
         width: 130px;
