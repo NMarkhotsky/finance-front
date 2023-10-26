@@ -9,6 +9,8 @@ export const CalcContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
 `
 
 export const CalcStyledForm = styled.form`
@@ -18,8 +20,8 @@ export const CalcStyledForm = styled.form`
     font-size: 16px;
     position: absolute;
     top: 320px;
-    right: 50%;
-    transform: translate(-50%, 0);
+    /* right: 50%; */
+    transform: translate(50%, 0);
     border-radius: 16px 0 16px 16px;
     box-shadow: 5px 10px 20px 0px rgba(170, 178, 197, 0.40);
 
