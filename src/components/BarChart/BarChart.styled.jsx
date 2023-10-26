@@ -27,3 +27,21 @@ export const ContainerChart = styled.div`
     padding: 22px 138px 20px; 
 }
 `
+
+
+
+
+export const ChartContainer = styled.div`
+  /* display: flex; */
+  /* justify-content: space-between; */
+`;
+
+export const ColumnContainer = styled.div`
+
+`;
+
+
+export const BoxLabel = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

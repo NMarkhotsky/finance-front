@@ -9,7 +9,12 @@ import {
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useState, useEffect } from "react";
-import { SectionChart, ContainerChart } from "./BarChart.styled";
+import {
+  SectionChart,
+  ContainerChart,
+  ChartContainer,
+  ColumnContainer,
+  BoxLabel } from "./BarChart.styled";
 
 ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
@@ -19,7 +24,7 @@ export const BarChart = () => {
   useEffect(() => {
     const checkScreenSize = () => {
       const newIsMobile = window.visualViewport.width <= 480;
-    
+
       if (newIsMobile !== isMobile) {
         setIsMobile(newIsMobile);
       }
@@ -27,10 +32,10 @@ export const BarChart = () => {
 
     checkScreenSize();
 
-    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
 
     return () => {
-      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener("resize", checkScreenSize);
     };
   }, [isMobile]);
 
@@ -55,11 +60,11 @@ export const BarChart = () => {
     datasets: [
       {
         label: "Chart",
-        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
+        backgroundColor: ["#000000", "#FFDAC0", "#FFDAC0"],
         borderWidth: 0,
         borderRadius: 10,
         data: sortData,
-        // barThickness: window.visualViewport.width > 480 && 38,
+        // barThickness: window.visualViewport.width > 480 ? 38 : 10,
         // barPercentage: 0.6, // Всі стовпці повністю заповнюють доступну ширину
         // categoryPercentage: 0.5, // Змініть це значення для відступів між колонками
       },
@@ -67,20 +72,23 @@ export const BarChart = () => {
   };
 
   const options = {
-    indexAxis: isMobile ? 'y' : 'x',
+    indexAxis: isMobile ? "y" : "x",
     responsive: true,
     scales: {
       y: {
         beginAtZero: true,
         grid: {
-     drawOnChartArea: isMobile ? false : true,
+          drawOnChartArea: isMobile ? false : true,
           color: "#F5F6FB",
           lineWidth: 2,
         },
         ticks: {
-          display: isMobile ? true : false, // Приховати показники діаграми зліва
-          // display: false, // Приховати показники діаграми зліва
-        }
+          // display: isMobile ? true : false, // Приховати показники діаграми зліва
+          display: false, // Приховати показники діаграми зліва
+          font: {
+            size: window.visualViewport.width <= 768 ?  10 : 12
+          },
+        },
       },
       x: {
         grid: {
@@ -91,9 +99,11 @@ export const BarChart = () => {
           // display: false,
           maxRotation: 0, // Робить підписи під колонками рівними (горизонтальними)
           minRotation: 0,
-        }
+          font: {
+            size: window.visualViewport.width <= 768 ?  10 : 12
+          },
+        },
       },
-  
     },
     plugins: {
       legend: {
@@ -103,18 +113,19 @@ export const BarChart = () => {
         display: true,
         color: "#52555F",
         anchor: "end",
-        // align: "top",
-        align: "end",
+        align: "top",
         offset: 4,
-        padding: 0,
+        padding: {
+          top: 10,
+        },
         formatter: (value, context) => {
           // const price = context.dataset.data[context.dataIndex];
           // const labels = data.labels;
-          // if(!isMobile) {
+          // // context.display = 'flex';
+          // if (!isMobile) {
           //   return price + " грн";
           // } else {
-          //   return `${value}\n ${labels[context.dataIndex]}`;
-
+          //   return `${labels[context.dataIndex]} ${value}грн`;
           // }
           const price = context.dataset.data[context.dataIndex];
           return price + " грн";
@@ -127,15 +138,122 @@ export const BarChart = () => {
         // right: 20, // Відступ праворуч
         top: 20, // Відступ зверху
         // bottom: 20 // Відступ знизу
-      }
-    }
+      },
+    },
   };
 
+  const optionsMobile = {
+    indexAxis: "y",
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          drawOnChartArea: isMobile ? false : true,
+          color: "#F5F6FB",
+          lineWidth: 2,
+        },
+        ticks: {
+          // display: isMobile ? true : false, // Приховати показники діаграми зліва
+          display: false, // Приховати показники діаграми зліва
+          font: {
+            size: window.visualViewport.width <= 768 ?  10 : 12
+          },
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: isMobile ? false : true,
+          // display: false,
+          maxRotation: 0, // Робить підписи під колонками рівними (горизонтальними)
+          minRotation: 0,
+          font: {
+            size: window.visualViewport.width <= 768 ?  10 : 12
+          },
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      datalabels: {
+        display: true,
+        color: "#52555F",
+        anchor: "end",
+        align: "top",
+        offset: 4,
+        padding: {
+          top: 10,
+        },
+        formatter: (value, context) => {
+          // const price = context.dataset.data[context.dataIndex];
+          // const labels = data.labels;
+          // // context.display = 'flex';
+          // if (!isMobile) {
+          //   return price + " грн";
+          // } else {
+          //   return `${labels[context.dataIndex]} ${value}грн`;
+          // }
+          const price = context.dataset.data[context.dataIndex];
+          return price + " грн";
+        },
+      },
+    },
+    layout: {
+      padding: {
+        // left: 20, // Відступ ліворуч
+        // right: 20, // Відступ праворуч
+        top: 20, // Відступ зверху
+        // bottom: 20 // Відступ знизу
+      },
+    },
+  };
+
+
   return (
-    <SectionChart>
+    <>
+    {!isMobile ? (    <SectionChart>
       <ContainerChart>
         <Bar data={data} plugins={[ChartDataLabels]} options={options}/>
       </ContainerChart>
-    </SectionChart>
+    </SectionChart>) : (<SectionChart>
+      <ContainerChart>
+        {/* <ChartContainer>
+          {data.labels.map((label, index) => (
+            <ColumnContainer key={index}>
+             <BoxLabel>
+                <div>{label}</div>
+                <div>{data.datasets[0].data[index]}грн</div>
+             </BoxLabel>
+            
+              <Bar
+                data={{
+                  labels: [label],
+                  datasets: [
+                    {
+                      data: [data.datasets[0].data[index]],
+                      backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"][index % 3],
+                      borderWidth: 0,
+                      borderRadius: 10,
+                      barThickness: 15,
+                      barPercentage: 0.6, // Всі стовпці повністю заповнюють доступну ширину
+        // categoryPercentage: 0.5,
+                    },
+                  ],
+                }}
+                // options={optionsMobile}
+              />
+              </ColumnContainer>
+          ))}
+        </ChartContainer> */}
+      </ContainerChart>
+    </SectionChart>)}
+    </>
+
+    
   );
 };
