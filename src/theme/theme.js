@@ -40,6 +40,7 @@ export const lightTheme = {
   colors: {
     mainBgdColor: '#FFFFFF',
     secondaryBgdColor: '#F2F5FC',
+    greyLightBgdColor: '#C7CCDC',
     mainTextColor: '#52555F',
     secondaryTextColor: '#000000',
     whiteTextColor: '#F5F6FB',

@@ -13,7 +13,7 @@ export const CalcContainer = styled.div`
 
 export const CalcStyledForm = styled.form`
     width: 210px;
-    background-color: #C7CCDC;
+    background-color: ${({theme}) => theme.colors.greyLightBgdColor};
     padding: 10px 10px;
     font-size: 16px;
     position: absolute;
@@ -21,7 +21,7 @@ export const CalcStyledForm = styled.form`
     left: 50%;
     transform: translate(-50%, 0);
     border-radius: 16px 0 16px 16px;
-    box-shadow: 5px 10px 20px 0px rgba(170, 178, 197, 0.40);
+    box-shadow: ${({theme}) => theme.boxShadowColor.mobile};
 
     @media ${selectTablet} {
         top: 200px;
@@ -40,8 +40,8 @@ export const CalcInput = styled.input`
     padding: 4px;
     text-align: right;
     border-radius: 4px;
-    border: 1px solid #F6F7FB;
-    background-color: #F6F7FB;
+    border: 1px solid ${({theme}) => theme.colors.borderSecondaryColor};
+    background-color: ${({theme}) => theme.colors.inputBgdColor};
 `
 
 export const CalcButtonList = styled.ul`
@@ -61,14 +61,14 @@ export const CalcButtonItem = styled.li`
 export const CalcButton = styled.button`
     width: 30px;
     height: 30px;
-    background-color: #F5F6FB;
-    border: 1px solid #F5F6FB;
+    background-color: ${({theme}) => theme.colors.btnBgdMainColor};
+    border: 1px solid ${({theme}) => theme.colors.borderSecondaryColor};
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 2px;
-    color: #FF751D;
-    box-shadow: 5px 10px 20px 0px rgba(170, 178, 197, 0.40);
+    color: ${({theme}) => theme.colors.orange};
+    box-shadow: ${({theme}) => theme.boxShadowColor.mobile};
 
 `
 
@@ -81,11 +81,11 @@ export const ArrowBack = styled.span`
 export const SubmitButton = styled.button`
     width: 100%;
     padding: 5px;
-    background-color: #FF751D;
+    background-color: ${({theme}) => theme.colors.btnBgdSecondaryColor};
     text-transform: uppercase;
     border-radius: 6px;
-    box-shadow: 1px 2px 5px 0px rgba(255, 117, 29, 0.40);
-    color: #F5F6FB;
+    box-shadow: ${({theme}) => theme.boxShadowColor.orangeBtn};
+    color: ${({theme}) => theme.colors.whiteTextColor};
     font-weight: 700;
     font-size: 14px;
 `
