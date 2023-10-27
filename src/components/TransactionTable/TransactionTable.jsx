@@ -43,8 +43,9 @@ export const TransactionTable = () => {
     })
 
     useEffect(() => {
-        getTransactions(type).then(console.log(data));
+        getTransactions(type);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[user.balance])
 
     const getTransactions = async (type) => {
