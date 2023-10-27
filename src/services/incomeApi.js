@@ -5,8 +5,8 @@ axios.defaults.baseURL = BASE_URL;
 
 export const getIncome = async () => {
     try {
-        const response = await axios.get('/transactions/income');
-        return response;
+        const { data } = await axios.get('/transactions/income');
+        return data.transactions;
     } catch (error) {
         console.log(error);
     }

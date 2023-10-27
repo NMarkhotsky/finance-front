@@ -5,8 +5,9 @@ axios.defaults.baseURL = BASE_URL;
 
 export const getExpenses = async () => {
     try {
-        const response = await axios.get('/transactions/expenses');
-        return response;
+        const { data } = await axios.get('/transactions/expenses');
+
+        return data.transactions;
     } catch (error) {
         console.log(error);
     }
