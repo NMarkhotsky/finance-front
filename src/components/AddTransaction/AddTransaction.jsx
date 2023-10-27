@@ -27,7 +27,7 @@ import { CalcForm } from "../CalcForm/CalcForm";
 
 
 export const AddTransaction = () => {
-    const type = 'expense' //need to get from props
+    const type = 'income' //need to get from props
     const initialValues = {
         type,
         description: '',
