@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useRef, useState } from "react";
+import { useMemo} from "react";
 import {
   ResponsiveContainer,
   BarChart,
@@ -11,21 +11,22 @@ import {
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
-const getColor = (length, index) => {
+const getColor = (index) => {
+  
   return colors[index % colors.length];
 };
 
 const data = [
-  { id: 1, name: "Риба хотіла лежати і нікого не чіпала", price: 1700 },
-  { id: 2, name: "М'ясо любить тишу", price: 1500 },
-  { id: 3, name: "Ковбаса", price: 800 },
-  { id: 4, name: "Ліки", price: 500 },
-  { id: 5, name: "Комуналка", price: 300 },
-  { id: 6, name: "Хотєлки", price: 4800 },
+  { id: 1, name: "Риба хотіла лежати і нікого не чіпала", price: 1500 },
+  { id: 2, name: "М'ясо любить тишу", price: 800 },
+  { id: 3, name: "Ковбаса", price: 1700 },
+  { id: 4, name: "Ліки", price: 1800 },
+  { id: 5, name: "Комуналка", price: 3200 },
+  { id: 6, name: "Хотєлки", price: 500 },
   { id: 7, name: "Окунь", price: 4500 },
-  { id: 8, name: "Труси", price: 3200 },
-  { id: 9, name: "Пальто", price: 2100 },
-  { id: 10, name: "Борошно", price: 175 },
+  { id: 8, name: "Труси", price: 300 },
+  { id: 9, name: "Пальто", price: 5000 },
+  { id: 10, name: "Борошно", price: 2100 },
 ];
 
 const sortedData = [...data].sort((a, b) => b.price - a.price);
@@ -35,7 +36,18 @@ const modifiedData = sortedData.map((item) => {
   return { ...item, name: words[0] };
 });
 
+const prices = modifiedData.map(item => item.price);
+const maxPrice = Math.max(...prices);
+
+const number = maxPrice / 100; 
+
+const dataWithWidth = modifiedData.map(d => ({ ...d, width: d.price / number }));
+
+const widthAxis = dataWithWidth.map((item) => item.width);
+
+
 let ctx;
+
 
 const measureText14HelveticaNeue = (text, fontSize) => {
   if (!ctx) {
@@ -48,23 +60,9 @@ const measureText14HelveticaNeue = (text, fontSize) => {
   return ctx.measureText(text).width;
 };
 
-const BAR_AXIS_SPACE = 10;
+// const BAR_AXIS_SPACE = 10;
 
 export const BarChartMobile = () => {
-  const columnRef = useRef();
-  const [columnWidth, setColumnWidth] = useState(0);
-
-  useEffect(() => {
-    // Після того, як компонент був рендерений і стовпчик створено
-    if (columnRef.current) {
-      // Отримуємо реальну довжину смужки стовпчика
-      const width = columnRef.current.getBoundingClientRect().width;
-      setColumnWidth(width);
-    }
-  }, [columnRef]);
-
-  console.log("columnRef.current", columnRef.current);
-  console.log("columnWidth", columnWidth);
 
   const maxTextWidth = useMemo(
     () =>
@@ -79,26 +77,29 @@ export const BarChartMobile = () => {
     []
   );
 
+
   return (
-    <ResponsiveContainer width={"100%"} height={50 * data.length} debounce={50}>
+    <ResponsiveContainer width="100%" height={50 * data.length} debounce={50}>
       <BarChart
-        data={modifiedData}
+        data={dataWithWidth}
         layout="vertical"
-        margin={{ left: 10, right: maxTextWidth + (BAR_AXIS_SPACE - 8) }}
+        margin={{ left: 10, right: maxTextWidth}}
       >
         <XAxis hide axisLine={false} type="number" />
+          <YAxis
+            yAxisId={0}
+            dataKey="name"
+            type="category"
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={(value) => value}
+            padding={{ top: 5 }} 
+            dx={8}
+            textAnchor="start"
+            dy={-16}
+          />
         <YAxis
-          yAxisId={0}
-          dataKey="name"
-          type="category"
-          axisLine={false}
-          tickLine={false}
-          tickFormatter={(value) => value}
-          padding={{ top: 5 }}
-          dx={columnWidth}
-          dy={-16}
-        />
-        <YAxis
+          // orientation="left"
           orientation="right"
           yAxisId={1}
           dataKey="price"
@@ -108,22 +109,18 @@ export const BarChartMobile = () => {
           tickFormatter={(value) => value}
           mirror
           padding={{ top: 5 }}
-          // tick={{
-          //   transform: `translate(${maxTextWidth + BAR_AXIS_SPACE}, 0)`
-          // }}
-          tick={{
-            transform: `translate(${maxTextWidth + BAR_AXIS_SPACE}, 0)`,
-          }}
+          
           unit=" грн"
-          dx={-70}
-          dy={-16}
+          // dx={120}
+          textAnchor="end"
+          dy={-14}
         />
-        <Bar dataKey="price" minPointSize={2} barSize={12}        ref={columnRef}>
-          {modifiedData.map((d, idx) => {
+        <Bar dataKey="price" minPointSize={2} barSize={12} barGap={0}>
+          {dataWithWidth.map((d, idx) => {
             return (
               <Cell
                 key={d.name}
-                fill={getColor(data.length, idx)}
+                fill={getColor(idx)}
                 radius={[0, 10, 10, 0]}
               />
             );
