@@ -8,6 +8,7 @@ import { useEffect, useCallback } from "react";
 import { useAuth } from "../../hooks/useAuth/useAuth";
 import { useDispatch } from "react-redux";
 import { addStartBalance } from "../../redux/auth/operations";
+import { ButtonToReports } from "../ButtonToReports/ButtonToReports";
 
 export const BalanceForm = () => {
 
@@ -72,6 +73,7 @@ export const BalanceForm = () => {
                 <Button disabled={isDisabled()}>Confirm</Button>
             </BalanceBar>        
                 <p>{errors.balance?.message}</p>
+                <ButtonToReports/>
             </FormBalance>
         </>
     )
