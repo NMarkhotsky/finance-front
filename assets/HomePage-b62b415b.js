@@ -1,4 +1,4 @@
-import{s as I,a as B,b as Ve,r as b,_ as F,c as Ai,d as mr,m as Oi,u as _i,R as Dn,e as Ge,f as Di,g as jt,h as Et,i as Vi,j as Mi,k as Me,B as on,P as Vn,l as sn,n as x,I as vr,o as br,C as Ii,p as Pi,q as un,t as ki}from"./index-35373f9c.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Ti(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Li=I.form`
+import{s as I,a as B,b as Ve,r as b,_ as F,c as Ai,d as mr,m as Oi,u as _i,R as Dn,e as Ge,f as Di,g as jt,h as Et,i as Vi,j as Mi,k as Me,B as on,P as Vn,l as sn,n as x,I as vr,o as br,C as Ii,p as Pi,q as un,t as ki}from"./index-e3d2f753.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Ti(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Li=I.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -10,6 +10,7 @@ import{s as I,a as B,b as Ve,r as b,_ as F,c as Ai,d as mr,m as Oi,u as _i,R as 
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 51px;
 
     @media ${B} {
         flex-direction: row;
