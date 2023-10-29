@@ -1,4 +1,4 @@
-import{s as V,a as B,b as Ve,r as b,_ as F,c as Ai,d as vr,m as Oi,u as _i,R as Vn,e as Ge,f as Di,g as jt,h as Et,i as Vi,j as Mi,k as Me,B as on,P as Mn,l as sn,n as S,I as un,o as br,C as Ii,p as Pi,L as ki,q as an,t as Ti}from"./index-6b719d31.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Li(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Hi=V.form`
+import{s as V,a as B,b as Ve,r as b,_ as F,c as Ai,d as vr,m as Oi,u as _i,R as Vn,e as Ge,f as Di,g as jt,h as Et,i as Vi,j as Mi,k as Me,B as on,P as Mn,l as sn,n as S,o as br,C as Ii,I as un,p as Pi,q as an,t as ki,L as Ti}from"./index-83d5cc38.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Li(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Hi=V.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -10,7 +10,6 @@ import{s as V,a as B,b as Ve,r as b,_ as F,c as Ai,d as vr,m as Oi,u as _i,R as 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 51px;
 
     @media ${B} {
         flex-direction: row;
@@ -229,17 +228,7 @@ attempted value: ${s}
     color: ${({theme:e})=>e.colors.whiteTextColor};
     font-weight: 700;
     font-size: 14px;
-`,hi=({handleCalcSubmit:e,closeCalc:t})=>{var g;const{register:n,handleSubmit:i,reset:r,setValue:o,getValues:s,formState:{errors:u}}=sn(),a=[1,2,3,4,5,6,7,8,9,0,".","back"];b.useEffect(()=>{const h=p=>{p.key==="Escape"&&t()};return window.addEventListener("keydown",h),()=>{window.removeEventListener("keydown",h)}},[t]);const c=h=>{const p=h.target.getAttribute("data-value"),m=s("sum");p==="back"?m===""||o("sum",m.slice(0,-1)):p==="."&&m.includes(".")?o("sum",m):o("sum",m+p)},l=h=>{const p=h.target.value,m=ln(p);o("sum",m)},d=({sum:h})=>{const p=cn(h);e(p),t(),r()},f=h=>{h.target===h.currentTarget&&t()};return S.jsx(Al,{onClick:f,children:S.jsxs(Ol,{onSubmit:i(d),children:[S.jsx(_l,{...n("sum"),type:"text",placeholder:"00.00",value:s("sum"),onChange:l}),S.jsx(Dl,{children:a.map(h=>S.jsx(Vl,{children:S.jsx(Ml,{type:"button","data-value":h,onClick:c,children:h==="back"?S.jsx(Il,{"data-value":h,children:"ᑉ"}):h})},h))}),S.jsx(Pl,{type:"submit",children:"enter"}),S.jsx("p",{children:(g=u.sum)==null?void 0:g.message})]})})};hi.propTypes={handleCalcSubmit:Mn.func.isRequired,closeCalc:Mn.func.isRequired};const kl=V.div`
-display: flex;
-align-items: center;
-gap: 10px;
-`,Tl=V.p`
-color: ${({theme:e})=>e.colors.mainTextColor};
-font-size: ${e=>e.theme.fontSizes.xs};
-font-family: ${e=>e.theme.fonts.bold};
-letter-spacing: 0.48px;
-text-transform: uppercase;
-`,Ll=()=>{const[e,t]=b.useState(new Date);b.useEffect(()=>{const o=setInterval(()=>{t(new Date)},1e3);return()=>{clearInterval(o)}},[]);const n=e.getDate(),i=e.getMonth()+1,r=e.getFullYear();return S.jsxs(kl,{children:[S.jsx(un,{iconName:"icon-calendar",width:20,height:20}),S.jsxs(Tl,{children:[n,".",i,".",r]})]})},Hl=()=>{var w,A,E;const t={type:"income",description:"",category:null,sum:0 .toFixed(2)},[n,i]=b.useState(t),[r,o]=b.useState(!1),s=br(),{register:u,handleSubmit:a,setValue:c,reset:l,formState:{errors:d}}=sn({defaultValues:t,resolver:si(Fl)}),f=C=>{const O=C.target.value,P=ln(O);c("sum",P)},g=C=>{const O=C.target.value,P=cn(O);c("sum",P)},h=async C=>{await Rl({...C,category:C.category.value}),s(Pi()),l(t),i(t)},p=()=>{i(t),l(t)},m=C=>{i(O=>({...O,category:C})),c("category",C)},v=C=>{console.log(C),c("sum",C)},y=()=>{o(C=>!C)},x=()=>{o(C=>!C)};return S.jsxs(S.Fragment,{children:[S.jsxs(Hi,{onSubmit:a(h),children:[S.jsxs(Bi,{children:[S.jsx(Ll,{}),S.jsx(ji,{...u("description"),type:"text",placeholder:"Product description"}),S.jsx(zi,{children:S.jsx(Da,{...u("category"),options:Ii,placeholder:"Product category",value:n.category,onChange:m,styles:Zi})}),S.jsxs(Ni,{children:[S.jsxs(Gi,{children:[S.jsx(Ui,{...u("sum"),type:"text",onChange:f,onBlur:g}),S.jsx(qi,{children:"UAH"})]}),S.jsx(Wi,{children:S.jsx("div",{onClick:y,children:S.jsx(un,{iconName:"icon-calculator",width:18,height:18})})})]}),S.jsx("p",{children:(w=d.description)==null?void 0:w.message}),S.jsx("p",{children:(A=d.category)==null?void 0:A.message}),S.jsx("p",{children:(E=d.sum)==null?void 0:E.message})]}),S.jsxs(Yi,{children:[S.jsx(Ki,{type:"submit",children:"Input"}),S.jsx(Xi,{type:"button",onClick:p,children:"Clear"})]})]}),r&&S.jsx(hi,{handleCalcSubmit:v,closeCalc:x})]})},Bl=V.form`
+`,hi=({handleCalcSubmit:e,closeCalc:t})=>{var g;const{register:n,handleSubmit:i,reset:r,setValue:o,getValues:s,formState:{errors:u}}=sn(),a=[1,2,3,4,5,6,7,8,9,0,".","back"];b.useEffect(()=>{const h=p=>{p.key==="Escape"&&t()};return window.addEventListener("keydown",h),()=>{window.removeEventListener("keydown",h)}},[t]);const c=h=>{const p=h.target.getAttribute("data-value"),m=s("sum");p==="back"?m===""||o("sum",m.slice(0,-1)):p==="."&&m.includes(".")?o("sum",m):o("sum",m+p)},l=h=>{const p=h.target.value,m=ln(p);o("sum",m)},d=({sum:h})=>{const p=cn(h);e(p),t(),r()},f=h=>{h.target===h.currentTarget&&t()};return S.jsx(Al,{onClick:f,children:S.jsxs(Ol,{onSubmit:i(d),children:[S.jsx(_l,{...n("sum"),type:"text",placeholder:"00.00",value:s("sum"),onChange:l}),S.jsx(Dl,{children:a.map(h=>S.jsx(Vl,{children:S.jsx(Ml,{type:"button","data-value":h,onClick:c,children:h==="back"?S.jsx(Il,{"data-value":h,children:"ᑉ"}):h})},h))}),S.jsx(Pl,{type:"submit",children:"enter"}),S.jsx("p",{children:(g=u.sum)==null?void 0:g.message})]})})};hi.propTypes={handleCalcSubmit:Mn.func.isRequired,closeCalc:Mn.func.isRequired};const kl=()=>{var w,A,E;const t={type:"income",description:"",category:null,sum:0 .toFixed(2)},[n,i]=b.useState(t),[r,o]=b.useState(!1),s=br(),{register:u,handleSubmit:a,setValue:c,reset:l,formState:{errors:d}}=sn({defaultValues:t,resolver:si(Fl)}),f=C=>{const O=C.target.value,P=ln(O);c("sum",P)},g=C=>{const O=C.target.value,P=cn(O);c("sum",P)},h=async C=>{await Rl({...C,category:C.category.value}),s(Pi()),l(t),i(t)},p=()=>{i(t),l(t)},m=C=>{i(O=>({...O,category:C})),c("category",C)},v=C=>{console.log(C),c("sum",C)},y=()=>{o(C=>!C)},x=()=>{o(C=>!C)};return S.jsxs(S.Fragment,{children:[S.jsxs(Hi,{onSubmit:a(h),children:[S.jsxs(Bi,{children:[S.jsx(ji,{...u("description"),type:"text",placeholder:"Product description"}),S.jsx(zi,{children:S.jsx(Da,{...u("category"),options:Ii,placeholder:"Product category",value:n.category,onChange:m,styles:Zi})}),S.jsxs(Ni,{children:[S.jsxs(Gi,{children:[S.jsx(Ui,{...u("sum"),type:"text",onChange:f,onBlur:g}),S.jsx(qi,{children:"UAH"})]}),S.jsx(Wi,{children:S.jsx("div",{onClick:y,children:S.jsx(un,{iconName:"icon-calculator",width:18,height:18})})})]}),S.jsx("p",{children:(w=d.description)==null?void 0:w.message}),S.jsx("p",{children:(A=d.category)==null?void 0:A.message}),S.jsx("p",{children:(E=d.sum)==null?void 0:E.message})]}),S.jsxs(Yi,{children:[S.jsx(Ki,{type:"submit",children:"Input"}),S.jsx(Xi,{type:"button",onClick:p,children:"Clear"})]})]}),r&&S.jsx(hi,{handleCalcSubmit:v,closeCalc:x})]})},Tl=V.form`
     font-size: ${({theme:e})=>e.fontSizes.xs};
     display: flex;
     flex-direction: column;
@@ -257,11 +246,11 @@ text-transform: uppercase;
         
     }    
 
-`,jl=V.div`
+`,Ll=V.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`,zl=V.label`
+`,Hl=V.label`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,7 +259,7 @@ text-transform: uppercase;
         margin-right: 12px;
     }
     
-`,Nl=V.div`
+`,Bl=V.div`
     border: 2px solid ${({theme:e})=>e.colors.borderColor};
     border-radius: 22px 0 0 22px;
     padding: 16px 12px;
@@ -292,7 +281,7 @@ text-transform: uppercase;
     font-family: ${({theme:e})=>e.fonts.bold};
     color: ${({theme:e})=>e.colors.secondaryTextColor};
     
-`,Gl=V.input`
+`,jl=V.input`
 
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
@@ -315,12 +304,12 @@ text-transform: uppercase;
         font-size: ${({theme:e})=>e.fontSizes.sm};
             
     }    
-`,Ul=V.span`
+`,zl=V.span`
     @media ${Ve} {
         font-size: ${({theme:e})=>e.fontSizes.sm};
             
     }    
-`,ql=V.button`
+`,Nl=V.button`
 
     border: 2px solid ${({theme:e})=>e.colors.borderColor};
     border-radius: 0 22px 22px 0;
@@ -345,15 +334,25 @@ text-transform: uppercase;
         margin-left: 15px;
     }
 
-`,Wl=V(ki)`
+`,Gl=()=>{var d;const{user:e}=an(),t=b.useCallback(()=>e.balance?e.balance:0 .toFixed(2),[e.balance]),n=br(),{register:i,handleSubmit:r,setValue:o,formState:{errors:s}}=sn({defaultValues:{balance:t()},resolver:si($l)});b.useEffect(()=>{e&&o("balance",t())},[t,o,e]);const u=({balance:f})=>{n(ki(f))},a=f=>{const g=f.target.value,h=ln(g);o("balance",h)},c=f=>{const g=f.target.value,h=cn(g);o("balance",h)},l=()=>e.balance!==null||e.balance===void 0;return S.jsx(S.Fragment,{children:S.jsxs(Tl,{onSubmit:r(u),children:[S.jsx(Hl,{children:"Balance:"}),S.jsxs(Ll,{children:[S.jsxs(Bl,{children:[S.jsx(jl,{...i("balance"),type:"text",onChange:a,onBlur:c,disabled:l()}),S.jsx(zl,{children:"UAH"})]}),S.jsx(Nl,{disabled:l(),children:"Confirm"})]}),S.jsx("p",{children:(d=s.balance)==null?void 0:d.message})]})})},Ul=V(Ti)`
   display: flex;
   align-items: center;
   gap: 15px;
-`,Yl=V.p`
+`,ql=V.p`
   color: ${({theme:e})=>e.colors.greyTextColor};
   font-size: ${e=>e.theme.fontSizes.xs};
  letter-spacing: 0.48px;
-`,Kl=()=>S.jsxs(Wl,{to:"/report",children:[S.jsx(Yl,{children:"Reports"}),S.jsx(un,{iconName:"icon-bar_chart",width:24,height:24})]}),Xl=()=>{var d;const{user:e}=an(),t=b.useCallback(()=>e.balance?e.balance:0 .toFixed(2),[e.balance]),n=br(),{register:i,handleSubmit:r,setValue:o,formState:{errors:s}}=sn({defaultValues:{balance:t()},resolver:si($l)});b.useEffect(()=>{e&&o("balance",t())},[t,o,e]);const u=({balance:f})=>{n(Ti(f))},a=f=>{const g=f.target.value,h=ln(g);o("balance",h)},c=f=>{const g=f.target.value,h=cn(g);o("balance",h)},l=()=>e.balance!==null||e.balance===void 0;return S.jsx(S.Fragment,{children:S.jsxs(Bl,{onSubmit:r(u),children:[S.jsx(zl,{children:"Balance:"}),S.jsxs(jl,{children:[S.jsxs(Nl,{children:[S.jsx(Gl,{...i("balance"),type:"text",onChange:a,onBlur:c,disabled:l()}),S.jsx(Ul,{children:"UAH"})]}),S.jsx(ql,{disabled:l(),children:"Confirm"})]}),S.jsx("p",{children:(d=s.balance)==null?void 0:d.message}),S.jsx(Kl,{})]})})},Zl=V.div`
+`,Wl=()=>S.jsxs(Ul,{to:"/report",children:[S.jsx(ql,{children:"Reports"}),S.jsx(un,{iconName:"icon-bar_chart",width:24,height:24})]}),Yl=V.div`
+display: flex;
+align-items: center;
+gap: 10px;
+`,Kl=V.p`
+color: ${({theme:e})=>e.colors.mainTextColor};
+font-size: ${e=>e.theme.fontSizes.xs};
+font-family: ${e=>e.theme.fonts.bold};
+letter-spacing: 0.48px;
+text-transform: uppercase;
+`,Xl=()=>{const[e,t]=b.useState(new Date);b.useEffect(()=>{const o=setInterval(()=>{t(new Date)},1e3);return()=>{clearInterval(o)}},[]);const n=e.getDate(),i=e.getMonth()+1,r=e.getFullYear();return S.jsxs(Yl,{children:[S.jsx(un,{iconName:"icon-calendar",width:20,height:20}),S.jsxs(Kl,{children:[n,".",i,".",r]})]})},Zl=V.div`
     max-width: 280px;
     min-height: 152px;
     background: linear-gradient(118deg, #1D346A 2.84%, #031634 67.28%);
@@ -415,4 +414,4 @@ text-transform: uppercase;
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */function mr(e,t){return e?Tc(e)?b.createElement(e,t):e:null}function Tc(e){return Lc(e)||typeof e=="function"||Hc(e)}function Lc(e){return typeof e=="function"&&(()=>{const t=Object.getPrototypeOf(e);return t.prototype&&t.prototype.isReactComponent})()}function Hc(e){return typeof e=="object"&&typeof e.$$typeof=="symbol"&&["react.memo","react.forward_ref"].includes(e.$$typeof.description)}function Bc(e){const t={state:{},onStateChange:()=>{},renderFallbackValue:null,...e},[n]=b.useState(()=>({current:Vc(t)})),[i,r]=b.useState(()=>n.current.initialState);return n.current.setOptions(o=>({...o,...e,state:{...i,...e.state},onStateChange:s=>{r(s),e.onStateChange==null||e.onStateChange(s)}})),n.current}const jc=()=>{const e="income",[t,n]=b.useState([]),{user:i}=an(),r=Pc(),o=[r.accessor("date",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("description",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("category",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("sum",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("delete",{cell:l=>S.jsx("span",{children:l.getValue()})})],s=Bc({data:t,columns:o,getCoreRowModel:kc()});b.useEffect(()=>{u(e)},[i.balance]);const u=async l=>{if(l==="expenses"){const d=await ec(),f=c(d,l);n(f)}else{const d=await Ql(),f=c(d,l);n(f)}},a=l=>{const d=new Date(l),f=d.getDate().toString().padStart(2,"0"),g=(d.getMonth()+1).toString().padStart(2,"0"),h=d.getFullYear();return`${f}.${g}.${h}`},c=(l,d)=>d==="expenses"?l.map(f=>({...f,date:a(f.date),sum:(0-f.sum).toFixed(2)})):l.map(f=>({...f,date:a(f.date)}));return S.jsx("div",{children:S.jsxs("table",{children:[S.jsx("thead",{children:s.getHeaderGroups().map(l=>S.jsx("tr",{children:l.headers.map(d=>S.jsx("th",{children:mr(d.column.columnDef.header,d.getContext())},d.id))},l.id))}),S.jsx("tbody",{children:s.getRowModel().rows.length?s.getRowModel().rows.map(l=>S.jsx("tr",{children:l.getVisibleCells().map(d=>S.jsx("td",{children:mr(d.column.columnDef.cell,d.getContext())},d.id))},l.id)):null})]})})},Nc=()=>S.jsxs("div",{children:[S.jsx("p",{children:"HomePage"}),S.jsx(Xl,{}),S.jsx(Jl,{}),S.jsx(Hl,{}),S.jsx(jc,{})]});export{Nc as default};
+ */function mr(e,t){return e?Tc(e)?b.createElement(e,t):e:null}function Tc(e){return Lc(e)||typeof e=="function"||Hc(e)}function Lc(e){return typeof e=="function"&&(()=>{const t=Object.getPrototypeOf(e);return t.prototype&&t.prototype.isReactComponent})()}function Hc(e){return typeof e=="object"&&typeof e.$$typeof=="symbol"&&["react.memo","react.forward_ref"].includes(e.$$typeof.description)}function Bc(e){const t={state:{},onStateChange:()=>{},renderFallbackValue:null,...e},[n]=b.useState(()=>({current:Vc(t)})),[i,r]=b.useState(()=>n.current.initialState);return n.current.setOptions(o=>({...o,...e,state:{...i,...e.state},onStateChange:s=>{r(s),e.onStateChange==null||e.onStateChange(s)}})),n.current}const jc=()=>{const e="income",[t,n]=b.useState([]),{user:i}=an(),r=Pc(),o=[r.accessor("date",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("description",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("category",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("sum",{cell:l=>S.jsx("span",{children:l.getValue()})}),r.accessor("delete",{cell:l=>S.jsx("span",{children:l.getValue()})})],s=Bc({data:t,columns:o,getCoreRowModel:kc()});b.useEffect(()=>{u(e)},[i.balance]);const u=async l=>{if(l==="expenses"){const d=await ec(),f=c(d,l);n(f)}else{const d=await Ql(),f=c(d,l);n(f)}},a=l=>{const d=new Date(l),f=d.getDate().toString().padStart(2,"0"),g=(d.getMonth()+1).toString().padStart(2,"0"),h=d.getFullYear();return`${f}.${g}.${h}`},c=(l,d)=>d==="expenses"?l.map(f=>({...f,date:a(f.date),sum:(0-f.sum).toFixed(2)})):l.map(f=>({...f,date:a(f.date)}));return S.jsx("div",{children:S.jsxs("table",{children:[S.jsx("thead",{children:s.getHeaderGroups().map(l=>S.jsx("tr",{children:l.headers.map(d=>S.jsx("th",{children:mr(d.column.columnDef.header,d.getContext())},d.id))},l.id))}),S.jsx("tbody",{children:s.getRowModel().rows.length?s.getRowModel().rows.map(l=>S.jsx("tr",{children:l.getVisibleCells().map(d=>S.jsx("td",{children:mr(d.column.columnDef.cell,d.getContext())},d.id))},l.id)):null})]})})},Nc=()=>S.jsxs("div",{children:[S.jsx(Gl,{}),S.jsx(Wl,{}),S.jsx(Jl,{}),S.jsx(Xl,{}),S.jsx(kl,{}),S.jsx(jc,{})]});export{Nc as default};
