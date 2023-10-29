@@ -1,5 +1,5 @@
-import {  Button } from "./BackButton.styled";
-import { Icon } from '../../shared/components/Icon/Icon';
+import { Button } from "./BackButton.styled";
+import { Icon } from "../../shared/components/Icon/Icon";
 
 export const BackButton = () => {
   return (

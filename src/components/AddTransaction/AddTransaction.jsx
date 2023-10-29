@@ -24,7 +24,6 @@ import { transactionSchema } from "../../constants/validationSchemas";
 import { addTransaction } from '../../services/transactionsApi';
 import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalConstants";
 import { CalcForm } from "../CalcForm/CalcForm";
-import { CurrentDay } from "../CurrentDay/CurrentDay";
 
 
 export const AddTransaction = () => {
@@ -97,7 +96,6 @@ export const AddTransaction = () => {
         <>
             <AddTransactionForm onSubmit={handleSubmit(onSubmit)}>
                 <DataWrapper>
-                <CurrentDay/>
                     <DescriptionInput 
                         {...register('description')}
                         type="text"

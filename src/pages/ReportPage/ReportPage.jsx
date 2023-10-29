@@ -1,9 +1,10 @@
 import { BarChartComp } from "../../components/BarChart/BarChart";
+import { BackButton } from "../../components/BackButton/BackButton";
 
 const ReportPage = () => {
   return (
     <div>
-      <h1>Report Page</h1>
+      <BackButton/>
       <BarChartComp/>
     </div>
   );

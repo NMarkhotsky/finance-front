@@ -14,7 +14,6 @@ export const DataWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 51px;
 
     @media ${selectTablet} {
         flex-direction: row;
