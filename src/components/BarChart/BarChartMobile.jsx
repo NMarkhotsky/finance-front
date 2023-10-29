@@ -43,7 +43,7 @@ const number = maxPrice / 100;
 
 const dataWithWidth = modifiedData.map(d => ({ ...d, width: d.price / number }));
 
-const widthAxis = dataWithWidth.map((item) => item.width);
+// const widthAxis = dataWithWidth.map((item) => item.width);
 
 
 let ctx;
