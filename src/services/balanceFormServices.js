@@ -28,8 +28,29 @@
             value = value + "0";
         }
 
-        // const formattedValue = Number(Math.round(value * 100) / 100);
         const formattedValue = parseFloat(value).toFixed(2);
 
         return formattedValue;
+    }
+
+export const formatSum = (sum) => {
+    const parts = Number(sum).toFixed(2).split('.');
+    const formattedNumber = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return `${formattedNumber}.${parts[1]}`;
+}
+
+    export const formatDate = (inputDate) => {
+        const date = new Date(inputDate);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`; 
+    }
+
+    export const formatData = (data, type) => {
+        if (type === 'expenses') {
+            return data.map((item) => ({ ...item, date: formatDate(item.date), sum: formatSum((0 - item.sum).toFixed(2)) }))
+        } else {
+            return data.map((item) => ({ ...item, date: formatDate(item.date), sum: formatSum(item.sum) }))
+        }
     }

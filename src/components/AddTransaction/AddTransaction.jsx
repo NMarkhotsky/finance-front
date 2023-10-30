@@ -14,7 +14,7 @@ import {
     SelectListStyles
 } from "./AddTransaction.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
-import { cutValue, normalizeValue } from "../../services/balanceFormServices";
+import { cutValue, formatSum, normalizeValue } from "../../services/balanceFormServices";
 import Select from 'react-select';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -58,12 +58,13 @@ export const AddTransaction = () => {
 
     const handleSumBlur = (e) => {
         const value = e.target.value;
-        const normalizedValue = normalizeValue(value)
-        setValue('sum', normalizedValue);
+        const normalizedValue = normalizeValue(value);
+        const formatValue = formatSum(normalizedValue);
+        setValue('sum', formatValue);
     };
     
     const onSubmit = async (data) => {
-        await addTransaction({...data, category: data.category.value});
+        await addTransaction({ ...data, category: data.category.value });
         dispatch(fetchCurrentUser())
         reset(initialValues);
         setData(initialValues);
@@ -80,8 +81,8 @@ export const AddTransaction = () => {
     };
 
     const handleCalcSubmit = (value) => {
-        console.log(value);
-        setValue('sum', value)
+        const formatValue = formatSum(value)
+        setValue('sum', formatValue);
     }
 
     const handleClickCalc = () => {
