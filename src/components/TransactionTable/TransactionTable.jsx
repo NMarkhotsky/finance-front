@@ -3,11 +3,12 @@ import { useAuth } from "../../hooks/useAuth/useAuth";
 import { getIncome } from "../../services/incomeApi";
 import { getExpenses } from "../../services/expensesApi";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { formatData } from "../../services/balanceFormServices";
 // import { TableStyled } from "./TransactionTable.styled";
 
 export const TransactionTable = () => {
 
-    const type = 'income' //will be in props
+    const type = 'expenses' //will be in props
 
     const [data, setData] = useState([]);
     const { user } = useAuth();
@@ -61,24 +62,6 @@ export const TransactionTable = () => {
         }
         
     }
-
-    const formatDate = (inputDate) => {
-        const date = new Date(inputDate);
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}.${month}.${year}`; 
-    }
-
-    const formatData = (data, type) => {
-        if (type === 'expenses') {
-            return data.map((item) => ({ ...item, date: formatDate(item.date), sum: (0 - item.sum).toFixed(2) }))
-        } else {
-            return data.map((item) => ({ ...item, date: formatDate(item.date) }))
-        }
-    }
-
-
 
     return (
         <div>

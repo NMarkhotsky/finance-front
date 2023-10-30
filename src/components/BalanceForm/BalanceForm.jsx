@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { balanceSchema } from "../../constants/validationSchemas";
 import { BalanceWrapper, FormBalance, BalanceLabel, BalanceInput, BalanceCurrency, Button, BalanceBar } from "./BalanceForm.styled";
-import { cutValue, normalizeValue } from "../../services/balanceFormServices";
+import { cutValue, normalizeValue, formatSum } from "../../services/balanceFormServices";
 import { useEffect, useCallback } from "react";
 import { useAuth } from "../../hooks/useAuth/useAuth";
 import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ export const BalanceForm = () => {
 
     const { user } = useAuth();
     const initialValue = useCallback(() => {
-        return user.balance ? user.balance : 0.00.toFixed(2);
+        return user.balance ? formatSum(user.balance) : 0.00.toFixed(2);
     }, [user.balance])
     const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ export const BalanceForm = () => {
 
     const handleInputBlur = (e) => {
         const value = e.target.value;
-        const normalizedValue = normalizeValue(value)
+        const normalizedValue = normalizeValue(value);
         setValue('balance', normalizedValue);
     };
 
