@@ -89,7 +89,15 @@ export const BarChartComp = () => {
   );
 
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: "#FFF",
+        paddingTop: 22,
+        paddingBottom: 20,
+        borderRadius: "30px", 
+        marginTop: 40
+      }}
+    >
       {isMobile ? (
         <ResponsiveContainer
           width="100%"
@@ -142,19 +150,10 @@ export const BarChartComp = () => {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        <ResponsiveContainer
-          width="100%"
-          height={470}
-          style={{
-            backgroundColor: "#FFF",
-            paddingTop: 22,
-            paddingBottom: 20,
-            borderRadius: "30px",
-          }}
-        >
+        <ResponsiveContainer width="100%" height={470}>
           <BarChart
             data={modifiedData}
-            margin={{ top: 5, right: 77, left: 76, bottom: 5 }}
+            margin={{ top: 5, right: 138, left: 138, bottom: 5 }}
             layout="horizontal"
           >
             <XAxis
@@ -211,6 +210,6 @@ export const BarChartComp = () => {
           </BarChart>
         </ResponsiveContainer>
       )}
-    </>
+    </div>
   );
 };
