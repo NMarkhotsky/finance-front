@@ -1,28 +1,46 @@
+import { useEffect, useMemo, useState } from "react";
 import {
-  Chart as ChartJS,
-  BarElement,
-  Legend,
-  Tooltip,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { useState, useEffect } from "react";
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Cell,
+  CartesianGrid,
+} from "recharts";
+import { getIncome } from "../../services/incomeApi";
 
-import {SectionChart,
-ContainerChart,
-// ChartContainer,
-// ColumnContainer,
-// BoxLabel
-} from
-"./BarChart.styled";
-import { BarChartMobile } from "./BarChartMobile";
+const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
-ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
+const getColor = (index) => {
+  return colors[index % colors.length];
+};
+
+let ctx;
+
+const measureText14HelveticaNeue = (text, fontSize) => {
+  if (!ctx) {
+    ctx = document.createElement("canvas").getContext("2d");
+    ctx.font = "14px 'Helvetica Neue";
+    ctx.font = `${fontSize}px 'Helvetica Neue'`;
+    return ctx.measureText(text).width;
+  }
+
+  return ctx.measureText(text).width;
+};
 
 export const BarChartComp = () => {
+  const [dataTransactions, setDataTransactions] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const dataTrans = await getIncome();
+      setDataTransactions(dataTrans);
+    })();
+  }, []);
+
+  console.log("transactions", dataTransactions);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -42,121 +60,157 @@ export const BarChartComp = () => {
     };
   }, [isMobile]);
 
+  useEffect(() => {
+    if (dataTransactions.length === 0) {
+      return;
+    }
+  });
 
-  const dataMoney = [1700, 1500, 800, 500, 300, 4800, 4500, 3200, 2100, 1800];
-  const sortData = dataMoney.sort((a, b) => b - a);
+  const sortedData = [...dataTransactions].sort((a, b) => b.sum - a.sum);
 
-  const labelsList = [
-    "Риба",
-    "М'ясо",
-    "Ковбаса",
-    "Ліки",
-    "Комуналка",
-    "Хотєлки",
-    "Риба",
-    "М'ясо",
-    "Ковбаса",
-    "Ліки",
-  ];
+  const modifiedData = sortedData.map((item) => {
+    const words = item.description.split(" ");
+    const modifiedSum = +item.sum.slice(0, -3);
+    return { ...item, description: words[0], sum: modifiedSum };
+  });
 
-  const data = {
-    labels: labelsList,
-    datasets: [
-      {
-        label: "Chart",
-        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
-        borderWidth: 0,
-        borderRadius: 10,
-        data: sortData,
-        // barThickness: window.visualViewport.width > 480 ? 38 : 10,
-        // barPercentage: 0.6, // Всі стовпці повністю заповнюють доступну ширину
-        // categoryPercentage: 0.5, // Змініть це значення для відступів між колонками
-      },
-    ],
-  };
-
-  const options = {
-    indexAxis: isMobile ? "y" : "x",
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: {
-          drawOnChartArea: isMobile ? false : true,
-          color: "#F5F6FB",
-          lineWidth: 2,
-        },
-        ticks: {
-          // display: isMobile ? true : false, // Приховати показники діаграми зліва
-          display: false, // Приховати показники діаграми зліва
-          font: {
-            size: window.visualViewport.width <= 768 ?  10 : 12
-          },
-        },
-      },
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          display: isMobile ? false : true,
-          // display: false,
-          maxRotation: 0, // Робить підписи під колонками рівними (горизонтальними)
-          minRotation: 0,
-          font: {
-            size: window.visualViewport.width <= 768 ?  10 : 12
-          },
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      datalabels: {
-        display: true,
-        color: "#52555F",
-        anchor: "end",
-        align: "top",
-        offset: 4,
-        padding: {
-          top: 10,
-        },
-        formatter: (value, context) => {
-          // const price = context.dataset.data[context.dataIndex];
-          // const labels = data.labels;
-          // // context.display = 'flex';
-          // if (!isMobile) {
-          //   return price + " грн";
-          // } else {
-          //   return `${labels[context.dataIndex]} ${value}грн`;
-          // }
-          const price = context.dataset.data[context.dataIndex];
-          return price + " грн";
-        },
-      },
-    },
-    layout: {
-      padding: {
-        // left: 20, // Відступ ліворуч
-        // right: 20, // Відступ праворуч
-        top: 20, // Відступ зверху
-        // bottom: 20 // Відступ знизу
-      },
-    },
-  };
-
-  // const valueFormatter = (value) => `${value} грн`;
+  const maxTextWidth = useMemo(
+    () =>
+      dataTransactions.reduce((acc, cur) => {
+        const value = cur["sum"];
+        const valueSlice = value.slice(0, -3);
+        const width = measureText14HelveticaNeue(valueSlice);
+        if (width > acc) {
+          return width;
+        }
+        return acc;
+      }, 0),
+    [dataTransactions]
+  );
 
   return (
     <>
-    {!isMobile ? (    <SectionChart>
-      <ContainerChart>
-        <Bar data={data} plugins={[ChartDataLabels]} options={options}/>
-      </ContainerChart>
-    </SectionChart>) : <BarChartMobile/>}
+      {isMobile ? (
+        <ResponsiveContainer
+          width="100%"
+          height={50 * modifiedData.length}
+          debounce={50}
+        >
+          <BarChart
+            data={modifiedData}
+            layout="vertical"
+            margin={{ left: 10, right: maxTextWidth }}
+          >
+            <XAxis hide axisLine={false} type="category" />
+            <YAxis
+              yAxisId={0}
+              dataKey="description"
+              type="category"
+              axisLine={false}
+              tickLine={false}
+              tickFormatter={(value) => value}
+              padding={{ top: 5 }}
+              dx={8}
+              textAnchor="start"
+              dy={-16}
+            />
+            <YAxis
+              orientation="right"
+              yAxisId={1}
+              dataKey="sum"
+              type="category"
+              axisLine={false}
+              tickLine={false}
+              tickFormatter={(value) => value}
+              mirror
+              padding={{ top: 5 }}
+              unit=" грн"
+              textAnchor="end"
+              dy={-14}
+            />
+            <Bar dataKey="sum" minPointSize={4} barSize={12} barGap={0}>
+              {modifiedData.map((d, idx) => {
+                return (
+                  <Cell
+                    key={idx}
+                    fill={getColor(idx)}
+                    radius={[0, 10, 10, 0]}
+                  />
+                );
+              })}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      ) : (
+        <ResponsiveContainer
+          width="100%"
+          height={470}
+          style={{
+            backgroundColor: "#FFF",
+            paddingTop: 22,
+            paddingBottom: 20,
+            borderRadius: "30px",
+          }}
+        >
+          <BarChart
+            data={modifiedData}
+            margin={{ top: 5, right: 77, left: 76, bottom: 5 }}
+            layout="horizontal"
+          >
+            <XAxis
+              axisLine={false}
+              type="category"
+              dataKey="description"
+              tickLine={false}
+            />
+            <YAxis
+              axisLine={false}
+              type="number"
+              dataKey="sum"
+              tickLine={false}
+              hide
+            />
+            <CartesianGrid
+              vertical={false}
+              horizontalCoordinatesGenerator={({ width }) => {
+                const lines = [];
+                for (let i = 40; i < width; i += 40) {
+                  lines.push(i);
+                }
+                return lines;
+              }}
+              style={{ strokeWidth: "2px", stroke: "#F5F6FB" }}
+            />
+            <Bar
+              style={{ zIndex: 2 }}
+              dataKey="sum"
+              minPointSize={4}
+              barSize={38}
+              label={{
+                position: "top",
+                fill: "#52555F",
+                dy: -5,
+                content: (labelProps) => (
+                  <text x={labelProps.x} y={labelProps.y} fill="black" dy={-17}>
+                    {`${labelProps.value} грн`}
+                  </text>
+                ),
+              }}
+              name="sum"
+            >
+              {modifiedData.map((d, idx) => {
+                return (
+                  <Cell
+                    key={idx}
+                    fill={getColor(idx)}
+                    radius={[10, 10, 0, 0]}
+                  />
+                );
+              })}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      )}
     </>
-
   );
-    }
-
+};
