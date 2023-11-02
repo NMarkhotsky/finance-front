@@ -53,7 +53,7 @@ export const Header = () => {
           <ModalGlobal
             handleModal={closeModal}
             handleDelete={handleLogout}
-            title="Are you sure?"
+            title="Do you really want to leave?"
           />
         </ModalApproveAction>
       )}
