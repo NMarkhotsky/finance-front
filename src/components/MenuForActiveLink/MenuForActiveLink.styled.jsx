@@ -1,37 +1,86 @@
 import { styled } from "styled-components";
 import { NavLink } from "react-router-dom";
+import { selectTablet } from "../../utils";
 
 export const Container = styled.div`
-
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;
 
 export const NavLinkList = styled.ul`
   display: flex;
-      list-style: none;
-`
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+
+  @media screen and (max-width: 480px) {
+    gap: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+`;
+
+export const Item = styled.li`
+  /* padding: 15px 55px;
+  background-color: ${({ theme }) => theme.colors.whiteTextColor}; */
+
+  @media screen and (max-width: 480px) {
+    width: calc(100% / 2 - 4px);
+    height: 53px;
+    background-color: ${({ theme }) => theme.colors.orange};
+  }
+
+  @media ${selectTablet} {
+    border-radius: 20px 20px 0 0;
+    background-color: #fafbfd;
+  }
+`;
 
 export const NavLinkItem = styled(NavLink)`
+  padding: 15px 55px;
+  background-color: ${({ theme }) => theme.colors.whiteTextColor};
   color: ${({ theme }) => theme.colors.secondaryTextColor};
   font-size: ${(props) => props.theme.fontSizes.xs};
   font-family: ${(props) => props.theme.fonts.bold};
   letter-spacing: 0.24px;
   text-transform: uppercase;
-  background-color: #fafbfd;
-  padding: 15px 55px;
-  border-radius: 20px 20px 0 0;
 
   &.active {
-    color: ${({ theme }) => theme.colors.orange};
-    background-color: #fefefe;
+    color: ${({ theme }) => theme.colors.mainBgdColor};
+    background-color: ${({ theme }) => theme.colors.orange};
+  }
+
+  @media screen and (max-width: 480px) {
+    width: calc(100% / 2 - 4px);
+    /* height: 53px; */
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.secondaryTextColor};
+  }
+
+  @media ${selectTablet} {
+    &.active {
+      color: ${({ theme }) => theme.colors.orange};
+      background-color: #fefefe;
+    }
   }
 `;
 
 export const ContainerTransaction = styled.div`
-    background-color: ${({ theme }) => theme.colors.mainBgdColor};
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 32px;
-    box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
-    border-radius: 0px 30px 30px 30px;
+  @media screen and (max-width: 480px) {
+    background: transparent;
+  }
 
-`
+  background-color: ${({ theme }) => theme.colors.mainBgdColor};
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 32px;
+  border-radius: 0px 30px 30px 30px;
+
+  @media ${selectTablet} {
+    box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
+  }
+`;
