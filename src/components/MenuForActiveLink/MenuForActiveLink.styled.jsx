@@ -13,7 +13,6 @@ export const NavLinkList = styled.ul`
   display: flex;
   list-style: none;
   text-align: center;
-  justify-content: center;
 
   @media screen and (max-width: 480px) {
     gap: 4px;
@@ -65,6 +64,7 @@ export const NavLinkItem = styled(NavLink)`
     &.active {
       color: ${({ theme }) => theme.colors.orange};
       background-color: #fefefe;
+      border-radius: 20px 20px 0 0;
     }
   }
 `;
