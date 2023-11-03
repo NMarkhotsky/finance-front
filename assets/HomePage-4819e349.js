@@ -1,4 +1,4 @@
-import{s as D,a as T,b as Ve,r as b,_ as F,c as Vi,d as Cr,m as Mi,u as Ii,R as Vn,e as Ge,f as Pi,g as zt,h as Ft,i as ki,j as Ti,k as vt,B as Sr,P as Mn,l as sn,n as x,o as yr,C as Li,I as un,p as Hi,q as an,t as Bi,L as ji,N as zi}from"./index-016b20b9.js";import{g as Ni}from"./incomeApi-7cb89cc4.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Gi(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Ui=D.form`
+import{s as D,a as T,b as Ve,r as b,_ as F,c as Vi,d as Cr,m as Mi,u as Ii,R as Vn,e as Ge,f as Pi,g as zt,h as Ft,i as ki,j as Ti,k as vt,B as Sr,P as Mn,l as sn,n as x,o as yr,C as Li,I as un,p as Hi,q as an,t as Bi,L as ji,N as zi}from"./index-72bcbd7f.js";import{g as Ni}from"./incomeApi-5390988d.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Gi(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Ui=D.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -402,7 +402,6 @@ text-transform: uppercase;
   display: flex;
   list-style: none;
   text-align: center;
-  justify-content: center;
 
   @media screen and (max-width: 480px) {
     gap: 4px;
@@ -450,6 +449,7 @@ text-transform: uppercase;
     &.active {
       color: ${({theme:e})=>e.colors.orange};
       background-color: #fefefe;
+      border-radius: 20px 20px 0 0;
     }
   }
 `,uc=D.div`
