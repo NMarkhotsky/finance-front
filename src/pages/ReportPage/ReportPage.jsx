@@ -5,12 +5,14 @@ import { MenuForActiveLinkOnReport } from "../../components/MenuForActiveLinkOnR
 
 const ReportPage = () => {
   return (
-    <div>
-      <BackButton/>
-      <SelectCurrentPeriod/>
-      <MenuForActiveLinkOnReport/>
-      <BarChartComp/>
-    </div>
+    <>
+      <div style={{display: "flex", justifyContent: "space-between", marginTop: 40}}>
+        <BackButton />
+        <SelectCurrentPeriod />
+      </div>
+      <MenuForActiveLinkOnReport />
+      <BarChartComp />
+    </>
   );
 };
 
