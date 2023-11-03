@@ -11,10 +11,6 @@ import { Icon } from "../../shared/components/Icon/Icon";
 export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
 
-  const switchTab = (tab) => {
-    setActiveTab(tab);
-  };
-
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -39,9 +35,26 @@ export const MenuForActiveLinkOnReport = () => {
           <Icon iconName="icon-arrow-right" width={4} height={10} />
         </ButtonIcon>
       </Container>
-      <ListItem>
-        <li>Список категорій з сумою і картинкою</li>
-      </ListItem>
+      <div>
+            {activeTab === "expenses" && <ExpensesTabContent />}
+            {activeTab === "income" && <IncomeTabContent />}
+      </div>
     </ContainerMain>
   );
 };
+
+function ExpensesTabContent() {
+    return (
+        <ListItem>
+ <li>Expenses</li>
+        </ListItem>
+    )
+  }
+  
+  function IncomeTabContent() {
+    return (
+        <ListItem>
+ <li>Income</li>
+        </ListItem>
+    )
+  }
