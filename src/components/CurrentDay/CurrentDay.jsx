@@ -15,8 +15,12 @@ export const CurrentDay = () => {
     };
   }, []);
 
-  const day = currentDate.getDate();
-  const month = currentDate.getMonth() + 1;
+  function addLeadingZero(value) {
+    return String(value).padStart(2, '0'); 
+      }
+
+  const day = addLeadingZero(currentDate.getDate());
+  const month = addLeadingZero(currentDate.getMonth() + 1);
   const year = currentDate.getFullYear();
 
   return (
