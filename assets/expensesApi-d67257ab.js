@@ -1,0 +1,1 @@
+import{k as t,B as s}from"./index-e443b4f8.js";t.defaults.baseURL=s;const n=async()=>{try{const{data:a}=await t.get("/transactions/income");return a.transactions}catch(a){console.log(a)}};t.defaults.baseURL=s;const o=async()=>{try{const{data:a}=await t.get("/transactions/expenses");return a.transactions}catch(a){console.log(a)}};export{n as a,o as g};
