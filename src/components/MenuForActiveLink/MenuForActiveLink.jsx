@@ -21,13 +21,13 @@ export const MenuForActiveLink = () => {
         <NavLinkList>
           <NavLinkItem
             onClick={() => switchTab("expenses")}
-            isActive={activeTab === "expenses"}
+            $isActive={activeTab === "expenses"}
           >
             expenses
           </NavLinkItem>
           <NavLinkItem
             onClick={() => switchTab("income")}
-            isActive={activeTab === "income"}
+            $isActive={activeTab === "income"}
           >
             income
           </NavLinkItem>

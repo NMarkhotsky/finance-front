@@ -62,12 +62,14 @@ export const NavLinkItem = styled(NavLink)`
   }
 
   @media ${selectTablet} {
-    ${({ isActive, theme }) =>
-      isActive &&
+    background-color: #FAFBFD;
+    border-radius: 20px 20px 0 0;
+    
+    ${({ $isActive, theme }) =>
+      $isActive &&
       css`
         color: ${theme.colors.orange};
         background-color: #fefefe;
-        border-radius: 20px 20px 0 0;
       `}
   }
 `;
