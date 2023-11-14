@@ -39,36 +39,33 @@ export const NavLinkList = styled.ul`
 //   }
 // `;
 
- export const NavLinkItem = styled(NavLink)`
-   padding: 15px 55px;
-   background-color: ${({ theme }) => theme.colors.whiteTextColor};
-   color: ${({ theme }) => theme.colors.secondaryTextColor};
-   font-size: ${(props) => props.theme.fontSizes.xs};
-   font-family: ${(props) => props.theme.fonts.bold};
-   letter-spacing: 0.24px;
-   text-transform: uppercase;
+export const NavLinkItem = styled(NavLink)`
+  background-color: ${({ theme }) => theme.colors.whiteTextColor};
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
+  font-size: ${(props) => props.theme.fontSizes.xs};
+  font-family: ${(props) => props.theme.fonts.bold};
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
 
-   &.active {
-     color: ${({ theme }) => theme.colors.mainBgdColor};
-     background-color: ${({ theme }) => theme.colors.orange};
-   }
-
- @media screen and (max-width: 480px) {
-     width: calc(100% / 2 - 4px);/     /* height: 53px; */
-   background-color: ${({ theme }) => theme.colors.orange};
-   color: ${({ theme }) => theme.colors.secondaryTextColor};
-   }
-
-   @media ${selectTablet} {
-     &.active {
-       color: ${({ theme }) => theme.colors.orange};
-     background-color: #fefefe;
-       border-radius: 20px 20px 0 0;
-   }
+  &.active {
+    color: ${({ theme }) => theme.colors.mainBgdColor};
+    background-color: ${({ theme }) => theme.colors.orange};
   }
 
-`;
+  @media screen and (max-width: 480px) {
+    width: calc(100% / 2 - 4px);
+    background-color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.secondaryTextColor};
+  }
 
+  @media ${selectTablet} {
+    &.active {
+      color: green;
+      background-color: #fefefe;
+      border-radius: 20px 20px 0 0;
+    }
+  }
+`;
 
 export const ContainerTransaction = styled.div`
   @media screen and (max-width: 480px) {

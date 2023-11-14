@@ -11,9 +11,15 @@ import { useState } from "react";
 export const MenuForActiveLink = () => {
   const [activeTab, setActiveTab] = useState("expenses");
 
+ console.log("Hello world");
+
   const switchTab = (tab) => {
+    console.log("tab", tab);
+    console.log("Click");
     setActiveTab(tab);
   };
+
+  console.log("activeTab", activeTab );
 
   return (
     <Container>
