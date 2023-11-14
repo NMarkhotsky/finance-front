@@ -18,35 +18,28 @@ export const MenuForActiveLink = () => {
   return (
     <Container>
       <div>
-          <NavLinkList>
-            {/* <Item> */}
-              <NavLinkItem onClick={() => switchTab("expenses")}>
-                expenses
-              </NavLinkItem>
-            {/* </Item> */}
-            {/* <Item> */}
-              <NavLinkItem onClick={() => switchTab("income")}>income</NavLinkItem>
-            {/* </Item> */}
-          </NavLinkList>
+        <NavLinkList>
+          <NavLinkItem
+            onClick={() => switchTab("expenses")}
+            className={activeTab === "expenses" ? "active" : ""}
+          >
+            expenses
+          </NavLinkItem>
+          <NavLinkItem
+            onClick={() => switchTab("income")}
+            className={activeTab === "income" ? "active" : ""}
+          >
+            income
+          </NavLinkItem>
+        </NavLinkList>
       </div>
-    <div>
+      <div>
         <ContainerTransaction>
-            {activeTab === "expenses" && <ExpensesTabContent />}
-            {activeTab === "income" && <IncomeTabContent />}
-          </ContainerTransaction>
-    </div>
+          {activeTab === "expenses" && <ExpensesTabContent />}
+          {activeTab === "income" && <IncomeTabContent />}
+        </ContainerTransaction>
+      </div>
     </Container>
-    // <Container>
-    //   <NavLinkList>
-    //     <li>
-    //       <NavLinkItem to="#">expenses</NavLinkItem>
-    //     </li>
-    //     <li>
-    //       <NavLinkItem to="#">income</NavLinkItem>
-    //     </li>
-    //   </NavLinkList>
-    //   <ContainerTransaction></ContainerTransaction>
-    // </Container>
   );
 };
 
