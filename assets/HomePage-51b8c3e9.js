@@ -1,4 +1,4 @@
-import{s as D,a as L,b as Ve,r as b,_ as F,c as Vi,d as Cr,m as Mi,u as Ii,R as Vn,e as Ge,f as Pi,g as zt,h as Ft,i as ki,j as Ti,k as vt,B as Sr,P as Mn,l as sn,n as x,o as yr,C as Li,I as un,p as Hi,q as an,t as Bi,L as ji,N as zi}from"./index-9eaf4cc9.js";import{g as Ni}from"./incomeApi-c4146e75.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Gi(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Ui=D.form`
+import{s as D,a as L,b as Ve,r as b,_ as F,c as Vi,d as Cr,m as Mi,u as Ii,R as Vn,e as Ge,f as Pi,g as zt,h as Ft,i as ki,j as Ti,k as vt,B as Sr,P as Mn,l as sn,n as x,o as yr,C as Li,I as un,p as Hi,q as an,t as Bi,L as ji,N as zi}from"./index-40b4efc5.js";import{g as Ni}from"./incomeApi-6a552d17.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Gi(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Ui=D.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -411,31 +411,33 @@ text-transform: uppercase;
     width: 100%;
   }
 `,hr=D(zi)`
-  background-color: ${({theme:e})=>e.colors.whiteTextColor};
-  color: ${({theme:e})=>e.colors.secondaryTextColor};
-  font-size: ${e=>e.theme.fontSizes.xs};
-  font-family: ${e=>e.theme.fonts.bold};
-  letter-spacing: 0.24px;
-  text-transform: uppercase;
+   padding: 15px 55px;
+   background-color: ${({theme:e})=>e.colors.whiteTextColor};
+   color: ${({theme:e})=>e.colors.secondaryTextColor};
+   font-size: ${e=>e.theme.fontSizes.xs};
+   font-family: ${e=>e.theme.fonts.bold};
+   letter-spacing: 0.24px;
+   text-transform: uppercase;
 
-  &.active {
-    color: ${({theme:e})=>e.colors.mainBgdColor};
-    background-color: ${({theme:e})=>e.colors.orange};
+   &.active {
+     color: ${({theme:e})=>e.colors.mainBgdColor};
+     background-color: ${({theme:e})=>e.colors.orange};
+   }
+
+ @media screen and (max-width: 480px) {
+     width: calc(100% / 2 - 4px);
+   background-color: ${({theme:e})=>e.colors.orange};
+   color: ${({theme:e})=>e.colors.secondaryTextColor};
+   }
+
+   @media ${L} {
+     &.active {
+       color: ${({theme:e})=>e.colors.orange};
+     background-color: #fefefe;
+       border-radius: 20px 20px 0 0;
+   }
   }
 
-  @media screen and (max-width: 480px) {
-    width: calc(100% / 2 - 4px);
-    background-color: ${({theme:e})=>e.colors.orange};
-    color: ${({theme:e})=>e.colors.secondaryTextColor};
-  }
-
-  @media ${L} {
-    &.active {
-      color: green;
-      background-color: #fefefe;
-      border-radius: 20px 20px 0 0;
-    }
-  }
 `,uc=D.div`
   @media screen and (max-width: 480px) {
     background: transparent;

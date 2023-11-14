@@ -1,0 +1,1 @@
+import{k as t,B as o}from"./index-40b4efc5.js";t.defaults.baseURL=o;const n=async()=>{try{const{data:a}=await t.get("/transactions/income");return a.transactions}catch(a){console.log(a)}};export{n as g};
