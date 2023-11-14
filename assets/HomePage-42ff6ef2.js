@@ -1,4 +1,4 @@
-import{s as D,a as L,b as Ve,r as b,_ as F,c as Mi,d as Sr,m as Ii,u as Pi,R as Vn,e as Ge,f as ki,g as zt,h as Ft,i as Ti,j as Li,k as vt,B as yr,P as Mn,l as sn,n as x,o as wr,C as Hi,I as un,p as Bi,q as an,t as ji,L as zi,v as In,N as Ni}from"./index-3c0af73c.js";import{g as Gi}from"./incomeApi-3d6a626f.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Ui(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const qi=D.form`
+import{s as D,a as L,b as Ve,r as b,_ as F,c as Mi,d as Sr,m as Ii,u as Pi,R as Vn,e as Ge,f as ki,g as zt,h as Ft,i as Ti,j as Li,k as vt,B as yr,P as Mn,l as sn,n as x,o as wr,C as Hi,I as un,p as Bi,q as an,t as ji,L as zi,v as In,N as Ni}from"./index-2e66d0a0.js";import{g as Gi}from"./incomeApi-a9a64aa2.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Ui(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const qi=D.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -431,10 +431,12 @@ text-transform: uppercase;
   }
 
   @media ${L} {
-    ${({isActive:e,theme:t})=>e&&In`
+    background-color: #FAFBFD;
+    border-radius: 20px 20px 0 0;
+    
+    ${({$isActive:e,theme:t})=>e&&In`
         color: ${t.colors.orange};
         background-color: #fefefe;
-        border-radius: 20px 20px 0 0;
       `}
   }
 `,ac=D.div`
@@ -451,7 +453,7 @@ text-transform: uppercase;
   @media ${L} {
     box-shadow: ${({theme:e})=>e.boxShadowColor.desktop};
   }
-`,lc=()=>{const[e,t]=b.useState("expenses"),n=i=>{t(i)};return x.jsxs(sc,{children:[x.jsx("div",{children:x.jsxs(uc,{children:[x.jsx(mr,{onClick:()=>n("expenses"),isActive:e==="expenses",children:"expenses"}),x.jsx(mr,{onClick:()=>n("income"),isActive:e==="income",children:"income"})]})}),x.jsx("div",{children:x.jsxs(ac,{children:[e==="expenses"&&x.jsx(cc,{}),e==="income"&&x.jsx(dc,{})]})})]})};function cc(){return x.jsx("div",{children:"Вміст вкладки Витрати"})}function dc(){return x.jsx("div",{children:"Вміст вкладки Доходи"})}vt.defaults.baseURL=yr;const fc=async()=>{try{const{data:e}=await vt.get("/transactions/expenses");return e.transactions}catch(e){console.log(e)}};/**
+`,lc=()=>{const[e,t]=b.useState("expenses"),n=i=>{t(i)};return x.jsxs(sc,{children:[x.jsx("div",{children:x.jsxs(uc,{children:[x.jsx(mr,{onClick:()=>n("expenses"),$isActive:e==="expenses",children:"expenses"}),x.jsx(mr,{onClick:()=>n("income"),$isActive:e==="income",children:"income"})]})}),x.jsx("div",{children:x.jsxs(ac,{children:[e==="expenses"&&x.jsx(cc,{}),e==="income"&&x.jsx(dc,{})]})})]})};function cc(){return x.jsx("div",{children:"Вміст вкладки Витрати"})}function dc(){return x.jsx("div",{children:"Вміст вкладки Доходи"})}vt.defaults.baseURL=yr;const fc=async()=>{try{const{data:e}=await vt.get("/transactions/expenses");return e.transactions}catch(e){console.log(e)}};/**
  * table-core
  *
  * Copyright (c) TanStack
