@@ -1,4 +1,4 @@
-import{s as D,a as L,b as Ve,r as b,_ as F,c as Vi,d as Cr,m as Mi,u as Ii,R as Vn,e as Ge,f as Pi,g as zt,h as Ft,i as ki,j as Ti,k as vt,B as Sr,P as Mn,l as sn,n as x,o as yr,C as Li,I as un,p as Hi,q as an,t as Bi,L as ji,N as zi}from"./index-3521de39.js";import{g as Ni}from"./incomeApi-a9ef00dd.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Gi(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Ui=D.form`
+import{s as D,a as L,b as Ve,r as b,_ as F,c as Vi,d as Cr,m as Mi,u as Ii,R as Vn,e as Ge,f as Pi,g as zt,h as Ft,i as ki,j as Ti,k as vt,B as Sr,P as Mn,l as sn,n as x,o as yr,C as Li,I as un,p as Hi,q as an,t as Bi,L as ji,N as zi}from"./index-9eaf4cc9.js";import{g as Ni}from"./incomeApi-c4146e75.js";function R(){return R=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},R.apply(this,arguments)}function Gi(e,t){if(e==null)return{};var n={},i=Object.keys(e),r,o;for(o=0;o<i.length;o++)r=i[o],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Ui=D.form`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -411,33 +411,31 @@ text-transform: uppercase;
     width: 100%;
   }
 `,hr=D(zi)`
-   padding: 15px 55px;
-   background-color: ${({theme:e})=>e.colors.whiteTextColor};
-   color: ${({theme:e})=>e.colors.secondaryTextColor};
-   font-size: ${e=>e.theme.fontSizes.xs};
-   font-family: ${e=>e.theme.fonts.bold};
-   letter-spacing: 0.24px;
-   text-transform: uppercase;
+  background-color: ${({theme:e})=>e.colors.whiteTextColor};
+  color: ${({theme:e})=>e.colors.secondaryTextColor};
+  font-size: ${e=>e.theme.fontSizes.xs};
+  font-family: ${e=>e.theme.fonts.bold};
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
 
-   &.active {
-     color: ${({theme:e})=>e.colors.mainBgdColor};
-     background-color: ${({theme:e})=>e.colors.orange};
-   }
-
- @media screen and (max-width: 480px) {
-     width: calc(100% / 2 - 4px);/     /* height: 53px; */
-   background-color: ${({theme:e})=>e.colors.orange};
-   color: ${({theme:e})=>e.colors.secondaryTextColor};
-   }
-
-   @media ${L} {
-     &.active {
-       color: ${({theme:e})=>e.colors.orange};
-     background-color: #fefefe;
-       border-radius: 20px 20px 0 0;
-   }
+  &.active {
+    color: ${({theme:e})=>e.colors.mainBgdColor};
+    background-color: ${({theme:e})=>e.colors.orange};
   }
 
+  @media screen and (max-width: 480px) {
+    width: calc(100% / 2 - 4px);
+    background-color: ${({theme:e})=>e.colors.orange};
+    color: ${({theme:e})=>e.colors.secondaryTextColor};
+  }
+
+  @media ${L} {
+    &.active {
+      color: green;
+      background-color: #fefefe;
+      border-radius: 20px 20px 0 0;
+    }
+  }
 `,uc=D.div`
   @media screen and (max-width: 480px) {
     background: transparent;
@@ -452,7 +450,7 @@ text-transform: uppercase;
   @media ${L} {
     box-shadow: ${({theme:e})=>e.boxShadowColor.desktop};
   }
-`,ac=()=>{const[e,t]=b.useState("expenses"),n=i=>{t(i)};return x.jsxs(oc,{children:[x.jsx("div",{children:x.jsxs(sc,{children:[x.jsx(hr,{onClick:()=>n("expenses"),className:e==="expenses"?"active":"",children:"expenses"}),x.jsx(hr,{onClick:()=>n("income"),className:e==="income"?"active":"",children:"income"})]})}),x.jsx("div",{children:x.jsxs(uc,{children:[e==="expenses"&&x.jsx(lc,{}),e==="income"&&x.jsx(cc,{})]})})]})};function lc(){return x.jsx("div",{children:"Вміст вкладки Витрати"})}function cc(){return x.jsx("div",{children:"Вміст вкладки Доходи"})}vt.defaults.baseURL=Sr;const dc=async()=>{try{const{data:e}=await vt.get("/transactions/expenses");return e.transactions}catch(e){console.log(e)}};/**
+`,ac=()=>{const[e,t]=b.useState("expenses");console.log("Hello world");const n=i=>{console.log("tab",i),console.log("Click"),t(i)};return console.log("activeTab",e),x.jsxs(oc,{children:[x.jsx("div",{children:x.jsxs(sc,{children:[x.jsx(hr,{onClick:()=>n("expenses"),className:e==="expenses"?"active":"",children:"expenses"}),x.jsx(hr,{onClick:()=>n("income"),className:e==="income"?"active":"",children:"income"})]})}),x.jsx("div",{children:x.jsxs(uc,{children:[e==="expenses"&&x.jsx(lc,{}),e==="income"&&x.jsx(cc,{})]})})]})};function lc(){return x.jsx("div",{children:"Вміст вкладки Витрати"})}function cc(){return x.jsx("div",{children:"Вміст вкладки Доходи"})}vt.defaults.baseURL=Sr;const dc=async()=>{try{const{data:e}=await vt.get("/transactions/expenses");return e.transactions}catch(e){console.log(e)}};/**
  * table-core
  *
  * Copyright (c) TanStack
