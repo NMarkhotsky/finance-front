@@ -1,18 +1,37 @@
+import { useState } from "react";
 import {
   NavLinkList,
   NavLinkItem,
   ContainerTransaction,
-  // Item,
   Container,
 } from "./MenuForActiveLink.styled";
-
-import { useState } from "react";
+import { CurrentDay } from "../CurrentDay/CurrentDay";
+import { AddTransaction } from "../AddTransaction/AddTransaction";
+import { TransactionTable } from "../TransactionTable/TransactionTable";
 
 export const MenuForActiveLink = () => {
   const [activeTab, setActiveTab] = useState("expenses");
 
   const switchTab = (tab) => {
     setActiveTab(tab);
+  };
+
+  const ExpensesTabContent = () => {
+    return (
+      <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
+        <TransactionTable type="expenses"/>
+        <div>Summary</div>
+      </div>
+    );
+  };
+
+  const IncomeTabContent = () => {
+    return (
+      <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
+        <TransactionTable type="income"/>
+        <div>Summary</div>
+      </div>
+    );
   };
 
   return (
@@ -35,6 +54,11 @@ export const MenuForActiveLink = () => {
       </div>
       <div>
         <ContainerTransaction>
+          <div style={{ display: "flex", alignItems: "baseline" }}>
+            <CurrentDay />
+            {activeTab === "expenses" && <AddTransaction type="expense" />}
+            {activeTab === "income" && <AddTransaction type="income" />}
+          </div>
           {activeTab === "expenses" && <ExpensesTabContent />}
           {activeTab === "income" && <IncomeTabContent />}
         </ContainerTransaction>
@@ -42,11 +66,3 @@ export const MenuForActiveLink = () => {
     </Container>
   );
 };
-
-function ExpensesTabContent() {
-  return <div>Вміст вкладки Витрати</div>;
-}
-
-function IncomeTabContent() {
-  return <div>Вміст вкладки Доходи</div>;
-}

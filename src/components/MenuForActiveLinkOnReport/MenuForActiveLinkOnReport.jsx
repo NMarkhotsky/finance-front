@@ -7,7 +7,7 @@ import {
   TabButton,
 } from "./MenuForActiveLinkOnReport.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
-import { BarChartComp } from "../BarChart/BarChart";
+import { BarChartComp } from "../BarChartComp/BarChartComp";
 import { getIncome } from "../../services/incomeApi";
 import { getExpenses } from "../../services/expensesApi";
 
