@@ -11,15 +11,9 @@ import { useState } from "react";
 export const MenuForActiveLink = () => {
   const [activeTab, setActiveTab] = useState("expenses");
 
- console.log("Hello world");
-
   const switchTab = (tab) => {
-    console.log("tab", tab);
-    console.log("Click");
     setActiveTab(tab);
   };
-
-  console.log("activeTab", activeTab );
 
   return (
     <Container>
@@ -27,13 +21,13 @@ export const MenuForActiveLink = () => {
         <NavLinkList>
           <NavLinkItem
             onClick={() => switchTab("expenses")}
-            className={activeTab === "expenses" ? "active" : ""}
+            isActive={activeTab === "expenses"}
           >
             expenses
           </NavLinkItem>
           <NavLinkItem
             onClick={() => switchTab("income")}
-            className={activeTab === "income" ? "active" : ""}
+            isActive={activeTab === "income"}
           >
             income
           </NavLinkItem>
