@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { selectTablet } from "../../utils";
 
 export const Container = styled.div`
+padding-top: 60px;
   @media screen and (max-width: 480px) {
     display: flex;
     flex-direction: column-reverse;
@@ -64,7 +65,7 @@ export const NavLinkItem = styled(NavLink)`
   @media ${selectTablet} {
     background-color: #FAFBFD;
     border-radius: 20px 20px 0 0;
-    
+
     ${({ $isActive, theme }) =>
       $isActive &&
       css`

@@ -7,16 +7,17 @@ export const FormBalance = styled.form`
     display: flex;
     flex-direction: column;
     /* gap: 8px; */
-    padding: 11px;
     
 
         @media ${selectTablet} {
             font-size: ${({ theme }) => theme.fontSizes.sm};
             flex-direction: row;
             justify-content: center;
+         
         }        
         @media ${selectDesktop} {
             gap: 20px;
+            margin: 0 auto;
         
     }    
 
