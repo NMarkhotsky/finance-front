@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import PropTypes from 'prop-types';
 import {
   ResponsiveContainer,
   BarChart,
@@ -8,7 +9,6 @@ import {
   Cell,
   CartesianGrid,
 } from "recharts";
-import { getIncome } from "../../services/incomeApi";
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
@@ -29,18 +29,9 @@ const measureText14HelveticaNeue = (text, fontSize) => {
   return ctx.measureText(text).width;
 };
 
-export const BarChartComp = () => {
-  const [dataTransactions, setDataTransactions] = useState([]);
+export const BarChartComp = ({dataTransactions}) => {
+
   const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      const dataTrans = await getIncome();
-      setDataTransactions(dataTrans);
-    })();
-  }, []);
-
-  console.log("transactions", dataTransactions);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -212,4 +203,8 @@ export const BarChartComp = () => {
       )}
     </div>
   );
+};
+
+BarChartComp.propTypes = {
+  dataTransactions: PropTypes.array.isRequired,
 };

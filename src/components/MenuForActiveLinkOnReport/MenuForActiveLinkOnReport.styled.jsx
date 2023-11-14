@@ -1,4 +1,3 @@
-// import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const ContainerMain = styled.div`
@@ -18,11 +17,10 @@ export const Container = styled.div`
 `;
 
 export const ButtonIcon = styled.button`
-
 `
 
 export const TabButton = styled.button`
-display: ${({ active }) => (active ? 'flex' : 'none')};
+display: ${({ $active }) => ($active ? 'flex' : 'none')};
 color: ${({ theme }) => theme.colors.secondaryTextColor};
 font-size: ${(props) => props.theme.fontSizes.sm};
 font-family: ${(props) => props.theme.fonts.bold};
