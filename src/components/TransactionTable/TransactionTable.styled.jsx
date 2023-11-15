@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { selectTablet, selectDesktop } from '../../utils/mediaRequest';
+import { selectTablet } from '../../utils/mediaRequest';
 
 export const TableContainer = styled.div`
     display: flex;
