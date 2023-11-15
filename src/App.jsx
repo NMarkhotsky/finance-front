@@ -2,6 +2,7 @@ import { ThemeProvider } from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { fonts } from './constants';
 import { GlobalStyle } from './components/GlobalStyle/GlobalStyle';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
@@ -35,6 +36,7 @@ function App() {
     <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
       <SharedLayout />
+      <Toaster/>
     </ThemeProvider>
   ) : (
     <p>Loading...</p>
