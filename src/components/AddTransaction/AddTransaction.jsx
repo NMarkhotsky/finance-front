@@ -26,8 +26,9 @@ import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalCo
 import { CalcForm } from "../CalcForm/CalcForm";
 
 
-export const AddTransaction = () => {
-    const type = 'income' //need to get from props
+// eslint-disable-next-line react/prop-types
+export const AddTransaction = ({type}) => {
+    // const type = 'expense' //need to get from props
     const initialValues = {
         type,
         description: '',
@@ -106,7 +107,7 @@ export const AddTransaction = () => {
                     <CategoryInput>
                         <Select
                             {...register('category')}
-                            options={type === 'expense'? CATEGORIES_EXPENSES : CATEGORIES_INCOME}
+                            options={type === 'income'? CATEGORIES_INCOME : CATEGORIES_EXPENSES}
                             placeholder="Product category"
                             value={data.category}
                             onChange={handleCategoryChange}
