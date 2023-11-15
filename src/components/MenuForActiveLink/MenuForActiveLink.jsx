@@ -16,23 +16,23 @@ export const MenuForActiveLink = () => {
     setActiveTab(tab);
   };
 
-  const ExpensesTabContent = () => {
-    return (
-      <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
-        <TransactionTable type="expenses"/>
-        <div>Summary</div>
-      </div>
-    );
-  };
+  // const ExpensesTabContent = () => {
+  //   return (
+  //     <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
+  //       <TransactionTable type="expenses"/>
+  //       <div>Summary</div>
+  //     </div>
+  //   );
+  // };
 
-  const IncomeTabContent = () => {
-    return (
-      <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
-        <TransactionTable type="income"/>
-        <div>Summary</div>
-      </div>
-    );
-  };
+  // const IncomeTabContent = () => {
+  //   return (
+  //     <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
+  //       <TransactionTable type="income"/>
+  //       <div>Summary</div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <Container>
@@ -56,11 +56,12 @@ export const MenuForActiveLink = () => {
         <ContainerTransaction>
           <div style={{ display: "flex", alignItems: "baseline" }}>
             <CurrentDay />
-            {activeTab === "expenses" && <AddTransaction type="expense" />}
-            {activeTab === "income" && <AddTransaction type="income" />}
+            <AddTransaction type={activeTab} />
           </div>
-          {activeTab === "expenses" && <ExpensesTabContent />}
-          {activeTab === "income" && <IncomeTabContent />}
+          <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
+            <TransactionTable type={activeTab} />
+            <div type={activeTab}>Summary</div>
+          </div>
         </ContainerTransaction>
       </div>
     </Container>

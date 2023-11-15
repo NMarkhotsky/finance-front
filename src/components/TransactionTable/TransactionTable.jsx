@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth/useAuth";
 import { getIncome } from "../../services/incomeApi";
 import { getExpenses } from "../../services/expensesApi";
+import { deleteTransaction } from "../../services/transactionsApi";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { formatData } from "../../services/balanceFormServices";
-// import { TableStyled } from "./TransactionTable.styled";
+import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd, DeleteBtn } from "./TransactionTable.styled";
+import { Icon } from "../../shared/components/Icon/Icon";
 
-export const TransactionTable = () => {
+// eslint-disable-next-line react/prop-types
+export const TransactionTable = ({type}) => {
 
-    const type = 'expenses' //will be in props
+    // const type = 'expenses' //will be in props
 
     const [data, setData] = useState([]);
     const { user } = useAuth();
@@ -33,7 +36,13 @@ export const TransactionTable = () => {
         }),
         
         columnHelper.accessor('delete', {
-            cell: (del) => <span>{del.getValue()}</span>
+            cell: (del) => <span>
+                <DeleteButton
+                    onDeleteClick={() => {
+                        console.log(del.row.original.id);
+                        handleDelete(del.row.original.id)
+                    }} />
+            </span>
         })         
     ]
 
@@ -46,7 +55,7 @@ export const TransactionTable = () => {
     useEffect(() => {
         getTransactions(type);
 
-    },[user.balance])
+    },[user.balance, type])
 
     const getTransactions = async (type) => {
 
@@ -62,46 +71,64 @@ export const TransactionTable = () => {
         
     }
 
+    // eslint-disable-next-line react/prop-types
+    const DeleteButton = ({ onDeleteClick }) => {
+
+        return (
+            <DeleteBtn onClick={onDeleteClick}>
+                <Icon iconName="icon-delete" width={18} height={18}  />
+            </DeleteBtn>
+        );
+    };
+
+    const handleDelete = async (recordId) => {
+        const result = await deleteTransaction(recordId);
+        const newData = await 
+        console.log(result);
+        console.log(newData);
+        
+    };
+
     return (
-        <div>
-            <table>
-                <thead>
+        <TableContainer>
+            <Table>
+                <TableHead>
                     {
                     table.getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
+                        <TableHeadTR key={headerGroup.id}>
                             {
                                 headerGroup.headers.map((header) => (
-                                    <th key={header.id}>
+                                    <TableHeadTH key={header.id} header={header.id} >
                                         {
                                             flexRender(header.column.columnDef.header, header.getContext())
                                         }
-                                    </th>
+                                    </TableHeadTH>
                                 ))
                             }
-                        </tr>
+                        </TableHeadTR>
                     ))
                 }
-                </thead>
-                <tbody>
+                </TableHead>
+                <TableBody>
                     {
                         table.getRowModel().rows.length ? (
                             table.getRowModel().rows.map((row) => (
-                                <tr key={row.id}>
+                                <TableBodyTR key={row.id}>
                                     {
                                         row.getVisibleCells().map((cell) => (
-                                            <td key={cell.id}>
+                                            <TableBodyTd key={cell.id}>
                                                 {
                                                     flexRender(cell.column.columnDef.cell, cell.getContext())
                                                 }
-                                            </td>
+                                            </TableBodyTd>
                                         ))
                                     }
-                            </tr>
+                            </TableBodyTR>
                         )))
                         : null
                     }
-                </tbody>
-            </table>
-        </div>
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
