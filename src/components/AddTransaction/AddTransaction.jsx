@@ -16,7 +16,7 @@ import {
 import { Icon } from "../../shared/components/Icon/Icon";
 import { cutValue, formatSum, normalizeValue } from "../../services/balanceFormServices";
 import Select from 'react-select';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "../../redux/auth/operations";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -24,11 +24,10 @@ import { transactionSchema } from "../../constants/validationSchemas";
 import { addTransaction } from '../../services/transactionsApi';
 import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalConstants";
 import { CalcForm } from "../CalcForm/CalcForm";
+import PropTypes from 'prop-types';
 
 
-// eslint-disable-next-line react/prop-types
 export const AddTransaction = ({type}) => {
-    // const type = 'expense' //need to get from props
     const initialValues = {
         type,
         description: '',
@@ -51,6 +50,10 @@ export const AddTransaction = ({type}) => {
         resolver: yupResolver(transactionSchema)
     });
 
+    useEffect(() => {
+        setValue('type', type)
+    }, [type, setValue])
+
     const onSumChange = (e) => {
         const value = e.target.value;
         const normalizedValue = cutValue(value);
@@ -65,7 +68,7 @@ export const AddTransaction = ({type}) => {
     };
     
     const onSubmit = async (data) => {
-        await addTransaction({ ...data, category: data.category.value });
+        await addTransaction({ ...data, type: data.type === 'expenses' ? 'expense' : 'income', category: data.category.value });
         dispatch(fetchCurrentUser())
         reset(initialValues);
         setData(initialValues);
@@ -149,4 +152,8 @@ export const AddTransaction = ({type}) => {
         </>
     )
 
+}
+
+AddTransaction.propTypes = {
+    type: PropTypes.string.isRequired,
 }
