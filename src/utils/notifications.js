@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { Icon } from '../shared/components/Icon/Icon';
 
 export const Notifications = (type, message) => {
-console.log(type);
-console.log(message);
 toast.type(message, {
     icon: <Icon iconName="icon-cabbage" /> , 
     style: {
-
+    
     }
 })
 }
