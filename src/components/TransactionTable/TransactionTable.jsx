@@ -5,13 +5,16 @@ import { getExpenses } from "../../services/expensesApi";
 import { deleteTransaction } from "../../services/transactionsApi";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { formatData } from "../../services/balanceFormServices";
-import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd, DeleteBtn } from "./TransactionTable.styled";
-import { Icon } from "../../shared/components/Icon/Icon";
+import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTable.styled";
+import { DeleteButton } from "../DeleteButton/DeleteButton";
 import PropTypes from 'prop-types';
+import { fetchCurrentUser } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 export const TransactionTable = ({type}) => {
     const [data, setData] = useState([]);
     const { user } = useAuth();
+    const dispatch = useDispatch();
 
     const columnHelper = createColumnHelper();
 
@@ -36,7 +39,6 @@ export const TransactionTable = ({type}) => {
             cell: (del) => <span>
                 <DeleteButton
                     onDeleteClick={() => {
-                        console.log(del.row.original.id);
                         handleDelete(del.row.original.id)
                     }} />
             </span>
@@ -68,22 +70,9 @@ export const TransactionTable = ({type}) => {
         
     }
 
-    // eslint-disable-next-line react/prop-types
-    const DeleteButton = ({ onDeleteClick }) => {
-
-        return (
-            <DeleteBtn onClick={onDeleteClick}>
-                <Icon iconName="icon-delete" width={18} height={18}  />
-            </DeleteBtn>
-        );
-    };
-
     const handleDelete = async (recordId) => {
-        const result = await deleteTransaction(recordId);
-        const newData = await 
-        console.log(result);
-        console.log(newData);
-        
+        await deleteTransaction(recordId);
+        dispatch(fetchCurrentUser());       
     };
 
     return (
