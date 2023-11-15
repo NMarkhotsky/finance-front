@@ -52,9 +52,5 @@ export const TableBodyTd = styled.td`
     
 `
 
-export const DeleteBtn = styled.button`
-
-`
-
 TableHead.shouldForwardProp = (prop) => prop !== 'header';
 TableHeadTH.shouldForwardProp = (prop) => prop !== 'header';
