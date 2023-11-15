@@ -39,7 +39,6 @@ export const TransactionTable = ({type}) => {
             cell: (del) => <span>
                 <DeleteButton
                     onDeleteClick={() => {
-                        console.log(del.row.original.id);
                         handleDelete(del.row.original.id)
                     }} />
             </span>
