@@ -7,12 +7,9 @@ import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "
 import { formatData } from "../../services/balanceFormServices";
 import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd, DeleteBtn } from "./TransactionTable.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
 export const TransactionTable = ({type}) => {
-
-    // const type = 'expenses' //will be in props
-
     const [data, setData] = useState([]);
     const { user } = useAuth();
 
@@ -131,4 +128,8 @@ export const TransactionTable = ({type}) => {
             </Table>
         </TableContainer>
     )
+}
+
+TransactionTable.propTypes = {
+    type: PropTypes.string.isRequired,
 }
