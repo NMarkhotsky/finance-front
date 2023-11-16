@@ -73,7 +73,7 @@ export const TransactionTable = ({type}) => {
 
     const handleDelete = async (recordId) => {
         await deleteTransaction(recordId);
-        ShowToast("success", "Transaction deleted successfully")
+        ShowToast("success", "Transaction successfully deleted")
         dispatch(fetchCurrentUser());       
     };
 

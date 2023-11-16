@@ -8,6 +8,7 @@ import { useEffect, useCallback } from "react";
 import { useAuth } from "../../hooks/useAuth/useAuth";
 import { useDispatch } from "react-redux";
 import { addStartBalance } from "../../redux/auth/operations";
+import { ShowToast } from "../../utils";
 
 export const BalanceForm = () => {
 
@@ -35,6 +36,7 @@ export const BalanceForm = () => {
     }, [initialValue, setValue, user])
 
     const onSubmit =  ({balance}) => {
+        ShowToast("success", "Balance successfully added")
         dispatch(addStartBalance(balance));
     }
 
