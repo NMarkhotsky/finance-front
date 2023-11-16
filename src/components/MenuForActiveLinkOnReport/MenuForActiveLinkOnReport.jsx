@@ -10,16 +10,17 @@ import { Icon } from "../../shared/components/Icon/Icon";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
 import { getIncome } from "../../services/incomeApi";
 import { getExpenses } from "../../services/expensesApi";
-// import { Notifications } from "../../utils";
+import { ShowToast } from "../../utils/showToast";
 
 export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [dataExpenses, setDataExpenses] = useState([]);
   const [dataIncome, setDataIncome] = useState([]);
 
-  // if(dataExpenses.length === 0) {
-  //   Notifications("error", "Hello, my love!")
-  // }
+
+  if(dataExpenses.length === 0) {
+    ShowToast("error", "Its bad")
+  }
 
   useEffect(() => {
     (async () => {
