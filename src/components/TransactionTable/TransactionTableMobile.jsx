@@ -5,7 +5,7 @@ import { getExpenses } from "../../services/expensesApi";
 import { deleteTransaction } from "../../services/transactionsApi";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { formatData } from "../../services/balanceFormServices";
-import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd, Sum } from "./TransactionTableMobile.styled";
+import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTableMobile.styled";
 import { DeleteButton } from "../DeleteButton/DeleteButton";
 import PropTypes from 'prop-types';
 import { fetchCurrentUser } from "../../redux/auth/operations";
