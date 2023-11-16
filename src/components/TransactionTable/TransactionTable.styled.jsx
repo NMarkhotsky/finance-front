@@ -5,24 +5,21 @@ export const TableContainer = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    
+    border: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor};
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
 `
 
 export const Table = styled.table`
-
-    border-radius: 16px 16px 0 0;
-    border-collapse: collapse;
-    border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor};
-    overflow: hidden;
+    border-collapse: collapse; 
     width: 100%;
+
 `
 
 export const TableHead = styled.thead`
     text-transform: uppercase;
     height: 40px;
     background-color: ${({theme})=> theme.colors.tableBgdMainColor};
-    /* border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor}; */
-
 `
 
 export const TableHeadTR = styled.tr`
@@ -37,17 +34,18 @@ export const TableHeadTH = styled.th`
 export const TableBody = styled.tbody`
     background-color: transparent;
     vertical-align: middle;
-    /* border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor}; */
-
+    max-height: 300px;
+    overflow-x: auto;
 `
 
 export const TableBodyTR = styled.tr`
-/* border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor}; */
+
 `
 
 export const TableBodyTd = styled.td`
     padding: 5px;
     border-bottom: 2px solid ${({theme})=> theme.colors.borderSecondaryColor};
+    max-height: 30px;
 
     &:first-child {
         max-width: 60px;
@@ -70,9 +68,7 @@ export const TableBodyTd = styled.td`
     }
     
     &:nth-child(5) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
     }
 
 `

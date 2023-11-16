@@ -98,29 +98,29 @@ export const TransactionTable = ({type}) => {
                 }
                 </TableHead>
                 <TableBody>
-                    {
-                        table.getRowModel().rows.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableBodyTR key={row.id}>
-                                    {
-                                        row.getVisibleCells().map((cell) => (
-                                            <TableBodyTd key={cell.id} value={cell.row.original.sum}>
-                                                {
-                                                    flexRender(
-                                                        cell.column.id === 'sum' ? (
-                                                            <>
-                                                                <span>{cell.row.original.sum} грн</span>
-                                                            </>
-                                                        ) :
-                                                            cell.column.columnDef.cell(cell), cell.getContext())
-                                                }
-                                            </TableBodyTd>
-                                        ))
-                                    }
-                            </TableBodyTR>
-                        )))
-                        : null
-                    }
+                        {
+                            table.getRowModel().rows.length ? (
+                                table.getRowModel().rows.map((row) => (
+                                    <TableBodyTR key={row.id}>
+                                        {
+                                            row.getVisibleCells().map((cell) => (
+                                                <TableBodyTd key={cell.id} value={cell.row.original.sum}>
+                                                    {
+                                                        flexRender(
+                                                            cell.column.id === 'sum' ? (
+                                                                <>
+                                                                    <span>{cell.row.original.sum} грн</span>
+                                                                </>
+                                                            ) :
+                                                                cell.column.columnDef.cell(cell), cell.getContext())
+                                                    }
+                                                </TableBodyTd>
+                                            ))
+                                        }
+                                </TableBodyTR>
+                            )))
+                            : null
+                        }
                 </TableBody>
             </Table>
         </TableContainer>
