@@ -101,10 +101,10 @@ export const AddTransaction = ({type}) => {
 
     useEffect(() => {
         if(errors.description)  ShowToast("error", errors.description?.message);
-       else if(errors.category)    ShowToast("error", errors.category?.message);
-    else if(errors.sum) ShowToast("error", errors.sum?.message);
+        else if(errors.category)    ShowToast("error", errors.category?.message);
+        else if(errors.sum) ShowToast("error", errors.sum?.message);
     }, [errors.category, errors.description, errors.sum])
-      
+
 
     return (
         <>

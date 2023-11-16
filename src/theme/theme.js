@@ -11,6 +11,7 @@ const media = {
 };
 
 const fontSizes = {
+  xxxs: '8px',
   xxs: '10px',
   xs: '12px',
   sm: '14px',
