@@ -104,9 +104,15 @@ export const TransactionTable = ({type}) => {
                                 <TableBodyTR key={row.id}>
                                     {
                                         row.getVisibleCells().map((cell) => (
-                                            <TableBodyTd key={cell.id}>
+                                            <TableBodyTd key={cell.id} value={cell.row.original.sum}>
                                                 {
-                                                    flexRender(cell.column.columnDef.cell, cell.getContext())
+                                                    flexRender(
+                                                        cell.column.id === 'sum' ? (
+                                                            <>
+                                                                <span>{cell.row.original.sum} грн</span>
+                                                            </>
+                                                        ) :
+                                                            cell.column.columnDef.cell(cell), cell.getContext())
                                                 }
                                             </TableBodyTd>
                                         ))
