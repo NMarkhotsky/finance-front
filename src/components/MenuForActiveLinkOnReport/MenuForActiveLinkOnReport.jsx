@@ -8,36 +8,36 @@ import {
 } from "./MenuForActiveLinkOnReport.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
-import { getIncome } from "../../services/incomeApi";
-import { getExpenses } from "../../services/expensesApi";
-// import { Notifications } from "../../utils";
+import { getIncomeDescription } from "../../services/incomeApi";
+import { getExpensesDescription } from "../../services/expensesApi";
+// import { ShowToast } from "../../utils/showToast/showToast";
 
 export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [dataExpenses, setDataExpenses] = useState([]);
   const [dataIncome, setDataIncome] = useState([]);
 
+
   // if(dataExpenses.length === 0) {
-  //   Notifications("error", "Hello, my love!")
+  //   ShowToast("custom", "I'm very happy!!!")
   // }
 
   useEffect(() => {
     (async () => {
-      const dataTrans = await getIncome();
-      console.log(dataTrans);
-      setDataIncome(dataTrans);
+      const {data : {report}} = await getIncomeDescription();
+      console.log("report", report);
+      setDataIncome(report);
     })();
   }, []);
+
+  console.log(dataExpenses);
 
   useEffect(() => {
     (async () => {
-      const dataTrans = await getExpenses();
-      setDataExpenses(dataTrans);
+      const {data : {report}} = await getExpensesDescription();
+      setDataExpenses(report);
     })();
   }, []);
-
-  console.log("dataExpenses", dataExpenses);
-  console.log("dataIncome", dataIncome);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -69,22 +69,6 @@ export const MenuForActiveLinkOnReport = () => {
     );
   };
 
-  const ExpensesTabChartBar = () => {
-    return (
-      <>
-        <BarChartComp dataTransactions={dataExpenses} />
-      </>
-    );
-  };
-
-  const IncomeTabChartBar = () => {
-    return (
-      <>
-        <BarChartComp dataTransactions={dataIncome} />
-      </>
-    );
-  };
-
   return (
    <section>
       <ContainerMain>
@@ -103,8 +87,8 @@ export const MenuForActiveLinkOnReport = () => {
         {activeTab === "income" && <IncomeTabContent />}
       </ContainerMain>
             <div>
-            {activeTab === "expenses" && <ExpensesTabChartBar />}
-            {activeTab === "income" && <IncomeTabChartBar />}
+            {activeTab === "expenses" &&  <BarChartComp dataTransactions={dataExpenses} />}
+            {activeTab === "income" && <BarChartComp dataTransactions={dataIncome} />}
           </div>
    </section>
   );

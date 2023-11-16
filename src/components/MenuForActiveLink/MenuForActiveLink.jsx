@@ -4,6 +4,8 @@ import {
   NavLinkItem,
   ContainerTransaction,
   Container,
+  AddTransactionBox,
+  TransactionTableBox,
 } from "./MenuForActiveLink.styled";
 import { CurrentDay } from "../CurrentDay/CurrentDay";
 import { AddTransaction } from "../AddTransaction/AddTransaction";
@@ -54,14 +56,14 @@ export const MenuForActiveLink = () => {
       </div>
       <div>
         <ContainerTransaction>
-          <div style={{ display: "flex", alignItems: "baseline" }}>
+          <AddTransactionBox>
             <CurrentDay />
             <AddTransaction type={activeTab} />
-          </div>
-          <div style={{display: "flex", justifyContent: "space-between", marginTop: 60}}>
+          </AddTransactionBox>
+          <TransactionTableBox>
             <TransactionTable type={activeTab} />
             <div type={activeTab}>Summary</div>
-          </div>
+          </TransactionTableBox>
         </ContainerTransaction>
       </div>
     </Container>
