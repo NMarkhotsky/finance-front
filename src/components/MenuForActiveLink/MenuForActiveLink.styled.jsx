@@ -17,7 +17,7 @@ export const NavLinkList = styled.ul`
 
   @media screen and (max-width: 480px) {
     gap: 4px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
