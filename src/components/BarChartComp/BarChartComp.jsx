@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import {
   ResponsiveContainer,
@@ -16,18 +16,18 @@ const getColor = (index) => {
   return colors[index % colors.length];
 };
 
-let ctx;
+// let ctx;
 
-const measureText14HelveticaNeue = (text, fontSize) => {
-  if (!ctx) {
-    ctx = document.createElement("canvas").getContext("2d");
-    ctx.font = "14px 'Helvetica Neue";
-    ctx.font = `${fontSize}px 'Helvetica Neue'`;
-    return ctx.measureText(text).width;
-  }
+// const measureText14HelveticaNeue = (text, fontSize) => {
+//   if (!ctx) {
+//     ctx = document.createElement("canvas").getContext("2d");
+//     ctx.font = "14px 'Helvetica Neue";
+//     ctx.font = `${fontSize}px 'Helvetica Neue'`;
+//     return ctx.measureText(text).width;
+//   }
 
-  return ctx.measureText(text).width;
-};
+//   return ctx.measureText(text).width;
+// };
 
 export const BarChartComp = ({dataTransactions}) => {
   console.log(dataTransactions);
@@ -64,19 +64,19 @@ export const BarChartComp = ({dataTransactions}) => {
     return { ...item, description: words[0], total_sum: modifiedSum };
   });
 
-  const maxTextWidth = useMemo(
-    () =>
-      dataTransactions.reduce((acc, cur) => {
-        const value = cur["total_sum"];
-        const valueSlice = value.slice(0, -3);
-        const width = measureText14HelveticaNeue(valueSlice);
-        if (width > acc) {
-          return width;
-        }
-        return acc;
-      }, 0),
-    [dataTransactions]
-  );
+  // const maxTextWidth = useMemo(
+  //   () =>
+  //     dataTransactions.reduce((acc, cur) => {
+  //       const value = cur["total_sum"];
+  //       const valueSlice = value.slice(0, -3);
+  //       const width = measureText14HelveticaNeue(valueSlice);
+  //       if (width > acc) {
+  //         return width;
+  //       }
+  //       return acc;
+  //     }, 0),
+  //   [dataTransactions]
+  // );
 
   return (
     <div
