@@ -70,6 +70,7 @@ export const AddTransaction = ({type}) => {
     
     const onSubmit = async (data) => {
         await addTransaction({ ...data, type: data.type === 'expenses' ? 'expense' : 'income', category: data.category.value });
+        ShowToast("success", "Created new transaction")
         dispatch(fetchCurrentUser())
         reset(initialValues);
         setData(initialValues);
@@ -97,6 +98,13 @@ export const AddTransaction = ({type}) => {
     const closeCalc = () => {
         setIsOpenCalc(prev => !prev);
     }
+
+    useEffect(() => {
+        if(errors.description)  ShowToast("error", errors.description?.message);
+       else if(errors.category)    ShowToast("error", errors.category?.message);
+    else if(errors.sum) ShowToast("error", errors.sum?.message);
+    }, [errors.category, errors.description, errors.sum])
+      
 
     return (
         <>
@@ -137,10 +145,7 @@ export const AddTransaction = ({type}) => {
                                 <Icon iconName="icon-calculator" width={18} height={18}  />
                             </div>
                         </CalcIconWrapper>                
-                    </SumInput>
-                     {ShowToast("error", errors.description?.message )}
-                     {ShowToast("error", errors.category?.message )}
-                     {ShowToast("error", errors.sum?.message)}               
+                    </SumInput>               
                 </DataWrapper>
 
                 <ButtonsWrapper>
