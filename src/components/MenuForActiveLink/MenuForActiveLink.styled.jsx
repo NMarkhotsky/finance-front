@@ -34,7 +34,8 @@ export const NavLinkItem = styled(NavLink)`
   text-transform: uppercase;
 
   @media screen and (max-width: 767px) {
-    width: calc(100% / 2 - 4px);
+    /* width: calc(100% / 2 - 4px); */
+    width: 50%;
     background-color: #F5F6FB;
     color: ${({ theme }) => theme.colors.secondaryTextColor};
 
