@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { selectTablet } from "../../utils";
 
 export const Container = styled.div`
-padding-top: 60px;
+  padding-top: 60px;
   @media screen and (max-width: 480px) {
     display: flex;
     flex-direction: column-reverse;
@@ -24,22 +24,6 @@ export const NavLinkList = styled.ul`
   }
 `;
 
-// export const Item = styled.li`
-//   /* padding: 15px 55px;
-//   background-color: ${({ theme }) => theme.colors.whiteTextColor}; */
-
-//   @media screen and (max-width: 480px) {
-//     width: calc(100% / 2 - 4px);
-//     height: 53px;
-//     background-color: ${({ theme }) => theme.colors.orange};
-//   }
-
-//   @media ${selectTablet} {
-//     border-radius: 20px 20px 0 0;
-//     background-color: #fafbfd;
-//   }
-// `;
-
 export const NavLinkItem = styled(NavLink)`
   padding: 15px 55px;
   background-color: ${({ theme }) => theme.colors.whiteTextColor};
@@ -49,21 +33,21 @@ export const NavLinkItem = styled(NavLink)`
   letter-spacing: 0.24px;
   text-transform: uppercase;
 
-  ${({ isActive, theme }) =>
-    isActive &&
-    css`
-      color: ${theme.colors.orange};
-      background-color: ${({ theme }) => theme.colors.orange};
-    `}
-
   @media screen and (max-width: 480px) {
     width: calc(100% / 2 - 4px);
-    background-color: ${({ theme }) => theme.colors.orange};
+    background-color: #F5F6FB;
     color: ${({ theme }) => theme.colors.secondaryTextColor};
+
+    ${({ $isActive, theme }) =>
+    $isActive &&
+    css`
+      color: #FFFFFF;
+      background-color: ${theme.colors.orange};
+    `}
   }
 
   @media ${selectTablet} {
-    background-color: #FAFBFD;
+    background-color: #fafbfd;
     border-radius: 20px 20px 0 0;
 
     ${({ $isActive, theme }) =>
@@ -89,4 +73,15 @@ export const ContainerTransaction = styled.div`
   @media ${selectTablet} {
     box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
   }
+`;
+
+export const AddTransactionBox = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
+export const TransactionTableBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
 `;
