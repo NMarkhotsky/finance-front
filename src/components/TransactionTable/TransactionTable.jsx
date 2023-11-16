@@ -10,6 +10,7 @@ import { DeleteButton } from "../DeleteButton/DeleteButton";
 import PropTypes from 'prop-types';
 import { fetchCurrentUser } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
+import { ShowToast } from "../../utils";
 
 export const TransactionTable = ({type}) => {
     const [data, setData] = useState([]);
@@ -72,6 +73,7 @@ export const TransactionTable = ({type}) => {
 
     const handleDelete = async (recordId) => {
         await deleteTransaction(recordId);
+        ShowToast("success", "Transaction deleted successfully")
         dispatch(fetchCurrentUser());       
     };
 

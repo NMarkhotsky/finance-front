@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
 
 export const ContainerToast = styled.div`
-  width: 300px;
+  min-width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 20px 30px 20px 10px;
   border-radius: 10px;
   border: 3px double gray;

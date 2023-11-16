@@ -70,6 +70,7 @@ export const AddTransaction = ({type}) => {
     
     const onSubmit = async (data) => {
         await addTransaction({ ...data, type: data.type === 'expenses' ? 'expense' : 'income', category: data.category.value });
+        ShowToast("success", "Created new transaction")
         dispatch(fetchCurrentUser())
         reset(initialValues);
         setData(initialValues);
