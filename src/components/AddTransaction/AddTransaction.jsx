@@ -98,6 +98,13 @@ export const AddTransaction = ({type}) => {
         setIsOpenCalc(prev => !prev);
     }
 
+    useEffect(() => {
+        if(errors.description)  ShowToast("error", errors.description?.message);
+       else if(errors.category)    ShowToast("error", errors.category?.message);
+    else if(errors.sum) ShowToast("error", errors.sum?.message);
+    }, [errors.category, errors.description, errors.sum])
+      
+
     return (
         <>
             <AddTransactionForm onSubmit={handleSubmit(onSubmit)}>
@@ -137,10 +144,7 @@ export const AddTransaction = ({type}) => {
                                 <Icon iconName="icon-calculator" width={18} height={18}  />
                             </div>
                         </CalcIconWrapper>                
-                    </SumInput>
-                     {ShowToast("error", errors.description?.message )}
-                     {ShowToast("error", errors.category?.message )}
-                     {ShowToast("error", errors.sum?.message)}               
+                    </SumInput>               
                 </DataWrapper>
 
                 <ButtonsWrapper>

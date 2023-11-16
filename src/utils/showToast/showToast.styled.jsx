@@ -28,5 +28,5 @@ export const ContainerToastError = styled(ContainerToast)`
 
 export const Message = styled.p`
   color: #000;
-  font-size: 20px;
+  font-size: 15px;
 `;
