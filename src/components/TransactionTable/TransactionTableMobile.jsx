@@ -5,7 +5,7 @@ import { getExpenses } from "../../services/expensesApi";
 import { deleteTransaction } from "../../services/transactionsApi";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { formatData } from "../../services/balanceFormServices";
-import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTableMobile.styled";
+import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd, Sum } from "./TransactionTableMobile.styled";
 import { DeleteButton } from "../DeleteButton/DeleteButton";
 import PropTypes from 'prop-types';
 import { fetchCurrentUser } from "../../redux/auth/operations";
@@ -104,9 +104,15 @@ export const TransactionTableMobile = ({type}) => {
                                 <TableBodyTR key={row.id}>
                                     {
                                         row.getVisibleCells().map((cell) => (
-                                            <TableBodyTd key={cell.id}>
+                                            <TableBodyTd key={cell.id} value={cell.row.original.sum}>
                                                 {
-                                                    flexRender(cell.column.columnDef.cell, cell.getContext())
+                                                    flexRender(
+                                                        cell.column.id === 'sum' ? (
+                                                            <>
+                                                                <span>{cell.row.original.sum} грн</span>
+                                                            </>
+                                                        ) :
+                                                            cell.column.columnDef.cell(cell), cell.getContext())
                                                 }
                                             </TableBodyTd>
                                         ))
