@@ -2,34 +2,36 @@ import toast from "react-hot-toast";
 // import 'react-hot-toast/react-hot-toast.css';
 import PropTypes from "prop-types";
 import { Icon } from "../../shared/components/Icon/Icon";
-import { ContainerToast } from "./showToast.styled";
+import { ContainerToast,ContainerToastError,ContainerToastSuccess, Message   } from "./showToast.styled";
 // import ImageIcon from "../assets/images/cabbage.png";
 
 export const ShowToast = (type, message) => {
   switch (type) {
     case "success":
       toast.custom(
-        <ContainerToast>
-          <Icon iconName="icon-cabbage" width={24} height={24} stroke="green" />
-          <p>{message}</p>
-        </ContainerToast>
+        <ContainerToastSuccess>
+          <Icon iconName="icon-cabbage" width={30} height={30} stroke="green" />
+          <Message>{message}</Message>
+        </ContainerToastSuccess>
       );
       break;
     case "error":
       toast.custom(
-        <ContainerToast>
-          <Icon iconName="icon-cabbage" width={24} height={24} stroke="red" />
-          <p>{message}</p>
-        </ContainerToast>
+        <ContainerToastError>
+          <Icon iconName="icon-cabbage" width={30} height={30} stroke="red" />
+          <Message>{message}</Message>
+        </ContainerToastError>
       );
       break;
-    case "custom":
+    case "info":
       toast.custom(
         <ContainerToast>
-          <Icon iconName="icon-cabbage" width={24} height={24} stroke="gray" />
-          <p>{message}</p>
+          <Icon iconName="icon-cabbage" width={30} height={30} stroke="gray" />
+          <Message>{message}</Message>
         </ContainerToast>
       );
+      break; 
+      default: 
       break; 
   }
 };

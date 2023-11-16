@@ -28,8 +28,6 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     dispatch(login(data));
 
     reset();
