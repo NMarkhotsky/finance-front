@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import { useEffect, useState, useMemo } from "react";
+import PropTypes from "prop-types";
 import {
   ResponsiveContainer,
   BarChart,
@@ -16,20 +16,20 @@ const getColor = (index) => {
   return colors[index % colors.length];
 };
 
-// let ctx;
+let ctx;
 
-// const measureText14HelveticaNeue = (text, fontSize) => {
-//   if (!ctx) {
-//     ctx = document.createElement("canvas").getContext("2d");
-//     ctx.font = "14px 'Helvetica Neue";
-//     ctx.font = `${fontSize}px 'Helvetica Neue'`;
-//     return ctx.measureText(text).width;
-//   }
+const measureText14HelveticaNeue = (text, fontSize) => {
+  if (!ctx) {
+    ctx = document.createElement("canvas").getContext("2d");
+    ctx.font = "14px 'Helvetica Neue";
+    ctx.font = `${fontSize}px 'Helvetica Neue'`;
+    return ctx.measureText(text).width;
+  }
 
-//   return ctx.measureText(text).width;
-// };
+  return ctx.measureText(text).width;
+};
 
-export const BarChartComp = ({dataTransactions}) => {
+export const BarChartComp = ({ dataTransactions }) => {
   console.log(dataTransactions);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -64,19 +64,19 @@ export const BarChartComp = ({dataTransactions}) => {
     return { ...item, description: words[0], total_sum: modifiedSum };
   });
 
-  // const maxTextWidth = useMemo(
-  //   () =>
-  //     dataTransactions.reduce((acc, cur) => {
-  //       const value = cur["total_sum"];
-  //       const valueSlice = value.slice(0, -3);
-  //       const width = measureText14HelveticaNeue(valueSlice);
-  //       if (width > acc) {
-  //         return width;
-  //       }
-  //       return acc;
-  //     }, 0),
-  //   [dataTransactions]
-  // );
+  const maxTextWidth = useMemo(
+    () =>
+      dataTransactions.reduce((acc, cur) => {
+        const value = cur["total_sum"];
+        const valueSlice = value.slice(0, -3);
+        const width = measureText14HelveticaNeue(valueSlice);
+        if (width > acc) {
+          return width;
+        }
+        return acc;
+      }, 0),
+    [dataTransactions]
+  );
 
   return (
     <div
@@ -84,8 +84,8 @@ export const BarChartComp = ({dataTransactions}) => {
         backgroundColor: "#FFF",
         paddingTop: 22,
         paddingBottom: 20,
-        borderRadius: "30px", 
-        marginTop: 40
+        borderRadius: "30px",
+        marginTop: 40,
       }}
     >
       {isMobile ? (
@@ -97,9 +97,9 @@ export const BarChartComp = ({dataTransactions}) => {
           <BarChart
             data={modifiedData}
             layout="vertical"
-         /**    margin={{ left: 10, right: maxTextWidth }}*/
+             margin={{ left: 10, right: maxTextWidth }}
           >
-            <XAxis hide axisLine={false} type="category" />
+            <XAxis hide axisLine={false} type="number" />
             <YAxis
               yAxisId={0}
               dataKey="description"
@@ -120,19 +120,16 @@ export const BarChartComp = ({dataTransactions}) => {
               axisLine={false}
               tickLine={false}
               tickFormatter={(value) => value}
-              
               padding={{ top: 5 }}
               unit=" грн"
               textAnchor="end"
               dy={-14}
             />
-          
-          <Bar dataKey="total_sum" minPointSize={4} barSize={12} barGap={0}>
-  {modifiedData.map((d, idx) => (
-    <Cell key={idx} fill={getColor(idx)} radius={[0, 10, 10, 0]}/>
-  ))}
-</Bar>
-       
+            <Bar dataKey="total_sum" minPointSize={4} barSize={12} barGap={0}>
+              {modifiedData.map((d, idx) => (
+                <Cell key={idx} fill={getColor(idx)} radius={[0, 10, 10, 0]} />
+              ))}
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       ) : (
@@ -189,7 +186,6 @@ export const BarChartComp = ({dataTransactions}) => {
                     key={idx}
                     fill={getColor(idx)}
                     radius={[10, 10, 0, 0]}
-                  
                   />
                 );
               })}
