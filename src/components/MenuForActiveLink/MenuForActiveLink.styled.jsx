@@ -4,7 +4,7 @@ import { selectTablet } from "../../utils";
 
 export const Container = styled.div`
   padding-top: 60px;
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -15,7 +15,7 @@ export const NavLinkList = styled.ul`
   list-style: none;
   text-align: center;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 767px) {
     gap: 4px;
     position: fixed;
     bottom: 0;
@@ -33,7 +33,7 @@ export const NavLinkItem = styled(NavLink)`
   letter-spacing: 0.24px;
   text-transform: uppercase;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 767px) {
     width: calc(100% / 2 - 4px);
     background-color: #F5F6FB;
     color: ${({ theme }) => theme.colors.secondaryTextColor};
@@ -60,7 +60,7 @@ export const NavLinkItem = styled(NavLink)`
 `;
 
 export const ContainerTransaction = styled.div`
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 767px) {
     background: transparent;
   }
 
