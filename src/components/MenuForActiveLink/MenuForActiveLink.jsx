@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   NavLinkList,
   NavLinkItem,
@@ -10,9 +10,24 @@ import {
 import { CurrentDay } from "../CurrentDay/CurrentDay";
 import { AddTransaction } from "../AddTransaction/AddTransaction";
 import { TransactionTable } from "../TransactionTable/TransactionTable";
+import { TransactionTableMobile } from "../TransactionTable/TransactionTableMobile";
 
 export const MenuForActiveLink = () => {
+
   const [activeTab, setActiveTab] = useState("expenses");
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    
+    const updateScreenSize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
+    window.addEventListener('resize', updateScreenSize);
+
+    return () => window.addEventListener('resize', updateScreenSize);
+
+  },[])
 
   const switchTab = (tab) => {
     setActiveTab(tab);
@@ -61,8 +76,13 @@ export const MenuForActiveLink = () => {
             <AddTransaction type={activeTab} />
           </AddTransactionBox>
           <TransactionTableBox>
-            <TransactionTable type={activeTab} />
-            <div type={activeTab}>Summary</div>
+            {screenSize < 768 ?
+              <TransactionTableMobile type={activeTab} /> :
+              (<>
+                <TransactionTable type={activeTab} />
+                <div type={activeTab}>Summary</div>
+              </>
+              )}
           </TransactionTableBox>
         </ContainerTransaction>
       </div>

@@ -49,44 +49,36 @@ export const TableBody = styled.tbody`
 `
 
 export const TableBodyTR = styled.tr`
-    /* &:first-child, &:nth-child(2) {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    } */
+
 `
 
 export const TableBodyTd = styled.td`
     padding: 5px;
-    /* flex: 1; */
     width: 100%; 
-    
-    /* flex-basis: calc(50% - 10px); */
-    /* flex-basis: auto;   */
+
 
 
     &:first-child, &:nth-child(2) {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 
     &:first-child {
-        color: #52555F;
-        font-size: 8px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        order: 2;
-    }
-
-    &:nth-child(2) {
         color: #52555F;
         font-size: 12px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
         letter-spacing: 0.48px;
-        order: -1;
+    }
+
+    &:nth-child(2) {
+        color: #52555F;
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
     }
         &:nth-child(3) {
             vertical-align: bottom;
