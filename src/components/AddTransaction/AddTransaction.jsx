@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import PropTypes from 'prop-types';
 import {
     AddTransactionForm,
     DataWrapper,
@@ -24,7 +25,7 @@ import { transactionSchema } from "../../constants/validationSchemas";
 import { addTransaction } from '../../services/transactionsApi';
 import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalConstants";
 import { CalcForm } from "../CalcForm/CalcForm";
-import PropTypes from 'prop-types';
+import { ShowToast } from "../../utils";
 
 
 export const AddTransaction = ({type}) => {
@@ -137,10 +138,9 @@ export const AddTransaction = ({type}) => {
                             </div>
                         </CalcIconWrapper>                
                     </SumInput>
-
-                    <p>{errors.description?.message}</p>
-                    <p>{errors.category?.message}</p>
-                    <p>{errors.sum?.message}</p>                
+                     {ShowToast("error", errors.description?.message )}
+                     {ShowToast("error", errors.category?.message )}
+                     {ShowToast("error", errors.sum?.message)}               
                 </DataWrapper>
 
                 <ButtonsWrapper>
