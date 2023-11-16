@@ -1,102 +1,79 @@
 import styled from "styled-components";
-import { selectTablet } from '../../utils/mediaRequest';
+// import { selectTablet } from '../../utils/mediaRequest';
 
 export const TableContainer = styled.div`
     display: flex;
     justify-content: center;
-    background-color: purple;
+    width: 100%;
     
 `
 
 export const Table = styled.table`
-    border: 2px solid #F5F6FB;
+
     border-radius: 16px 16px 0 0;
+    border-collapse: collapse;
+    border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor};
     overflow: hidden;
     width: 100%;
-    /* background-color: #F5F6FB; */
 `
 
 export const TableHead = styled.thead`
     text-transform: uppercase;
     height: 40px;
-    background-color: #F5F6FB;
-    border: 2px solid #F5F6FB;
-    display: none;
-
-    @media ${selectTablet} {
-    }
-
-    /* ${({header}) => header === 'delete' ? 'display: none' : null}; */
-    /* display: none; */
-
-    
+    background-color: ${({theme})=> theme.colors.tableBgdMainColor};
+    /* border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor}; */
 
 `
 
 export const TableHeadTR = styled.tr`
-    /* ${({header}) => header === 'delete' ? 'display: none' : null}; */
-    
+    background-color: ${({theme})=> theme.colors.tableBgdMainColor};
 `
 
 export const TableHeadTH = styled.th`
-    
-        ${({header}) => header === 'delete' ? 'display: none' : null};
+    border: none;
+    color: ${({header}) => header === 'delete' ? 'transparent' : null};
 `
 
 export const TableBody = styled.tbody`
-    background-color: #F5F6FB;
+    background-color: transparent;
+    vertical-align: middle;
+    /* border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor}; */
 
 `
 
 export const TableBodyTR = styled.tr`
-    /* &:first-child, &:nth-child(2) {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    } */
+/* border: 2px solid ${({theme})=> theme.colors.borderSecondaryColor}; */
 `
 
 export const TableBodyTd = styled.td`
     padding: 5px;
-    /* flex: 1; */
-    width: 100%; 
-    
-    /* flex-basis: calc(50% - 10px); */
-    /* flex-basis: auto;   */
-
-
-    &:first-child, &:nth-child(2) {
-        display: flex;
-        flex-direction: column-reverse;
-    }
+    border-bottom: 2px solid ${({theme})=> theme.colors.borderSecondaryColor};
 
     &:first-child {
-        color: #52555F;
-        font-size: 8px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        order: 2;
+        max-width: 60px;
     }
 
     &:nth-child(2) {
-        color: #52555F;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        letter-spacing: 0.48px;
-        order: -1;
+        max-width: 100px;
+        text-align: left;
     }
-        &:nth-child(3) {
-            vertical-align: bottom;
-            color: #52555F;
-            font-size: 8px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            letter-spacing: 0.32px;
-        }
+
+    &:nth-child(3) {
+        max-width: 100px;
+        text-align: center;
+    }    
+
+    &:nth-child(4) {
+        color: ${({ theme, value }) => (parseFloat(value) > 0 ? theme.colors.green : theme.colors.red)};
+        white-space: nowrap;
+        text-align: right;
+    }
+    
+    &:nth-child(5) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 `
 

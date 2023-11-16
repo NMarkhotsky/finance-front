@@ -56,6 +56,7 @@ export const lightTheme = {
     inputBgdColor: '#F6F7FB',
     inputPlaceholderColor: '#A6ABB9',
     btnBgdMainColor: '#F5F6FB',
+    tableBgdMainColor: '#F5F6FB',
     btnBgdSecondaryColor: '#FF751D',
     btnGoogleColor: '#F6F7FB',
   },
