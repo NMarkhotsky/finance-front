@@ -23,8 +23,8 @@ export const getIncomeMonth = async () => {
 
 export const getIncomeSummary = async () => {
     try {
-        const response = await axios.get('/transactions/income/summary');
-        return response;
+        const { data } = await axios.get('/transactions/income/summary');
+        return data;
     } catch (error) {
         console.log(error);
     }
