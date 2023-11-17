@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { selectTablet } from '../../utils/mediaRequest';
 
 export const TableContainer = styled.div`
     display: flex;
@@ -8,6 +7,28 @@ export const TableContainer = styled.div`
     border: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor};
     border-radius: 16px 16px 0 0;
     overflow: hidden;
+`
+
+export const TableScroll = styled.div`
+    width: 100%;
+    height: 250px;
+    overflow-y: auto;
+    position: relative;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: ${({ theme }) => theme.colors.secondaryBgdColor};
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: ${({ theme }) => theme.colors.orange}; 
+    }
+
+    scrollbar-width: 6px; /* для Firefox */
+    scrollbar-color: ${({ theme }) => theme.colors.secondaryBgdColor} ${({ theme }) => theme.colors.orange}; /* для Firefox */
 `
 
 export const Table = styled.table`
@@ -19,7 +40,11 @@ export const Table = styled.table`
 export const TableHead = styled.thead`
     text-transform: uppercase;
     height: 40px;
-    background-color: ${({theme})=> theme.colors.tableBgdMainColor};
+    background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
 `
 
 export const TableHeadTR = styled.tr`
