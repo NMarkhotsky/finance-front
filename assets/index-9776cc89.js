@@ -711,7 +711,7 @@ z-index: 5;
   animation: ${Ab} 3s linear infinite;
   top: 20%;
   left: 47%;
-`,Na=()=>b.jsx(jb,{children:b.jsx(Fb,{children:b.jsx(an,{iconName:"icon-cabbage",width:"80",height:"80"})})}),Ib=O.lazy(()=>R0(()=>import("./HomePage-8ab4cbdb.js"),["assets/HomePage-8ab4cbdb.js","assets/expensesApi-23169f4d.js"])),Db=O.lazy(()=>R0(()=>import("./ReportPage-8c4e336a.js"),["assets/ReportPage-8c4e336a.js","assets/expensesApi-23169f4d.js"])),zb=()=>b.jsx(O.Suspense,{fallback:b.jsx(Na,{}),children:b.jsxs(lx,{children:[b.jsx(Io,{path:"/",element:b.jsx(Rm,{redirectTo:"/login",component:b.jsx(Ib,{})})}),b.jsx(Io,{path:"/report",element:b.jsx(Rm,{redirectTo:"/login",component:b.jsx(Db,{})})}),b.jsx(Io,{path:"/login",element:b.jsx($m,{redirectTo:"/",component:b.jsx(Nb,{})})}),b.jsx(Io,{path:"/register",element:b.jsx($m,{redirectTo:"/",component:b.jsx(Lb,{})})})]})}),Mb=Y.div`
+`,Na=()=>b.jsx(jb,{children:b.jsx(Fb,{children:b.jsx(an,{iconName:"icon-cabbage",width:"80",height:"80"})})}),Ib=O.lazy(()=>R0(()=>import("./HomePage-382ee042.js"),["assets/HomePage-382ee042.js","assets/expensesApi-0a5810e5.js"])),Db=O.lazy(()=>R0(()=>import("./ReportPage-234cb568.js"),["assets/ReportPage-234cb568.js","assets/expensesApi-0a5810e5.js"])),zb=()=>b.jsx(O.Suspense,{fallback:b.jsx(Na,{}),children:b.jsxs(lx,{children:[b.jsx(Io,{path:"/",element:b.jsx(Rm,{redirectTo:"/login",component:b.jsx(Ib,{})})}),b.jsx(Io,{path:"/report",element:b.jsx(Rm,{redirectTo:"/login",component:b.jsx(Db,{})})}),b.jsx(Io,{path:"/login",element:b.jsx($m,{redirectTo:"/",component:b.jsx(Nb,{})})}),b.jsx(Io,{path:"/register",element:b.jsx($m,{redirectTo:"/",component:b.jsx(Lb,{})})})]})}),Mb=Y.div`
   position: absolute;
   background-color: #f5f6fb;
   width: 100%;
