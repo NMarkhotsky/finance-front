@@ -16,6 +16,7 @@ import {
   getExpensesDescription,
 } from "../../services/expensesApi";
 import { CategoriesList } from "../CategoriesList/CategoriesList";
+import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalConstants";
 
 export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
@@ -58,8 +59,7 @@ export const MenuForActiveLinkOnReport = () => {
     })();
   }, []);
 
-  console.log("incomeCategoriesList", incomeCategoriesList);
-  console.log("expensesCategoriesList", expensesCategoriesList);
+  console.log("dataExpenses", dataExpenses);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -79,8 +79,8 @@ export const MenuForActiveLinkOnReport = () => {
           </ButtonIcon>
         </Container>
 
-        {activeTab === "expenses" && <CategoriesList categoriesList={expensesCategoriesList} />}
-        {activeTab === "income" && <CategoriesList categoriesList={incomeCategoriesList} />}
+        {activeTab === "expenses" && <CategoriesList categoriesList={expensesCategoriesList} categories={CATEGORIES_EXPENSES}/>}
+        {activeTab === "income" && <CategoriesList categoriesList={incomeCategoriesList} categories={CATEGORIES_INCOME}/>}
       </ContainerMain>
       <div>
         {activeTab === "expenses" && (

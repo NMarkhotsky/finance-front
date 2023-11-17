@@ -1,16 +1,28 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { ListCategories } from "./CategoriesList.styled";
-import { CategoriesItem } from '../CategoriesItem/CategoriesItem';
+import { CategoriesItem } from "../CategoriesItem/CategoriesItem";
 
-export const CategoriesList = ({categoriesList}) => {
+export const CategoriesList = ({ categoriesList, categories }) => {
+  return (
+    <ListCategories>
+      {categoriesList.map((item, idx) => {
+        const categoryObject = categories.find(
+          (category) => category.value === item.category
+        );
 
-  return  <ListCategories>
-     {categoriesList.map((item, idx) => (
-        <CategoriesItem key={idx} item={item}/>
-        ))}
-  </ListCategories>;
+        return (
+          <CategoriesItem
+            key={idx}
+            item={item}
+            categoryObject={categoryObject}
+          />
+        );
+      })}
+    </ListCategories>
+  );
 };
 
 CategoriesList.propTypes = {
-    categoriesList: PropTypes.array.isRequired,
-}
+  categoriesList: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+};
