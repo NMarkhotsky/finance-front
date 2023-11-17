@@ -5,7 +5,7 @@ import { getExpenses } from "../../services/expensesApi";
 import { deleteTransaction } from "../../services/transactionsApi";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { formatData } from "../../services/balanceFormServices";
-import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTable.styled";
+import { Table, TableContainer, TableScroll, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTable.styled";
 import { DeleteButton } from "../DeleteButton/DeleteButton";
 import PropTypes from 'prop-types';
 import { fetchCurrentUser } from "../../redux/auth/operations";
@@ -77,50 +77,52 @@ export const TransactionTable = ({type}) => {
 
     return (
         <TableContainer>
-            <Table>
-                <TableHead>
-                    {
-                    table.getHeaderGroups().map((headerGroup) => (
-                        <TableHeadTR key={headerGroup.id}>
-                            {
-                                headerGroup.headers.map((header) => (
-                                    <TableHeadTH key={header.id} header={header.id} >
-                                        {
-                                            flexRender(header.column.columnDef.header, header.getContext())
-                                        }
-                                    </TableHeadTH>
-                                ))
-                            }
-                        </TableHeadTR>
-                    ))
-                }
-                </TableHead>
-                <TableBody>
+            <TableScroll>
+                <Table>
+                    <TableHead>
                         {
-                            table.getRowModel().rows.length ? (
-                                table.getRowModel().rows.map((row) => (
-                                    <TableBodyTR key={row.id}>
-                                        {
-                                            row.getVisibleCells().map((cell) => (
-                                                <TableBodyTd key={cell.id} value={cell.row.original.sum}>
-                                                    {
-                                                        flexRender(
-                                                            cell.column.id === 'sum' ? (
-                                                                <>
-                                                                    <span>{cell.row.original.sum} грн</span>
-                                                                </>
-                                                            ) :
-                                                                cell.column.columnDef.cell(cell), cell.getContext())
-                                                    }
-                                                </TableBodyTd>
-                                            ))
-                                        }
-                                </TableBodyTR>
-                            )))
-                            : null
-                        }
-                </TableBody>
-            </Table>
+                        table.getHeaderGroups().map((headerGroup) => (
+                            <TableHeadTR key={headerGroup.id}>
+                                {
+                                    headerGroup.headers.map((header) => (
+                                        <TableHeadTH key={header.id} header={header.id} >
+                                            {
+                                                flexRender(header.column.columnDef.header, header.getContext())
+                                            }
+                                        </TableHeadTH>
+                                    ))
+                                }
+                            </TableHeadTR>
+                        ))
+                    }
+                    </TableHead>
+                    <TableBody>
+                            {
+                                table.getRowModel().rows.length ? (
+                                    table.getRowModel().rows.map((row) => (
+                                        <TableBodyTR key={row.id}>
+                                            {
+                                                row.getVisibleCells().map((cell) => (
+                                                    <TableBodyTd key={cell.id} value={cell.row.original.sum}>
+                                                        {
+                                                            flexRender(
+                                                                cell.column.id === 'sum' ? (
+                                                                    <>
+                                                                        <span>{cell.row.original.sum} грн</span>
+                                                                    </>
+                                                                ) :
+                                                                    cell.column.columnDef.cell(cell), cell.getContext())
+                                                        }
+                                                    </TableBodyTd>
+                                                ))
+                                            }
+                                    </TableBodyTR>
+                                )))
+                                : null
+                            }
+                    </TableBody>
+                </Table>
+            </TableScroll>            
         </TableContainer>
     )
 }
