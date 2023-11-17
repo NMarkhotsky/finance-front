@@ -19,7 +19,6 @@ export const MenuForActiveLinkOnReport = () => {
   useEffect(() => {
     (async () => {
       const {data : {report}} = await getIncomeDescription();
-      console.log("report", report);
       setDataIncome(report);
     })();
   }, []);
