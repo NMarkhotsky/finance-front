@@ -6,6 +6,7 @@ import {
   registerUser,
 } from '../../services/authApi';
 import { addBalance } from '../../services/balanceApi';
+import { ShowToast } from '../../utils';
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -13,6 +14,7 @@ export const login = createAsyncThunk(
     try {
       return await loginUser(credentials);
     } catch (error) {
+      ShowToast("error", error.response.data.message)
       return rejectWithValue(error);
     }
   }
