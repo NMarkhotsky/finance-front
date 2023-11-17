@@ -4,7 +4,6 @@ import { DeleteBtn } from "./DeleteButton.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
 import { ModalApproveAction } from "../../shared/components/ModalApproveAction/ModalApproveAction";
 import { ModalGlobal } from "../ModalGlobal/ModalGlobal";
-import { ShowToast } from "../../utils";
 
 export const DeleteButton = ({ onDeleteClick }) => {
   const [showModal, setShowModal] = useState(false);
@@ -19,9 +18,8 @@ export const DeleteButton = ({ onDeleteClick }) => {
 
   const handleDelete = () => {
     onDeleteClick();
-    setShowModal(false); 
-    ShowToast("success", "Transaction successfully deleted");
-  }
+    setShowModal(false);
+  };
 
   return (
     <>
