@@ -13,15 +13,18 @@ export const SummaryTable = ({ type }) => {
     const { user } = useAuth();
     const columnHelper = createColumnHelper();
 
-    const columns = [
-        columnHelper.accessor('month', {
-            cell: (month) => <span>{month.getValue()}</span>
-        }),
+    const columns = [{
+        header: "summary",
+        columns: [
+            columnHelper.accessor('month', {
+                cell: (month) => <span>{month.getValue()}</span>
+            }),
 
-        columnHelper.accessor('summary', {
-            cell: (summary) => <span>{summary.getValue()}</span>
-        }),
-    ]
+            columnHelper.accessor('sum', {
+                cell: (sum) => <span>{sum.getValue()}</span>
+            }),
+        ]
+    }]
 
     const table = useReactTable({
         data,
@@ -48,10 +51,10 @@ export const SummaryTable = ({ type }) => {
         }
     }
     const formatData = (data) => {
-        return data.map(({month, total_sum: summary}) => {
+        return data.map(({month, total_sum: sum}) => {
             const formatedMonth = formatDateToMonth(month)
-            const formatedSum = formatSum(summary)
-            return {month: formatedMonth, summary: formatedSum}
+            const formatedSum = formatSum(sum)
+            return {month: formatedMonth, sum: formatedSum}
         })
     }
 
@@ -64,10 +67,13 @@ export const SummaryTable = ({ type }) => {
                             <TableHeadTR key={headerGroup.id}>
                                 {
                                     headerGroup.headers.map((header) => (
-                                        <TableHeadTH key={header.id} header={header.id} >
-                                            {
-                                                header.id === 'summary' ? flexRender(header.column.columnDef.header, header.getContext()) : null
-                                            }
+                                        <TableHeadTH key={header.id} header={header.id} colSpan={header.colSpan} >
+                                            {/* {
+                                                header.column.getIsGrouped()
+                                                
+                                                
+                                            } */}
+                                            { flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHeadTH>
                                     ))
                                 }
