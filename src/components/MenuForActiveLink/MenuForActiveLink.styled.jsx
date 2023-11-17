@@ -1,6 +1,6 @@
 import { css, styled } from "styled-components";
 import { NavLink } from "react-router-dom";
-import { selectTablet } from "../../utils";
+import { selectDesktop, selectTablet } from "../../utils";
 
 export const Container = styled.div`
   padding-top: 60px;
@@ -86,3 +86,14 @@ export const TransactionTableBox = styled.div`
   justify-content: space-between;
   margin-top: 60px;
 `;
+
+export const TablesWrapper = styled.div`
+  width: 100%;
+  display: block;
+
+  @media ${selectDesktop} {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+  }
+`
