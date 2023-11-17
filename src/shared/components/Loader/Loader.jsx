@@ -1,12 +1,13 @@
-import { ImageLoader } from "./Loader.styled";
-// import Img from "../../../assets/images/cabbage.png";
+import { Icon } from "../Icon/Icon";
+import { ImageBox, ImageLoader } from "./Loader.styled";
 
 export const Loader = () => {
-
   return (
-    <>
-      {/* <ImageLoader src={Img} alt="Cabbage" /> */}
-      <ImageLoader iconName="icon-cabbage"/>
-    </>
+    <ImageBox>
+      <ImageLoader>
+        {" "}
+        <Icon iconName="icon-cabbage" width="80" height="80" />
+      </ImageLoader>
+    </ImageBox>
   );
 };
