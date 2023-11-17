@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 const rotate = keyframes`
     from {
         transform: rotate(0deg);
-        stroke: gray;
+        stroke: #F2F5FC;
     }
     to {
         transform: rotate(360deg);
