@@ -1,9 +1,7 @@
 import toast from "react-hot-toast";
-// import 'react-hot-toast/react-hot-toast.css';
 import PropTypes from "prop-types";
 import { Icon } from "../../shared/components/Icon/Icon";
 import { ContainerToast,ContainerToastError,ContainerToastSuccess, Message   } from "./showToast.styled";
-// import ImageIcon from "../assets/images/cabbage.png";
 
 export const ShowToast = (type, message) => {
   switch (type) {
@@ -31,8 +29,8 @@ export const ShowToast = (type, message) => {
         </ContainerToast>
       );
       break; 
-      default: 
-      break; 
+      // default: 
+      // break; 
   }
 };
 
