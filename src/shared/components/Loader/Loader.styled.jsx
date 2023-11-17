@@ -1,14 +1,25 @@
 import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
-    from {
-        transform: rotate(0deg);
+25% {
+    transform: scale(0);
         stroke: #F2F5FC;
-    }
-    to {
-        transform: rotate(360deg);
+}
+
+50% {
+    transform: scale(1);
         stroke: #FF751D;
-    }
+}
+
+75% {
+    transform: scale(0);
+        stroke: #F2F5FC;
+}
+
+100% {
+    transform: scale(1);
+        stroke: #FF751D;
+}
 `;
 
 export const ImageBox = styled.div`
@@ -23,7 +34,7 @@ export const ImageBox = styled.div`
 
 export const ImageLoader = styled.div`
   position: absolute;
-  animation: ${rotate} 2s linear infinite;
+  animation: ${rotate} 3s linear infinite;
   top: 20%;
   left: 47%;
 `;
