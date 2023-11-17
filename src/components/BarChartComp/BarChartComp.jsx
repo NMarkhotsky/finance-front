@@ -30,7 +30,6 @@ const measureText14HelveticaNeue = (text, fontSize) => {
 };
 
 export const BarChartComp = ({ dataTransactions }) => {
-  console.log(dataTransactions);
 
   const [isMobile, setIsMobile] = useState(false);
 
