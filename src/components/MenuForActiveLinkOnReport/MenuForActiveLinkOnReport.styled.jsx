@@ -28,9 +28,4 @@ letter-spacing: 0.28px;
 text-transform: uppercase;
 `;
 
-export const ListItem = styled.ul`
-display: flex;
-gap: 54px;
-justify-content: center;
-margin-top: 20px;
-`
+
