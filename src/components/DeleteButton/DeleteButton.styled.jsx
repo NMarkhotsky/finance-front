@@ -8,6 +8,7 @@ export const DeleteBtn = styled.button`
     height: 32px;
     text-align: center;
     border-radius: 50%;
+    margin: 0 auto;
         &:hover {
             background-color: ${({ theme }) => theme.colors.btnBgdMainColor};
             transition: ${({theme}) => theme.transitionHover};

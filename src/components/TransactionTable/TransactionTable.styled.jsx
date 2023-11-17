@@ -66,10 +66,6 @@ export const TableBodyTd = styled.td`
         white-space: nowrap;
         text-align: right;
     }
-    
-    &:nth-child(5) {
-        text-align: center;
-    }
 
 `
 
