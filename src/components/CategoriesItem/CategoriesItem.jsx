@@ -8,9 +8,9 @@ import {
   Title,
 } from "./CategoriesItem.styled";
 import CircleImg from "../../assets/images/circle.png";
+import { IconCategories } from "../../shared/components/IconCategories";
 
 export const CategoriesItem = ({ item, categoryObject }) => {
-  console.log("item", categoryObject);
   return (
     <ItemCategories>
       <Text>{item.total_sum}</Text>
@@ -21,12 +21,15 @@ export const CategoriesItem = ({ item, categoryObject }) => {
           width={59}
           height={46}
         />
-        <Img
+        {/* <Img
           src={categoryObject.image}
           alt={categoryObject.value}
           width={56}
           height={56}
-        />
+        /> */}
+        <Img>
+          <IconCategories iconName={categoryObject.image} width="56" height="56" fill="#071F41"/>
+        </Img>
       </ImageBox>
       <Title>{item.category}</Title>
     </ItemCategories>

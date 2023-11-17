@@ -46,7 +46,6 @@ export const MenuForActiveLinkOnReport = () => {
   useEffect(() => {
     (async () => {
       const { data : {report} } = await getIncomeCategory();
-      console.log("income", report);
         setIncomeCategoriesList(report);
     })();
   }, []);
@@ -54,12 +53,9 @@ export const MenuForActiveLinkOnReport = () => {
   useEffect(() => {
     (async () => {
       const {data : {report}} = await getExpensesCategory();
-      console.log("expenses", report);
         setExpensesCategoriesList(report);
     })();
   }, []);
-
-  console.log("dataExpenses", dataExpenses);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
