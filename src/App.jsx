@@ -10,6 +10,7 @@ import { useFont, useTheme } from './hooks';
 import { lightTheme, darkTheme } from './theme/theme';
 import { googleAuth } from './redux/auth/authSlice';
 import { fetchCurrentUser } from './redux/auth/operations';
+import { Loader } from './shared/components/Loader/Loader';
 
 function App() {
   const fontsLoaded = useFont(fonts);
@@ -39,7 +40,7 @@ function App() {
       <Toaster/>
     </ThemeProvider>
   ) : (
-    <p>Loading...</p>
+    <Loader/>
   );
 }
 

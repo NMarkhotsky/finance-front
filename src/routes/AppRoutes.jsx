@@ -4,13 +4,14 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { Loader } from '../shared/components/Loader/Loader';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const ReportPage = lazy(() => import('../pages/ReportPage/ReportPage'));
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader/>}>
       <Routes>
         <Route
           path="/"
