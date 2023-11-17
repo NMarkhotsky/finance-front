@@ -6,11 +6,13 @@ import {
   Container,
   AddTransactionBox,
   TransactionTableBox,
+  TablesWrapper
 } from "./MenuForActiveLink.styled";
 import { CurrentDay } from "../CurrentDay/CurrentDay";
 import { AddTransaction } from "../AddTransaction/AddTransaction";
 import { TransactionTable } from "../TransactionTable/TransactionTable";
 import { TransactionTableMobile } from "../TransactionTable/TransactionTableMobile";
+import { SummaryTable } from "../SummaryTable/SummaryTable";
 
 export const MenuForActiveLink = () => {
 
@@ -78,10 +80,10 @@ export const MenuForActiveLink = () => {
           <TransactionTableBox>
             {screenSize < 768 ?
               <TransactionTableMobile type={activeTab} /> :
-              (<>
+              (<TablesWrapper>
                 <TransactionTable type={activeTab} />
-                <div type={activeTab}>Summary</div>
-              </>
+                <SummaryTable type={activeTab}/>
+              </TablesWrapper>
               )}
           </TransactionTableBox>
         </ContainerTransaction>
