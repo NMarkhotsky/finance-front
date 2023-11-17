@@ -3,24 +3,30 @@ import { useState } from "react";
 import { ListCategories } from "./CategoriesList.styled";
 import { CategoriesItem } from "../CategoriesItem/CategoriesItem";
 
-const resetActiveState = (items, setItemsActiveState) => {
-    const updatedItems = items.map(() => false);
-    setItemsActiveState(updatedItems);
-  };
-
 export const CategoriesList = ({ categoriesList, categories }) => {
-    const [itemsActiveState, setItemsActiveState] = useState(
-        new Array(categoriesList.length).fill(false)
-      );
-    
-      const handleItemClick = (index) => {
-        resetActiveState(categoriesList, setItemsActiveState);
-        setItemsActiveState((prev) => {
-          const updatedState = [...prev];
-          updatedState[index] = true;
-          return updatedState;
-        });
-      };
+  const [itemsActiveState, setItemsActiveState] = useState(
+    new Array(categoriesList.length).fill(false)
+  );
+
+  if (
+    categoriesList.length > 0 &&
+    !itemsActiveState.some((isActive) => isActive)
+  ) {
+    setItemsActiveState((prev) => {
+      const updatedState = [...prev];
+      updatedState[0] = true;
+      return updatedState;
+    });
+  }
+
+  const handleItemClick = (index) => {
+    setItemsActiveState((prev) => {
+      const updatedState = [...prev];
+      updatedState.fill(false);
+      updatedState[index] = true;
+      return updatedState;
+    });
+  };
 
   return (
     <ListCategories>

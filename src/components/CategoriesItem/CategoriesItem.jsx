@@ -16,6 +16,7 @@ export const CategoriesItem = ({
   handleItemClick,
   isActive,
 }) => {
+
   return (
     <ItemCategories onClick={() => handleItemClick(index)}>
       <Text>{item.total_sum}</Text>
