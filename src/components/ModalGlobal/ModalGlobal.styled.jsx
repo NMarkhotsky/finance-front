@@ -36,7 +36,7 @@ margin-top: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center; 
-  /* gap: 15px; */
+  gap: 15px; 
 
    @media ${selectTablet} {
     flex-direction: row;
