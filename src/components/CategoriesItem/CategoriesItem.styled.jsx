@@ -23,7 +23,7 @@ export const ImgBackground = styled.img`
   top: 30%;
 `;
 
-export const Img = styled.img`
+export const Img = styled.div`
   position: relative;
   margin-top: 5px;
 `;
