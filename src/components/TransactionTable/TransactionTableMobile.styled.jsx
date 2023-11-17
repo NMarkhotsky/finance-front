@@ -34,7 +34,7 @@ export const TableBodyTR = styled.tr`
 export const TableBodyTd = styled.td`
     padding: 5px;
     width: 100%; 
-    border-bottom: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderSecondaryColor};
 
     &:first-child, &:nth-child(2) {
         display: flex;
