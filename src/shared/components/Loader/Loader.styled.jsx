@@ -1,31 +1,29 @@
 import styled, { keyframes } from "styled-components";
-import { Icon } from "../../../shared/components/Icon/Icon";
 
 const rotate = keyframes`
     from {
         transform: rotate(0deg);
+        stroke: gray;
     }
     to {
         transform: rotate(360deg);
+        stroke: #FF751D;
     }
 `;
 
-// export const ImageBox = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow-y: auto;
-//   z-index: 999;
-// `;
+export const ImageBox = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 999;
+`;
 
-export const ImageLoader = styled(Icon)`
-  width: 40px;
-  height: 40px;
+export const ImageLoader = styled.div`
   position: absolute;
   animation: ${rotate} 2s linear infinite;
-  stroke: ${({ theme }) => theme.colors.orange};
   top: 20%;
   left: 47%;
 `;
