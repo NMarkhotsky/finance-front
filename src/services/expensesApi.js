@@ -24,8 +24,8 @@ export const getExpensesMonth = async () => {
 
 export const getExpensesSummary = async () => {
     try {
-        const response = await axios.get('/transactions/expenses/summary');
-        return response;
+        const { data } = await axios.get('/transactions/expenses/summary');
+        return data;
     } catch (error) {
         console.log(error);
     }
