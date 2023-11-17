@@ -1,31 +1,30 @@
-import axios from 'axios';
-import { BASE_URL } from '../constants';
-import { ShowToast } from '../utils';
+import axios from "axios";
+import { BASE_URL } from "../constants";
+import { ShowToast } from "../utils";
 
 axios.defaults.baseURL = BASE_URL;
 
 export const addTransaction = async (data) => {
-    try {
-        const response = await axios.post('/transactions', data);
-        console.log(response);
-        if(response.status === 200) {
-            ShowToast("success", "Created new transaction")
-        }
-        return response;
-    } catch (error) {
-        console.log(error);
+  try {
+    const response = await axios.post("/transactions", data);
+    if (response.status === 200) {
+      ShowToast("success", "Created new transaction");
     }
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const deleteTransaction = async (id) => {
-    try {
-        const response = await axios.delete(`/transactions/${id}`);
+  try {
+    const response = await axios.delete(`/transactions/${id}`);
 
-if(response.status === 200) {
-    ShowToast("success", response.data)
-}
-        return response;
-    } catch (error) {
-        console.log(error);
+    if (response.status === 200) {
+      ShowToast("success", response.data);
     }
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
