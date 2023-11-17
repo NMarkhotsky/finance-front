@@ -79,8 +79,8 @@ export const MenuForActiveLinkOnReport = () => {
           </ButtonIcon>
         </Container>
 
-        {/* {activeTab === "expenses" && <CategoriesList categoriesList={expensesCategoriesList} />} */}
-        {/* {activeTab === "income" && <CategoriesList categoriesList={incomeCategoriesList} />} */}
+        {activeTab === "expenses" && <CategoriesList categoriesList={expensesCategoriesList} />}
+        {activeTab === "income" && <CategoriesList categoriesList={incomeCategoriesList} />}
       </ContainerMain>
       <div>
         {activeTab === "expenses" && (

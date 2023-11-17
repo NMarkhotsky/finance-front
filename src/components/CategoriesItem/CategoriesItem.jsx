@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { ItemCategories } from "./CategoriesItem.styled";
 
-export const CategoriesItem = ({ item }) => {
+export const CategoriesItem = ({item}) => {
   console.log("item", item);
   return <ItemCategories>
     <p>{item.total_sum}</p>
