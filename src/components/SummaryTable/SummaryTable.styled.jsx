@@ -1,17 +1,17 @@
 import styled from "styled-components";
-// import { selectTablet } from '../../utils/mediaRequest';
+import { selectDesktop } from '../../utils/mediaRequest';
 
 export const TableContainer = styled.div`
-    /* display: flex;
-    justify-content: center; */
-    width: 100%;
-    /* border: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor}; */
+    min-width: 230px;
     border-radius: 16px 16px 0 0;
     overflow: hidden;
+
+    @media ${selectDesktop} {
+        min-width: 200px;
+    }
 `
 
 export const Table = styled.table`
-    /* border-collapse: collapse;  */
     width: 100%;
 
 `
@@ -20,34 +20,20 @@ export const TableHead = styled.thead`
     text-transform: uppercase;
     height: 40px;
     background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
-    padding: 0;
-    /* width: ${({header}) => header === 'month' ? 0 : '100%'}; */
-    /* display: ${({ header }) => header === 'summary' ? 'flex' : 'none'}; */
-    /* width: 100%; */
+    color: ${({ theme }) => theme.colors.secondaryTextColor};
 `
 
 export const TableHeadTR = styled.tr`
-    /* width: ${({header}) => header === 'month' ? 0 : '100%'}; */
-    /* background-color: ${({theme})=> theme.colors.tableBgdMainColor}; */
 `
 
 export const TableHeadTH = styled.th`
-    /* border: none;
-    
-    color: ${({ header }) => header === 'delete' ? 'transparent' : null}; */
-    /* width: ${({header}) => header === 'month' ? 0 : '100%'}; */
-
+    display: ${({header}) => header === 'month' || header === 'sum' ? 'none' : null};
 `
 
 export const TableBody = styled.tbody`
-    /* background-color: transparent;
-    vertical-align: middle;
-    max-height: 300px;
-    overflow-x: auto; */
 `
 
 export const TableBodyTR = styled.tr`
-
 `
 
 export const TableBodyTd = styled.td`
@@ -55,6 +41,8 @@ export const TableBodyTd = styled.td`
     background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
     text-transform: uppercase;
     text-align: center;
+    width: 50%;
+    color: ${({ theme }) => theme.colors.darkTextColor};
 `
 
 TableHead.shouldForwardProp = (prop) => prop !== 'header';

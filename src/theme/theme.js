@@ -44,6 +44,7 @@ export const lightTheme = {
     greyLightBgdColor: '#C7CCDC',
     mainTextColor: '#52555F',
     secondaryTextColor: '#000000',
+    darkTextColor: '#52555F',
     whiteTextColor: '#F5F6FB',
     greyTextColor: 'rgba(82, 85, 95, 0.70)',
     greyLightTextColor: '#C7CCDC',
