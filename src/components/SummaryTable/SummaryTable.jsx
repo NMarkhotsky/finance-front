@@ -30,24 +30,23 @@ export const SummaryTable = ({ type }) => {
     })
     
     useEffect(() => {
+        getSummaryReport(type)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user.balance, type])
 
     const getSummaryReport = async (type) => {
         if (type === 'expenses') {
             const { report } = await getExpensesSummary();
             const normalizedData = formatData(report)
-            console.log(normalizedData);
-            setData(normalizedData);
+            setData(normalizedData)
+
         } else {
             const { report } = await getIncomeSummary();
             const normalizedData = formatData(report)
-            console.log(normalizedData);
-            setData(normalizedData);
+            setData(normalizedData)
         }
     }
-        getSummaryReport(type)
-
-    }, [user.balance, type])
-
     const formatData = (data) => {
         return data.map(({month, total_sum: summary}) => {
             const formatedMonth = formatDateToMonth(month)
