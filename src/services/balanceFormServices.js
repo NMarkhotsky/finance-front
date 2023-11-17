@@ -33,11 +33,11 @@
         return formattedValue;
     }
 
-export const formatSum = (sum) => {
-    const parts = Number(sum).toFixed(2).split('.');
-    const formattedNumber = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    return `${formattedNumber}.${parts[1]}`;
-}
+    export const formatSum = (sum) => {
+        const parts = Number(sum).toFixed(2).split('.');
+        const formattedNumber = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        return `${formattedNumber}.${parts[1]}`;
+    }
 
     export const formatDate = (inputDate) => {
         const date = new Date(inputDate);
@@ -53,4 +53,9 @@ export const formatSum = (sum) => {
         } else {
             return data.map((item) => ({ ...item, date: formatDate(item.date), sum: formatSum(item.sum) }))
         }
+    }
+
+    export const formatDateToMonth = (date) => {
+        const dateObj = new Date(date)
+        return new Intl.DateTimeFormat('en-US', { month: 'long' }).format(dateObj);
     }
