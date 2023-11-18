@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SectionChart = styled.section`
   margin: 0 auto;
+  position: absolute;
   border-radius: 30px;
   box-shadow: ${({ theme }) => theme.boxShadowColor};
   background-color: ${({ theme }) => theme.colors.mainBgdColor};

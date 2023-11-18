@@ -3,7 +3,9 @@ import { useState } from "react";
 import { ListCategories } from "./CategoriesList.styled";
 import { CategoriesItem } from "../CategoriesItem/CategoriesItem";
 
-export const CategoriesList = ({ categoriesList, categories }) => {
+export const CategoriesList = ({ categoriesList, categories, activeTab }) => {
+
+  
   const [itemsActiveState, setItemsActiveState] = useState(
     new Array(categoriesList.length).fill(false)
   );
@@ -43,6 +45,7 @@ export const CategoriesList = ({ categoriesList, categories }) => {
             categoryObject={categoryObject}
             handleItemClick={handleItemClick}
             isActive={itemsActiveState[idx]}
+            activeTab={activeTab}
           />
         );
       })}
@@ -53,4 +56,6 @@ export const CategoriesList = ({ categoriesList, categories }) => {
 CategoriesList.propTypes = {
   categoriesList: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  activeTab: PropTypes.string.isRequired
 };
+

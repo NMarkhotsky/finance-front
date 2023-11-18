@@ -8,6 +8,7 @@ import {
   Title,
 } from "./CategoriesItem.styled";
 import { IconCategories } from "../../shared/components/IconCategories";
+import { BarChartComp } from "../BarChartComp/BarChartComp";
 
 export const CategoriesItem = ({
   item,
@@ -15,37 +16,45 @@ export const CategoriesItem = ({
   index,
   handleItemClick,
   isActive,
+  activeTab
 }) => {
 
   return (
-    <ItemCategories onClick={() => handleItemClick(index)}>
-      <Text>{item.total_sum}</Text>
-      <ImageBox>
-        <ImgBackground>
-          <IconCategories
-            iconName="icon-circle"
-            width={59}
-            height={46}
-            fill={isActive ? "#ffdac0" : "#F5F6FB"}
-          />
-        </ImgBackground>
-        {/* <Img
-          src={categoryObject.image}
-          alt={categoryObject.value}
-          width={56}
-          height={56}
-        /> */}
-        <Img>
-          <IconCategories
-            iconName={categoryObject.image}
-            width="56"
-            height="56"
-            fill={isActive ? "#FF751D" : "#071F41"}
-          />
-        </Img>
-      </ImageBox>
-      <Title>{item.category}</Title>
-    </ItemCategories>
+<div>
+        <div>
+            <ItemCategories onClick={() => handleItemClick(index)}>
+              <Text>{item.total_sum}</Text>
+              <ImageBox>
+                <ImgBackground>
+                  <IconCategories
+                    iconName="icon-circle"
+                    width={59}
+                    height={46}
+                    fill={isActive ? "#ffdac0" : "#F5F6FB"}
+                  />
+                </ImgBackground>
+                {/* <Img
+                  src={categoryObject.image}
+                  alt={categoryObject.value}
+                  width={56}
+                  height={56}
+                /> */}
+                <Img>
+                  <IconCategories
+                    iconName={categoryObject.image}
+                    width="56"
+                    height="56"
+                    fill={isActive ? "#FF751D" : "#071F41"}
+                  />
+                </Img>
+              </ImageBox>
+              <Title>{item.category}</Title>
+            </ItemCategories>
+        </div>
+        <div>
+        {isActive &&  <BarChartComp  categoryItem={item} activeTab={activeTab}/>}
+        </div>
+</div>
   );
 };
 
@@ -61,4 +70,5 @@ CategoriesItem.propTypes = {
   index: PropTypes.number.isRequired,
   handleItemClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
+  activeTab: PropTypes.string.isRequired
 };
