@@ -28,3 +28,13 @@ export const deleteTransaction = async (id) => {
     console.log(error);
   }
 };
+
+export const getAllTransactions = async () => {
+  try {
+    const { data } = await axios.get(`/transactions/`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
