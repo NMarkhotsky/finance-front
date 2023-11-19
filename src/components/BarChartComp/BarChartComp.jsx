@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { getExpensesDescription } from "../../services/expensesApi";
 import { getIncomeDescription } from "../../services/incomeApi";
+import { useChartContext } from "../../shared/components/ChartContextProvider";
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
@@ -206,6 +207,9 @@ export const BarChartComp = ({ categoryItem, activeTab }) => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
+
+  const { chartData } = useChartContext();
+  console.log("chartData", chartData);
 
   useEffect(() => {
     (async () => {

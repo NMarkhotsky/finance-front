@@ -11,6 +11,7 @@ import { lightTheme, darkTheme } from './theme/theme';
 import { googleAuth } from './redux/auth/authSlice';
 import { fetchCurrentUser } from './redux/auth/operations';
 import { Loader } from './shared/components/Loader/Loader';
+import { ChartContextProvider } from './shared/components/ChartContextProvider';
 
 function App() {
   const fontsLoaded = useFont(fonts);
@@ -34,11 +35,13 @@ function App() {
   }, [dispatch, navigation, setSearchParams, token]);
 
   return fontsLoaded ? (
-    <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStyle />
-      <SharedLayout />
-      <Toaster/>
-    </ThemeProvider>
+<ChartContextProvider>
+      <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <SharedLayout />
+        <Toaster/>
+      </ThemeProvider>
+</ChartContextProvider>
   ) : (
     <Loader/>
   );
