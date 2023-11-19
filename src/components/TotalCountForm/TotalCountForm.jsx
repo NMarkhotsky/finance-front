@@ -9,9 +9,7 @@ export const TotalCountForm = () => {
     useEffect(() => {
         const getTransactions = async () => {
             const { transactions } = await getAllTransactions();
-            console.log(transactions);
             const totals = countTotalSums(transactions);
-            console.log(totals);
             setData(totals)
         }
         getTransactions();
