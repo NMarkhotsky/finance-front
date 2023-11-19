@@ -52,8 +52,11 @@ export const TableHeadTR = styled.tr`
 `
 
 export const TableHeadTH = styled.th`
+    padding: 10px 20px;
     border: none;
-    color: ${({header}) => header === 'delete' ? 'transparent' : null};
+    color: ${({ header }) => header === 'delete' ? 'transparent' : null};
+    
+    ${({ header }) => header === 'sum' ?{ textAlign : 'end'} : {textAlign: 'start'}};
 `
 
 export const TableBody = styled.tbody`
@@ -68,7 +71,7 @@ export const TableBodyTR = styled.tr`
 `
 
 export const TableBodyTd = styled.td`
-    padding: 5px;
+    padding: 5px 20px;
     border-bottom: 2px solid ${({theme})=> theme.colors.borderSecondaryColor};
     max-height: 30px;
 
@@ -77,13 +80,13 @@ export const TableBodyTd = styled.td`
     }
 
     &:nth-child(2) {
-        max-width: 100px;
+        min-width: 100px;
         text-align: left;
     }
 
     &:nth-child(3) {
-        max-width: 100px;
-        text-align: center;
+        max-width: 50px;
+        text-align: left;
     }    
 
     &:nth-child(4) {

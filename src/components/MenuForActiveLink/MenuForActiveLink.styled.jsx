@@ -4,6 +4,7 @@ import { selectDesktop, selectTablet } from "../../utils";
 
 export const Container = styled.div`
   padding-top: 60px;
+  padding-bottom: 60px;
   @media screen and (max-width: 767px) {
     display: flex;
     flex-direction: column-reverse;
@@ -68,11 +69,16 @@ export const ContainerTransaction = styled.div`
   background-color: ${({ theme }) => theme.colors.mainBgdColor};
   padding-left: 32px;
   padding-right: 32px;
-  padding-top: 32px;
+  padding-top: 40px;
+  padding-bottom: 32px;
   border-radius: 0px 30px 30px 30px;
 
   @media ${selectTablet} {
     box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
+  }
+
+    @media ${selectDesktop} {
+    padding-bottom: 60px;
   }
 `;
 
@@ -89,11 +95,12 @@ export const TransactionTableBox = styled.div`
 
 export const TablesWrapper = styled.div`
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 
   @media ${selectDesktop} {
-    display: flex;
-    gap: 15px;
+    flex-direction: row;
     justify-content: space-between;
   }
 `

@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { selectDesktop } from '../../utils/mediaRequest';
 
 export const TableContainer = styled.div`
-    min-width: 230px;
-    border-radius: 16px 16px 0 0;
+    width: 250px;
+    border-radius: 16px 16px 16px 0;
     overflow: hidden;
 
     @media ${selectDesktop} {
-        min-width: 200px;
+        min-width: 250px;
     }
 `
 
@@ -31,6 +31,7 @@ export const TableHeadTH = styled.th`
 `
 
 export const TableBody = styled.tbody`
+
 `
 
 export const TableBodyTR = styled.tr`
@@ -40,9 +41,19 @@ export const TableBodyTd = styled.td`
     height: 40px;
     background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
     text-transform: uppercase;
-    text-align: center;
+    /* text-align: center; */
     width: 50%;
     color: ${({ theme }) => theme.colors.darkTextColor};
+    padding-left: 22px;
+    padding-right: 22px;
+
+    &:first-child {
+        text-align: start;
+    }
+
+    &:last-child {
+        text-align: end;
+    }
 `
 
 TableHead.shouldForwardProp = (prop) => prop !== 'header';
