@@ -34,8 +34,6 @@ export const MenuForActiveLinkOnReport = () => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
   }, [itemCategory]);
 
-  console.log("itemCategory", itemCategory);
-
   useEffect(() => {
     (async () => {
       const {

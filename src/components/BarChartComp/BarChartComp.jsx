@@ -33,22 +33,22 @@ const measureText14HelveticaNeue = (text, fontSize) => {
 
 export const BarChartComp = ({ categoryItem }) => {
 
-  console.log("chartItem", categoryItem);
-
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
 
   useEffect(() => {
     (async () => {
-      if (categoryItem.activeTab === "expenses") {
-        const { report } = await getExpensesDescription({category: categoryItem.item.category });
-        setDataTransactions(report);
-      } else {
-        const { report } = await getIncomeDescription({category: categoryItem.item.category });
-        setDataTransactions(report);
+      if (categoryItem.activeTab && categoryItem.item && categoryItem.item.category) {
+        if (categoryItem.activeTab === "expenses") {
+          const { report } = await getExpensesDescription({ category: categoryItem.item.category });
+          setDataTransactions(report);
+        } else {
+          const { report } = await getIncomeDescription({ category: categoryItem.item.category });
+          setDataTransactions(report);
+        }
       }
     })();
-  }, [categoryItem.activeTab, categoryItem.item.category]);
+  }, [categoryItem.activeTab, categoryItem.item]);
 
   useEffect(() => {
     if(dataTransactions.length === 0) {
@@ -221,5 +221,5 @@ export const BarChartComp = ({ categoryItem }) => {
 
 BarChartComp.propTypes = {
   categoryItem: PropTypes.object.isRequired,
-  activeTab: PropTypes.string.isRequired,
+  activeTab: PropTypes.string,
 };
