@@ -6,18 +6,19 @@ import { formatSum } from "../../services/balanceFormServices";
 
 import { TotalCountFormWrapper, TypeCountWrapper, TypeCountTitle, TypeCountSum } from "./TotalCountForm.styled";
 
-export const TotalCountForm = () => {
+// eslint-disable-next-line react/prop-types
+export const TotalCountForm = ({period}) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const getTransactions = async () => {
-            const { transactions } = await getAllTransactions();
+        const getTransactions = async (period) => {
+            const { transactions } = await getAllTransactions(period);
             const totals = countTotalSums(transactions);
             setData(totals)
         }
-        getTransactions();
+        getTransactions(period);
 
-    }, [])
+    }, [period])
 
     const countTotalSums = (transactions) => {
 

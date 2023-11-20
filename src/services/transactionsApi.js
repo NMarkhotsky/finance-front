@@ -29,9 +29,11 @@ export const deleteTransaction = async (id) => {
   }
 };
 
-export const getAllTransactions = async () => {
+export const getAllTransactions = async (period) => {
+  const periodParams = period ? `?year=${period.year}&month=${period.month}` : ''
+
   try {
-    const { data } = await axios.get(`/transactions/`);
+    const { data } = await axios.get(`/transactions`+periodParams);
 
     return data;
   } catch (error) {

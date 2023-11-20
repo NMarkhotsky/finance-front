@@ -30,18 +30,22 @@ export const getIncomeSummary = async () => {
     }
 };
 
-export const getIncomeCategory = async () => {
+export const getIncomeCategory = async (period) => {
+    const periodParams = period ? `?year=${period.year}&month=${period.month}` : ''
+
     try {
-        const response = await axios.get('/transactions/income/category');
+        const response = await axios.get('/transactions/income/category'+periodParams);
         return response;
     } catch (error) {
         console.log(error);
     }
 };
 
-export const getIncomeDescription = async ({category}) => {
+export const getIncomeDescription = async ({ category }, period) => {
+    const periodParams = period ? `&year=${period.year}&month=${period.month}` : ''
+
     try {
-        const {data} = await axios.get(`/transactions/income/description?category=${category}`);
+        const {data} = await axios.get(`/transactions/income/description?category=${category}`+periodParams);
         return data;
     } catch (error) {
         console.log(error);
