@@ -129,6 +129,7 @@ import {
   CATEGORIES_EXPENSES,
   CATEGORIES_INCOME,
 } from "../../constants/globalConstants";
+import { BarChartComp } from "../BarChartComp/BarChartComp";
 
 export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
@@ -153,6 +154,18 @@ export const MenuForActiveLinkOnReport = () => {
 
   // console.log("dataExpenses", dataExpenses);
 
+  const [itemCategory, setItemCategory] = useState({});
+
+  const addItemCategory = (data) => {
+    setItemCategory(data);
+  };
+
+  useEffect(() => {
+    if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
+  }, [itemCategory]);
+
+  console.log("itemCategory", itemCategory);
+
   useEffect(() => {
     (async () => {
       const {
@@ -175,8 +188,6 @@ export const MenuForActiveLinkOnReport = () => {
     setActiveTab(tab);
   };
 
-  // console.log("dataExpenses", dataExpenses);
-
   return (
     <section>
       <ContainerMain>
@@ -196,6 +207,7 @@ export const MenuForActiveLinkOnReport = () => {
             categoriesList={expensesCategoriesList}
             categories={CATEGORIES_EXPENSES}
             activeTab={activeTab}
+            addItemCategory={addItemCategory}
           />
         )}
         {activeTab === "income" && (
@@ -203,18 +215,11 @@ export const MenuForActiveLinkOnReport = () => {
             categoriesList={incomeCategoriesList}
             categories={CATEGORIES_INCOME}
             activeTab={activeTab}
+            addItemCategory={addItemCategory}
           />
         )}
       </ContainerMain>
-      {/* <div>
-        {activeTab === "expenses" && (
-          <BarChartComp dataTransactions={dataExpenses} />
-        )}
-        {activeTab === "income" && (
-          <BarChartComp dataTransactions={dataIncome} />
-        )}
-      </div> */}
+      {/* <div>{itemCategory && <BarChartComp categoryItem={itemCategory} />}</div> */}
     </section>
   );
 };
-

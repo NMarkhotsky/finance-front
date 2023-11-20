@@ -8,8 +8,6 @@ import {
   Title,
 } from "./CategoriesItem.styled";
 import { IconCategories } from "../../shared/components/IconCategories";
-import { BarChartComp } from "../BarChartComp/BarChartComp";
-import { useChartContext } from "../../shared/components/ChartContextProvider";
 
 export const CategoriesItem = ({
   item,
@@ -17,18 +15,19 @@ export const CategoriesItem = ({
   index,
   handleItemClick,
   isActive,
-  activeTab
+  activeTab,
+  addItemCategory
 }) => {
-  const { setChartDataHandler } = useChartContext();
 
   const handleClick = () => {
-    handleItemClick(index)
-    setChartDataHandler({item, isActive});
+    handleItemClick(index, item)
+    addItemCategory({item, activeTab})
   };
 
+  console.log("isActive", isActive);
+  console.log("index", index);
+
   return (
-<div>
-        <div>
             <ItemCategories onClick={handleClick}>
               <Text>{item.total_sum}</Text>
               <ImageBox>
@@ -57,11 +56,6 @@ export const CategoriesItem = ({
               </ImageBox>
               <Title>{item.category}</Title>
             </ItemCategories>
-        </div>
-        <div>
-        {isActive &&  <BarChartComp  categoryItem={item} activeTab={activeTab}/>}
-        </div>
-</div>
   );
 };
 
@@ -77,5 +71,6 @@ CategoriesItem.propTypes = {
   index: PropTypes.number.isRequired,
   handleItemClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
-  activeTab: PropTypes.string.isRequired
+  activeTab: PropTypes.string.isRequired,
+  addItemCategory: PropTypes.func.isRequired
 };

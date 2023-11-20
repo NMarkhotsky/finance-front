@@ -11,7 +11,6 @@ import {
 } from "recharts";
 import { getExpensesDescription } from "../../services/expensesApi";
 import { getIncomeDescription } from "../../services/incomeApi";
-import { useChartContext } from "../../shared/components/ChartContextProvider";
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
@@ -203,25 +202,24 @@ const measureText14HelveticaNeue = (text, fontSize) => {
 //   dataTransactions: PropTypes.array.isRequired,
 // };
 
-export const BarChartComp = ({ categoryItem, activeTab }) => {
+export const BarChartComp = ({ categoryItem }) => {
+
+  console.log("chartItem", categoryItem);
 
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
 
-  const { chartData } = useChartContext();
-  console.log("chartData", chartData);
-
   useEffect(() => {
     (async () => {
-      if (activeTab === "expenses") {
-        const { report } = await getExpensesDescription({category: categoryItem.category });
+      if (categoryItem.activeTab === "expenses") {
+        const { report } = await getExpensesDescription({category: categoryItem.item.category });
         setDataTransactions(report);
       } else {
-        const { report } = await getIncomeDescription({category: categoryItem.category });
+        const { report } = await getIncomeDescription({category: categoryItem.item.category });
         setDataTransactions(report);
       }
     })();
-  }, [activeTab, categoryItem.category]);
+  }, [categoryItem.activeTab, categoryItem.item.category]);
 
   useEffect(() => {
     if(dataTransactions.length === 0) {
