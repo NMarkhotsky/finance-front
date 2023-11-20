@@ -3,7 +3,9 @@ import { SelectCurrentPeriod } from "../../components/SelectCurrentPeriod/Select
 import { MenuForActiveLinkOnReport } from "../../components/MenuForActiveLinkOnReport/MenuForActiveLinkOnReport";
 import { TotalCountForm } from "../../components/TotalCountForm/TotalCountForm";
 
+
 const ReportPage = () => {
+
   return (
     <>
       <div style={{display: "flex", justifyContent: "space-between", marginTop: 40}}>
