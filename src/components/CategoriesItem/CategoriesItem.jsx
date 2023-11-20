@@ -9,6 +9,7 @@ import {
 } from "./CategoriesItem.styled";
 import { IconCategories } from "../../shared/components/IconCategories";
 import { useEffect } from "react";
+import { formatSum } from "../../services/balanceFormServices";
 
 export const CategoriesItem = ({
   item,
@@ -32,9 +33,11 @@ useEffect(() => {
     handleItemClick(index, item)
   };
 
+  const correctSum = formatSum(item.total_sum); 
+
   return (
             <ItemCategories onClick={handleClick}>
-              <Text>{item.total_sum}</Text>
+              <Text>{correctSum}</Text>
               <ImageBox>
                 <ImgBackground>
                   <IconCategories
@@ -44,12 +47,6 @@ useEffect(() => {
                     fill={isActive ? "#ffdac0" : "#F5F6FB"}
                   />
                 </ImgBackground>
-                {/* <Img
-                  src={categoryObject.image}
-                  alt={categoryObject.value}
-                  width={56}
-                  height={56}
-                /> */}
                 <Img>
                   <IconCategories
                     iconName={categoryObject.image}

@@ -9,13 +9,12 @@ export const SectionChart = styled.section`
 `;
 
 export const ContainerChart = styled.div`
-  /* padding: 22px 138px 20px; */
 
-  @media (max-width: 480px) {
+  @media (max-width: 767px) {
     max-width: 100%;
   }
 
-  @media (min-width: 481px) and (max-width: 768px) {
+  @media (min-width: 481px) and (max-width: 1279px) {
     max-width: 80%;
     height: 400px;
     margin: 0 auto;
