@@ -166,6 +166,7 @@ export const BarChartComp = ({ categoryItem }) => {
               type="category"
               dataKey="description"
               tickLine={false}
+              align="center" 
             />
             <YAxis
               axisLine={false}
