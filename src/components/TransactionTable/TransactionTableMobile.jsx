@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import PropTypes from 'prop-types';
+
 import { useAuth } from "../../hooks/useAuth/useAuth";
+import { fetchCurrentUser } from "../../redux/auth/operations";
+
 import { getIncome } from "../../services/incomeApi";
 import { getExpenses } from "../../services/expensesApi";
-import { deleteTransaction } from "../../services/transactionsApi";
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { deleteTransaction, getAllTransactions } from "../../services/transactionsApi";
+
 import { formatData } from "../../services/balanceFormServices";
+
 import { Table, TableContainer, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTableMobile.styled";
 import { DeleteButton } from "../DeleteButton/DeleteButton";
-import PropTypes from 'prop-types';
-import { fetchCurrentUser } from "../../redux/auth/operations";
-import { useDispatch } from "react-redux";
 
 export const TransactionTableMobile = ({type}) => {
     const [data, setData] = useState([]);
+    
     const { user } = useAuth();
     const dispatch = useDispatch();
+
+    const prevType = useRef(type);
 
     const columnHelper = createColumnHelper();
 
@@ -52,9 +59,21 @@ export const TransactionTableMobile = ({type}) => {
     })
 
     useEffect(() => {
-        getTransactions(type);
+        if (prevType.current === type) {           
+            getAllData();
+        } else {
+            getTransactions(type);
+            prevType.current = type
+        }
 
     },[user.balance, type])
+
+    const getAllData = async () => {
+        const { transactions } = await getAllTransactions();
+        const normalizedData = formatData(transactions);
+        setData(normalizedData)
+        console.log(normalizedData, 'all data');
+    }
 
     const getTransactions = async (type) => {
 
