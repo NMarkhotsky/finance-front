@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+
 import { getAllTransactions } from "../../services/transactionsApi";
+
 import { formatSum } from "../../services/balanceFormServices";
+
 import { TotalCountFormWrapper, TypeCountWrapper, TypeCountTitle, TypeCountSum } from "./TotalCountForm.styled";
 
 export const TotalCountForm = () => {

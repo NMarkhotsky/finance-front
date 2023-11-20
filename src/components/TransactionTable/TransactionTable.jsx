@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import PropTypes from 'prop-types';
+
 import { useAuth } from "../../hooks/useAuth/useAuth";
+import { fetchCurrentUser } from "../../redux/auth/operations";
+
 import { getIncome } from "../../services/incomeApi";
 import { getExpenses } from "../../services/expensesApi";
 import { deleteTransaction } from "../../services/transactionsApi";
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+
 import { formatData } from "../../services/balanceFormServices";
+
 import { Table, TableContainer, TableScroll, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./TransactionTable.styled";
 import { DeleteButton } from "../DeleteButton/DeleteButton";
-import PropTypes from 'prop-types';
-import { fetchCurrentUser } from "../../redux/auth/operations";
-import { useDispatch } from "react-redux";
 
 export const TransactionTable = ({type}) => {
     const [data, setData] = useState([]);

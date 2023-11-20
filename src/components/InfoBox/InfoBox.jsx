@@ -1,4 +1,5 @@
 import { useAuth } from "../../hooks/useAuth/useAuth";
+
 import { InfoBoxWrapper, TextInfoBox } from "./InfoBox.styled";
 
 export const InfoBox = () => {

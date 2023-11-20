@@ -1,14 +1,16 @@
-
+import { useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import { balanceSchema } from "../../constants/validationSchemas";
-import { BalanceWrapper, FormBalance, BalanceLabel, BalanceInput, BalanceCurrency, Button, BalanceBar } from "./BalanceForm.styled";
-import { cutValue, normalizeValue, formatSum } from "../../services/balanceFormServices";
-import { useEffect, useCallback } from "react";
+
 import { useAuth } from "../../hooks/useAuth/useAuth";
-import { useDispatch } from "react-redux";
 import { addStartBalance } from "../../redux/auth/operations";
+import { cutValue, normalizeValue, formatSum } from "../../services/balanceFormServices";
 import { ShowToast } from "../../utils";
+
+import { BalanceWrapper, FormBalance, BalanceLabel, BalanceInput, BalanceCurrency, Button, BalanceBar } from "./BalanceForm.styled";
 
 export const BalanceForm = () => {
 

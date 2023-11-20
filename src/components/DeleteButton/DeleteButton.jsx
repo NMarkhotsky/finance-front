@@ -1,9 +1,11 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
-import { DeleteBtn } from "./DeleteButton.styled";
+import PropTypes from "prop-types";
+
 import { Icon } from "../../shared/components/Icon/Icon";
 import { ModalApproveAction } from "../../shared/components/ModalApproveAction/ModalApproveAction";
 import { ModalGlobal } from "../ModalGlobal/ModalGlobal";
+
+import { DeleteBtn } from "./DeleteButton.styled";
 
 export const DeleteButton = ({ onDeleteClick }) => {
   const [showModal, setShowModal] = useState(false);

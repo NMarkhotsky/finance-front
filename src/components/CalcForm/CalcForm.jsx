@@ -1,8 +1,10 @@
-import { useForm } from "react-hook-form"
-import { ArrowBack, CalcButton, CalcButtonItem, CalcButtonList, CalcInput, CalcStyledForm, SubmitButton, CalcContainer } from "./CalcForm.styled"
-import { normalizeValue, cutValue } from "../../services/balanceFormServices"
-import { useEffect } from "react"
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import PropTypes from 'prop-types';
+
+import { normalizeValue, cutValue } from "../../services/balanceFormServices";
+
+import { ArrowBack, CalcButton, CalcButtonItem, CalcButtonList, CalcInput, CalcStyledForm, SubmitButton, CalcContainer } from "./CalcForm.styled";
 
 export const CalcForm = ({ handleCalcSubmit, closeCalc }) => {
     

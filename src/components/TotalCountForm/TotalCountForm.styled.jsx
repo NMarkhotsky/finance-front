@@ -34,6 +34,7 @@ export const TypeCountWrapper = styled.div`
     @media ${selectTablet} {
         flex-direction: row;
         padding: 8px 20px;
+        gap: 15px;
     }
 `
 
