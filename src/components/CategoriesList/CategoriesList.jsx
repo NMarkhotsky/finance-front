@@ -24,7 +24,7 @@ export const CategoriesList = ({
     });
   }
 
-  const handleItemClick = (index, item) => {
+  const handleItemClick = (index) => {
       setItemsActiveState((prev) => {
         const updatedState = [...prev];
         updatedState.fill(false);
