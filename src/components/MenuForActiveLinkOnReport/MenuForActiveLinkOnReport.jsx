@@ -27,6 +27,8 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     setItemCategory(data);
   };
 
+  console.log(date);
+
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
   }, [itemCategory]);
