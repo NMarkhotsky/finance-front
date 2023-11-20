@@ -31,18 +31,21 @@ export const getExpensesSummary = async () => {
     }
 };
 
-export const getExpensesCategory = async () => {
+export const getExpensesCategory = async (period) => {
+    const periodParams = period ? `?year=${period.year}&month=${period.month}` : ''
     try {
-        const response = await axios.get('/transactions/expenses/category');
+        const response = await axios.get('/transactions/expenses/category'+periodParams);
         return response;
     } catch (error) {
         console.log(error);
     }
 };
 
-export const getExpensesDescription = async ({category}) => {
+export const getExpensesDescription = async ({ category }, period) => {
+    const periodParams = period ? `&year=${period.year}&month=${period.month}` : ''
+
     try {
-        const {data} = await axios.get(`/transactions/expenses/description?category=${category}`);
+        const {data} = await axios.get(`/transactions/expenses/description?category=${category}`+periodParams);
         return data;
     } catch (error) {
         console.log(error);
