@@ -48,10 +48,28 @@
     }
 
     export const formatData = (data, type) => {
-        if (type === 'expenses') {
-            return data.map((item) => ({ ...item, date: formatDate(item.date), sum: formatSum((0 - item.sum).toFixed(2)) }))
+        if (type) {
+            if (type === 'expenses') {
+                return data.map((item) => ({
+                    ...item,
+                    date: formatDate(item.date),
+                    sum: formatSum((0 - item.sum).toFixed(2))
+                }))
+            } else {
+                return data.map((item) => ({
+                    ...item,
+                    date: formatDate(item.date),
+                    sum: formatSum(item.sum)
+                }))
+            }
         } else {
-            return data.map((item) => ({ ...item, date: formatDate(item.date), sum: formatSum(item.sum) }))
+            return data.map((item) => ({
+                ...item,
+                date: formatDate(item.date),
+                sum: item.type === 'income' ?
+                    formatSum(item.sum) :
+                        formatSum((0 - item.sum).toFixed(2))
+            }))
         }
     }
 

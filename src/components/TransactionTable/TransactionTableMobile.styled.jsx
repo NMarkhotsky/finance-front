@@ -61,6 +61,7 @@ export const TableBodyTd = styled.td`
         font-size: ${({ theme }) => theme.fontSizes.xs};
         color: ${({ theme, value }) => (parseFloat(value) > 0 ? theme.colors.green : theme.colors.red)};
         white-space: nowrap;
+        text-align: end;
     }
 
 `
