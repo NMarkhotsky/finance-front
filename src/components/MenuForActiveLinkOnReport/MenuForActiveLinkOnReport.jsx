@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import {
   ContainerMain,
   Container,
@@ -16,7 +16,7 @@ import {
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
 
-export const MenuForActiveLinkOnReport = ({ date }) => {
+export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
@@ -27,29 +27,28 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     setItemCategory(data);
   };
 
-  console.log(date);
-
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
   }, [itemCategory]);
 
   useEffect(() => {
     (async () => {
-      const {
-        data: { report },
-      } = await getIncomeCategory();
-      setIncomeCategoriesList(report);
-    })();
-  }, []);
+      if(itemCategory.activeTab === "expenses") {
+        const {
+          data: { report },
+        } = await getIncomeCategory();
+        setIncomeCategoriesList(report);
+      } else {
+        const {
+          data: { report },
+        } = await getExpensesCategory();
+        setExpensesCategoriesList(report);
+      }
 
-  useEffect(() => {
-    (async () => {
-      const {
-        data: { report },
-      } = await getExpensesCategory();
-      setExpensesCategoriesList(report);
     })();
-  }, []);
+  }, [itemCategory.activeTab]);
+
+  console.log(activeTab);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -94,6 +93,6 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   );
 };
 
-MenuForActiveLinkOnReport.propTypes = {
-  date: PropTypes.object.isRequired,
-};
+// MenuForActiveLinkOnReport.propTypes = {
+//   date: PropTypes.object.isRequired,
+// };
