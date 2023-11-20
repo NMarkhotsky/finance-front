@@ -6,54 +6,51 @@ import {
   TabButton,
 } from "./MenuForActiveLinkOnReport.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
-import { BarChartComp } from "../BarChartComp/BarChartComp";
 import {
   getIncomeCategory,
-  getIncomeDescription,
 } from "../../services/incomeApi";
 import {
   getExpensesCategory,
-  getExpensesDescription,
 } from "../../services/expensesApi";
 import { CategoriesList } from "../CategoriesList/CategoriesList";
-import { CATEGORIES_EXPENSES, CATEGORIES_INCOME } from "../../constants/globalConstants";
+import {
+  CATEGORIES_EXPENSES,
+  CATEGORIES_INCOME,
+} from "../../constants/globalConstants";
+import { BarChartComp } from "../BarChartComp/BarChartComp";
 
 export const MenuForActiveLinkOnReport = () => {
   const [activeTab, setActiveTab] = useState("expenses");
-  const [dataExpenses, setDataExpenses] = useState([]);
-  const [dataIncome, setDataIncome] = useState([]);
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
 
+  const [itemCategory, setItemCategory] = useState({});
+
+  const addItemCategory = (data) => {
+    setItemCategory(data);
+  };
+
   useEffect(() => {
-    (async () => {
-      const {
-        data: { report },
-      } = await getIncomeDescription();
-      setDataIncome(report);
-    })();
-  }, []);
+    if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
+  }, [itemCategory]);
+
+  console.log("itemCategory", itemCategory);
 
   useEffect(() => {
     (async () => {
       const {
         data: { report },
-      } = await getExpensesDescription();
-      setDataExpenses(report);
+      } = await getIncomeCategory();
+      setIncomeCategoriesList(report);
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      const { data : {report} } = await getIncomeCategory();
-        setIncomeCategoriesList(report);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const {data : {report}} = await getExpensesCategory();
-        setExpensesCategoriesList(report);
+      const {
+        data: { report },
+      } = await getExpensesCategory();
+      setExpensesCategoriesList(report);
     })();
   }, []);
 
@@ -75,18 +72,24 @@ export const MenuForActiveLinkOnReport = () => {
           </ButtonIcon>
         </Container>
 
-        {activeTab === "expenses" && <CategoriesList categoriesList={expensesCategoriesList} categories={CATEGORIES_EXPENSES}/>}
-        {activeTab === "income" && <CategoriesList categoriesList={incomeCategoriesList} categories={CATEGORIES_INCOME}/>}
-      </ContainerMain>
-      <div>
         {activeTab === "expenses" && (
-
-          <BarChartComp dataTransactions={dataExpenses} />
+          <CategoriesList
+            categoriesList={expensesCategoriesList}
+            categories={CATEGORIES_EXPENSES}
+            activeTab={activeTab}
+            addItemCategory={addItemCategory}
+          />
         )}
         {activeTab === "income" && (
-          <BarChartComp dataTransactions={dataIncome} />
+          <CategoriesList
+            categoriesList={incomeCategoriesList}
+            categories={CATEGORIES_INCOME}
+            activeTab={activeTab}
+            addItemCategory={addItemCategory}
+          />
         )}
-      </div>
+      </ContainerMain>
+      <div> <BarChartComp categoryItem={itemCategory} /></div>
     </section>
   );
 };

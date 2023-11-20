@@ -34,11 +34,11 @@ function App() {
   }, [dispatch, navigation, setSearchParams, token]);
 
   return fontsLoaded ? (
-    <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStyle />
-      <SharedLayout />
-      <Toaster/>
-    </ThemeProvider>
+      <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <SharedLayout />
+        <Toaster/>
+      </ThemeProvider>
   ) : (
     <Loader/>
   );

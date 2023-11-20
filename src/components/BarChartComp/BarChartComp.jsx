@@ -9,6 +9,8 @@ import {
   Cell,
   CartesianGrid,
 } from "recharts";
+import { getExpensesDescription } from "../../services/expensesApi";
+import { getIncomeDescription } from "../../services/incomeApi";
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
@@ -29,9 +31,30 @@ const measureText14HelveticaNeue = (text, fontSize) => {
   return ctx.measureText(text).width;
 };
 
-export const BarChartComp = ({ dataTransactions }) => {
+export const BarChartComp = ({ categoryItem }) => {
+
+  console.log("chartItem", categoryItem);
 
   const [isMobile, setIsMobile] = useState(false);
+  const [dataTransactions, setDataTransactions] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      if (categoryItem.activeTab === "expenses") {
+        const { report } = await getExpensesDescription({category: categoryItem.item.category });
+        setDataTransactions(report);
+      } else {
+        const { report } = await getIncomeDescription({category: categoryItem.item.category });
+        setDataTransactions(report);
+      }
+    })();
+  }, [categoryItem.activeTab, categoryItem.item.category]);
+
+  useEffect(() => {
+    if(dataTransactions.length === 0) {
+      return; 
+    }
+  })
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -96,7 +119,7 @@ export const BarChartComp = ({ dataTransactions }) => {
           <BarChart
             data={modifiedData}
             layout="vertical"
-             margin={{ left: 10, right: maxTextWidth }}
+            margin={{ left: 10, right: maxTextWidth }}
           >
             <XAxis hide axisLine={false} type="number" />
             <YAxis
@@ -135,7 +158,7 @@ export const BarChartComp = ({ dataTransactions }) => {
         <ResponsiveContainer width="100%" height={470}>
           <BarChart
             data={modifiedData}
-            margin={{ top: 5, right: 138, left: 138, bottom: 5 }}
+             margin={{ left: 10, right: maxTextWidth, top: 20 }}
             layout="horizontal"
           >
             <XAxis
@@ -172,7 +195,7 @@ export const BarChartComp = ({ dataTransactions }) => {
                 fill: "#52555F",
                 dy: -5,
                 content: (labelProps) => (
-                  <text x={labelProps.x} y={labelProps.y} fill="black" dy={-3}>
+                  <text x={labelProps.x} y={labelProps.y} fill="black" dy={-10}>
                     {`${labelProps.value} грн`}
                   </text>
                 ),
@@ -197,5 +220,6 @@ export const BarChartComp = ({ dataTransactions }) => {
 };
 
 BarChartComp.propTypes = {
-  dataTransactions: PropTypes.array.isRequired,
+  categoryItem: PropTypes.object.isRequired,
+  activeTab: PropTypes.string.isRequired,
 };

@@ -40,10 +40,10 @@ export const getExpensesCategory = async () => {
     }
 };
 
-export const getExpensesDescription = async () => {
+export const getExpensesDescription = async ({category}) => {
     try {
-        const response = await axios.get('/transactions/expenses/description');
-        return response;
+        const {data} = await axios.get(`/transactions/expenses/description?category=${category}`);
+        return data;
     } catch (error) {
         console.log(error);
     }

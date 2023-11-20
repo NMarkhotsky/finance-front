@@ -3,10 +3,15 @@ import { useState } from "react";
 import { ListCategories } from "./CategoriesList.styled";
 import { CategoriesItem } from "../CategoriesItem/CategoriesItem";
 
-export const CategoriesList = ({ categoriesList, categories }) => {
+export const CategoriesList = ({
+  categoriesList,
+  categories,
+  activeTab,
+  addItemCategory,
+}) => {
   const [itemsActiveState, setItemsActiveState] = useState(
     new Array(categoriesList.length).fill(false)
-  );
+  ); 
 
   if (
     categoriesList.length > 0 &&
@@ -19,14 +24,15 @@ export const CategoriesList = ({ categoriesList, categories }) => {
     });
   }
 
-  const handleItemClick = (index) => {
-    setItemsActiveState((prev) => {
-      const updatedState = [...prev];
-      updatedState.fill(false);
-      updatedState[index] = true;
-      return updatedState;
-    });
-  };
+  const handleItemClick = (index, item) => {
+      setItemsActiveState((prev) => {
+        const updatedState = [...prev];
+        updatedState.fill(false);
+        updatedState[index] = true;
+       
+        return updatedState;
+      });
+    };
 
   return (
     <ListCategories>
@@ -43,6 +49,8 @@ export const CategoriesList = ({ categoriesList, categories }) => {
             categoryObject={categoryObject}
             handleItemClick={handleItemClick}
             isActive={itemsActiveState[idx]}
+            activeTab={activeTab}
+            addItemCategory={addItemCategory}
           />
         );
       })}
@@ -53,4 +61,6 @@ export const CategoriesList = ({ categoriesList, categories }) => {
 CategoriesList.propTypes = {
   categoriesList: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  addItemCategory: PropTypes.func.isRequired
 };
