@@ -72,7 +72,6 @@ export const TransactionTableMobile = ({type}) => {
         const { transactions } = await getAllTransactions();
         const normalizedData = formatData(transactions);
         setData(normalizedData)
-        console.log(normalizedData, 'all data');
     }
 
     const getTransactions = async (type) => {
