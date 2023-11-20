@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import {
   ContainerMain,
   Container,
@@ -16,7 +16,7 @@ import {
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
 
-export const MenuForActiveLinkOnReport = () => {
+export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
@@ -32,23 +32,24 @@ export const MenuForActiveLinkOnReport = () => {
   }, [itemCategory]);
 
   useEffect(() => {
+    if (Object.keys(date).length === 0 || !date) return;
+  }, [date]);
+
+  useEffect(() => {
     (async () => {
-      if(itemCategory.activeTab === "expenses") {
+      if (itemCategory.activeTab === "expenses") {
         const {
           data: { report },
-        } = await getIncomeCategory();
+        } = await getIncomeCategory(date);
         setIncomeCategoriesList(report);
       } else {
         const {
           data: { report },
-        } = await getExpensesCategory();
+        } = await getExpensesCategory(date);
         setExpensesCategoriesList(report);
       }
-
     })();
-  }, [itemCategory.activeTab]);
-
-  console.log(activeTab);
+  }, [date, itemCategory.activeTab]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -87,12 +88,12 @@ export const MenuForActiveLinkOnReport = () => {
       </ContainerMain>
       <div>
         {" "}
-        <BarChartComp categoryItem={itemCategory} />
+        <BarChartComp categoryItem={itemCategory} date={date}/>
       </div>
     </section>
   );
 };
 
-// MenuForActiveLinkOnReport.propTypes = {
-//   date: PropTypes.object.isRequired,
-// };
+MenuForActiveLinkOnReport.propTypes = {
+ date: PropTypes.any
+};
