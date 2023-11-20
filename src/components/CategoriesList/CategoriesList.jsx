@@ -24,18 +24,15 @@ export const CategoriesList = ({
     });
   }
 
-  
-
   const handleItemClick = (index, item) => {
-    setItemsActiveState((prev) => {
-      const updatedState = [...prev];
-      updatedState.fill(false);
-      updatedState[index] = true;
-      // addItemCategory({ item, activeTab });
-      return updatedState;
-    });
-  };
-
+      setItemsActiveState((prev) => {
+        const updatedState = [...prev];
+        updatedState.fill(false);
+        updatedState[index] = true;
+       
+        return updatedState;
+      });
+    };
 
   return (
     <ListCategories>

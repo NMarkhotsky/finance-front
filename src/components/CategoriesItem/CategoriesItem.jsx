@@ -8,6 +8,7 @@ import {
   Title,
 } from "./CategoriesItem.styled";
 import { IconCategories } from "../../shared/components/IconCategories";
+import { useEffect } from "react";
 
 export const CategoriesItem = ({
   item,
@@ -19,13 +20,17 @@ export const CategoriesItem = ({
   addItemCategory
 }) => {
 
+
+useEffect(() => {
+  if (isActive) {
+    addItemCategory({ item, activeTab });
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [isActive])
+
   const handleClick = () => {
     handleItemClick(index, item)
-    addItemCategory({item, activeTab})
   };
-
-  console.log("isActive", isActive);
-  console.log("index", index);
 
   return (
             <ItemCategories onClick={handleClick}>
