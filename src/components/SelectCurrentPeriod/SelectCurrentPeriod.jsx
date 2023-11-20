@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 import enUsLocale from "date-fns/locale/en-US";
@@ -12,24 +12,12 @@ import {
 } from "./SelectCurrentPeriod.styled";
 
 export const SelectCurrentPeriod = ({ handleDate }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
-  const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
+  const [currentDate] = useState(new Date());
+  const [currentMonth] = useState(currentDate.getMonth());
+  const [currentYear] = useState(currentDate.getFullYear());
 
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDate(new Date());
-      setCurrentMonth(currentDate.getMonth());
-      setCurrentYear(currentDate.getFullYear());
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [currentDate]);
 
   const handleDecrement = () => {
     if (selectedMonth === 0) {
@@ -55,11 +43,14 @@ export const SelectCurrentPeriod = ({ handleDate }) => {
     { locale: enUsLocale }
   );
 
-  
-  useEffect(() => {
-    handleDate({month: selectedMonth, year: selectedYear});
-  }, [ handleDate, selectedMonth, selectedYear]);
+  const handleDateCallback = useCallback(() => {
+    handleDate({ month: selectedMonth + 1, year: selectedYear });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedMonth, selectedYear]);
 
+  useEffect(() => {
+    handleDateCallback();
+  }, [handleDateCallback]);
 
   return (
     <ContainerSelectCurrentPeriod>
