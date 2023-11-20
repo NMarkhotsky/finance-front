@@ -1,4 +1,4 @@
-import{c as pe,L as Jv,j as W,I as vn,l as Jd,P as q,r as N,n as ey,b as oe,x as ha,y as ty,z as $,q as ry,t as ny,C as ay,d as eh}from"./index-018e60c6.js";import{f as Ao,l as iy,m as oy,o as uy,p as sy,h as cy}from"./expensesApi-49b24edc.js";const ly=pe(Jv)`
+import{c as pe,L as Jv,j as W,I as vn,l as Jd,P as q,r as N,n as ey,b as oe,x as ha,y as ty,z as $,q as ry,t as ny,C as ay,d as eh}from"./index-05bfd78d.js";import{f as Ao,l as iy,m as oy,o as uy,p as sy,h as cy}from"./expensesApi-fdbf9742.js";const ly=pe(Jv)`
 display: flex;
 align-items: center;
 gap: 16px;
@@ -178,6 +178,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     @media ${eh} {
         flex-direction: row;
         padding: 8px 20px;
+        gap: 15px;
     }
 `,Zd=pe.p`
     display: block;
