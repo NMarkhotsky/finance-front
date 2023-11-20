@@ -1,10 +1,14 @@
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import PropTypes from 'prop-types';
+
 import { useAuth } from "../../hooks/useAuth/useAuth";
+
 import { getExpensesSummary } from "../../services/expensesApi";
 import { getIncomeSummary } from "../../services/incomeApi";
+
 import { formatDateToMonth, formatSum } from "../../services/balanceFormServices";
+
 import { TableContainer, Table, TableHead, TableHeadTR, TableHeadTH, TableBody, TableBodyTR, TableBodyTd } from "./SummaryTable.styled";
 
 export const SummaryTable = ({ type }) => {
@@ -68,11 +72,6 @@ export const SummaryTable = ({ type }) => {
                                 {
                                     headerGroup.headers.map((header) => (
                                         <TableHeadTH key={header.id} header={header.id} colSpan={header.colSpan} >
-                                            {/* {
-                                                header.column.getIsGrouped()
-                                                
-                                                
-                                            } */}
                                             { flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHeadTH>
                                     ))
