@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
   ContainerMain,
   Container,
@@ -6,12 +7,8 @@ import {
   TabButton,
 } from "./MenuForActiveLinkOnReport.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
-import {
-  getIncomeCategory,
-} from "../../services/incomeApi";
-import {
-  getExpensesCategory,
-} from "../../services/expensesApi";
+import { getIncomeCategory } from "../../services/incomeApi";
+import { getExpensesCategory } from "../../services/expensesApi";
 import { CategoriesList } from "../CategoriesList/CategoriesList";
 import {
   CATEGORIES_EXPENSES,
@@ -19,7 +16,7 @@ import {
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
 
-export const MenuForActiveLinkOnReport = () => {
+export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
@@ -87,7 +84,14 @@ export const MenuForActiveLinkOnReport = () => {
           />
         )}
       </ContainerMain>
-      <div> <BarChartComp categoryItem={itemCategory} /></div>
+      <div>
+        {" "}
+        <BarChartComp categoryItem={itemCategory} />
+      </div>
     </section>
   );
+};
+
+MenuForActiveLinkOnReport.propTypes = {
+  date: PropTypes.object.isRequired,
 };

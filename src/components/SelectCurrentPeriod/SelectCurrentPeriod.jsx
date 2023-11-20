@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { format } from "date-fns";
 import enUsLocale from "date-fns/locale/en-US";
 import { Icon } from "../../shared/components/Icon/Icon";
@@ -10,7 +11,7 @@ import {
   ContainerFormattedDate,
 } from "./SelectCurrentPeriod.styled";
 
-export const SelectCurrentPeriod = () => {
+export const SelectCurrentPeriod = ({ handleDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
@@ -42,7 +43,7 @@ export const SelectCurrentPeriod = () => {
   const handleIncrement = () => {
     if (selectedMonth === 11) {
       setSelectedYear((prevYear) => prevYear + 1);
-      setSelectedMonth(0); 
+      setSelectedMonth(0);
     } else {
       setSelectedMonth((prevMonth) => prevMonth + 1);
     }
@@ -53,6 +54,12 @@ export const SelectCurrentPeriod = () => {
     "MMMM yyyy",
     { locale: enUsLocale }
   );
+
+  
+  useEffect(() => {
+    handleDate({month: selectedMonth, year: selectedYear});
+  }, [ handleDate, selectedMonth, selectedYear]);
+
 
   return (
     <ContainerSelectCurrentPeriod>
@@ -68,4 +75,8 @@ export const SelectCurrentPeriod = () => {
       </ContainerFormattedDate>
     </ContainerSelectCurrentPeriod>
   );
+};
+
+SelectCurrentPeriod.propTypes = {
+  handleDate: PropTypes.func.isRequired,
 };
