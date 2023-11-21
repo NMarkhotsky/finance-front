@@ -18,46 +18,44 @@ export const CategoriesItem = ({
   handleItemClick,
   isActive,
   activeTab,
-  addItemCategory
+  addItemCategory,
 }) => {
-
-
-useEffect(() => {
-  if (isActive) {
-    addItemCategory({ item, activeTab });
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [isActive])
+  useEffect(() => {
+    if (isActive) {
+      addItemCategory({ item, activeTab });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive]);
 
   const handleClick = () => {
-    handleItemClick(index, item)
+    handleItemClick(index, item);
   };
 
-  const correctSum = formatSum(item.total_sum); 
+  const correctSum = formatSum(item.total_sum);
 
   return (
-            <ItemCategories onClick={handleClick}>
-              <Text>{correctSum}</Text>
-              <ImageBox>
-                <ImgBackground>
-                  <IconCategories
-                    iconName="icon-circle"
-                    width={59}
-                    height={46}
-                    fill={isActive ? "#ffdac0" : "#F5F6FB"}
-                  />
-                </ImgBackground>
-                <Img>
-                  <IconCategories
-                    iconName={categoryObject.image}
-                    width="56"
-                    height="56"
-                    fill={isActive ? "#FF751D" : "#071F41"}
-                  />
-                </Img>
-              </ImageBox>
-              <Title>{item.category}</Title>
-            </ItemCategories>
+    <ItemCategories onClick={handleClick}>
+      <Text>{correctSum}</Text>
+      <ImageBox>
+        <ImgBackground>
+          <IconCategories
+            iconName="icon-circle"
+            width={59}
+            height={46}
+            fill={isActive ? "#ffdac0" : "#F5F6FB"}
+          />
+        </ImgBackground>
+        <Img>
+          <IconCategories
+            iconName={categoryObject.image}
+            width="56"
+            height="56"
+            fill={isActive ? "#FF751D" : "#071F41"}
+          />
+        </Img>
+      </ImageBox>
+      <Title>{item.category}</Title>
+    </ItemCategories>
   );
 };
 
@@ -74,5 +72,5 @@ CategoriesItem.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   activeTab: PropTypes.string.isRequired,
-  addItemCategory: PropTypes.func.isRequired
+  addItemCategory: PropTypes.func.isRequired,
 };

@@ -24,7 +24,9 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   const [itemCategory, setItemCategory] = useState({});
 
   const addItemCategory = (data) => {
-    setItemCategory(data);
+    if (data) {
+      setItemCategory(data);
+    }
   };
 
   useEffect(() => {
@@ -35,21 +37,50 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     if (Object.keys(date).length === 0 || !date) return;
   }, [date]);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     if (itemCategory.activeTab === "expenses") {
+  //       const {
+  //         data: { report },
+  //       } = await getIncomeCategory(date);
+  //       console.log("reportInc", report);
+  //       setIncomeCategoriesList(report);
+  //     } else {
+  //       const {
+  //         data: { report },
+  //       } = await getExpensesCategory(date);
+  //       console.log("reportExp", report);
+  //       setExpensesCategoriesList(report);
+  //     }
+  //   })();
+  // }, [date, itemCategory]);
+
   useEffect(() => {
     (async () => {
-      if (itemCategory.activeTab === "expenses") {
+      try {
         const {
           data: { report },
         } = await getIncomeCategory(date);
+        if (!report) return;
         setIncomeCategoriesList(report);
-      } else {
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [date, itemCategory]);
+
+  useEffect(() => {
+    (async () => {
+      try {
         const {
           data: { report },
         } = await getExpensesCategory(date);
         setExpensesCategoriesList(report);
+      } catch (error) {
+        console.log(error);
       }
     })();
-  }, [date, itemCategory.activeTab]);
+  }, [date, itemCategory]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -87,13 +118,12 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
         )}
       </ContainerMain>
       <div>
-        {" "}
-        <BarChartComp categoryItem={itemCategory} date={date}/>
+        <BarChartComp categoryItem={itemCategory} date={date} />
       </div>
     </section>
   );
 };
 
 MenuForActiveLinkOnReport.propTypes = {
- date: PropTypes.any
+  date: PropTypes.any,
 };
