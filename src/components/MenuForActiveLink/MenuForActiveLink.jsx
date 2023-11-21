@@ -16,8 +16,8 @@ import { SummaryTable } from "../SummaryTable/SummaryTable";
 
 export const MenuForActiveLink = () => {
 
-  const [activeTab, setActiveTab] = useState("expenses");
   const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const [activeTab, setActiveTab] = useState(screenSize > 767 ? "expenses" : "");
   
   useEffect(() => {
     
@@ -75,7 +75,7 @@ export const MenuForActiveLink = () => {
         <ContainerTransaction>
           <AddTransactionBox>
             <CurrentDay />
-            <AddTransaction type={activeTab} />
+            {activeTab !== "" && <AddTransaction type={activeTab} />}
           </AddTransactionBox>
           <TransactionTableBox>
             {screenSize < 768 ?

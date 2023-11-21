@@ -34,11 +34,11 @@ export const BalanceLabel = styled.label`
 `
 export const BalanceWrapper = styled.div`
     border: 2px solid ${({ theme }) => theme.colors.borderColor};
-    border-radius: ${({location}) => location === '/report' ? '22px': '22px 0 0 22px'};
+    border-radius: ${({$location}) => $location === '/report' ? '22px': '22px 0 0 22px'};
     padding: 16px 12px;
     background: transparent;
     display: flex;
-    justify-content: ${({location}) => location === '/report' ? 'center': 'right'};
+    justify-content: ${({$location}) => $location === '/report' ? 'center': 'right'};
     align-items: center;
     flex-wrap: nowrap;
     height: 44px;
@@ -66,7 +66,7 @@ export const BalanceInput = styled.input`
     outline: none;
     border: none;
     background-color: transparent;
-    width: ${({location}) => location === '/report' ? '40%': '100%'};
+    width: ${({$location}) => $location === '/report' ? '40%': '100%'};
     text-align: right;
 
     &:disabled {
@@ -74,7 +74,7 @@ export const BalanceInput = styled.input`
     }
 
     @media ${selectTablet} {
-        width: ${({ location }) => location === '/report' ? '40%' : '40%'};
+        width: ${({ $location }) => $location === '/report' ? '40%' : '40%'};
     } 
 
     @media ${selectDesktop} {
@@ -112,7 +112,7 @@ export const Button = styled.button`
     }
 
     @media screen and (max-width: 1279px) {
-        display: ${({location}) => location === '/report' ? 'none': 'block'};
+        display: ${({$location}) => $location === '/report' ? 'none': 'block'};
     }
 
     @media ${selectTablet} {

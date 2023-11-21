@@ -4,6 +4,7 @@ export const ContainerCurrentDay = styled.div`
 display: flex;
 align-items: center;
 gap: 10px;
+height: 40px;
 `
 
 export const TextDay = styled.p`

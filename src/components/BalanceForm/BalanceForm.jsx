@@ -25,8 +25,6 @@ export const BalanceForm = () => {
     const location = useLocation()
     const currentLocation = location.pathname
 
-    console.log(currentLocation);
-
     const {
         register,
         handleSubmit,
@@ -70,19 +68,19 @@ export const BalanceForm = () => {
             <FormBalance onSubmit={handleSubmit(onSubmit)}>
                 <BalanceLabel>Balance:</BalanceLabel>
                     <BalanceBar>
-                        <BalanceWrapper location={currentLocation}>
+                        <BalanceWrapper $location={currentLocation}>
                             <BalanceInput
                                 {...register('balance')}
                                 type="text"
                                 onChange={onInputChange}
                                 onBlur={handleInputBlur}
                                 disabled={isDisabled()}
-                                location={currentLocation}
+                                $location={currentLocation}
                             />
                             <BalanceCurrency>UAH</BalanceCurrency>
                     </BalanceWrapper>
                     <Button
-                        location={currentLocation}
+                        $location={currentLocation}
                         disabled={isDisabled()}>
                         Confirm
                     </Button>
