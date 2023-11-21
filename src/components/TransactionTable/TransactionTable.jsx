@@ -85,7 +85,7 @@ export const TransactionTable = ({type}) => {
                 <Table>
                     <TableHead>
                         {
-                        table.getHeaderGroups().map((headerGroup) => (
+                        data && table.getHeaderGroups().map((headerGroup) => (
                             <TableHeadTR key={headerGroup.id}>
                                 {
                                     headerGroup.headers.map((header) => (
@@ -102,7 +102,7 @@ export const TransactionTable = ({type}) => {
                     </TableHead>
                     <TableBody>
                             {
-                                table.getRowModel().rows.length ? (
+                                data && table.getRowModel().rows.length ? (
                                     table.getRowModel().rows.map((row) => (
                                         <TableBodyTR key={row.id}>
                                             {

@@ -44,11 +44,11 @@ export const TotalCountForm = ({date}) => {
         <TotalCountFormWrapper>
             <TypeCountWrapper>
                 <TypeCountTitle>Expenses:</TypeCountTitle>
-                <TypeCountSum type={'expense'}>- {data.expense} грн</TypeCountSum>
+                {data && <TypeCountSum type={'expense'}>- {data.expense} грн</TypeCountSum>}
             </TypeCountWrapper>
             <TypeCountWrapper>
                 <TypeCountTitle>Income:</TypeCountTitle>
-                <TypeCountSum type={'income'}>+ {data.income} грн</TypeCountSum>
+                {data && <TypeCountSum type={'income'}>+ {data.income} грн</TypeCountSum>}
             </TypeCountWrapper>
         </TotalCountFormWrapper>
     )

@@ -98,24 +98,24 @@ export const TransactionTableMobile = ({type}) => {
             <Table>
                 <TableHead>
                     {
-                    table.getHeaderGroups().map((headerGroup) => (
-                        <TableHeadTR key={headerGroup.id}>
-                            {
-                                headerGroup.headers.map((header) => (
-                                    <TableHeadTH key={header.id} header={header.id} >
-                                        {
-                                            flexRender(header.column.columnDef.header, header.getContext())
-                                        }
-                                    </TableHeadTH>
-                                ))
-                            }
-                        </TableHeadTR>
-                    ))
-                }
+                        data && table.getHeaderGroups().map((headerGroup) => (
+                            <TableHeadTR key={headerGroup.id}>
+                                {
+                                    headerGroup.headers.map((header) => (
+                                        <TableHeadTH key={header.id} header={header.id} >
+                                            {
+                                                flexRender(header.column.columnDef.header, header.getContext())
+                                            }
+                                        </TableHeadTH>
+                                    ))
+                                }
+                            </TableHeadTR>
+                        ))
+                    }
                 </TableHead>
                 <TableBody>
                     {
-                        table.getRowModel().rows.length ? (
+                        data && table.getRowModel().rows.length ? (
                             table.getRowModel().rows.map((row) => (
                                 <TableBodyTR key={row.id}>
                                     {

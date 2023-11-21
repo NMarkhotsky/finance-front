@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   padding-top: 40px;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 767px) {
   gap: 43px;   
   }
 

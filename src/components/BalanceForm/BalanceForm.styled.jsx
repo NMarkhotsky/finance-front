@@ -6,20 +6,14 @@ export const FormBalance = styled.form`
     font-size: ${({ theme }) => theme.fontSizes.xs};
     display: flex;
     flex-direction: column;
-    /* gap: 8px; */
-    
+    width: 100%;
 
         @media ${selectTablet} {
             font-size: ${({ theme }) => theme.fontSizes.sm};
             flex-direction: row;
             justify-content: center;
-         
-        }        
-        @media ${selectDesktop} {
             gap: 20px;
-            margin: 0 auto;
-        
-    }    
+        }         
 
 `
 export const BalanceBar = styled.div`
@@ -33,28 +27,27 @@ export const BalanceLabel = styled.label`
     align-items: center;
     justify-content: center;
 
-    @media ${selectTablet} {
-        margin-right: 12px;
+    @media screen and (max-width: 767px) {
+        margin-bottom: 8px;
     }
-    
+
 `
 export const BalanceWrapper = styled.div`
     border: 2px solid ${({ theme }) => theme.colors.borderColor};
-    border-radius: 22px 0 0 22px;
+    border-radius: ${({location}) => location === '/report' ? '22px': '22px 0 0 22px'};
     padding: 16px 12px;
     background: transparent;
     display: flex;
-    justify-content: right;
+    justify-content: ${({location}) => location === '/report' ? 'center': 'right'};
     align-items: center;
     flex-wrap: nowrap;
-    width: 140px;
     height: 44px;
 
     @media ${selectTablet} {
         border-radius: 16px;
         padding: 12px 10px;
-        max-width: 125px;
-        
+        justify-content: center;
+        max-width: 100%;
     }
 
     font-family: ${({ theme }) => theme.fonts.bold};
@@ -69,38 +62,40 @@ export const BalanceInput = styled.input`
         appearance: none;
         margin: 0;
     }
-    
+
     outline: none;
     border: none;
     background-color: transparent;
-    max-width: 70px;
+    width: ${({location}) => location === '/report' ? '40%': '100%'};
     text-align: right;
 
     &:disabled {
         color: ${({theme})=> theme.colors.secondaryTextColor};
     }
 
+    @media ${selectTablet} {
+        width: ${({ location }) => location === '/report' ? '40%' : '40%'};
+    } 
+
     @media ${selectDesktop} {
         font-size: ${({ theme }) => theme.fontSizes.sm};
-            
     }    
 `
 
 export const BalanceCurrency = styled.span`
     @media ${selectDesktop} {
         font-size: ${({ theme }) => theme.fontSizes.sm};
-            
     }    
 `
 
 export const Button = styled.button`
-
-    border: 2px solid ${({theme}) => theme.colors.borderColor};
+    border: 2px solid ${({ theme }) => theme.colors.borderColor};
     border-radius: 0 22px 22px 0;
-    width: 140px;
+    width: 100%;
     height: 44px;
-    margin-left: -2px;
     text-transform: uppercase;
+    padding: 12px 16px;
+
     &:enabled {
         background-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};
         color: ${({ theme }) => theme.colors.whiteTextColor};
@@ -108,6 +103,16 @@ export const Button = styled.button`
 
     &:disabled {
         cursor: auto;
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 50%;
+        text-align: left;
+        border-width: 2px 2px 2px 0;
+    }
+
+    @media screen and (max-width: 1279px) {
+        display: ${({location}) => location === '/report' ? 'none': 'block'};
     }
 
     @media ${selectTablet} {

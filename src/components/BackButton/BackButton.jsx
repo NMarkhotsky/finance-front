@@ -1,4 +1,4 @@
-import { Button } from "./BackButton.styled";
+import { Button, ButtonText } from "./BackButton.styled";
 import { Icon } from "../../shared/components/Icon/Icon";
 
 export const BackButton = () => {
@@ -6,7 +6,7 @@ export const BackButton = () => {
     <>
       <Button to="/">
         <Icon iconName="icon-arrow-back" width="24" height="24" />
-        Main page
+        <ButtonText>Main page</ButtonText>
       </Button>
     </>
   );
