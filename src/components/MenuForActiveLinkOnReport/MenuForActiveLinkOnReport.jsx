@@ -57,20 +57,28 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
 
   useEffect(() => {
     (async () => {
+      try {
         const {
           data: { report },
         } = await getIncomeCategory(date);
+        if (!report) return;
         setIncomeCategoriesList(report);
+      } catch (error) {
+        console.log(error);
       }
-    )();
+    })();
   }, [date, itemCategory]);
 
   useEffect(() => {
     (async () => {
+      try {
         const {
           data: { report },
         } = await getExpensesCategory(date);
         setExpensesCategoriesList(report);
+      } catch (error) {
+        console.log(error);
+      }
     })();
   }, [date, itemCategory]);
 
@@ -92,7 +100,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
           </ButtonIcon>
         </Container>
 
-       {activeTab === "expenses" && (
+        {activeTab === "expenses" && (
           <CategoriesList
             categoriesList={expensesCategoriesList}
             categories={CATEGORIES_EXPENSES}
@@ -107,7 +115,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
             activeTab={activeTab}
             addItemCategory={addItemCategory}
           />
-        )} 
+        )}
       </ContainerMain>
       <div>
         <BarChartComp categoryItem={itemCategory} date={date} />
