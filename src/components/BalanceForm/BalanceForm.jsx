@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { balanceSchema } from "../../constants/validationSchemas";
@@ -18,7 +19,13 @@ export const BalanceForm = () => {
     const initialValue = useCallback(() => {
         return user.balance ? formatSum(user.balance) : 0.00.toFixed(2);
     }, [user.balance])
+
     const dispatch = useDispatch();
+
+    const location = useLocation()
+    const currentLocation = location.pathname
+
+    console.log(currentLocation);
 
     const {
         register,
@@ -62,19 +69,24 @@ export const BalanceForm = () => {
         <>
             <FormBalance onSubmit={handleSubmit(onSubmit)}>
                 <BalanceLabel>Balance:</BalanceLabel>
-                <BalanceBar>
-                    <BalanceWrapper>
-                    <BalanceInput
-                        {...register('balance')}
-                        type="text"
-                        onChange={onInputChange}
-                        onBlur={handleInputBlur}
-                        disabled={isDisabled()}
-                    />
-                    <BalanceCurrency>UAH</BalanceCurrency>
-                </BalanceWrapper>
-                <Button disabled={isDisabled()}>Confirm</Button>
-            </BalanceBar>        
+                    <BalanceBar>
+                        <BalanceWrapper location={currentLocation}>
+                            <BalanceInput
+                                {...register('balance')}
+                                type="text"
+                                onChange={onInputChange}
+                                onBlur={handleInputBlur}
+                                disabled={isDisabled()}
+                                location={currentLocation}
+                            />
+                            <BalanceCurrency>UAH</BalanceCurrency>
+                    </BalanceWrapper>
+                    <Button
+                        location={currentLocation}
+                        disabled={isDisabled()}>
+                        Confirm
+                    </Button>
+                </BalanceBar>        
                 <p>{errors.balance?.message}</p>
             </FormBalance>
         </>
