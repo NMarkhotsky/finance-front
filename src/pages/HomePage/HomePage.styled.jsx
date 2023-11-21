@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { selectTablet } from "../../utils";
+import { selectDesktop, selectTablet } from "../../utils";
 
 export const Container = styled.div`
   display: flex;
@@ -14,5 +14,10 @@ export const Container = styled.div`
   @media ${selectTablet} {
     justify-content: space-between;
     flex-direction: row;
+    margin-bottom: 60px;
+  }
+
+  @media ${selectDesktop} {
+    margin-bottom: 8px;
   }
 `;

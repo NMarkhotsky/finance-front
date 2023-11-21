@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import { selectDesktop, selectTablet } from "../../utils";
 
 export const Container = styled.div`
-  padding-top: 60px;
   padding-bottom: 60px;
   @media screen and (max-width: 767px) {
     display: flex;
     flex-direction: column-reverse;
   }
+
 `;
 
 export const NavLinkList = styled.ul`
@@ -69,12 +69,12 @@ export const ContainerTransaction = styled.div`
   background-color: ${({ theme }) => theme.colors.mainBgdColor};
   padding-left: 32px;
   padding-right: 32px;
-  padding-top: 40px;
   padding-bottom: 32px;
   border-radius: 0px 30px 30px 30px;
 
   @media ${selectTablet} {
     box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
+    padding-top: 26px;
   }
 
     @media ${selectDesktop} {
@@ -85,6 +85,19 @@ export const ContainerTransaction = styled.div`
 export const AddTransactionBox = styled.div`
   display: flex;
   align-items: baseline;
+  justify-content: center;
+  
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+  }
+
+  @media ${selectTablet} {
+    gap: 44px;
+    align-items: stretch;
+  }
 `;
 
 export const TransactionTableBox = styled.div`

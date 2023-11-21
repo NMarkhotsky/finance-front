@@ -4,10 +4,15 @@ import { selectTablet, selectDesktop } from '../../utils/mediaRequest';
 export const AddTransactionForm = styled.form`
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 32px;
 
     @media ${selectTablet} {
         gap: 34px;
+    }
+
+    @media ${selectDesktop} {
+        flex-direction: row;
     }
 `
 export const DataWrapper = styled.div`
@@ -35,6 +40,7 @@ export const DescriptionInput = styled.input`
 
     @media ${selectTablet} {
         border-radius: 16px 0 0 0;
+        border: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor};
         width: 180px;
     }
 
@@ -50,12 +56,18 @@ export const CategoryInput = styled.div`
     padding: 0 10px;
     border: 2px solid ${({ theme }) => theme.colors.borderColor};
     margin-bottom: 32px;
+
+    @media screen and (max-width: 767px) {
+        border-width: 0 2px 2px 2px;
+    }
     
     @media ${selectTablet} {
         border-radius: 0;
         border-left: none;
         width: 186px;
         margin-bottom: 0;
+        border: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor};
+        border-width: 2px 0;
     }
 
 `
@@ -73,8 +85,8 @@ export const SumInput = styled.div`
 
     @media ${selectTablet} {
         border-radius: 0 16px 16px 0;
-        margin-left: -2px;
         width: 130px;
+        border: 2px solid ${({ theme }) => theme.colors.borderSecondaryColor};
     }
 `
 
@@ -130,7 +142,6 @@ export const ButtonsWrapper = styled.div`
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-top: 80px;
 `
 
 export const AcceptButton = styled.button`
