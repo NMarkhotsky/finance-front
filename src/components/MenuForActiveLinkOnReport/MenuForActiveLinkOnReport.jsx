@@ -24,7 +24,9 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   const [itemCategory, setItemCategory] = useState({});
 
   const addItemCategory = (data) => {
-    setItemCategory(data);
+    if (data) {
+      setItemCategory(data);
+    }
   };
 
   useEffect(() => {
@@ -35,21 +37,42 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     if (Object.keys(date).length === 0 || !date) return;
   }, [date]);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     if (itemCategory.activeTab === "expenses") {
+  //       const {
+  //         data: { report },
+  //       } = await getIncomeCategory(date);
+  //       console.log("reportInc", report);
+  //       setIncomeCategoriesList(report);
+  //     } else {
+  //       const {
+  //         data: { report },
+  //       } = await getExpensesCategory(date);
+  //       console.log("reportExp", report);
+  //       setExpensesCategoriesList(report);
+  //     }
+  //   })();
+  // }, [date, itemCategory]);
+
   useEffect(() => {
     (async () => {
-      if (itemCategory.activeTab === "expenses") {
         const {
           data: { report },
         } = await getIncomeCategory(date);
         setIncomeCategoriesList(report);
-      } else {
+      }
+    )();
+  }, [date, itemCategory]);
+
+  useEffect(() => {
+    (async () => {
         const {
           data: { report },
         } = await getExpensesCategory(date);
         setExpensesCategoriesList(report);
-      }
     })();
-  }, [date, itemCategory.activeTab]);
+  }, [date, itemCategory]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -69,7 +92,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
           </ButtonIcon>
         </Container>
 
-        {activeTab === "expenses" && (
+       {activeTab === "expenses" && (
           <CategoriesList
             categoriesList={expensesCategoriesList}
             categories={CATEGORIES_EXPENSES}
@@ -84,16 +107,15 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
             activeTab={activeTab}
             addItemCategory={addItemCategory}
           />
-        )}
+        )} 
       </ContainerMain>
       <div>
-        {" "}
-        <BarChartComp categoryItem={itemCategory} date={date}/>
+        <BarChartComp categoryItem={itemCategory} date={date} />
       </div>
     </section>
   );
 };
 
 MenuForActiveLinkOnReport.propTypes = {
- date: PropTypes.any
+  date: PropTypes.any,
 };

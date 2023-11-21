@@ -37,10 +37,10 @@ export const CategoriesList = ({
   return (
     <ListCategories>
       {categoriesList.map((item, idx) => {
-        const categoryObject = categories.find(
-          (category) => category.value === item.category
-        );
 
+  const categoryObject = categories.find(
+    (category) => category.value === item.category
+  );
         return (
           <CategoriesItem
             key={idx}
