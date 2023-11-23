@@ -1,8 +1,8 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchCurrentUser, login, logout, registration, addStartBalance } from './operations';
+import { fetchCurrentUser, login, logout, registration } from './operations';
 
 const initialState = {
-  user: { name: null, email: null, balance: null },
+  user: { name: null, email: null },
   token: null,
   isVerified: false,
   isLoggedIn: false,
@@ -36,35 +36,29 @@ const authSlice = createSlice({
     googleAuth: {
       reducer(state, action) {
         state.token = action.payload;
-      }
-    }
+      },
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, () => initialState)
+      .addCase(registration.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isVerified = false;
+        state.isRefreshing = false;
+        state.error = null;
+      })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.error = null;
       })
-      .addCase(addStartBalance.fulfilled, (state, action) => {
-        state.user.balance = action.payload
+      .addMatcher(isAnyOf(login.fulfilled), (state, action) => {
+        handleFulfilled(state, action);
       })
-      .addCase(addStartBalance.pending, (state) => {
-          state.isRefreshing = true;
-          state.error = null;
-      })
-      .addCase(addStartBalance.rejected, (state, action) => {
-          state.isRefreshing = false;
-          state.error = action.payload;
-      })
-      .addMatcher(
-        isAnyOf(login.fulfilled, registration.fulfilled),
-        (state, action) => {
-          handleFulfilled(state, action);
-        }
-      )
       .addMatcher(
         isAnyOf(
           login.pending,
