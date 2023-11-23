@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth/useAuth';
 import {
   HeaderContainer,
   LogoutButton,
@@ -8,11 +10,9 @@ import {
   UserWrapper,
 } from './Header.styled';
 import { Icon } from '../../shared/components/Icon/Icon';
-import { useAuth } from '../../hooks/useAuth/useAuth';
 import { logout } from '../../redux/auth/operations';
 import { ModalApproveAction } from '../../shared/components/ModalApproveAction/ModalApproveAction';
 import { ModalGlobal } from '../ModalGlobal/ModalGlobal';
-
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,9 @@ export const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <Icon iconName="icon-logo" width={90} height={31} />
+        <Link to={'/'}>
+          <Icon iconName="icon-logo" width={90} height={31} />
+        </Link>
         {isLoggedIn && user.name && (
           <UserWrapper>
             <UserLogo>{user.name.slice(0, 1).toUpperCase()}</UserLogo>
