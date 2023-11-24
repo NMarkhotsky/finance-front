@@ -15,11 +15,13 @@ import {
   CATEGORIES_INCOME,
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
+// import { useMyContext } from "../../utils";
 
 export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
+  // const { itemCategory } = useMyContext();
 
   useEffect(() => {
     if (Object.keys(date).length === 0 || !date) return;
@@ -27,17 +29,15 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
 
   // useEffect(() => {
   //   (async () => {
-  //     if (itemCategory.activeTab === "expenses") {
+  //     if (itemCategory.activeTab === 'expenses') {
   //       const {
   //         data: { report },
   //       } = await getIncomeCategory(date);
-  //       console.log("reportInc", report);
   //       setIncomeCategoriesList(report);
   //     } else {
   //       const {
   //         data: { report },
   //       } = await getExpensesCategory(date);
-  //       console.log("reportExp", report);
   //       setExpensesCategoriesList(report);
   //     }
   //   })();
@@ -73,8 +73,6 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-
-  console.log("date", date);
 
   return (
     <section>

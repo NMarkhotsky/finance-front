@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Text,
   ImageBox,
@@ -6,48 +6,41 @@ import {
   Img,
   ItemCategories,
   Title,
-} from './CategoriesItem.styled';
-import { Icon } from '../../shared/components/Icon/Icon';
-import { useEffect, useState } from 'react';
-import { formatSum } from '../../services/balanceFormServices';
-import { useMyContext } from '../../utils';
+} from "./CategoriesItem.styled";
+import { Icon } from "../../shared/components/Icon/Icon";
+import { useEffect } from "react";
+import { formatSum } from "../../services/balanceFormServices";
+import { useMyContext } from "../../utils";
 
 export const CategoriesItem = ({
   item,
   categoryObject,
-  index,
   handleItemClick,
-  isActive,
+  activeIndex,
   activeTab,
-  date,
+  index,
+  date
 }) => {
-  const [newDate, setNewDate] = useState(date);
-  // const [itemCategory, setItemCategory] = useState({});
-
   const { setCategory } = useMyContext();
 
-  useEffect(() => {
-    if (newDate !== date) {
-      setNewDate(date);
-    }
-  }, [date, newDate]);
+  const isActive = index === activeIndex;
 
   useEffect(() => {
-    if (isActive && newDate) {
-      // setCategory({ ...item, activeTab, newDate });
-      setCategory({ item, activeTab, newDate });
+    if (isActive) {
+      setCategory({ item, activeTab, date });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive, newDate]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, item, activeTab, date]);
 
   const handleClick = () => {
-    handleItemClick(index, item);
+    handleItemClick(index)
+    setCategory({ item, activeTab, date });
   };
 
   const correctSum = formatSum(item.total_sum);
 
   return (
-      <ItemCategories onClick={handleClick}>
+    <ItemCategories onClick={handleClick} $active={isActive}>
       <Text>{correctSum}</Text>
       <ImageBox>
         <ImgBackground>
@@ -55,7 +48,7 @@ export const CategoriesItem = ({
             iconName="icon-circle"
             width={59}
             height={46}
-            fill={isActive ? '#ffdac0' : '#F5F6FB'}
+            fill={isActive ? "#ffdac0" : "#F5F6FB"}
           />
         </ImgBackground>
         <Img>
@@ -63,7 +56,7 @@ export const CategoriesItem = ({
             iconName={categoryObject.image}
             width="56"
             height="56"
-            fill={isActive ? '#FF751D' : '#071F41'}
+            fill={isActive ? "#FF751D" : "#071F41"}
           />
         </Img>
       </ImageBox>
@@ -83,7 +76,7 @@ CategoriesItem.propTypes = {
   }).isRequired,
   index: PropTypes.number.isRequired,
   handleItemClick: PropTypes.func.isRequired,
-  isActive: PropTypes.bool,
+  activeIndex: PropTypes.number.isRequired,
   activeTab: PropTypes.string.isRequired,
   date: PropTypes.any,
 };

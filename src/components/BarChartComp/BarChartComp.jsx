@@ -40,7 +40,10 @@ export const BarChartComp = () => {
   console.log("itemCategoryBarChart", itemCategory);
 
   useEffect(() => {
-    if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
+    if (Object.keys(itemCategory).length === 0 || !itemCategory) {
+      setDataTransactions([]); 
+      return;
+    } 
   }, [itemCategory]);
 
   useEffect(() => {
@@ -49,24 +52,24 @@ export const BarChartComp = () => {
         itemCategory.activeTab &&
         itemCategory.item &&
         itemCategory.item.category &&
-        itemCategory.newDate
+        itemCategory.date
       ) {
         if (itemCategory.activeTab === "expenses") {
           const { report } = await getExpensesDescription(
             { category: itemCategory.item.category },
-            itemCategory.newDate
+            itemCategory.date
           );
           setDataTransactions(report);
         } else {
           const { report } = await getIncomeDescription(
             { category: itemCategory.item.category },
-            itemCategory.newDate
+            itemCategory.date
           );
           setDataTransactions(report);
         }
       }
     })();
-  }, [itemCategory.activeTab, itemCategory.item, itemCategory.newDate]);
+  }, [itemCategory.activeTab, itemCategory.item, itemCategory.date]);
 
   useEffect(() => {
     if (dataTransactions.length === 0) {
