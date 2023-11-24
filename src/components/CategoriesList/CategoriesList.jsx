@@ -9,47 +9,16 @@ export const CategoriesList = ({
   activeTab,
   date
 }) => {
-  const [itemsActiveState, setItemsActiveState] = useState([]);
-  const [newDate, setNewDate] = useState(date);
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (newDate !== date) {
-      setNewDate(date);
-    }
-  }, [date, newDate]);
-
-  useEffect(() => {
-    // При зміні date, встановлюємо всі елементи в стан "false"
-    setItemsActiveState((prevState) => prevState.map(() => false));
-    
-    // Потім встановлюємо перший елемент в "true"
-    setItemsActiveState((prevState) => {
-      const updatedState = [...prevState];
-      updatedState[0] = true;
-
-      if(newDate !== date) {
-        updatedState[0] = false;
-      }
-      console.log("updatedState", updatedState);
-      return updatedState;
-    });
-  }, [date, categories, newDate]);
-
-
+    setActiveIndex(0);
+  }, [date]);
 
   const handleItemClick = (index) => {
-      setItemsActiveState((prev) => {
-        const updatedState = [...prev];
-        updatedState.fill(false);
-        updatedState[index] = true;
-
-        if(newDate !== date) {
-          updatedState[0] = false;
-        }
-
-        return updatedState;
-      });
-    };
+    setActiveIndex(index);
+  };
 
   return (
 
@@ -59,6 +28,7 @@ export const CategoriesList = ({
     const categoryObject = categories.find(
       (category) => category.value === item.category
     );
+
           return (
             <CategoriesItem
               key={idx}
@@ -66,9 +36,9 @@ export const CategoriesList = ({
               item={item}
               categoryObject={categoryObject}
               handleItemClick={handleItemClick}
-              isActive={itemsActiveState[idx]}
+              activeIndex={activeIndex}
               activeTab={activeTab}
-              newDate={newDate}
+              date={date}
             />
           );
         })}

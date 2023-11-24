@@ -15,29 +15,32 @@ import { useMyContext } from "../../utils";
 export const CategoriesItem = ({
   item,
   categoryObject,
-  index,
   handleItemClick,
-  isActive,
+  activeIndex,
   activeTab,
-  newDate,
+  index,
+  date
 }) => {
   const { setCategory } = useMyContext();
 
+  const isActive = index === activeIndex;
+
   useEffect(() => {
-    if (isActive && newDate) {
-      setCategory({ item, activeTab, newDate });
+    if (isActive) {
+      setCategory({ item, activeTab, date });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive, newDate]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, item, activeTab, date]);
 
   const handleClick = () => {
-    handleItemClick(index, item);
+    handleItemClick(index)
+    setCategory({ item, activeTab, date });
   };
 
   const correctSum = formatSum(item.total_sum);
 
   return (
-    <ItemCategories onClick={handleClick}>
+    <ItemCategories onClick={handleClick} $active={isActive}>
       <Text>{correctSum}</Text>
       <ImageBox>
         <ImgBackground>
@@ -73,7 +76,7 @@ CategoriesItem.propTypes = {
   }).isRequired,
   index: PropTypes.number.isRequired,
   handleItemClick: PropTypes.func.isRequired,
-  isActive: PropTypes.bool,
+  activeIndex: PropTypes.number.isRequired,
   activeTab: PropTypes.string.isRequired,
-  newDate: PropTypes.any,
+  date: PropTypes.any,
 };
