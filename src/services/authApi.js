@@ -100,8 +100,19 @@ export const fetchUserByToken = async (persistedToken) => {
   
     return user;
   } catch (error) {
-
+  
     console.log(error);
+
+    if (error.status === 401) {
+      const newToken = await refreshToken()
+      if (newToken) {
+        const response = await axios.get('/current', newToken);
+
+        const user = response.data.user
+  
+        return user;
+      }
+    }
 
     // const { data } = await axios.post('auth/refresh', { withCredentials: true });
 
