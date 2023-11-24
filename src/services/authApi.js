@@ -105,12 +105,14 @@ export const fetchUserByToken = async (persistedToken) => {
 
     if (error.status === 401) {
       const newToken = await refreshToken()
-      if (newToken) {
-        const response = await axios.get('/current', newToken);
 
-        const user = response.data.user
+      console.log(newToken);
+      // if (newToken) {
+      //   const response = await axios.get('/current', newToken);
+
+      //   const user = response.data.user
   
-        return user;
+      //   return user;
       }
     }
 
@@ -127,7 +129,7 @@ export const fetchUserByToken = async (persistedToken) => {
     // }
         
     // throw error
-  }
+  // }
 
 };
 
