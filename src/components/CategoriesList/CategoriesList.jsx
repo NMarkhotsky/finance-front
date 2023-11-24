@@ -11,10 +11,15 @@ export const CategoriesList = ({
 }) => {
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [categoryList, setCategoryList] = useState(categoriesList); 
 
   useEffect(() => {
-    setActiveIndex(0);
-  }, [date]);
+if(categoryList !== categoriesList) {
+  setCategoryList(categoriesList);
+  setActiveIndex(0); 
+}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date, categoriesList])
 
   const handleItemClick = (index) => {
     setActiveIndex(index);
@@ -23,7 +28,7 @@ export const CategoriesList = ({
   return (
 
       <ListCategories>
-        {categoriesList.map((item, idx) => {
+        {categoryList.map((item, idx) => {
   
     const categoryObject = categories.find(
       (category) => category.value === item.category

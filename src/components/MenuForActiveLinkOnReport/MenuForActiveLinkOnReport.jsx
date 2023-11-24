@@ -21,6 +21,8 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
+  
+  const tabs = ["expenses", "income"];
   // const { itemCategory } = useMyContext();
 
   useEffect(() => {
@@ -70,20 +72,30 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     })();
   }, [date]);
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
+
+  const handleTabChange = (direction) => {
+    const currentIndex = tabs.indexOf(activeTab);
+    let newIndex;
+  
+    if (direction === "prev") {
+      newIndex = currentIndex === 0 ? tabs.length - 1 : currentIndex - 1;
+    } else if (direction === "next") {
+      newIndex = currentIndex === tabs.length - 1 ? 0 : currentIndex + 1;
+    }
+  
+    setActiveTab(tabs[newIndex]);
   };
 
   return (
     <section>
       <ContainerMain>
         <Container>
-          <ButtonIcon onClick={() => handleTabChange("expenses")}>
+          <ButtonIcon onClick={() => handleTabChange("prev")}>
             <Icon iconName="icon-arrow-left" width={4} height={10} />
           </ButtonIcon>
           <TabButton $active={activeTab === "expenses"}>Expenses</TabButton>
           <TabButton $active={activeTab === "income"}>Income</TabButton>
-          <ButtonIcon onClick={() => handleTabChange("income")}>
+          <ButtonIcon onClick={() => handleTabChange("next")}>
             <Icon iconName="icon-arrow-right" width={4} height={10} />
           </ButtonIcon>
         </Container>
