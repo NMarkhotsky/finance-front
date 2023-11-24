@@ -62,7 +62,11 @@ export const fetchCurrentUser = createAsyncThunk(
       console.log(e);
 
       if (e.status === 401) {
-        return await refreshToken().then(newToken => fetchCurrentUser(newToken));
+        const newToken = await refreshToken();
+        if (newToken) {
+          return fetchCurrentUser(newToken);
+        }
+        
       }
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
