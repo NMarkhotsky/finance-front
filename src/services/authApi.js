@@ -97,6 +97,7 @@ export const fetchUserByToken = async (persistedToken) => {
   //   data: { user },
   // } = await axios.get('/current');
 
+
   const response = await axios.get('/current').catch(async error => {
     console.log(error);
     if (error.response.status === 401) {
@@ -114,7 +115,6 @@ export const fetchUserByToken = async (persistedToken) => {
   console.log(response);
   return response.data.user; 
 
-  
 }
   // try {
   //   const response = await axios.get('/current', persistedToken);
