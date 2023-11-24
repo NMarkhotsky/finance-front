@@ -7,7 +7,6 @@ export const CategoriesList = ({
   categoriesList,
   categories,
   activeTab,
-  addItemCategory,
   date
 }) => {
   const [itemsActiveState, setItemsActiveState] = useState(
@@ -30,33 +29,33 @@ export const CategoriesList = ({
         const updatedState = [...prev];
         updatedState.fill(false);
         updatedState[index] = true;
-       
+
         return updatedState;
       });
     };
 
   return (
-    <ListCategories>
-      {categoriesList.map((item, idx) => {
 
-  const categoryObject = categories.find(
-    (category) => category.value === item.category
-  );
-        return (
-          <CategoriesItem
-            key={idx}
-            index={idx}
-            item={item}
-            categoryObject={categoryObject}
-            handleItemClick={handleItemClick}
-            isActive={itemsActiveState[idx]}
-            activeTab={activeTab}
-            addItemCategory={addItemCategory}
-            date={date}
-          />
-        );
-      })}
-    </ListCategories>
+      <ListCategories>
+        {categoriesList.map((item, idx) => {
+  
+    const categoryObject = categories.find(
+      (category) => category.value === item.category
+    );
+          return (
+            <CategoriesItem
+              key={idx}
+              index={idx}
+              item={item}
+              categoryObject={categoryObject}
+              handleItemClick={handleItemClick}
+              isActive={itemsActiveState[idx]}
+              activeTab={activeTab}
+              date={date}
+            />
+          );
+        })}
+      </ListCategories>
   );
 };
 
@@ -64,6 +63,5 @@ CategoriesList.propTypes = {
   categoriesList: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
   activeTab: PropTypes.string.isRequired,
-  addItemCategory: PropTypes.func.isRequired,
   date: PropTypes.any
 };

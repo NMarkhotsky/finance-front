@@ -1,5 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState, useMemo} from "react";
 import {
   ResponsiveContainer,
   BarChart,
@@ -11,6 +10,7 @@ import {
 } from "recharts";
 import { getExpensesDescription } from "../../services/expensesApi";
 import { getIncomeDescription } from "../../services/incomeApi";
+import { useMyContext } from "../../utils";
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
@@ -31,37 +31,42 @@ const measureText14HelveticaNeue = (text, fontSize) => {
   return ctx.measureText(text).width;
 };
 
-export const BarChartComp = ({ categoryItem }) => {
+export const BarChartComp = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
 
-  
-  console.log("categoryItem", categoryItem);
+  const { itemCategory } = useMyContext();
+
+  console.log("itemCategoryBarChart", itemCategory);
+
+  useEffect(() => {
+    if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
+  }, [itemCategory]);
 
   useEffect(() => {
     (async () => {
       if (
-        categoryItem.activeTab &&
-        categoryItem.item &&
-        categoryItem.item.category &&
-        categoryItem.newDate
+        itemCategory.activeTab &&
+        itemCategory.item &&
+        itemCategory.item.category &&
+        itemCategory.newDate
       ) {
-        if (categoryItem.activeTab === "expenses") {
+        if (itemCategory.activeTab === "expenses") {
           const { report } = await getExpensesDescription(
-            { category: categoryItem.item.category },
-            categoryItem.newDate
+            { category: itemCategory.item.category },
+            itemCategory.newDate
           );
           setDataTransactions(report);
         } else {
           const { report } = await getIncomeDescription(
-            { category: categoryItem.item.category },
-            categoryItem.newDate
+            { category: itemCategory.item.category },
+            itemCategory.newDate
           );
           setDataTransactions(report);
         }
       }
     })();
-  }, [categoryItem.activeTab, categoryItem.item, categoryItem.newDate]);
+  }, [itemCategory.activeTab, itemCategory.item, itemCategory.newDate]);
 
   useEffect(() => {
     if (dataTransactions.length === 0) {
@@ -233,7 +238,3 @@ export const BarChartComp = ({ categoryItem }) => {
   );
 };
 
-BarChartComp.propTypes = {
-  categoryItem: PropTypes.object.isRequired,
-  activeTab: PropTypes.string,
-};

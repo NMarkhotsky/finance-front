@@ -10,6 +10,7 @@ import {
 import { Icon } from '../../shared/components/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { formatSum } from '../../services/balanceFormServices';
+import { useMyContext } from '../../utils';
 
 export const CategoriesItem = ({
   item,
@@ -18,10 +19,12 @@ export const CategoriesItem = ({
   handleItemClick,
   isActive,
   activeTab,
-  addItemCategory,
   date,
 }) => {
   const [newDate, setNewDate] = useState(date);
+  // const [itemCategory, setItemCategory] = useState({});
+
+  const { setCategory } = useMyContext();
 
   useEffect(() => {
     if (newDate !== date) {
@@ -31,7 +34,8 @@ export const CategoriesItem = ({
 
   useEffect(() => {
     if (isActive && newDate) {
-      addItemCategory({ item, activeTab, newDate });
+      // setCategory({ ...item, activeTab, newDate });
+      setCategory({ item, activeTab, newDate });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, newDate]);
@@ -43,7 +47,7 @@ export const CategoriesItem = ({
   const correctSum = formatSum(item.total_sum);
 
   return (
-    <ItemCategories onClick={handleClick}>
+      <ItemCategories onClick={handleClick}>
       <Text>{correctSum}</Text>
       <ImageBox>
         <ImgBackground>
@@ -81,6 +85,5 @@ CategoriesItem.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   activeTab: PropTypes.string.isRequired,
-  addItemCategory: PropTypes.func.isRequired,
   date: PropTypes.any,
 };
