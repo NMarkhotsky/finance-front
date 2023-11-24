@@ -12,41 +12,38 @@ const authHeader = {
   },
 };
 
-axios.interceptors.response.use(
-  response => response,
-  async error => {
-    const prevRequest = error
+// axios.interceptors.response.use(
+//   response => response,
+//   async error => {
+//     const prevRequest = error
 
-    console.log(prevRequest, 'prevRequest');
-    try {
-      if (error?.response?.status == 401 && !prevRequest.sent) {
-        prevRequest.sent = true;
+//     console.log(prevRequest);
+//     try {
+//       if (error?.response?.status == 401 && !prevRequest.sent) {
+//         prevRequest.sent = true;
 
-        // const cookieToken = await hasTokenInCookies();
+//         // const cookieToken = await hasTokenInCookies();
 
-        // if (cookieToken) {
-        const response = await axios.post('auth/refresh', {}, { withCredentials: true });
+//         // if (cookieToken) {
+//         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
         
-        console.log(response, 'response');
+//         console.log(response, 'response');
 
-          if (response?.status == 200) {
-            authHeader.set(response.data.token);
+//           if (response?.status == 200) {
+//             authHeader.set(response.data.token);
 
-            return await fetchUserByToken(response.data.token)
-          }
-        // }
-        console.log(response, 'response from refresh');
+//             return 
+//           }
+//         // }
+        
 
-      }
-
-      return Promise.reject(error)
-
-    } catch (refreshError) {
-      console.error('Error refreshing token:', refreshError);
-      throw refreshError;
-    }
-
-})
+//       }
+//     } catch (refreshError) {
+//       console.error('Error refreshing token:', refreshError);
+//       throw refreshError;
+//     }
+//     return Promise.reject(error)
+// })
 
 export const registerUser = async (credentials) => {
   const { data } = await axios.post('auth/register', credentials);
@@ -81,20 +78,20 @@ export const fetchUserByToken = async (persistedToken) => {
   
     return user;
   } catch (error) {
-    console.log(error, 'error from catch current');
-    // const { data } = await axios.post('auth/refresh', {}, { withCredentials: true });
 
-    // console.log(data, 'response');
-    // authHeader.set(data.token);
-    // const response = await axios.get('/current', data.token);
+    const { data } = await axios.post('auth/refresh', {}, { withCredentials: true });
 
-    // if (response.status == 200) {
-    //   const user = response.data.user
+    console.log(data, 'response');
+    authHeader.set(data.token);
+    const response = await axios.get('/current', data.token);
+
+    if (response.status == 200) {
+      const user = response.data.user
   
-    //   return user;
-    // }
+      return user;
+    }
         
-    // throw error
+    throw error
   }
 
 };
