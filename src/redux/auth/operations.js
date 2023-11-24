@@ -53,8 +53,15 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
+    const savedToken = localStorage.getItem('token')
+
+
     try {
-      return fetchUserByToken(persistedToken);
+      if (savedToken) {
+        return fetchUserByToken(savedToken).then(localStorage.removeItem('token'));
+      } else {
+        return fetchUserByToken(persistedToken)
+      }
     } catch (e) {
       console.log(e);
       return thunkAPI.rejectWithValue(e.response.data.message);
