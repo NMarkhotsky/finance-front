@@ -101,7 +101,7 @@ export const fetchUserByToken = async (persistedToken) => {
     return user;
   } catch (error) {
 
-    const { data } = await axios.post('auth/refresh', {}, { withCredentials: true });
+    const { data } = await axios.post('auth/refresh', { withCredentials: true });
 
     console.log(data, 'response');
     authHeader.set(data.token);
