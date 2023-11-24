@@ -4,6 +4,7 @@ import {
   loginUser,
   logoutUser,
   registerUser,
+  refreshToken
 } from '../../services/authApi';
 import { addBalance } from '../../services/balanceApi';
 import { ShowToast } from '../../utils';
@@ -53,17 +54,17 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
-    const savedToken = localStorage.getItem('token')
-
-
     try {
-      if (savedToken) {
-        return fetchUserByToken(savedToken).then(localStorage.removeItem('token'));
-      } else {
+      
         return fetchUserByToken(persistedToken)
-      }
+      
     } catch (e) {
       console.log(e);
+
+      if (e.status === 401) {
+        const newToken = await refreshToken();
+        return fetchCurrentUser(newToken);
+      }
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
