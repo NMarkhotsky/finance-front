@@ -140,7 +140,6 @@ export const BarChartComp = () => {
           <BarChart
             data={modifiedData}
             layout="vertical"
-            margin={{ left: 10, right: maxTextWidth }}
           >
             <XAxis hide axisLine={false} type="number" />
             <YAxis
@@ -176,7 +175,7 @@ export const BarChartComp = () => {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        <ResponsiveContainer width="100%" height={470}>
+        <ResponsiveContainer width="100%" >
           <BarChart
             data={modifiedData}
             margin={{ left: 10, right: maxTextWidth, top: 20 }}
