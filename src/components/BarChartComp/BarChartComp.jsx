@@ -31,30 +31,43 @@ const measureText14HelveticaNeue = (text, fontSize) => {
   return ctx.measureText(text).width;
 };
 
-export const BarChartComp = ({ categoryItem, date }) => {
-
+export const BarChartComp = ({ categoryItem }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
 
+  
+  console.log("categoryItem", categoryItem);
+
   useEffect(() => {
     (async () => {
-      if (categoryItem.activeTab && categoryItem.item && categoryItem.item.category) {
+      if (
+        categoryItem.activeTab &&
+        categoryItem.item &&
+        categoryItem.item.category &&
+        categoryItem.newDate
+      ) {
         if (categoryItem.activeTab === "expenses") {
-          const { report } = await getExpensesDescription({ category: categoryItem.item.category }, date);
+          const { report } = await getExpensesDescription(
+            { category: categoryItem.item.category },
+            categoryItem.newDate
+          );
           setDataTransactions(report);
         } else {
-          const { report } = await getIncomeDescription({ category: categoryItem.item.category }, date);
+          const { report } = await getIncomeDescription(
+            { category: categoryItem.item.category },
+            categoryItem.newDate
+          );
           setDataTransactions(report);
         }
       }
     })();
-  }, [categoryItem.activeTab, categoryItem.item, date]);
+  }, [categoryItem.activeTab, categoryItem.item, categoryItem.newDate]);
 
   useEffect(() => {
-    if(dataTransactions.length === 0) {
-      return; 
+    if (dataTransactions.length === 0) {
+      return;
     }
-  })
+  });
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -158,7 +171,7 @@ export const BarChartComp = ({ categoryItem, date }) => {
         <ResponsiveContainer width="100%" height={470}>
           <BarChart
             data={modifiedData}
-             margin={{ left: 10, right: maxTextWidth, top: 20 }}
+            margin={{ left: 10, right: maxTextWidth, top: 20 }}
             layout="horizontal"
           >
             <XAxis
@@ -166,7 +179,7 @@ export const BarChartComp = ({ categoryItem, date }) => {
               type="category"
               dataKey="description"
               tickLine={false}
-              align="center" 
+              align="center"
             />
             <YAxis
               axisLine={false}
@@ -223,5 +236,4 @@ export const BarChartComp = ({ categoryItem, date }) => {
 BarChartComp.propTypes = {
   categoryItem: PropTypes.object.isRequired,
   activeTab: PropTypes.string,
-  date: PropTypes.any
 };

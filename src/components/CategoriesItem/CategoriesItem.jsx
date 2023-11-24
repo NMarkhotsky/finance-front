@@ -7,8 +7,8 @@ import {
   ItemCategories,
   Title,
 } from './CategoriesItem.styled';
-import { IconCategories } from '../../shared/components/IconCategories';
-import { useEffect } from 'react';
+import { Icon } from '../../shared/components/Icon/Icon';
+import { useEffect, useState } from 'react';
 import { formatSum } from '../../services/balanceFormServices';
 
 export const CategoriesItem = ({
@@ -19,13 +19,22 @@ export const CategoriesItem = ({
   isActive,
   activeTab,
   addItemCategory,
+  date,
 }) => {
+  const [newDate, setNewDate] = useState(date);
+
   useEffect(() => {
-    if (isActive) {
-      addItemCategory({ item, activeTab });
+    if (newDate !== date) {
+      setNewDate(date);
+    }
+  }, [date, newDate]);
+
+  useEffect(() => {
+    if (isActive && newDate) {
+      addItemCategory({ item, activeTab, newDate });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive]);
+  }, [isActive, newDate]);
 
   const handleClick = () => {
     handleItemClick(index, item);
@@ -38,7 +47,7 @@ export const CategoriesItem = ({
       <Text>{correctSum}</Text>
       <ImageBox>
         <ImgBackground>
-          <IconCategories
+          <Icon
             iconName="icon-circle"
             width={59}
             height={46}
@@ -46,7 +55,7 @@ export const CategoriesItem = ({
           />
         </ImgBackground>
         <Img>
-          <IconCategories
+          <Icon
             iconName={categoryObject.image}
             width="56"
             height="56"
@@ -73,4 +82,5 @@ CategoriesItem.propTypes = {
   isActive: PropTypes.bool,
   activeTab: PropTypes.string.isRequired,
   addItemCategory: PropTypes.func.isRequired,
+  date: PropTypes.any,
 };
