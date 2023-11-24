@@ -58,15 +58,7 @@ export const fetchCurrentUser = createAsyncThunk(
         return fetchUserByToken(persistedToken)
       
     } catch (e) {
-      // console.log(e);
-
-      // if (e.status === 401) {
-      //   const newToken = await refreshToken();
-      //   if (newToken) {
-      //     return fetchCurrentUser(newToken);
-      //   }
-        
-      // }
+      
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
