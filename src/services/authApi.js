@@ -17,34 +17,49 @@ axios.interceptors.response.use(
   async error => {
     const prevRequest = error
 
-    console.log(prevRequest, 'prevRequest');
-    try {
-      if (error?.response?.status == 401 && !prevRequest.sent) {
-        prevRequest.sent = true;
+    console.log(prevRequest.response.status, 'prevRequest');
 
-        // const cookieToken = await hasTokenInCookies();
-
-        // if (cookieToken) {
+    if (prevRequest.response?.status === 401 && !prevRequest.sent) {
+      console.log(prevRequest.response.status, 'prevRequest.response?.status ? == 401');
+      console.log(prevRequest.config.send, 'prevRequest.response?.status ? == 401     prevRequest.send' );
+      prevRequest.sent = true
+      console.log(prevRequest.sent, 'prevRequest.response?.status ? == 401     prevRequest.send' );
+      try {
         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
-        
-        console.log(response, 'response');
-
-          if (response?.status == 200) {
-            authHeader.set(response.data.token);
-
-            return await fetchUserByToken(response.data.token)
-          }
-        // }
-        console.log(response, 'response from refresh');
-
+        console.log(response, 'prevRequest.response?.status ? == 401  response');
+        localStorage.setItem('token', response.data.token)
+        return
+      } catch (error) {
+        console.log(error, 'prevRequest.response?.status ? == 401  error');
       }
+    } 
+    // try {
+    //   if (error?.response?.status == 401 && !prevRequest.sent) {
+    //     prevRequest.sent = true;
 
-      return Promise.reject(error)
+    //     // const cookieToken = await hasTokenInCookies();
 
-    } catch (refreshError) {
-      console.error('Error refreshing token:', refreshError);
-      throw refreshError;
-    }
+    //     // if (cookieToken) {
+    //     const response = await axios.post('auth/refresh', {}, { withCredentials: true });
+        
+    //     console.log(response, 'response');
+
+    //       if (response?.status == 200) {
+    //         authHeader.set(response.data.token);
+
+    //         return await fetchUserByToken(response.data.token)
+    //       }
+    //     // }
+    //     console.log(response, 'response from refresh');
+
+    //   }
+
+    //   return Promise.reject(error)
+
+    // } catch (refreshError) {
+    //   console.error('Error refreshing token:', refreshError);
+    //   throw refreshError;
+    // }
 
 })
 
