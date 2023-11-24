@@ -12,6 +12,39 @@ const authHeader = {
   },
 };
 
+// axios.interceptors.response.use(
+//   response => response,
+//   async error => {
+//     const prevRequest = error
+
+//     console.log(prevRequest);
+//     try {
+//       if (error?.response?.status == 401 && !prevRequest.sent) {
+//         prevRequest.sent = true;
+
+//         // const cookieToken = await hasTokenInCookies();
+
+//         // if (cookieToken) {
+//         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
+        
+//         console.log(response, 'response');
+
+//           if (response?.status == 200) {
+//             authHeader.set(response.data.token);
+
+//             return 
+//           }
+//         // }
+        
+
+//       }
+//     } catch (refreshError) {
+//       console.error('Error refreshing token:', refreshError);
+//       throw refreshError;
+//     }
+//     return Promise.reject(error)
+// })
+
 export const registerUser = async (credentials) => {
   const { data } = await axios.post('auth/register', credentials);
 
@@ -38,9 +71,28 @@ export const logoutUser = async () => {
 export const fetchUserByToken = async (persistedToken) => {
   authHeader.set(persistedToken);
 
-  const {
-    data: { user },
-  } = await axios.get('/current');
+  try {
+    const response = await axios.get('/current', persistedToken);
 
-  return user;
+    const user = response.data.user
+  
+    return user;
+  } catch (error) {
+
+    const { data } = await axios.post('auth/refresh', {}, { withCredentials: true });
+
+    console.log(data, 'response');
+    authHeader.set(data.token);
+    const response = await axios.get('/current', data.token);
+
+    if (response.status == 200) {
+      const user = response.data.user
+  
+      return user;
+    }
+        
+    throw error
+  }
+
 };
+
