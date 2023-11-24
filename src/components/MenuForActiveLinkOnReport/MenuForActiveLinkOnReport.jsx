@@ -21,22 +21,6 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
 
-  const [itemCategory, setItemCategory] = useState({});
-
-  useEffect(() => {
-if(!date) return; 
-  }, [date])
-
-  const addItemCategory = (data) => {
-    if (data) {
-      setItemCategory(data);
-    }
-  };
-
-  useEffect(() => {
-    if (Object.keys(itemCategory).length === 0 || !itemCategory) return;
-  }, [itemCategory]);
-
   useEffect(() => {
     if (Object.keys(date).length === 0 || !date) return;
   }, [date]);
@@ -71,7 +55,7 @@ if(!date) return;
         console.log(error);
       }
     })();
-  }, [date, itemCategory]);
+  }, [date]);
 
   useEffect(() => {
     (async () => {
@@ -84,7 +68,7 @@ if(!date) return;
         console.log(error);
       }
     })();
-  }, [date, itemCategory]);
+  }, [date]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -111,7 +95,6 @@ if(!date) return;
             categoriesList={expensesCategoriesList}
             categories={CATEGORIES_EXPENSES}
             activeTab={activeTab}
-            addItemCategory={addItemCategory}
             date={date}
           />
         )}
@@ -120,13 +103,12 @@ if(!date) return;
             categoriesList={incomeCategoriesList}
             categories={CATEGORIES_INCOME}
             activeTab={activeTab}
-            addItemCategory={addItemCategory}
             date={date}
           />
         )}
       </ContainerMain>
       <div>
-        <BarChartComp categoryItem={itemCategory} date={date} />
+        <BarChartComp />
       </div>
     </section>
   );
