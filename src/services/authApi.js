@@ -96,20 +96,20 @@ export const fetchUserByToken = async (persistedToken) => {
   
     return user;
   } catch (error) {
-    console.log(error, 'error from catch current');
-    // const { data } = await axios.post('auth/refresh', {}, { withCredentials: true });
 
-    // console.log(data, 'response');
-    // authHeader.set(data.token);
-    // const response = await axios.get('/current', data.token);
+    const { data } = await axios.post('auth/refresh', {}, { withCredentials: true });
 
-    // if (response.status == 200) {
-    //   const user = response.data.user
+    console.log(data, 'response');
+    authHeader.set(data.token);
+    const response = await axios.get('/current', data.token);
+
+    if (response.status == 200) {
+      const user = response.data.user
   
-    //   return user;
-    // }
+      return user;
+    }
         
-    // throw error
+    throw error
   }
 
 };

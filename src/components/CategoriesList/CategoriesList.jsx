@@ -8,6 +8,7 @@ export const CategoriesList = ({
   categories,
   activeTab,
   addItemCategory,
+  date
 }) => {
   const [itemsActiveState, setItemsActiveState] = useState(
     new Array(categoriesList.length).fill(false)
@@ -51,6 +52,7 @@ export const CategoriesList = ({
             isActive={itemsActiveState[idx]}
             activeTab={activeTab}
             addItemCategory={addItemCategory}
+            date={date}
           />
         );
       })}
@@ -62,5 +64,6 @@ CategoriesList.propTypes = {
   categoriesList: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
   activeTab: PropTypes.string.isRequired,
-  addItemCategory: PropTypes.func.isRequired
+  addItemCategory: PropTypes.func.isRequired,
+  date: PropTypes.any
 };

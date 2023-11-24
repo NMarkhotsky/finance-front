@@ -23,6 +23,10 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
 
   const [itemCategory, setItemCategory] = useState({});
 
+  useEffect(() => {
+if(!date) return; 
+  }, [date])
+
   const addItemCategory = (data) => {
     if (data) {
       setItemCategory(data);
@@ -86,6 +90,8 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     setActiveTab(tab);
   };
 
+  console.log("date", date);
+
   return (
     <section>
       <ContainerMain>
@@ -106,6 +112,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
             categories={CATEGORIES_EXPENSES}
             activeTab={activeTab}
             addItemCategory={addItemCategory}
+            date={date}
           />
         )}
         {activeTab === "income" && (
@@ -114,6 +121,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
             categories={CATEGORIES_INCOME}
             activeTab={activeTab}
             addItemCategory={addItemCategory}
+            date={date}
           />
         )}
       </ContainerMain>
