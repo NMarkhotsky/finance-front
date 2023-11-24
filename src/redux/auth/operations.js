@@ -58,7 +58,7 @@ export const fetchCurrentUser = createAsyncThunk(
         return fetchUserByToken(persistedToken)
       
     } catch (e) {
-      console.log(e);
+      // console.log(e);
 
       // if (e.status === 401) {
       //   const newToken = await refreshToken();
