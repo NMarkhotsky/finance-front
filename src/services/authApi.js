@@ -90,32 +90,7 @@ export const logoutUser = async () => {
   return data;
 };
 
-export const fetchUserByToken = async (persistedToken) => {
-  authHeader.set(persistedToken);
 
-  // const {
-  //   data: { user },
-  // } = await axios.get('/current');
-
-  const response = await axios.get('/current').catch(async error => {
-    console.log(error);
-    if (error.response.status === 401) {
-      console.log(error.response.status, 'error.response.status');
-      const newToken = await refreshToken();
-      authHeader.set(newToken)
-      const resp = await axios.get('/current')
-      console.log(resp, 'current user after 401');
-      if (resp) {
-        return resp.data.user
-      }
-      console.log(error);
-    }
-  });
-  console.log(response);
-  return response.data.user; 
-
-  
-}
   // try {
   //   const response = await axios.get('/current', persistedToken);
 
