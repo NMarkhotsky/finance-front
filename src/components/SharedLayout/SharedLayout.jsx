@@ -6,9 +6,9 @@ import { Background } from '../../shared/components/Background/Background';
 export const SharedLayout = () => {
   return (
     <>
+      <Background />
       <Header />
       <Main>
-        <Background />
         <AppRoutes />
       </Main>
     </>

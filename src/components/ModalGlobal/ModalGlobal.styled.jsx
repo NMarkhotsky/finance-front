@@ -4,61 +4,59 @@ import { selectTablet } from '../../utils/mediaRequest';
 
 export const Modal = styled.div`
   width: 380px;
-  padding-top: 50px;
+  padding-top: 60px;
   padding-bottom: 60px;
   position: relative;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.mainBgdColor};
 
   @media ${selectTablet} {
-    height: 194px; 
+    height: 194px;
   }
 `;
 
 export const Title = styled.h2`
-text-align: center;
-color: ${({ theme }) => theme.colors.mainTextColor};
-font-size: ${props => props.theme.fontSizes.sm};
-font-family: ${props => props.theme.fonts.medium};
-letter-spacing: 0.28px;
-
+  text-align: center;
+  color: ${({ theme }) => theme.colors.mainTextColor};
+  font-size: ${(props) => props.theme.fontSizes.sm};
+  font-family: ${(props) => props.theme.fonts.medium};
+  letter-spacing: 0.28px;
 
   /* @media ${selectTablet} {
     margin-bottom: 40px;
-    font-size: ${props => props.theme.fontSizes.xxl};
+    font-size: ${(props) => props.theme.fontSizes.xxl};
     line-height: 49px;
   }  */
 `;
 
 export const BtnWrapper = styled.div`
-margin-top: 20px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
-  gap: 15px; 
+  align-items: center;
+  gap: 15px;
 
-   @media ${selectTablet} {
+  @media ${selectTablet} {
     flex-direction: row;
     gap: 15px;
-  } 
+  }
 
   :hover {
-background-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};  
-border-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};
-}
+    background-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};
+    border-color: ${({ theme }) => theme.colors.btnBgdSecondaryColor};
+  }
 
-:hover p {
-  color: ${({ theme }) => theme.colors.mainBgdColor}; 
-}
+  :hover p {
+    color: ${({ theme }) => theme.colors.mainBgdColor};
+  }
 `;
 
 export const Button = styled.button`
-width: 125px;
-border-radius: 16px;
-padding: 12px 0;
-border: 2px solid ${({ theme }) => theme.colors.whiteTextColor};
-
+  width: 125px;
+  border-radius: 16px;
+  padding: 12px 0;
+  border: 2px solid ${({ theme }) => theme.colors.whiteTextColor};
 
   /* position: relative; */
   /* width: 100%;
@@ -91,12 +89,12 @@ border: 2px solid ${({ theme }) => theme.colors.whiteTextColor};
 `;
 
 export const ButtonText = styled.p`
-color: ${({ theme }) => theme.colors.mainTextColor};
-font-size: ${props => props.theme.fontSizes.xs};
-letter-spacing: 0.24px;
-text-transform: uppercase;
-font-family: ${props => props.theme.fonts.bold};
-z-index: 5;
+  color: ${({ theme }) => theme.colors.mainTextColor};
+  font-size: ${(props) => props.theme.fontSizes.xs};
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
+  font-family: ${(props) => props.theme.fonts.bold};
+  z-index: 5;
 `;
 
 export const IconWrapper = styled.div`

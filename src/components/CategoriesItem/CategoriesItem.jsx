@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   Text,
   ImageBox,
@@ -6,10 +6,10 @@ import {
   Img,
   ItemCategories,
   Title,
-} from "./CategoriesItem.styled";
-import { IconCategories } from "../../shared/components/IconCategories";
-import { useEffect } from "react";
-import { formatSum } from "../../services/balanceFormServices";
+} from './CategoriesItem.styled';
+import { IconCategories } from '../../shared/components/IconCategories';
+import { useEffect } from 'react';
+import { formatSum } from '../../services/balanceFormServices';
 
 export const CategoriesItem = ({
   item,
@@ -42,7 +42,7 @@ export const CategoriesItem = ({
             iconName="icon-circle"
             width={59}
             height={46}
-            fill={isActive ? "#ffdac0" : "#F5F6FB"}
+            fill={isActive ? '#ffdac0' : '#F5F6FB'}
           />
         </ImgBackground>
         <Img>
@@ -50,7 +50,7 @@ export const CategoriesItem = ({
             iconName={categoryObject.image}
             width="56"
             height="56"
-            fill={isActive ? "#FF751D" : "#071F41"}
+            fill={isActive ? '#FF751D' : '#071F41'}
           />
         </Img>
       </ImageBox>

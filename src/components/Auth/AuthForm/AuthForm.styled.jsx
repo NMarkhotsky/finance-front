@@ -1,6 +1,27 @@
 import styled from 'styled-components';
 import { selectDesktop, selectTablet } from '../../../utils/mediaRequest';
 
+export const AuthContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  gap: 50px;
+  margin-top: 86px;
+
+  @media ${selectTablet} {
+    gap: 80px;
+    margin-top: 80px;
+    align-items: center;
+  }
+
+  @media ${selectDesktop} {
+    flex-direction: row;
+    gap: 160px;
+    margin-top: 117px;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -21,7 +42,8 @@ export const Form = styled.form`
     width: 426px;
     /* height: 600px; */
 
-    margin: 0 auto;
+    margin-top: 0px;
+
     padding: 56px 84px;
 
     border-radius: 30px;
@@ -30,7 +52,7 @@ export const Form = styled.form`
   }
 
   @media ${selectDesktop} {
-    margin: 117px 91px 0 auto;
+    /* margin: 117px 0 0 0; */
 
     box-shadow: ${({ theme }) => theme.boxShadowColor.desktop};
   }
