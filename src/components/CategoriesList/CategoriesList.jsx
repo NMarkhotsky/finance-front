@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ListCategories } from "./CategoriesList.styled";
 import { CategoriesItem } from "../CategoriesItem/CategoriesItem";
 
@@ -9,26 +9,43 @@ export const CategoriesList = ({
   activeTab,
   date
 }) => {
-  const [itemsActiveState, setItemsActiveState] = useState(
-    new Array(categoriesList.length).fill(false)
-  ); 
+  const [itemsActiveState, setItemsActiveState] = useState([]);
+  const [newDate, setNewDate] = useState(date);
 
-  if (
-    categoriesList.length > 0 &&
-    !itemsActiveState.some((isActive) => isActive)
-  ) {
-    setItemsActiveState((prev) => {
-      const updatedState = [...prev];
+  useEffect(() => {
+    if (newDate !== date) {
+      setNewDate(date);
+    }
+  }, [date, newDate]);
+
+  useEffect(() => {
+    // При зміні date, встановлюємо всі елементи в стан "false"
+    setItemsActiveState((prevState) => prevState.map(() => false));
+    
+    // Потім встановлюємо перший елемент в "true"
+    setItemsActiveState((prevState) => {
+      const updatedState = [...prevState];
       updatedState[0] = true;
+
+      if(newDate !== date) {
+        updatedState[0] = false;
+      }
+      console.log("updatedState", updatedState);
       return updatedState;
     });
-  }
+  }, [date, categories, newDate]);
+
+
 
   const handleItemClick = (index) => {
       setItemsActiveState((prev) => {
         const updatedState = [...prev];
         updatedState.fill(false);
         updatedState[index] = true;
+
+        if(newDate !== date) {
+          updatedState[0] = false;
+        }
 
         return updatedState;
       });
@@ -51,7 +68,7 @@ export const CategoriesList = ({
               handleItemClick={handleItemClick}
               isActive={itemsActiveState[idx]}
               activeTab={activeTab}
-              date={date}
+              newDate={newDate}
             />
           );
         })}

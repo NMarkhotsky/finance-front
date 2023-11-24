@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Text,
   ImageBox,
@@ -6,11 +6,11 @@ import {
   Img,
   ItemCategories,
   Title,
-} from './CategoriesItem.styled';
-import { Icon } from '../../shared/components/Icon/Icon';
-import { useEffect, useState } from 'react';
-import { formatSum } from '../../services/balanceFormServices';
-import { useMyContext } from '../../utils';
+} from "./CategoriesItem.styled";
+import { Icon } from "../../shared/components/Icon/Icon";
+import { useEffect } from "react";
+import { formatSum } from "../../services/balanceFormServices";
+import { useMyContext } from "../../utils";
 
 export const CategoriesItem = ({
   item,
@@ -19,22 +19,12 @@ export const CategoriesItem = ({
   handleItemClick,
   isActive,
   activeTab,
-  date,
+  newDate,
 }) => {
-  const [newDate, setNewDate] = useState(date);
-  // const [itemCategory, setItemCategory] = useState({});
-
   const { setCategory } = useMyContext();
 
   useEffect(() => {
-    if (newDate !== date) {
-      setNewDate(date);
-    }
-  }, [date, newDate]);
-
-  useEffect(() => {
     if (isActive && newDate) {
-      // setCategory({ ...item, activeTab, newDate });
       setCategory({ item, activeTab, newDate });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,7 +37,7 @@ export const CategoriesItem = ({
   const correctSum = formatSum(item.total_sum);
 
   return (
-      <ItemCategories onClick={handleClick}>
+    <ItemCategories onClick={handleClick}>
       <Text>{correctSum}</Text>
       <ImageBox>
         <ImgBackground>
@@ -55,7 +45,7 @@ export const CategoriesItem = ({
             iconName="icon-circle"
             width={59}
             height={46}
-            fill={isActive ? '#ffdac0' : '#F5F6FB'}
+            fill={isActive ? "#ffdac0" : "#F5F6FB"}
           />
         </ImgBackground>
         <Img>
@@ -63,7 +53,7 @@ export const CategoriesItem = ({
             iconName={categoryObject.image}
             width="56"
             height="56"
-            fill={isActive ? '#FF751D' : '#071F41'}
+            fill={isActive ? "#FF751D" : "#071F41"}
           />
         </Img>
       </ImageBox>
@@ -85,5 +75,5 @@ CategoriesItem.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   activeTab: PropTypes.string.isRequired,
-  date: PropTypes.any,
+  newDate: PropTypes.any,
 };

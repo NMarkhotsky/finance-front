@@ -32,7 +32,6 @@ export const getExpensesSummary = async () => {
 };
 
 export const getExpensesCategory = async (period) => {
-    if(!period) return; 
     const periodParams = period ? `?year=${period.year}&month=${period.month}` : ''
     try {
         const response = await axios.get('/transactions/expenses/category'+periodParams);
