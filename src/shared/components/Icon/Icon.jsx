@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types';
 import icons from '../../../assets/icons/sprite.svg';
+import iconsCategory from "../../../assets/icons/icons-categories.svg"; 
 
 export const Icon = ({ iconName, width, height, stroke, fill }) => {
   return (
     <svg width={width} height={height}>
+
+    {icons && (
       <use href={`${icons}#${iconName}`} stroke={stroke} fill={fill} />
-    </svg>
+    )}
+    {iconsCategory && (
+      <use href={`${iconsCategory}#${iconName}`} stroke={stroke} fill={fill} />
+    )}
+     </svg>
   );
 };
 
