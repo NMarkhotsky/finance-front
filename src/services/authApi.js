@@ -93,15 +93,21 @@ export const logoutUser = async () => {
 export const fetchUserByToken = async (persistedToken) => {
   authHeader.set(persistedToken);
 
-  try {
-    const response = await axios.get('/current', persistedToken);
+  const {
+    data: { user },
+  } = await axios.get('/current');
 
-    const user = response.data.user
+  return user;
+}
+  // try {
+  //   const response = await axios.get('/current', persistedToken);
+
+  //   const user = response.data.user
   
-    return user;
-  } catch (error) {
+  //   return user;
+  // } catch (error) {
   
-    console.log(error);
+  //   console.log(error);
 
     // if (error.status === 401) {
     //   const newToken = await refreshToken()
@@ -114,7 +120,7 @@ export const fetchUserByToken = async (persistedToken) => {
   
     //   //   return user;
     //   }
-    }
+    // }
 
     // const { data } = await axios.post('auth/refresh', { withCredentials: true });
 
@@ -131,7 +137,7 @@ export const fetchUserByToken = async (persistedToken) => {
     // throw error
   // }
 
-};
+// };
 
 export const refreshToken = async () => {
   const { data: { token } } = await axios.post('auth/refresh', {}, { withCredentials: true })
