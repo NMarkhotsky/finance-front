@@ -4,6 +4,7 @@ import {
   loginUser,
   logoutUser,
   registerUser,
+  refreshToken
 } from '../../services/authApi';
 import { addBalance } from '../../services/balanceApi';
 import { ShowToast } from '../../utils';
@@ -55,10 +56,16 @@ export const fetchCurrentUser = createAsyncThunk(
 
     try {
       
-        return fetchUserByToken(persistedToken)
+      return fetchUserByToken(persistedToken);
       
     } catch (e) {
-      
+
+      if (e.response.status === 401) {
+        const newToken = await refreshToken();
+        console.log(newToken);
+        return fetchUserByToken(newToken);
+      }
+
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
