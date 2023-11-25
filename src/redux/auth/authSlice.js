@@ -56,12 +56,13 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = null;
       })
-      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-        state.error = null;
-      })
+      // .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+      //   state.user = action.payload;
+      //   state.token = action.payload.token
+      //   state.isLoggedIn = true;
+      //   state.isRefreshing = false;
+      //   state.error = null;
+      // })
       .addCase(addStartBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload;
       })
@@ -73,7 +74,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = action.payload;
       })
-      .addMatcher(isAnyOf(login.fulfilled), (state, action) => {
+      .addMatcher(isAnyOf(login.fulfilled, fetchCurrentUser.fulfilled), (state, action) => {
         handleFulfilled(state, action);
       })
       .addMatcher(
