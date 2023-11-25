@@ -56,7 +56,7 @@ export const fetchCurrentUser = createAsyncThunk(
 
     try {
       
-      const response = fetchUserByToken(persistedToken);
+      const response = await fetchUserByToken(persistedToken);
       console.log(response, 'response');
       return response
 
