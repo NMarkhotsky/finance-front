@@ -19,7 +19,7 @@ axios.interceptors.response.use(
 
     console.log(prevRequest.response.status, 'prevRequest');
 
-    if (prevRequest.request.responseURL.includes('current') && prevRequest.response?.status === 401 && !prevRequest.sent) {
+    if (prevRequest.config.url.includes('current') && prevRequest.response?.status === 401 && !prevRequest.sent) {
       prevRequest.sent = true
       try {
         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
@@ -28,9 +28,10 @@ axios.interceptors.response.use(
           authHeader.set(response.data.token)
           console.log(response.data.token, 'newww token!!!!');
           prevRequest.config.headers.Authorization = `Bearer ${response.data.token}`
-          prevRequest.config.url = 'auth/current'
+          prevRequest.config.url = '/auth/current'
+          return axios(prevRequest)
         }
-        return axios(prevRequest)
+        
       } catch (refreshError) {
 
         
