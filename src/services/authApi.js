@@ -29,6 +29,7 @@ axios.interceptors.response.use(
           console.log(response.data.token, 'newww token!!!!');
           prevRequest.config.headers.Authorization = `Bearer ${response.data.token}`
           prevRequest.config.baseURL = 'https://finance-backend-eight.vercel.app/api/auth/current'
+          console.log(prevRequest, 'prevRequest after new token');
           return axios(prevRequest)
         }
         
