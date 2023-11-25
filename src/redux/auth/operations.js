@@ -60,11 +60,11 @@ export const fetchCurrentUser = createAsyncThunk(
       
     } catch (e) {
 
-      if (e.response.status === 401) {
-        const newToken = await refreshToken();
-        console.log(newToken);
-        return fetchUserByToken(newToken);
-      }
+      // if (e.response.status === 401) {
+      //   const newToken = await refreshToken();
+      //   console.log(newToken);
+      //   return fetchUserByToken(newToken);
+      // }
 
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
