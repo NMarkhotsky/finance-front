@@ -91,12 +91,12 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
       <ContainerMain>
         <Container>
           <ButtonIcon onClick={() => handleTabChange("prev")}>
-            <Icon iconName="icon-arrow-left" width={4} height={10} />
+            <Icon iconName="icon-arrow-left" width={7} height={12} />
           </ButtonIcon>
           <TabButton $active={activeTab === "expenses"}>Expenses</TabButton>
           <TabButton $active={activeTab === "income"}>Income</TabButton>
           <ButtonIcon onClick={() => handleTabChange("next")}>
-            <Icon iconName="icon-arrow-right" width={4} height={10} />
+            <Icon iconName="icon-arrow-right" width={7} height={12} />
           </ButtonIcon>
         </Container>
 
