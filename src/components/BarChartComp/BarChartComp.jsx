@@ -80,7 +80,7 @@ export const BarChartComp = () => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      const newIsMobile = window.visualViewport.width <= 480;
+      const newIsMobile = window.visualViewport.width <= 767;
 
       if (newIsMobile !== isMobile) {
         setIsMobile(newIsMobile);

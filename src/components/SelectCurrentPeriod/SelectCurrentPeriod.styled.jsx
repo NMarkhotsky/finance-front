@@ -24,6 +24,8 @@ export const TextFormattedDate = styled.p`
   font-family: ${(props) => props.theme.fonts.bold};
   letter-spacing: 0.28px;
   text-transform: uppercase;
+  width: 120px;
+  text-align: center;
 `;
 
 export const ContainerFormattedDate = styled.div`

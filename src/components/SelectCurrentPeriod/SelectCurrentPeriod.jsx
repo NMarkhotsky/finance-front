@@ -57,11 +57,11 @@ export const SelectCurrentPeriod = ({ handleDate }) => {
       <Text>Current period:</Text>
       <ContainerFormattedDate>
         <ButtonIcon onClick={handleDecrement}>
-          <Icon iconName="icon-arrow-left" width={4} height={10} />
+          <Icon iconName="icon-arrow-left" width={7} height={12} />
         </ButtonIcon>
         <TextFormattedDate>{formattedDate}</TextFormattedDate>
         <ButtonIcon onClick={handleIncrement}>
-          <Icon iconName="icon-arrow-right" width={4} height={10} />
+          <Icon iconName="icon-arrow-right" width={7} height={12} />
         </ButtonIcon>
       </ContainerFormattedDate>
     </ContainerSelectCurrentPeriod>
