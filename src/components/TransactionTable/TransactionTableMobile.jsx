@@ -59,11 +59,13 @@ export const TransactionTableMobile = ({type}) => {
     })
 
     useEffect(() => {
-        if (prevType.current === type) {           
+        if (user.balance) {
+            if (prevType.current === type) {           
             getAllData();
         } else {
             getTransactions(type);
             prevType.current = type
+        }
         }
 
     },[user.balance, type])
