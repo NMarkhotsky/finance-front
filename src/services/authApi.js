@@ -28,6 +28,7 @@ axios.interceptors.response.use(
           authHeader.set(response.data.token)
           console.log(response.data.token, 'newww token!!!!');
           prevRequest.config.headers.Authorization = `Bearer ${response.data.token}`
+          prevRequest.config.url = 'auth/current'
         }
         return axios(prevRequest)
       } catch (refreshError) {
