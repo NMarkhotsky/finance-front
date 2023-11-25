@@ -10,14 +10,19 @@ const HomePage = () => {
 
   const { user } = useAuth();
 
+  
   return (
     <>
-      <Container>
-        <BalanceForm />
-        <ButtonToReports />
-        {user.balance && <InfoBox />}
-      </Container>
-      <MenuForActiveLink />
+      {user && (
+        <>
+          <Container>
+          <BalanceForm />
+          <ButtonToReports />
+          {user.balance && <InfoBox />}
+          </Container>
+          <MenuForActiveLink />
+        </>
+      )}
     </>
   );
 };
