@@ -4,7 +4,6 @@ import { selectTablet } from "../../utils";
 export const PageTopBar = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 15px;
     gap: 15px;
     margin-bottom: 32px;
 

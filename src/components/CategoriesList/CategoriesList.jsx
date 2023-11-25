@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ListCategories } from "./CategoriesList.styled";
 import { CategoriesItem } from "../CategoriesItem/CategoriesItem";
 
@@ -9,39 +9,31 @@ export const CategoriesList = ({
   activeTab,
   date
 }) => {
-  const [itemsActiveState, setItemsActiveState] = useState(
-    new Array(categoriesList.length).fill(false)
-  ); 
 
-  if (
-    categoriesList.length > 0 &&
-    !itemsActiveState.some((isActive) => isActive)
-  ) {
-    setItemsActiveState((prev) => {
-      const updatedState = [...prev];
-      updatedState[0] = true;
-      return updatedState;
-    });
-  }
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [categoryList, setCategoryList] = useState(categoriesList); 
+
+  useEffect(() => {
+if(categoryList !== categoriesList) {
+  setCategoryList(categoriesList);
+  setActiveIndex(0); 
+}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date, categoriesList])
 
   const handleItemClick = (index) => {
-      setItemsActiveState((prev) => {
-        const updatedState = [...prev];
-        updatedState.fill(false);
-        updatedState[index] = true;
-
-        return updatedState;
-      });
-    };
+    setActiveIndex(index);
+  };
 
   return (
 
       <ListCategories>
-        {categoriesList.map((item, idx) => {
+        {categoryList.map((item, idx) => {
   
     const categoryObject = categories.find(
       (category) => category.value === item.category
     );
+
           return (
             <CategoriesItem
               key={idx}
@@ -49,7 +41,7 @@ export const CategoriesList = ({
               item={item}
               categoryObject={categoryObject}
               handleItemClick={handleItemClick}
-              isActive={itemsActiveState[idx]}
+              activeIndex={activeIndex}
               activeTab={activeTab}
               date={date}
             />

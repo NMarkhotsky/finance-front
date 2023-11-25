@@ -15,11 +15,15 @@ import {
   CATEGORIES_INCOME,
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
+// import { useMyContext } from "../../utils";
 
 export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
+  
+  const tabs = ["expenses", "income"];
+  // const { itemCategory } = useMyContext();
 
   useEffect(() => {
     if (Object.keys(date).length === 0 || !date) return;
@@ -27,17 +31,15 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
 
   // useEffect(() => {
   //   (async () => {
-  //     if (itemCategory.activeTab === "expenses") {
+  //     if (itemCategory.activeTab === 'expenses') {
   //       const {
   //         data: { report },
   //       } = await getIncomeCategory(date);
-  //       console.log("reportInc", report);
   //       setIncomeCategoriesList(report);
   //     } else {
   //       const {
   //         data: { report },
   //       } = await getExpensesCategory(date);
-  //       console.log("reportExp", report);
   //       setExpensesCategoriesList(report);
   //     }
   //   })();
@@ -70,23 +72,31 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     })();
   }, [date]);
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
 
-  console.log("date", date);
+  const handleTabChange = (direction) => {
+    const currentIndex = tabs.indexOf(activeTab);
+    let newIndex;
+  
+    if (direction === "prev") {
+      newIndex = currentIndex === 0 ? tabs.length - 1 : currentIndex - 1;
+    } else if (direction === "next") {
+      newIndex = currentIndex === tabs.length - 1 ? 0 : currentIndex + 1;
+    }
+  
+    setActiveTab(tabs[newIndex]);
+  };
 
   return (
     <section>
       <ContainerMain>
         <Container>
-          <ButtonIcon onClick={() => handleTabChange("expenses")}>
-            <Icon iconName="icon-arrow-left" width={4} height={10} />
+          <ButtonIcon onClick={() => handleTabChange("prev")}>
+            <Icon iconName="icon-arrow-left" width={7} height={12} />
           </ButtonIcon>
           <TabButton $active={activeTab === "expenses"}>Expenses</TabButton>
           <TabButton $active={activeTab === "income"}>Income</TabButton>
-          <ButtonIcon onClick={() => handleTabChange("income")}>
-            <Icon iconName="icon-arrow-right" width={4} height={10} />
+          <ButtonIcon onClick={() => handleTabChange("next")}>
+            <Icon iconName="icon-arrow-right" width={7} height={12} />
           </ButtonIcon>
         </Container>
 
