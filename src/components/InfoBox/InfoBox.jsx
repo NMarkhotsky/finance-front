@@ -8,7 +8,7 @@ export const InfoBox = () => {
 
     return (
         <>
-            {!user.balance &&
+            {(user && !user.balance) &&
                 <InfoBoxWrapper>
                     <TextInfoBox>Hello! To get started, enter the current balance of your account!</TextInfoBox>
                     <TextInfoBox>{`You can't spend money until you have it :)`}</TextInfoBox>
