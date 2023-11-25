@@ -1,29 +1,12 @@
 import styled from "styled-components";
 
-export const SectionChart = styled.section`
-  margin: 0 auto;
-  position: absolute;
+export const SectionDesktopChart = styled.div`
+  /* margin: 0 auto; */
   border-radius: 30px;
   box-shadow: ${({ theme }) => theme.boxShadowColor};
   background-color: ${({ theme }) => theme.colors.mainBgdColor};
+  padding-top: 22px;
+  padding-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 80px;
 `;
-
-export const ContainerChart = styled.div`
-
-  @media (max-width: 767px) {
-    max-width: 100%;
-  }
-
-  @media (min-width: 481px) and (max-width: 1279px) {
-    max-width: 80%;
-    height: 400px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 769px) {
-    /* max-width: 60%; */
-    /* width: 758px; */
-    padding: 22px 138px 20px;
-  }
-`;
-

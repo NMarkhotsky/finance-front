@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo} from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   ResponsiveContainer,
   BarChart,
@@ -11,6 +11,7 @@ import {
 import { getExpensesDescription } from "../../services/expensesApi";
 import { getIncomeDescription } from "../../services/incomeApi";
 import { useMyContext } from "../../utils";
+import { SectionDesktopChart } from "./BarChartComp.styled";
 
 const colors = ["#FF751D", "#FFDAC0", "#FFDAC0"];
 
@@ -41,9 +42,9 @@ export const BarChartComp = () => {
 
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) {
-      setDataTransactions([]); 
+      setDataTransactions([]);
       return;
-    } 
+    }
   }, [itemCategory]);
 
   useEffect(() => {
@@ -122,25 +123,20 @@ export const BarChartComp = () => {
   );
 
   return (
-    <div
-      style={{
-        backgroundColor: "#FFF",
-        paddingTop: 22,
-        paddingBottom: 20,
-        borderRadius: "30px",
-        marginTop: 40,
-      }}
-    >
+    <div>
       {isMobile ? (
         <ResponsiveContainer
           width="100%"
           height={50 * modifiedData.length}
           debounce={50}
+          style={{
+            paddingTop: 22,
+            paddingBottom: 20,
+            marginTop: 10,
+            marginBottom: 40,
+          }}
         >
-          <BarChart
-            data={modifiedData}
-            layout="vertical"
-          >
+          <BarChart data={modifiedData} layout="vertical">
             <XAxis hide axisLine={false} type="number" />
             <YAxis
               yAxisId={0}
@@ -167,7 +163,7 @@ export const BarChartComp = () => {
               textAnchor="end"
               dy={-14}
             />
-            <Bar dataKey="total_sum" minPointSize={4} barSize={12} barGap={0}>
+            <Bar dataKey="total_sum" minPointSize={4} barSize={15} barGap={0}>
               {modifiedData.map((d, idx) => (
                 <Cell key={idx} fill={getColor(idx)} radius={[0, 10, 10, 0]} />
               ))}
@@ -175,68 +171,74 @@ export const BarChartComp = () => {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        <ResponsiveContainer width="100%" >
-          <BarChart
-            data={modifiedData}
-            margin={{ left: 10, right: maxTextWidth, top: 20 }}
-            layout="horizontal"
-          >
-            <XAxis
-              axisLine={false}
-              type="category"
-              dataKey="description"
-              tickLine={false}
-              align="center"
-            />
-            <YAxis
-              axisLine={false}
-              type="number"
-              dataKey="total_sum"
-              tickLine={false}
-              hide
-            />
-            <CartesianGrid
-              vertical={false}
-              horizontalCoordinatesGenerator={({ width }) => {
-                const lines = [];
-                for (let i = 40; i < width; i += 40) {
-                  lines.push(i);
-                }
-                return lines;
-              }}
-              style={{ strokeWidth: "2px", stroke: "#F5F6FB" }}
-            />
-            <Bar
-              style={{ zIndex: 2 }}
-              dataKey="total_sum"
-              minPointSize={4}
-              barSize={38}
-              label={{
-                position: "top",
-                fill: "#52555F",
-                dy: -5,
-                content: (labelProps) => (
-                  <text x={labelProps.x} y={labelProps.y} fill="black" dy={-10}>
-                    {`${labelProps.value} грн`}
-                  </text>
-                ),
-              }}
-              name="total_sum"
+        <SectionDesktopChart>
+          <ResponsiveContainer width="100%" height={425}>
+            <BarChart
+              data={modifiedData}
+              margin={{ left: 10, right: maxTextWidth, top: 20 }}
+              layout="horizontal"
             >
-              {modifiedData.map((d, idx) => {
-                return (
-                  <Cell
-                    key={idx}
-                    fill={getColor(idx)}
-                    radius={[10, 10, 0, 0]}
-                  />
-                );
-              })}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+              <XAxis
+                axisLine={false}
+                type="category"
+                dataKey="description"
+                tickLine={false}
+                align="center"
+              />
+              <YAxis
+                axisLine={false}
+                type="number"
+                dataKey="total_sum"
+                tickLine={false}
+                hide
+              />
+              <CartesianGrid
+                vertical={false}
+                horizontalCoordinatesGenerator={({ width }) => {
+                  const lines = [];
+                  for (let i = 40; i < width; i += 40) {
+                    lines.push(i);
+                  }
+                  return lines;
+                }}
+                style={{ strokeWidth: "2px", stroke: "#F5F6FB" }}
+              />
+              <Bar
+                style={{ zIndex: 2 }}
+                dataKey="total_sum"
+                minPointSize={4}
+                barSize={38}
+                label={{
+                  position: "top",
+                  fill: "#52555F",
+                  dy: -5,
+                  content: (labelProps) => (
+                    <text
+                      x={labelProps.x}
+                      y={labelProps.y}
+                      fill="black"
+                      dy={-10}
+                    >
+                      {`${labelProps.value} грн`}
+                    </text>
+                  ),
+                }}
+                name="total_sum"
+              >
+                {modifiedData.map((d, idx) => {
+                  return (
+                    <Cell
+                      key={idx}
+                      fill={getColor(idx)}
+                      radius={[10, 10, 0, 0]}
+                    />
+                  );
+                })}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </SectionDesktopChart>
       )}
     </div>
   );
 };
-
