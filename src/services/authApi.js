@@ -26,7 +26,7 @@ axios.interceptors.response.use(
         console.log(response, 'prevRequest.response?.status ? == 401  response');
         if (response) {
           authHeader.set(response.data.token)
-          prevRequest.headers.Authorization = `Bearer ${response.data.token}`
+          prevRequest.config.headers.Authorization = `Bearer ${response.data.token}`
         }
         return axios(prevRequest)
       } catch (refreshError) {
