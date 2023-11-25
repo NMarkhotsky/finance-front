@@ -56,11 +56,13 @@ export const fetchCurrentUser = createAsyncThunk(
 
     try {
       
-      return fetchUserByToken(persistedToken);
-      
+      const response = fetchUserByToken(persistedToken);
+      console.log(response, 'response');
+      return response
+
     } catch (e) {
       console.log(e);
-  
+      
       return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
