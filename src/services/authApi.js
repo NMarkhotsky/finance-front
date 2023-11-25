@@ -20,15 +20,15 @@ axios.interceptors.response.use(
     console.log(prevRequest.response.status, 'prevRequest');
 
     if (prevRequest.request.responseURL.includes('current') && prevRequest.response?.status === 401 && !prevRequest.sent) {
-      console.log(prevRequest.response.status, 'prevRequest.response?.status ? == 401');
-      console.log(prevRequest.config.send, 'prevRequest.response?.status ? == 401     prevRequest.send');
       prevRequest.sent = true
-      console.log(prevRequest.sent, 'prevRequest.response?.status ? == 401     prevRequest.send');
       try {
         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
         console.log(response, 'prevRequest.response?.status ? == 401  response');
-        if (response) authHeader.set(response.data.token)
-        return prevRequest
+        if (response) {
+          authHeader.set(response.data.token)
+          prevRequest.headers.Authorization = `Bearer ${response.data.token}`
+        }
+        return axios(prevRequest)
       } catch (refreshError) {
 
         
