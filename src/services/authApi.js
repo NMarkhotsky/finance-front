@@ -27,7 +27,8 @@ axios.interceptors.response.use(
       try {
         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
         console.log(response, 'prevRequest.response?.status ? == 401  response');
-        return authHeader.set(response.data.token)
+        if (response) authHeader.set(response.data.token)
+        return axios(prevRequest)
       } catch (refreshError) {
 
         
