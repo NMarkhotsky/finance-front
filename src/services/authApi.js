@@ -12,30 +12,30 @@ const authHeader = {
   },
 };
 
-// axios.interceptors.response.use(
-//   response => response,
-//   async error => {
-//     const prevRequest = error
+axios.interceptors.response.use(
+  response => response,
+  async error => {
+    const prevRequest = error
 
-//     console.log(prevRequest.response.status, 'prevRequest');
+    console.log(prevRequest.response.status, 'prevRequest');
 
-//     if (prevRequest.response?.status === 401 && !prevRequest.sent) {
-//       console.log(prevRequest.response.status, 'prevRequest.response?.status ? == 401');
-//       console.log(prevRequest.config.send, 'prevRequest.response?.status ? == 401     prevRequest.send' );
-//       prevRequest.sent = true
-//       console.log(prevRequest.sent, 'prevRequest.response?.status ? == 401     prevRequest.send' );
-//       try {
-//         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
-//         console.log(response, 'prevRequest.response?.status ? == 401  response');
-//         return await fetchUserByToken(response.data.token)
-//       } catch (refreshError) {
+    if (prevRequest.request.responseURL.includes('current') && prevRequest.response?.status === 401 && !prevRequest.sent) {
+      console.log(prevRequest.response.status, 'prevRequest.response?.status ? == 401');
+      console.log(prevRequest.config.send, 'prevRequest.response?.status ? == 401     prevRequest.send');
+      prevRequest.sent = true
+      console.log(prevRequest.sent, 'prevRequest.response?.status ? == 401     prevRequest.send');
+      try {
+        const response = await axios.post('auth/refresh', {}, { withCredentials: true });
+        console.log(response, 'prevRequest.response?.status ? == 401  response');
+        return authHeader.set(response.data.token)
+      } catch (refreshError) {
 
         
-//         console.log(refreshError, 'prevRequest.response?.status ? == 401  error');
-//         return refreshError
-//       }
-//     } 
-
+        console.log(refreshError, 'prevRequest.response?.status ? == 401  error');
+        return refreshError
+      }
+    }
+  })
 //     return error
 //     // try {
 //     //   if (error?.response?.status == 401 && !prevRequest.sent) {
@@ -93,27 +93,29 @@ export const logoutUser = async () => {
 export const fetchUserByToken = async (persistedToken) => {
   authHeader.set(persistedToken);
 
-  // const {
-  //   data: { user },
-  // } = await axios.get('/current');
+  const {
+    data: { user },
+  } = await axios.get('/current');
 
+  return user
 
-  const response = await axios.get('/current').catch(async error => {
-    console.log(error);
-    if (error.response.status === 401) {
-      console.log(error.response.status, 'error.response.status');
-      const newToken = await refreshToken();
-      authHeader.set(newToken)
-      const resp = await axios.get('/current')
-      console.log(resp, 'current user after 401');
-      if (resp) {
-        return resp.data.user
-      }
-      console.log(error);
-    }
-  });
-  console.log(response);
-  return response.data.user; 
+  // const response = await axios.get('/current').catch(async error => {
+  //   console.log(error);
+  //   if (error.response.status === 401) {
+  //     console.log(error.response.status, 'error.response.status');
+  //     const newToken = await refreshToken();
+      
+  //     authHeader.set(newToken)
+  //     const resp = await axios.get('/current')
+  //     console.log(resp, 'current user after 401');
+  //     if (resp) {
+  //       return resp.data.user
+  //     }
+  //     console.log(error);
+  //   }
+  // });
+  // console.log(response);
+  // return response.data.user; 
 
 }
   // try {
