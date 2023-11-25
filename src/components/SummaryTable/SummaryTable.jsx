@@ -37,7 +37,9 @@ export const SummaryTable = ({ type }) => {
     })
     
     useEffect(() => {
-        getSummaryReport(type)
+        if (user.balance) {
+            getSummaryReport(type)
+        }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user.balance, type])

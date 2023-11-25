@@ -56,7 +56,9 @@ export const TransactionTable = ({type}) => {
     })
 
     useEffect(() => {
-        getTransactions(type);
+        if (user.balance) {
+            getTransactions(type);
+        }
 
     },[user.balance, type])
 
