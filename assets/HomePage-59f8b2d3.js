@@ -1,4 +1,4 @@
-import{s as y,L as Jr,j as C,I as nt,a as H,u as Ie,n as rn,b as he,N as Qr,r as b,_ as $,c as eo,d as Tn,m as to,e as no,R as on,f as _e,g as ro,P as Ce,h as Ln,i as Tt,S as ut,C as oo,k as io,l as Lt,M as ao,o as uo}from"./index-e5a2ff5b.js";import{c as kn,n as Hn,o as so,t as lo,f as wt,a as co,g as Bn,b as Ae,d as jn,e as zn,h as go,i as fo,j as po,k as mo,B as ho}from"./expensesApi-f4be9103.js";function M(){return M=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},M.apply(this,arguments)}function vo(e,t){if(e==null)return{};var n={},o=Object.keys(e),r,i;for(i=0;i<o.length;i++)r=o[i],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Co=y(Jr)`
+import{s as y,L as Jr,j as C,I as nt,a as H,u as Ie,n as rn,b as he,N as Qr,r as b,_ as $,c as eo,d as Tn,m as to,e as no,R as on,f as _e,g as ro,P as Ce,h as Ln,i as Tt,S as ut,C as oo,k as io,l as Lt,M as ao,o as uo}from"./index-b3f8a7b8.js";import{c as kn,n as Hn,o as so,t as lo,f as wt,a as co,g as Bn,b as Ae,d as jn,e as zn,h as go,i as fo,j as po,k as mo,B as ho}from"./expensesApi-22a57ef1.js";function M(){return M=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},M.apply(this,arguments)}function vo(e,t){if(e==null)return{};var n={},o=Object.keys(e),r,i;for(i=0;i<o.length;i++)r=o[i],!(t.indexOf(r)>=0)&&(n[r]=e[r]);return n}const Co=y(Jr)`
   display: flex;
   align-items: center;
   gap: 15px;
@@ -615,4 +615,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   @media ${he} {
     margin-bottom: 8px;
   }
-`,Hl=()=>{const{user:e}=Ie();return C.jsxs(C.Fragment,{children:[C.jsxs(Tl,{children:[C.jsx(ho,{}),C.jsx(So,{}),e.balance&&C.jsx(wo,{})]}),C.jsx(_l,{})]})};export{Hl as default};
+`,Hl=()=>{const{user:e}=Ie();return C.jsx(C.Fragment,{children:e&&C.jsxs(C.Fragment,{children:[C.jsxs(Tl,{children:[C.jsx(ho,{}),C.jsx(So,{}),e.balance&&C.jsx(wo,{})]}),C.jsx(_l,{})]})})};export{Hl as default};
