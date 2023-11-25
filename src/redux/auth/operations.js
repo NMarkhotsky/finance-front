@@ -4,7 +4,7 @@ import {
   loginUser,
   logoutUser,
   registerUser,
-  refreshToken
+  // refreshToken
 } from '../../services/authApi';
 import { addBalance } from '../../services/balanceApi';
 import { ShowToast } from '../../utils';
