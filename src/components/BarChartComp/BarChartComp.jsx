@@ -42,7 +42,7 @@ export const BarChartComp = () => {
 
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) {
-      setDataTransactions([]);
+      setDataTransactions(null);
       return;
     }
   }, [itemCategory]);
