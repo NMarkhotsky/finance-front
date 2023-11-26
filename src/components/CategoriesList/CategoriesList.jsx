@@ -10,19 +10,23 @@ export const CategoriesList = ({
   date
 }) => {
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(categoriesList[0]?.category);
   const [categoryList, setCategoryList] = useState(categoriesList); 
 
   useEffect(() => {
 if(categoryList !== categoriesList) {
-  setCategoryList(categoriesList);
-  setActiveIndex(0); 
+  setCategoryList(categoriesList); 
 }
+
+const hasActiveCategory = categoriesList.some(item => item.category === activeCategory);
+      if (!hasActiveCategory) {
+        setActiveCategory(categoriesList[0]?.category);
+      }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, categoriesList])
 
-  const handleItemClick = (index) => {
-    setActiveIndex(index);
+  const handleItemClick = (category) => {
+    setActiveCategory(category);
   };
 
   return (
@@ -40,10 +44,10 @@ if(categoryList !== categoriesList) {
               index={idx}
               item={item}
               categoryObject={categoryObject}
-              handleItemClick={handleItemClick}
-              activeIndex={activeIndex}
+              handleItemClick={(index, category) => handleItemClick(index, category)}
               activeTab={activeTab}
               date={date}
+              isActive={item.category === activeCategory}
             />
           );
         })}
