@@ -22,11 +22,13 @@ axios.interceptors.response.use(
       try {
         const response = await axios.post('auth/refresh', {}, { withCredentials: true });
 
-        if (response) {
+        if (response.data.token) {
           authHeader.set(response.data.token)
           prevRequest.config.headers.Authorization = `Bearer ${response.data.token}`
           prevRequest.config.url = 'https://finance-backend-eight.vercel.app/api/auth/current'
           return axios.get('/current')
+        } else {
+          return Promise.reject(response.statusText)
         }
         
       } catch (refreshError) {
