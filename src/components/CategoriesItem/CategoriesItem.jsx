@@ -17,11 +17,13 @@ export const CategoriesItem = ({
   categoryObject,
   activeTab,
   handleItemClick,
-  index,
+  // index,
   date,
   isActive,
 }) => {
   const { setCategory } = useMyContext();
+
+  console.log("isActive", isActive);
 
   // const isActive = index === activeIndex;
 
@@ -34,7 +36,7 @@ export const CategoriesItem = ({
 
   const handleClick = () => {
     setCategory({ item, activeTab, date });
-    handleItemClick(index, item.category);
+    handleItemClick(item.category);
   };
 
   const correctSum = formatSum(item.total_sum);
