@@ -16,6 +16,7 @@ import {
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
 // import { useMyContext } from "../../utils";
+import { Loader } from "../../shared/components/Loader/Loader";
 
 export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
@@ -34,8 +35,8 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-  
-        if (activeTab === 'income') {
+
+        if (activeTab === "income") {
           const { data } = await getExpensesCategory(date);
           setExpensesCategoriesList(data.report);
         } else {
@@ -43,16 +44,20 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
           setIncomeCategoriesList(data.report);
           console.log("report", data.report);
         }
-  
+
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, [date, activeTab]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   console.log("IncomeCategoriesList", incomeCategoriesList);
 
