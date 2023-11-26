@@ -34,7 +34,7 @@ const measureText14HelveticaNeue = (text, fontSize) => {
 
 export const BarChartComp = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [dataTransactions, setDataTransactions] = useState([]);
+  const [dataTransactions, setDataTransactions] = useState([]); 
 
   const { itemCategory } = useMyContext();
 
@@ -42,10 +42,12 @@ export const BarChartComp = () => {
 
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) {
-      setDataTransactions([]);
+      setDataTransactions(null);
       return;
     }
   }, [itemCategory]);
+
+  console.log("HeLLLO!!!!");
 
   useEffect(() => {
     (async () => {
@@ -95,12 +97,6 @@ export const BarChartComp = () => {
       window.removeEventListener("resize", checkScreenSize);
     };
   }, [isMobile]);
-
-  useEffect(() => {
-    if (dataTransactions.length === 0) {
-      return;
-    }
-  });
 
   const modifiedData = dataTransactions.map((item) => {
     const words = item.description.split(" ");

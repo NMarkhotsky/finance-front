@@ -15,26 +15,27 @@ import { useMyContext } from "../../utils";
 export const CategoriesItem = ({
   item,
   categoryObject,
-  handleItemClick,
-  activeIndex,
   activeTab,
+  handleItemClick,
   index,
-  date
+  date,
+  isActive
 }) => {
   const { setCategory } = useMyContext();
 
-  const isActive = index === activeIndex;
+  // const isActive = index === activeIndex;
 
   useEffect(() => {
     if (isActive) {
+      
       setCategory({ item, activeTab, date });
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, item, activeTab, date]);
 
   const handleClick = () => {
-    handleItemClick(index)
     setCategory({ item, activeTab, date });
+    handleItemClick(index, item.category);
   };
 
   const correctSum = formatSum(item.total_sum);
@@ -75,8 +76,8 @@ CategoriesItem.propTypes = {
     value: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
-  handleItemClick: PropTypes.func.isRequired,
-  activeIndex: PropTypes.number.isRequired,
   activeTab: PropTypes.string.isRequired,
   date: PropTypes.any,
+  handleItemClick: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired
 };
