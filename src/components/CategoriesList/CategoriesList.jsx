@@ -17,7 +17,7 @@ export const CategoriesList = ({
   const { setHasCategories } = useMyContext();
 
   useEffect(() => {
-    if(categoriesList.length === 0) {
+    if(categoryList.length === 0) {
       setHasCategories(true); 
     }
   })

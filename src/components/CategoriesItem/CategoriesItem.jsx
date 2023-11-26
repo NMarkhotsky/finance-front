@@ -23,8 +23,6 @@ export const CategoriesItem = ({
 }) => {
   const { setCategory } = useMyContext();
 
-  console.log("isActive", isActive);
-
   // const isActive = index === activeIndex;
 
   useEffect(() => {
