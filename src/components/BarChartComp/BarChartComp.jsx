@@ -34,11 +34,12 @@ const measureText14HelveticaNeue = (text, fontSize) => {
 
 export const BarChartComp = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [dataTransactions, setDataTransactions] = useState([]); 
-
-  const { itemCategory } = useMyContext();
+  const [dataTransactions, setDataTransactions] = useState([]);
+  
+  const { itemCategory, hasCategories } = useMyContext();
 
   console.log("itemCategoryBarChart", itemCategory);
+  console.log("hasCategories", hasCategories);
 
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) {
@@ -67,8 +68,6 @@ export const BarChartComp = () => {
           );
           setDataTransactions(report);
         }
-      } else {
-        setDataTransactions([]); 
       }
     })();
   }, [itemCategory.activeTab, itemCategory.item, itemCategory.date]);
