@@ -42,12 +42,9 @@ export const BarChartComp = () => {
 
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) {
-      setDataTransactions(null);
       return;
     }
   }, [itemCategory]);
-
-  console.log("HeLLLO!!!!");
 
   useEffect(() => {
     (async () => {
@@ -70,6 +67,8 @@ export const BarChartComp = () => {
           );
           setDataTransactions(report);
         }
+      } else {
+        setDataTransactions([]); 
       }
     })();
   }, [itemCategory.activeTab, itemCategory.item, itemCategory.date]);

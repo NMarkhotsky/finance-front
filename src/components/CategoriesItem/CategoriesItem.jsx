@@ -19,7 +19,7 @@ export const CategoriesItem = ({
   handleItemClick,
   index,
   date,
-  isActive
+  isActive,
 }) => {
   const { setCategory } = useMyContext();
 
@@ -27,10 +27,9 @@ export const CategoriesItem = ({
 
   useEffect(() => {
     if (isActive) {
-      
       setCategory({ item, activeTab, date });
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, item, activeTab, date]);
 
   const handleClick = () => {
@@ -79,5 +78,5 @@ CategoriesItem.propTypes = {
   activeTab: PropTypes.string.isRequired,
   date: PropTypes.any,
   handleItemClick: PropTypes.func.isRequired,
-  isActive: PropTypes.bool.isRequired
+  isActive: PropTypes.bool.isRequired,
 };

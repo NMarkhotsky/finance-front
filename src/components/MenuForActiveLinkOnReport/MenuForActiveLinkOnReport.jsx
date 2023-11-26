@@ -16,7 +16,6 @@ import {
 } from "../../constants/globalConstants";
 import { BarChartComp } from "../BarChartComp/BarChartComp";
 // import { useMyContext } from "../../utils";
-import { Loader } from "../../shared/components/Loader/Loader";
 
 export const MenuForActiveLinkOnReport = ({ date }) => {
   const [activeTab, setActiveTab] = useState("expenses");
@@ -24,69 +23,67 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
 
   const tabs = ["expenses", "income"];
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   // const { itemCategory } = useMyContext();
 
   useEffect(() => {
     if (Object.keys(date).length === 0 || !date) return;
   }, [date]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
 
-        if (activeTab === "income") {
-          const { data } = await getExpensesCategory(date);
-          setExpensesCategoriesList(data.report);
-        } else {
-          const { data } = await getIncomeCategory(date);
-          setIncomeCategoriesList(data.report);
-          console.log("report", data.report);
-        }
+  //       if (activeTab === "income") {
+  //         const { data } = await getIncomeCategory(date);
+  //         setIncomeCategoriesList(data.report);
+  //       } else {
+  //         const { data } = await getExpensesCategory(date);
+  //         setExpensesCategoriesList(data.report);
+  //       }
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       setLoading(false);
+  //     }
+  //   };
 
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
+  //   fetchData();
+  // }, [date, activeTab]);
 
-    fetchData();
-  }, [date, activeTab]);
-
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   console.log("IncomeCategoriesList", incomeCategoriesList);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const {
-  //         data: { report },
-  //       } = await getIncomeCategory(date);
-  //       if (!report) return;
-  //       setIncomeCategoriesList(report);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, [date]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const {
+          data: { report },
+        } = await getIncomeCategory(date);
+        if (!report) return;
+        setIncomeCategoriesList(report);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [date]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const {
-  //         data: { report },
-  //       } = await getExpensesCategory(date);
-  //       setExpensesCategoriesList(report);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, [date]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const {
+          data: { report },
+        } = await getExpensesCategory(date);
+        setExpensesCategoriesList(report);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [date]);
 
   const handleTabChange = (direction) => {
     const currentIndex = tabs.indexOf(activeTab);
