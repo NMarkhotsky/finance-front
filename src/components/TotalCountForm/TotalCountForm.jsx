@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 import { getAllTransactions } from "../../services/transactionsApi";
 
@@ -6,7 +7,6 @@ import { formatSum } from "../../services/balanceFormServices";
 
 import { TotalCountFormWrapper, TypeCountWrapper, TypeCountTitle, TypeCountSum } from "./TotalCountForm.styled";
 
-// eslint-disable-next-line react/prop-types
 export const TotalCountForm = ({date}) => {
     
     const [data, setData] = useState([]);
@@ -17,7 +17,9 @@ export const TotalCountForm = ({date}) => {
             const totals = countTotalSums(transactions);
             setData(totals)
         }
-        getTransactions(date);
+        if (date) {
+            getTransactions(date);
+        }
 
     }, [date])
 
@@ -52,4 +54,8 @@ export const TotalCountForm = ({date}) => {
             </TypeCountWrapper>
         </TotalCountFormWrapper>
     )
+}
+
+TotalCountForm.propTypes = {
+    date: PropTypes.any,
 }
