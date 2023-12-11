@@ -1,15 +1,26 @@
-import CookieConsent from "react-cookie-consent";
+import { useEffect, useState } from "react";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 
 export const CookieModalBanner = () => {
 
+    const [cookiePermission, setCookiePermission] = useState(null)
+
+    useEffect(() => {
+        setCookiePermission(getCookieConsentValue('CookieConsent'))
+    },[])
+
     return (
-        <CookieConsent
+        <>
+            {!cookiePermission || cookiePermission === 'false' && <CookieConsent
             debug={true}
-            acceptOnScroll={true}
-            acceptOnScrollPercentage={50}
-            onAccept={(byScroll) => {
-                alert(`consent given. \n\n By scrolling? ${byScroll}`);
-            }}
-        >This website uses cookies to enhance the user experience.</CookieConsent>
+            buttonText={'Accept'}
+            declineButtonText={'Decline'}
+            buttonStyle={{minWidth: '100px',  backgroundColor: 'green', color: '#FFF'}}
+            declineButtonStyle={{minWidth: '100px', backgroundColor: 'grey'}}
+            enableDeclineButton={true}
+            expires={365}
+            overlay={true}
+        >This website uses cookies to enhance the user experience.</CookieConsent>}
+        </>
     )
 }
