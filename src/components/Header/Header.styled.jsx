@@ -51,6 +51,9 @@ export const UserLogo = styled.span`
 `;
 
 export const UserName = styled.span`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
   position: relative;
 
   margin-left: 12px;
@@ -73,5 +76,19 @@ export const UserName = styled.span`
 export const LogoutButton = styled.button`
   margin-left: 20px;
 
-  text-decoration: underline;
+  
 `;
+
+export const LogoutButtonText = styled.span`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
+  text-decoration: underline;
+`
+
+export const LogoutIconWrapper = styled.span`
+  @media ${selectTablet} {
+    display: none;
+  }
+`

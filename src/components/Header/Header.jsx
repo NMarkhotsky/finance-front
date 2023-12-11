@@ -8,6 +8,8 @@ import {
   UserLogo,
   UserName,
   UserWrapper,
+  LogoutButtonText,
+  LogoutIconWrapper
 } from './Header.styled';
 import { Icon } from '../../shared/components/Icon/Icon';
 import { logout } from '../../redux/auth/operations';
@@ -45,7 +47,10 @@ export const Header = () => {
             <UserLogo>{user.name.slice(0, 1).toUpperCase()}</UserLogo>
             <UserName>{user.name}</UserName>
             <LogoutButton type="button" onClick={openModal}>
-              Exit
+              <LogoutButtonText>Exit</LogoutButtonText>
+              <LogoutIconWrapper>
+                <Icon iconName='logout' width={16} height={16} />
+              </LogoutIconWrapper>
             </LogoutButton>
           </UserWrapper>
         )}
