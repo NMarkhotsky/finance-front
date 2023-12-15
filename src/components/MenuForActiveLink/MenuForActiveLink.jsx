@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import {
   NavLinkList,
   NavLinkItem,
@@ -16,6 +16,7 @@ import { TransactionTableMobile } from '../TransactionTable/TransactionTableMobi
 import { SummaryTable } from '../SummaryTable/SummaryTable';
 
 export const MenuForActiveLink = () => {
+  const { t } = useTranslation();
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [activeTab, setActiveTab] = useState(
     screenSize > 767 ? 'expenses' : ''

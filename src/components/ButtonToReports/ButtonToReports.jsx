@@ -1,8 +1,10 @@
 import { Icon } from '../../shared/components/Icon/Icon';
 import { ContainerButtonToReports, TextButton } from './ButtonToReports.styled';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export const ButtonToReports = () => {
+  const { t } = useTranslation();
+
   return (
     <ContainerButtonToReports to="/report">
       <TextButton>{t('button_reports')}</TextButton>

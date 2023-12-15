@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import enUsLocale from 'date-fns/locale/en-US';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { Icon } from '../../shared/components/Icon/Icon';
 import {
   ContainerSelectCurrentPeriod,
@@ -13,6 +13,8 @@ import {
 } from './SelectCurrentPeriod.styled';
 
 export const SelectCurrentPeriod = ({ handleDate }) => {
+  const { t } = useTranslation();
+
   const [currentDate] = useState(new Date());
   const [currentMonth] = useState(currentDate.getMonth());
   const [currentYear] = useState(currentDate.getFullYear());

@@ -7,19 +7,16 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import PropTypes from 'prop-types';
-
+// import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth/useAuth';
 import { fetchCurrentUser } from '../../redux/auth/operations';
-
 import { getIncome } from '../../services/incomeApi';
 import { getExpenses } from '../../services/expensesApi';
 import {
   deleteTransaction,
   getAllTransactions,
 } from '../../services/transactionsApi';
-
 import { formatData } from '../../services/balanceFormServices';
-
 import {
   Table,
   TableContainer,
@@ -33,6 +30,8 @@ import {
 import { DeleteButton } from '../DeleteButton/DeleteButton';
 
 export const TransactionTableMobile = ({ type }) => {
+  // const { t } = useTranslation();
+
   const [data, setData] = useState([]);
 
   const { user } = useAuth();

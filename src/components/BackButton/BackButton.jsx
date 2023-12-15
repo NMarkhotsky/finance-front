@@ -1,8 +1,10 @@
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { Button, ButtonText } from './BackButton.styled';
 import { Icon } from '../../shared/components/Icon/Icon';
 
 export const BackButton = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Button to="/">

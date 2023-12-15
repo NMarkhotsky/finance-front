@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth/useAuth';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import {
   HeaderContainer,
   LogoutButton,
@@ -19,6 +19,8 @@ import { ModalGlobal } from '../ModalGlobal/ModalGlobal';
 import { ToggleLanguageBar } from '../ToggleLanguageBar/ToggleLanguageBar';
 
 export const Header = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const { isLoggedIn, user } = useAuth();
   // console.log('user: ', user);
