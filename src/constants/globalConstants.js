@@ -1,7 +1,13 @@
+// import { t } from 'i18next';
+
 export const BASE_URL = 'https://finance-backend-eight.vercel.app/api';
 
 export const CATEGORIES_EXPENSES = [
-  { value: 'Transport', label: 'Transport', image: 'icon-car' },
+  {
+    value: 'Transport',
+    label: 'Transport',
+    image: 'icon-car',
+  },
   { value: 'Products', label: 'Products', image: 'icon-product' },
   { value: 'Health', label: 'Health', image: 'icon-health' },
   { value: 'Alcohol', label: 'Alcohol', image: 'icon-cocktail' },

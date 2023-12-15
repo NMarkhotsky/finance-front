@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { t } from 'i18next';
 import { normalizeValue, cutValue } from '../../services/balanceFormServices';
-
 import {
   ArrowBack,
   CalcButton,
@@ -100,7 +99,7 @@ export const CalcForm = ({ handleCalcSubmit, closeCalc }) => {
             </CalcButtonItem>
           ))}
         </CalcButtonList>
-        <SubmitButton type="submit">enter</SubmitButton>
+        <SubmitButton type="submit">{t('button_enter')}</SubmitButton>
         <p>{errors.sum?.message}</p>
       </CalcStyledForm>
     </CalcContainer>

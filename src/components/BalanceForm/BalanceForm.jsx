@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { t } from 'i18next';
 
 import { balanceSchema } from '../../constants/validationSchemas';
 
@@ -76,7 +77,7 @@ export const BalanceForm = () => {
   return (
     <>
       <FormBalance onSubmit={handleSubmit(onSubmit)}>
-        <BalanceLabel>Balance:</BalanceLabel>
+        <BalanceLabel>{t('balance')}:</BalanceLabel>
         <BalanceBar>
           <BalanceWrapper $location={currentLocation}>
             <BalanceInput
@@ -90,7 +91,7 @@ export const BalanceForm = () => {
             <BalanceCurrency>UAH</BalanceCurrency>
           </BalanceWrapper>
           <Button $location={currentLocation} disabled={isDisabled()}>
-            Confirm
+            {t('button_confirm')}
           </Button>
         </BalanceBar>
         <p>{errors.balance?.message}</p>
