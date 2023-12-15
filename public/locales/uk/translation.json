@@ -50,6 +50,13 @@
   "transaction_categories_income_salary": "Зарплата",
   "transaction_categories_income_other": "Інші доходи",
 
+  "table_summary_header": "підсумок",
+  "table_transaction_header_date": "дата",
+  "table_transaction_header_description": "опис",
+  "table_transaction_header_category": "категорія",
+  "table_transaction_header_sum": "сума",
+  "table_transaction_header_delete": "видалення",
+
   "error_validation_description": "Потрібно вказати опис",
   "error_validation_category": "Потрібно вказати категорію",
   "error_validation_sum_positive": "Сума повинна бути додатним числом",

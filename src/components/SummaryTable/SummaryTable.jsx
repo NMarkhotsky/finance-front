@@ -6,7 +6,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import PropTypes from 'prop-types';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth/useAuth';
 import { getExpensesSummary } from '../../services/expensesApi';
 import { getIncomeSummary } from '../../services/incomeApi';
@@ -26,14 +26,17 @@ import {
 } from './SummaryTable.styled';
 
 export const SummaryTable = ({ type }) => {
-  // const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
   const [data, setData] = useState([]);
+
   const { user } = useAuth();
+
   const columnHelper = createColumnHelper();
 
   const columns = [
     {
-      header: 'summary',
+      header: t('table_summary_header'),
       columns: [
         columnHelper.accessor('month', {
           cell: month => <span>{month.getValue()}</span>,
@@ -58,7 +61,7 @@ export const SummaryTable = ({ type }) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.balance, type]);
+  }, [user.balance, type, language]);
 
   const getSummaryReport = async type => {
     if (type === 'expenses') {
@@ -73,7 +76,7 @@ export const SummaryTable = ({ type }) => {
   };
   const formatData = data => {
     return data.map(({ month, total_sum: sum }) => {
-      const formatedMonth = formatDateToMonth(month);
+      const formatedMonth = formatDateToMonth(month, language);
       const formatedSum = formatSum(sum);
       return { month: formatedMonth, sum: formatedSum };
     });

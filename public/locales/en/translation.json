@@ -50,6 +50,13 @@
   "transaction_categories_income_salary": "Salary",
   "transaction_categories_income_other": "Other income",
 
+  "table_summary_header": "summary",
+  "table_transaction_header_date": "date",
+  "table_transaction_header_description": "description",
+  "table_transaction_header_category": "category",
+  "table_transaction_header_sum": "sum",
+  "table_transaction_header_delete": "delete",
+
   "error_validation_description": "Description is required",
   "error_validation_category": "Category is required",
   "error_validation_sum_positive": "Sum must be a positive number",

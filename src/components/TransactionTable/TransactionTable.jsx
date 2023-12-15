@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import PropTypes from 'prop-types';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth/useAuth';
 import { fetchCurrentUser } from '../../redux/auth/operations';
 import { getIncome } from '../../services/incomeApi';
@@ -28,7 +28,8 @@ import {
 import { DeleteButton } from '../DeleteButton/DeleteButton';
 
 export const TransactionTable = ({ type }) => {
-  // const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
 
   const [data, setData] = useState([]);
   const { user } = useAuth();
@@ -36,24 +37,50 @@ export const TransactionTable = ({ type }) => {
 
   const columnHelper = createColumnHelper();
 
+  const columnKeys = {
+    date: t('table_transaction_header_date'),
+    description: t('table_transaction_header_description'),
+    category: t('table_transaction_header_category'),
+    sum: t('table_transaction_header_sum'),
+    delete: t('table_transaction_header_delete'),
+  };
+
+  const categoryKeys = {
+    Transport: t('transaction_categories_expenses_transport'),
+    Products: t('transaction_categories_expenses_products'),
+    Health: t('transaction_categories_expenses_health'),
+    Alcohol: t('transaction_categories_expenses_alcohol'),
+    Entertainment: t('transaction_categories_expenses_entertainment'),
+    Housing: t('transaction_categories_expenses_housing'),
+    Technique: t('transaction_categories_expenses_technique'),
+    'Communal, communication': t('transaction_categories_expenses_communal'),
+    'Sports, hobbies': t('transaction_categories_expenses_sports'),
+    Education: t('transaction_categories_expenses_education'),
+    Other: t('transaction_categories_expenses_other'),
+    Salary: t('transaction_categories_income_salary'),
+    'Other income': t('transaction_categories_income_other'),
+  };
+
   const columns = [
-    columnHelper.accessor('date', {
+    columnHelper.accessor(t(columnKeys.date), {
       cell: date => <span>{date.getValue()}</span>,
     }),
 
-    columnHelper.accessor('description', {
+    columnHelper.accessor(t(columnKeys.description), {
       cell: description => <span>{description.getValue()}</span>,
     }),
 
-    columnHelper.accessor('category', {
-      cell: category => <span>{category.getValue()}</span>,
+    columnHelper.accessor(t(columnKeys.category), {
+      cell: category => (
+        <span>{translateCategoryKey(category.getValue())}</span>
+      ),
     }),
 
-    columnHelper.accessor('sum', {
+    columnHelper.accessor(t(columnKeys.sum), {
       cell: sum => <span>{sum.getValue()}</span>,
     }),
 
-    columnHelper.accessor('delete', {
+    columnHelper.accessor(t(columnKeys.delete), {
       cell: del => (
         <span>
           <DeleteButton
@@ -76,16 +103,37 @@ export const TransactionTable = ({ type }) => {
     if (user.balance) {
       getTransactions(type);
     }
-  }, [user.balance, type]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.balance, type, language]);
+
+  const translateTransactionKeys = transaction => {
+    const translatedTransaction = {};
+    for (const key in transaction) {
+      if (columnKeys[key]) {
+        translatedTransaction[columnKeys[key]] = transaction[key];
+      } else {
+        translatedTransaction[key] = transaction[key];
+      }
+    }
+    return translatedTransaction;
+  };
+
+  const translateCategoryKey = category => {
+    return categoryKeys[category];
+  };
 
   const getTransactions = async type => {
     if (type === 'expenses') {
       const transactions = await getExpenses();
-      const normalizedData = formatData(transactions, type);
+      const normalizedData = formatData(transactions, type).map(
+        translateTransactionKeys
+      );
       setData(normalizedData);
     } else {
       const transactions = await getIncome();
-      const normalizedData = formatData(transactions, type);
+      const normalizedData = formatData(transactions, type).map(
+        translateTransactionKeys
+      );
       setData(normalizedData);
     }
   };

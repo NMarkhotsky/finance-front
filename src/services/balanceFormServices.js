@@ -73,7 +73,9 @@ export const formatData = (data, type) => {
   }
 };
 
-export const formatDateToMonth = date => {
+export const formatDateToMonth = (date, language) => {
   const dateObj = new Date(date);
-  return new Intl.DateTimeFormat('en-US', { month: 'long' }).format(dateObj);
+  return new Intl.DateTimeFormat(language === 'en' ? 'en-US' : 'uk-UA', {
+    month: 'long',
+  }).format(dateObj);
 };
