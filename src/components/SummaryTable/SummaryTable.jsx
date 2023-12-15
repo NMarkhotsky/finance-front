@@ -6,17 +6,14 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import PropTypes from 'prop-types';
-
+// import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth/useAuth';
-
 import { getExpensesSummary } from '../../services/expensesApi';
 import { getIncomeSummary } from '../../services/incomeApi';
-
 import {
   formatDateToMonth,
   formatSum,
 } from '../../services/balanceFormServices';
-
 import {
   TableContainer,
   Table,
@@ -29,6 +26,7 @@ import {
 } from './SummaryTable.styled';
 
 export const SummaryTable = ({ type }) => {
+  // const { t } = useTranslation();
   const [data, setData] = useState([]);
   const { user } = useAuth();
   const columnHelper = createColumnHelper();

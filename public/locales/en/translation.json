@@ -5,6 +5,8 @@
 
   "modal_leave_question": "Do you really want to leave?",
 
+  "button_login": "Log in",
+  "button_register": "Registration",
   "button_exit": "Exit",
   "button_confirm": "Confirm",
   "button_enter": "enter",
@@ -12,13 +14,20 @@
   "button_clear": "Clear",
   "button_reports": "Reports",
   "button_back": "Main page",
+  "button_google": "Google",
 
   "infoBox_text": "Hello! To get started, enter the current balance of your account!",
   "infoBox_details": "You can't spend money until you have it :)",
 
   "text_current_period": "Current period",
+  "text_login_google": "You can log in with your Google Account",
+  "text_login_part1": "Or log in using an email and password",
+  "text_login_part2": "after registering",
 
   "balance": "Balance",
+  "email": "Email",
+  "password": "Password",
+  "name": "Name",
 
   "transaction_type_expenses": "Expenses",
   "transaction_type_income": "Income",

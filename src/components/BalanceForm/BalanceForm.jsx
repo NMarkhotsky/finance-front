@@ -3,10 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { t } from 'i18next';
-
+import { useTranslation } from 'react-i18next';
 import { balanceSchema } from '../../constants/validationSchemas';
-
 import { useAuth } from '../../hooks/useAuth/useAuth';
 import { addStartBalance } from '../../redux/auth/operations';
 import {
@@ -15,7 +13,6 @@ import {
   formatSum,
 } from '../../services/balanceFormServices';
 import { ShowToast } from '../../utils';
-
 import {
   BalanceWrapper,
   FormBalance,
@@ -27,7 +24,10 @@ import {
 } from './BalanceForm.styled';
 
 export const BalanceForm = () => {
+  const { t } = useTranslation();
+
   const { user } = useAuth();
+
   const initialValue = useCallback(() => {
     return user.balance ? formatSum(user.balance) : (0.0).toFixed(2);
   }, [user.balance]);

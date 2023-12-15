@@ -13,6 +13,7 @@ export const AuthButtonContainer = styled.div`
 export const Button = styled.button`
   width: 122px;
   height: 44px;
+  text-transform: uppercase;
 
   font-family: ${({ theme }) => theme.fonts.bold};
 

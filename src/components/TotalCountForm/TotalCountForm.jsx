@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { getAllTransactions } from '../../services/transactionsApi';
 import { formatSum } from '../../services/balanceFormServices';
 import {
@@ -11,6 +11,8 @@ import {
 } from './TotalCountForm.styled';
 
 export const TotalCountForm = ({ date }) => {
+  const { t } = useTranslation();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {

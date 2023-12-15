@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { AuthInput } from '../AuthInput/AuthInput';
 import { AuthLabel } from '../AuthLabel/AuthLabel';
 import { AuthForm } from '../AuthForm/AuthForm';
@@ -13,6 +14,8 @@ import { AuthRequiredField } from '../AuthRequiredField/AuthRequiredField';
 import { authValidation } from '../../../constants';
 
 export const LoginForm = () => {
+  const { t } = useTranslation();
+
   const {
     register,
     handleSubmit,
@@ -27,7 +30,7 @@ export const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     dispatch(login(data));
 
     reset();
@@ -36,13 +39,13 @@ export const LoginForm = () => {
   return (
     <>
       <AuthForm onSubmit={handleSubmit(onSubmit)}>
-        <AuthTitle>You can log in with your Google Account:</AuthTitle>
+        <AuthTitle>{t('text_login_google')}:</AuthTitle>
         <AuthButtonGoogle />
         <AuthTitle>
-          Or log in using an email and password, <br /> after registering:
+          {t('text_login_part1')} <br /> {t('text_login_part2')}:
         </AuthTitle>
         <AuthLabel>
-          Email:
+          {t('email')}:
           <AuthInput
             type="email"
             placeholder="your@email.com"
@@ -53,7 +56,7 @@ export const LoginForm = () => {
           {errors.email && <AuthRequiredField errors={errors.email.message} />}
         </AuthLabel>
         <AuthLabel>
-          Password:
+          {t('password')}:
           <AuthInput
             type="password"
             placeholder="your password"
@@ -66,9 +69,9 @@ export const LoginForm = () => {
           )}
         </AuthLabel>
         <AuthButtonContainer>
-          <AuthButton type="submit">LOG IN</AuthButton>
+          <AuthButton type="submit">{t('button_login')}</AuthButton>
           <NavLink to="/register">
-            <AuthButton type="button">REGISTRATION</AuthButton>
+            <AuthButton type="button">{t('button_register')}</AuthButton>
           </NavLink>
         </AuthButtonContainer>
       </AuthForm>

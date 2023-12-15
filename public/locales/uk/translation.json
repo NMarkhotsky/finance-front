@@ -5,6 +5,8 @@
 
   "modal_leave_question": "Ви справді хочете піти?",
 
+  "button_login": "Вхід",
+  "button_register": "Реєстрація",
   "button_exit": "Вихід",
   "button_confirm": "Підтвердити",
   "button_enter": "ввести",
@@ -12,16 +14,23 @@
   "button_clear": "Очистити",
   "button_reports": "Звіти",
   "button_back": "На головну сторінку",
+  "button_google": "Google",
 
   "infoBox_text": "Привіт! Для початку введіть поточний баланс вашого рахунку!",
   "infoBox_details": "Ви не можете витрачати гроші, поки вони у вас не з'являться :)",
 
   "text_current_period": "Поточний період",
+  "text_login_google": "Ви можете увійти за допомогою свого облікового запису Google",
+  "text_login_part1": "Або увійдіть за допомогою електронної пошти та пароля",
+  "text_login_part2": "після реєстрації",
 
   "balance": "Баланс",
+  "email": "Електронна пошта",
+  "password": "Пароль",
+  "name": "Ім'я",
 
-  "transaction_type_expenses": "Доходи",
-  "transaction_type_income": "Витрати",
+  "transaction_type_expenses": "Витрати",
+  "transaction_type_income": "Доходи",
 
   "transaction_description_placeholder": "Опис операції",
   "transaction_category_placeholder": "Категорія операції",

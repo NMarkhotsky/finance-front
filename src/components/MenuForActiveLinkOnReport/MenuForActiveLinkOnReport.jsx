@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import {
   ContainerMain,
   Container,
@@ -20,6 +20,7 @@ import { BarChartComp } from '../BarChartComp/BarChartComp';
 import { Loader } from '../../shared/components/Loader/Loader';
 
 export const MenuForActiveLinkOnReport = ({ date }) => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('expenses');
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);

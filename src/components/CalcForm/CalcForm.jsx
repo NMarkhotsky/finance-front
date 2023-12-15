@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { normalizeValue, cutValue } from '../../services/balanceFormServices';
 import {
   ArrowBack,
@@ -15,6 +15,8 @@ import {
 } from './CalcForm.styled';
 
 export const CalcForm = ({ handleCalcSubmit, closeCalc }) => {
+  const { t } = useTranslation();
+
   const {
     register,
     handleSubmit,

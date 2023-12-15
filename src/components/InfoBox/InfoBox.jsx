@@ -1,10 +1,12 @@
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '../../hooks/useAuth/useAuth';
 
 import { InfoBoxWrapper, TextInfoBox } from './InfoBox.styled';
 
 export const InfoBox = () => {
+  const { t } = useTranslation();
+
   const { user } = useAuth();
 
   return (
