@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import PropTypes from 'prop-types';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth/useAuth';
 import { fetchCurrentUser } from '../../redux/auth/operations';
 import { getIncome } from '../../services/incomeApi';
@@ -30,7 +30,8 @@ import {
 import { DeleteButton } from '../DeleteButton/DeleteButton';
 
 export const TransactionTableMobile = ({ type }) => {
-  // const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
 
   const [data, setData] = useState([]);
 
@@ -40,6 +41,22 @@ export const TransactionTableMobile = ({ type }) => {
   const prevType = useRef(type);
 
   const columnHelper = createColumnHelper();
+
+  const categoryKeys = {
+    Transport: t('transaction_categories_expenses_transport'),
+    Products: t('transaction_categories_expenses_products'),
+    Health: t('transaction_categories_expenses_health'),
+    Alcohol: t('transaction_categories_expenses_alcohol'),
+    Entertainment: t('transaction_categories_expenses_entertainment'),
+    Housing: t('transaction_categories_expenses_housing'),
+    Technique: t('transaction_categories_expenses_technique'),
+    'Communal, communication': t('transaction_categories_expenses_communal'),
+    'Sports, hobbies': t('transaction_categories_expenses_sports'),
+    Education: t('transaction_categories_expenses_education'),
+    Other: t('transaction_categories_expenses_other'),
+    Salary: t('transaction_categories_income_salary'),
+    'Other income': t('transaction_categories_income_other'),
+  };
 
   const columns = [
     columnHelper.accessor('description', {
@@ -51,7 +68,9 @@ export const TransactionTableMobile = ({ type }) => {
     }),
 
     columnHelper.accessor('category', {
-      cell: category => <span>{category.getValue()}</span>,
+      cell: category => (
+        <span>{translateCategoryKey(category.getValue())}</span>
+      ),
     }),
 
     columnHelper.accessor('sum', {
@@ -86,7 +105,7 @@ export const TransactionTableMobile = ({ type }) => {
         prevType.current = type;
       }
     }
-  }, [user.balance, type]);
+  }, [user.balance, type, language]);
 
   const getAllData = async () => {
     const { transactions } = await getAllTransactions();
@@ -104,6 +123,10 @@ export const TransactionTableMobile = ({ type }) => {
       const normalizedData = formatData(transactions, type);
       setData(normalizedData);
     }
+  };
+
+  const translateCategoryKey = category => {
+    return categoryKeys[category];
   };
 
   const handleDelete = async recordId => {
