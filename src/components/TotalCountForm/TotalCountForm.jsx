@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { t } from 'i18next';
 import { getAllTransactions } from '../../services/transactionsApi';
-
 import { formatSum } from '../../services/balanceFormServices';
-
 import {
   TotalCountFormWrapper,
   TypeCountWrapper,
@@ -46,13 +44,13 @@ export const TotalCountForm = ({ date }) => {
   return (
     <TotalCountFormWrapper>
       <TypeCountWrapper>
-        <TypeCountTitle>Expenses:</TypeCountTitle>
+        <TypeCountTitle>{t('transaction_type_expenses')}:</TypeCountTitle>
         {data && (
           <TypeCountSum type={'expense'}>- {data.expense} грн</TypeCountSum>
         )}
       </TypeCountWrapper>
       <TypeCountWrapper>
-        <TypeCountTitle>Income:</TypeCountTitle>
+        <TypeCountTitle>{t('transaction_type_income')}:</TypeCountTitle>
         {data && (
           <TypeCountSum type={'income'}>+ {data.income} грн</TypeCountSum>
         )}

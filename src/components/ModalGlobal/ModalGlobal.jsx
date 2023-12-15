@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { t } from "i18next";
+import PropTypes from 'prop-types';
+import { t } from 'i18next';
 import {
   Modal,
   Title,
@@ -8,14 +8,14 @@ import {
   ButtonText,
   IconWrapper,
   StyledIcon,
-} from "./ModalGlobal.styled";
+} from './ModalGlobal.styled';
 // import { Trans } from 'react-i18next';
 // import { ModalApproveAction } from '../../shared/components/ModalApproveAction/ModalApproveAction';
 
 export const ModalGlobal = ({
   handleModal,
   handleDelete,
-  title = "Are you sure?",
+  title = t('other_question'),
   // name,
 }) => {
   return (
@@ -24,10 +24,10 @@ export const ModalGlobal = ({
       <Title>{title}</Title>
       <BtnWrapper>
         <Button onClick={handleDelete}>
-          <ButtonText>{t("other_yes")}Yes</ButtonText>
+          <ButtonText>{t('other_yes')}</ButtonText>
         </Button>
         <Button onClick={handleModal}>
-          <ButtonText>{t("other_cancel")}No</ButtonText>
+          <ButtonText>{t('other_cancel')}</ButtonText>
         </Button>
       </BtnWrapper>
       <IconWrapper onClick={handleModal}>

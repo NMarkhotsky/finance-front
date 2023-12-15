@@ -1,4 +1,48 @@
 {
+  "other_question": "Ви впевнені?",
   "other_cancel": "Ні",
-  "other_yes": "Так"
+  "other_yes": "Так",
+
+  "modal_leave_question": "Ви справді хочете піти?",
+
+  "button_exit": "Вихід",
+  "button_confirm": "Підтвердити",
+  "button_enter": "ввести",
+  "button_input": "Зберегти",
+  "button_clear": "Очистити",
+  "button_reports": "Звіти",
+  "button_back": "На головну сторінку",
+
+  "infoBox_text": "Привіт! Для початку введіть поточний баланс вашого рахунку!",
+  "infoBox_details": "Ви не можете витрачати гроші, поки вони у вас не з'являться :)",
+
+  "text_current_period": "Поточний період",
+
+  "balance": "Баланс",
+
+  "transaction_type_expenses": "Доходи",
+  "transaction_type_income": "Витрати",
+
+  "transaction_description_placeholder": "Опис операції",
+  "transaction_category_placeholder": "Категорія операції",
+
+  "transaction_categories_expenses_transport": "Транспорт",
+  "transaction_categories_expenses_products": "Продукти",
+  "transaction_categories_expenses_health": "Здоров'я",
+  "transaction_categories_expenses_alcohol": "Алкоголь",
+  "transaction_categories_expenses_entertainment": "Розваги",
+  "transaction_categories_expenses_housing": "Житло",
+  "transaction_categories_expenses_technique": "Техніка",
+  "transaction_categories_expenses_communal": "Комунальні витрати, зв'язок",
+  "transaction_categories_expenses_sports": "Спорт, хобі",
+  "transaction_categories_expenses_education": "Освіта",
+  "transaction_categories_expenses_other": "Інше",
+
+  "transaction_categories_income_salary": "Зарплата",
+  "transaction_categories_income_other": "Інші доходи",
+
+  "error_validation_description": "Потрібно вказати опис",
+  "error_validation_category": "Потрібно вказати категорію",
+  "error_validation_sum_positive": "Сума повинна бути додатним числом",
+  "error_validation_sum_required": "Потрібно вказати суму"
 }

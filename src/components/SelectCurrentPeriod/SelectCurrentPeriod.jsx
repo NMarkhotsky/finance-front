@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { format } from "date-fns";
-import enUsLocale from "date-fns/locale/en-US";
-import { Icon } from "../../shared/components/Icon/Icon";
+import { useCallback, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { format } from 'date-fns';
+import enUsLocale from 'date-fns/locale/en-US';
+import { t } from 'i18next';
+import { Icon } from '../../shared/components/Icon/Icon';
 import {
   ContainerSelectCurrentPeriod,
   Text,
   ButtonIcon,
   TextFormattedDate,
   ContainerFormattedDate,
-} from "./SelectCurrentPeriod.styled";
+} from './SelectCurrentPeriod.styled';
 
 export const SelectCurrentPeriod = ({ handleDate }) => {
   const [currentDate] = useState(new Date());
@@ -21,25 +22,25 @@ export const SelectCurrentPeriod = ({ handleDate }) => {
 
   const handleDecrement = () => {
     if (selectedMonth === 0) {
-      setSelectedYear((prevYear) => prevYear - 1);
+      setSelectedYear(prevYear => prevYear - 1);
       setSelectedMonth(11);
     } else {
-      setSelectedMonth((prevMonth) => prevMonth - 1);
+      setSelectedMonth(prevMonth => prevMonth - 1);
     }
   };
 
   const handleIncrement = () => {
     if (selectedMonth === 11) {
-      setSelectedYear((prevYear) => prevYear + 1);
+      setSelectedYear(prevYear => prevYear + 1);
       setSelectedMonth(0);
     } else {
-      setSelectedMonth((prevMonth) => prevMonth + 1);
+      setSelectedMonth(prevMonth => prevMonth + 1);
     }
   };
 
   const formattedDate = format(
     new Date(selectedYear, selectedMonth, 1),
-    "MMMM yyyy",
+    'MMMM yyyy',
     { locale: enUsLocale }
   );
 
@@ -54,7 +55,7 @@ export const SelectCurrentPeriod = ({ handleDate }) => {
 
   return (
     <ContainerSelectCurrentPeriod>
-      <Text>Current period:</Text>
+      <Text>{t('text_current_period')}:</Text>
       <ContainerFormattedDate>
         <ButtonIcon onClick={handleDecrement}>
           <Icon iconName="icon-arrow-left" width={7} height={12} />

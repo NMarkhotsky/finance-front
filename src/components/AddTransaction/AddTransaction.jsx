@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 import {
   AddTransactionForm,
   DataWrapper,
@@ -122,7 +123,7 @@ export const AddTransaction = ({ type }) => {
           <DescriptionInput
             {...register('description')}
             type="text"
-            placeholder="Product description"
+            placeholder={t('transaction_description_placeholder')}
           />
 
           <CategoryInput>
@@ -131,7 +132,7 @@ export const AddTransaction = ({ type }) => {
               options={
                 type === 'income' ? CATEGORIES_INCOME : CATEGORIES_EXPENSES
               }
-              placeholder="Product category"
+              placeholder={t('transaction_category_placeholder')}
               value={data.category}
               onChange={handleCategoryChange}
               styles={SelectListStyles}
@@ -159,9 +160,9 @@ export const AddTransaction = ({ type }) => {
         </DataWrapper>
 
         <ButtonsWrapper>
-          <AcceptButton type="submit">Input</AcceptButton>
+          <AcceptButton type="submit">{t('button_input')}</AcceptButton>
           <ClearButton type="button" onClick={onClear}>
-            Clear
+            {t('button_clear')}
           </ClearButton>
         </ButtonsWrapper>
       </AddTransactionForm>
