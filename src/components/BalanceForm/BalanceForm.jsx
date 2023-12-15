@@ -1,92 +1,100 @@
-import { useEffect, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import { balanceSchema } from "../../constants/validationSchemas";
+import { balanceSchema } from '../../constants/validationSchemas';
 
-import { useAuth } from "../../hooks/useAuth/useAuth";
-import { addStartBalance } from "../../redux/auth/operations";
-import { cutValue, normalizeValue, formatSum } from "../../services/balanceFormServices";
-import { ShowToast } from "../../utils";
+import { useAuth } from '../../hooks/useAuth/useAuth';
+import { addStartBalance } from '../../redux/auth/operations';
+import {
+  cutValue,
+  normalizeValue,
+  formatSum,
+} from '../../services/balanceFormServices';
+import { ShowToast } from '../../utils';
 
-import { BalanceWrapper, FormBalance, BalanceLabel, BalanceInput, BalanceCurrency, Button, BalanceBar } from "./BalanceForm.styled";
+import {
+  BalanceWrapper,
+  FormBalance,
+  BalanceLabel,
+  BalanceInput,
+  BalanceCurrency,
+  Button,
+  BalanceBar,
+} from './BalanceForm.styled';
 
 export const BalanceForm = () => {
+  const { user } = useAuth();
+  const initialValue = useCallback(() => {
+    return user.balance ? formatSum(user.balance) : (0.0).toFixed(2);
+  }, [user.balance]);
 
-    const { user } = useAuth();
-    const initialValue = useCallback(() => {
-        return user.balance ? formatSum(user.balance) : 0.00.toFixed(2);
-    }, [user.balance])
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const location = useLocation();
+  const currentLocation = location.pathname;
 
-    const location = useLocation()
-    const currentLocation = location.pathname
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { balance: initialValue() },
+    resolver: yupResolver(balanceSchema),
+  });
 
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors }
-    } = useForm({
-        defaultValues: { balance: initialValue() },
-        resolver: yupResolver(balanceSchema)
-    });
-
-    useEffect(() => {
-        if (user) {
-            setValue('balance', initialValue())
-        }
-            
-    }, [initialValue, setValue, user])
-
-    const onSubmit =  ({balance}) => {
-        ShowToast("success", "Balance successfully added")
-        dispatch(addStartBalance(balance));
+  useEffect(() => {
+    if (user) {
+      setValue('balance', initialValue());
     }
+  }, [initialValue, setValue, user]);
 
-    const onInputChange = (e) => {
-        const value = e.target.value;
-        const normalizedValue = cutValue(value);
-        setValue('balance', normalizedValue);
-    }
+  const onSubmit = ({ balance }) => {
+    ShowToast('success', 'Balance successfully added');
+    dispatch(addStartBalance(balance));
+  };
 
-    const handleInputBlur = (e) => {
-        const value = e.target.value;
-        const normalizedValue = normalizeValue(value);
-        setValue('balance', normalizedValue);
-    };
+  const onInputChange = e => {
+    const value = e.target.value;
+    const normalizedValue = cutValue(value);
+    setValue('balance', normalizedValue);
+  };
 
-    const isDisabled = () => {
-        return user.balance !== null || user.balance === undefined ? true : false
-    }
+  const handleInputBlur = e => {
+    const value = e.target.value;
+    const normalizedValue = normalizeValue(value);
+    setValue('balance', normalizedValue);
+  };
 
-    return (
-        <>
-            <FormBalance onSubmit={handleSubmit(onSubmit)}>
-                <BalanceLabel>Balance:</BalanceLabel>
-                    <BalanceBar>
-                        <BalanceWrapper $location={currentLocation}>
-                            <BalanceInput
-                                {...register('balance')}
-                                type="text"
-                                onChange={onInputChange}
-                                onBlur={handleInputBlur}
-                                disabled={isDisabled()}
-                                $location={currentLocation}
-                            />
-                            <BalanceCurrency>UAH</BalanceCurrency>
-                    </BalanceWrapper>
-                    <Button
-                        $location={currentLocation}
-                        disabled={isDisabled()}>
-                        Confirm
-                    </Button>
-                </BalanceBar>        
-                <p>{errors.balance?.message}</p>
-            </FormBalance>
-        </>
-    )
-}
+  const isDisabled = () => {
+    return user.balance !== null || user.balance === undefined ? true : false;
+  };
+
+  return (
+    <>
+      <FormBalance onSubmit={handleSubmit(onSubmit)}>
+        <BalanceLabel>Balance:</BalanceLabel>
+        <BalanceBar>
+          <BalanceWrapper $location={currentLocation}>
+            <BalanceInput
+              {...register('balance')}
+              type="text"
+              onChange={onInputChange}
+              onBlur={handleInputBlur}
+              disabled={isDisabled()}
+              $location={currentLocation}
+            />
+            <BalanceCurrency>UAH</BalanceCurrency>
+          </BalanceWrapper>
+          <Button $location={currentLocation} disabled={isDisabled()}>
+            Confirm
+          </Button>
+        </BalanceBar>
+        <p>{errors.balance?.message}</p>
+      </FormBalance>
+    </>
+  );
+};
