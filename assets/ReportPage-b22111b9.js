@@ -1,4 +1,4 @@
-import{s as ae,b as Jv,L as ey,j as B,I as Qt,d as eh,P as z,r as I,n as ty,p as qu,q as ue,t as pa,v as ry,w as $,g as ny,x as ay,k as iy,C as oy,a as ta}from"./index-8b531a4a.js";import{f as $o,l as uy,m as sy,p as cy,q as ly,h as fy,B as dy}from"./expensesApi-4b4ca403.js";const hy=ae(ey)`
+import{s as ae,b as Jv,L as ey,j as B,I as Qt,d as eh,P as z,r as I,n as ty,p as qu,q as ue,t as pa,v as ry,w as $,g as ny,x as ay,k as iy,C as oy,a as ta}from"./index-79a39012.js";import{f as $o,l as uy,m as sy,p as cy,q as ly,h as fy,B as dy}from"./expensesApi-92d7e0bb.js";const hy=ae(ey)`
 display: flex;
 align-items: center;
 gap: 5px;
@@ -167,84 +167,81 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   margin-top: 40px;
   margin-bottom: 80px;
 `,Xd=["#FF751D","#FFDAC0","#FFDAC0"],Vd=e=>Xd[e%Xd.length];let lr;const JW=(e,t)=>(lr||(lr=document.createElement("canvas").getContext("2d"),lr.font="14px 'Helvetica Neue",lr.font=`${t}px 'Helvetica Neue'`),lr.measureText(e).width),eF=()=>{const[e,t]=I.useState(!1),[r,n]=I.useState([]),{itemCategory:a,hasCategories:i}=qu();console.log("itemCategoryBarChart",a),console.log("hasCategories",i),I.useEffect(()=>{Object.keys(a).length},[a]),I.useEffect(()=>{(async()=>{if(a.activeTab&&a.item&&a.item.category&&a.date)if(a.activeTab==="expenses"){const{report:s}=await uy({category:a.item.category},a.date);n(s)}else{const{report:s}=await sy({category:a.item.category},a.date);n(s)}})()},[a.activeTab,a.item,a.date]),I.useEffect(()=>{r.length}),I.useEffect(()=>{const s=()=>{const c=window.visualViewport.width<=767;c!==e&&t(c)};return s(),window.addEventListener("resize",s),()=>{window.removeEventListener("resize",s)}},[e]);const o=r.map(s=>{const c=s.description.split(" "),f=+s.total_sum.slice(0,-3);return{...s,description:c[0],total_sum:f}}),u=I.useMemo(()=>r.reduce((s,c)=>{const l=c.total_sum.slice(0,-3),d=JW(l);return d>s?d:s},0),[r]);return B.jsx("div",{children:e?B.jsx(El,{width:"100%",height:50*o.length,debounce:50,style:{paddingTop:22,paddingBottom:20,marginTop:10,marginBottom:40},children:B.jsxs(Yd,{data:o,layout:"vertical",children:[B.jsx(Jn,{hide:!0,axisLine:!1,type:"number"}),B.jsx(mr,{yAxisId:0,dataKey:"description",type:"category",axisLine:!1,tickLine:!1,tickFormatter:s=>s,padding:{top:5},dx:8,textAnchor:"start",dy:-16}),B.jsx(mr,{orientation:"right",yAxisId:1,dataKey:"total_sum",type:"category",axisLine:!1,tickLine:!1,tickFormatter:s=>s,padding:{top:5},unit:" грн",textAnchor:"end",dy:-14}),B.jsx(tr,{dataKey:"total_sum",minPointSize:4,barSize:15,barGap:0,children:o.map((s,c)=>B.jsx(Ga,{fill:Vd(c),radius:[0,10,10,0]},c))})]})}):B.jsx(QW,{children:B.jsx(El,{width:"100%",height:425,children:B.jsxs(Yd,{data:o,margin:{left:10,right:u,top:20},layout:"horizontal",children:[B.jsx(Jn,{axisLine:!1,type:"category",dataKey:"description",tickLine:!1,align:"center"}),B.jsx(mr,{axisLine:!1,type:"number",dataKey:"total_sum",tickLine:!1,hide:!0}),B.jsx(qs,{vertical:!1,horizontalCoordinatesGenerator:({width:s})=>{const c=[];for(let f=40;f<s;f+=40)c.push(f);return c},style:{strokeWidth:"2px",stroke:"#F5F6FB"}}),B.jsx(tr,{style:{zIndex:2},dataKey:"total_sum",minPointSize:4,barSize:38,label:{position:"top",fill:"#52555F",dy:-5,content:s=>B.jsx("text",{x:s.x,y:s.y,fill:"black",dy:-10,children:`${s.value} грн`})},name:"total_sum",children:o.map((s,c)=>B.jsx(Ga,{fill:Vd(c),radius:[10,10,0,0]},c))})]})})})})},Zv=({date:e})=>{const[t,r]=I.useState("expenses"),[n,a]=I.useState([]),[i,o]=I.useState([]),u=["expenses","income"],[s,c]=I.useState(!0);if(I.useEffect(()=>{Object.keys(e).length},[e]),I.useEffect(()=>{(async()=>{try{if(c(!0),t==="income"){const{data:d}=await cy(e);o(d.report)}else{const{data:d}=await ly(e);a(d.report)}c(!1)}catch(d){console.error("Error fetching data:",d),c(!1)}})()},[e,t]),s)return B.jsx(ay,{});console.log("IncomeCategoriesList",i);const f=l=>{const d=u.indexOf(t);let h;l==="prev"?h=d===0?u.length-1:d-1:l==="next"&&(h=d===u.length-1?0:d+1),r(u[h])};return B.jsxs("section",{children:[B.jsxs(Dg,{children:[B.jsxs(Ng,{children:[B.jsx(Zs,{onClick:()=>f("prev"),children:B.jsx(Qt,{iconName:"icon-arrow-left",width:7,height:12})}),B.jsx(Qs,{$active:t==="expenses",children:"Expenses"}),B.jsx(Qs,{$active:t==="income",children:"Income"}),B.jsx(Zs,{onClick:()=>f("next"),children:B.jsx(Qt,{iconName:"icon-arrow-right",width:7,height:12})})]}),t==="expenses"&&B.jsx(To,{categoriesList:n,categories:iy,activeTab:t,date:e}),t==="income"&&B.jsx(To,{categoriesList:i,categories:oy,activeTab:t,date:e})]}),B.jsx("div",{children:B.jsx(eF,{})})]})};Zv.propTypes={date:z.any};const tF=ae.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    border-radius: 20px;
-    background-color: ${({theme:e})=>e.colors.mainBgdColor};
-    box-shadow: ${({theme:e})=>e.boxShadowColor.mobile};
-    justify-content: center;
-    padding: 7px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  border-radius: 20px;
+  background-color: ${({theme:e})=>e.colors.mainBgdColor};
+  box-shadow: ${({theme:e})=>e.boxShadowColor.mobile};
+  justify-content: center;
+  padding: 7px;
 
-    @media ${ta} {
-        box-shadow: none;
-        align-items: center;
-    }
-`,Zd=ae.div`
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    width: 50%;
+  @media ${ta} {
+    box-shadow: none;
     align-items: center;
-    gap: 2px;
+  }
+`,Zd=ae.div`
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  width: 50%;
+  align-items: center;
+  gap: 2px;
 
+  &:first-child {
+    border-right: 1px solid #e0e5eb;
+    justify-content: end;
+  }
 
-    &:first-child {
-        border-right: 1px solid #E0E5EB;
-        justify-content: end;
-    }
-
-    @media ${ta} {
-        flex-direction: row;
-        padding: 8px 20px;
-        gap: 15px;
-    }
-`,Qd=ae.p`
-    display: block;
-    color: ${({theme:e})=>e.colors.mainTextColor};
-    font-weight: 700;
-    font-size: 14px;
-    
-`,Jd=ae.p`
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 700;
-    color: ${({type:e,theme:t})=>e==="income"?t.colors.green:t.colors.red};
-
-`,Qv=({date:e})=>{const[t,r]=I.useState([]);I.useEffect(()=>{e&&(async i=>{const{transactions:o}=await fy(i),u=n(o);r(u)})(e)},[e]);const n=a=>{let i={income:0,expense:0};const o=a.reduce((u,s)=>(s.type==="income"?u.income+=Number(s.sum):u.expense+=Number(s.sum),u),i);return o.income=$o(o.income),o.expense=$o(o.expense),o};return B.jsxs(tF,{children:[B.jsxs(Zd,{children:[B.jsx(Qd,{children:"Expenses:"}),t&&B.jsxs(Jd,{type:"expense",children:["- ",t.expense," грн"]})]}),B.jsxs(Zd,{children:[B.jsx(Qd,{children:"Income:"}),t&&B.jsxs(Jd,{type:"income",children:["+ ",t.income," грн"]})]})]})};Qv.propTypes={date:z.any};const rF=ae.div`
-    display: flex;
-    flex-direction: column;
+  @media ${ta} {
+    flex-direction: row;
+    padding: 8px 20px;
     gap: 15px;
-    margin-bottom: 32px;
+  }
+`,Qd=ae.p`
+  display: block;
+  color: ${({theme:e})=>e.colors.mainTextColor};
+  font-weight: 700;
+  font-size: 14px;
+`,Jd=ae.p`
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: ${({type:e,theme:t})=>e==="income"?t.colors.green:t.colors.red};
+`,Qv=({date:e})=>{const[t,r]=I.useState([]);I.useEffect(()=>{e&&(async i=>{const{transactions:o}=await fy(i),u=n(o);r(u)})(e)},[e]);const n=a=>{let i={income:0,expense:0};const o=a.reduce((u,s)=>(s.type==="income"?u.income+=Number(s.sum):u.expense+=Number(s.sum),u),i);return o.income=$o(o.income),o.expense=$o(o.expense),o};return B.jsxs(tF,{children:[B.jsxs(Zd,{children:[B.jsx(Qd,{children:"Expenses:"}),t&&B.jsxs(Jd,{type:"expense",children:["- ",t.expense," грн"]})]}),B.jsxs(Zd,{children:[B.jsx(Qd,{children:"Income:"}),t&&B.jsxs(Jd,{type:"income",children:["+ ",t.income," грн"]})]})]})};Qv.propTypes={date:z.any};const rF=ae.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 32px;
 
-    @media ${ta} {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-        margin-top: 40px;
-    }
-`,nF=ae.div`
-    order: 1;
-`,aF=ae.div`
-    order: 3;
-    @media screen and (max-width: 767px) {
-        margin-top: 17px;
-    }
-
-    @media ${ta} {
-        order: 2;
-    }
-`,iF=ae.div`
-    order: 2;
-
-    @media ${ta} {
-        order: 3;
-    }
-`,oF=ae.div`
+  @media ${ta} {
     display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    order: 4;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 40px;
+  }
+`,nF=ae.div`
+  order: 1;
+`,aF=ae.div`
+  order: 3;
+  @media screen and (max-width: 767px) {
+    margin-top: 17px;
+  }
+
+  @media ${ta} {
+    order: 2;
+  }
+`,iF=ae.div`
+  order: 2;
+
+  @media ${ta} {
+    order: 3;
+  }
+`,oF=ae.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  order: 4;
 `,cF=()=>{const[e,t]=I.useState(""),r=n=>{t(n)};return B.jsxs(B.Fragment,{children:[B.jsxs(rF,{children:[B.jsx(nF,{children:B.jsx(vy,{})}),B.jsx(aF,{children:B.jsx(dy,{})}),B.jsx(iF,{children:B.jsx(ih,{handleDate:r})})]}),B.jsx(oF,{children:B.jsx(Qv,{date:e})}),B.jsx(Zv,{date:e})]})};export{cF as default};
