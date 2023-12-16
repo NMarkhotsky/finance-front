@@ -57,6 +57,10 @@
   "table_transaction_header_sum": "сума",
   "table_transaction_header_delete": "видалення",
 
+  "toast_success_add": "Баланс успішно додано",
+  "toast_success_add_transaction": "Створено нову транзакцію",
+  "toast_success_delete_transaction": "Транзакцію успішно видалено",
+
   "error_validation_description": "Потрібно вказати опис",
   "error_validation_category": "Потрібно вказати категорію",
   "error_validation_sum_positive": "Сума повинна бути додатним числом",
