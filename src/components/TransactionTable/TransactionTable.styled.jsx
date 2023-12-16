@@ -54,7 +54,8 @@ export const TableHeadTR = styled.tr`
 export const TableHeadTH = styled.th`
   padding: 10px 20px;
   border: none;
-  color: ${({ header }) => (header === 'delete' ? 'transparent' : null)};
+  color: ${({ header }) =>
+    header === 'delete' || header === 'видалення' ? 'transparent' : null};
 
   ${({ header }) =>
     header === 'sum' ? { textAlign: 'end' } : { textAlign: 'start' }};

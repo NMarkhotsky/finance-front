@@ -59,6 +59,16 @@ export const AddTransaction = ({ type }) => {
     resolver: yupResolver(transactionSchema),
   });
 
+  const translateCategories = categories => {
+    return categories.map(category => ({
+      value: t(category.value),
+      label: t(category.label),
+    }));
+  };
+
+  const categoriesExpenses = translateCategories(CATEGORIES_EXPENSES);
+  const categoriesIncome = translateCategories(CATEGORIES_INCOME);
+
   useEffect(() => {
     setValue('type', type);
   }, [type, setValue]);
@@ -130,7 +140,7 @@ export const AddTransaction = ({ type }) => {
             <Select
               {...register('category')}
               options={
-                type === 'income' ? CATEGORIES_INCOME : CATEGORIES_EXPENSES
+                type === 'income' ? categoriesIncome : categoriesExpenses
               }
               placeholder={t('transaction_category_placeholder')}
               value={data.category}

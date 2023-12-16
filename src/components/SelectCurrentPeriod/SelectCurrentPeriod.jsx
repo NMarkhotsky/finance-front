@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import enUsLocale from 'date-fns/locale/en-US';
+import { uk } from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '../../shared/components/Icon/Icon';
 import {
@@ -13,7 +14,8 @@ import {
 } from './SelectCurrentPeriod.styled';
 
 export const SelectCurrentPeriod = ({ handleDate }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
 
   const [currentDate] = useState(new Date());
   const [currentMonth] = useState(currentDate.getMonth());
@@ -40,10 +42,12 @@ export const SelectCurrentPeriod = ({ handleDate }) => {
     }
   };
 
+  const locale = language === 'uk' ? { locale: uk } : { locale: enUsLocale };
+
   const formattedDate = format(
     new Date(selectedYear, selectedMonth, 1),
-    'MMMM yyyy',
-    { locale: enUsLocale }
+    'LLLL yyyy',
+    locale
   );
 
   const handleDateCallback = useCallback(() => {
