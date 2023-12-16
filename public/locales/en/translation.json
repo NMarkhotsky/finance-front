@@ -57,6 +57,10 @@
   "table_transaction_header_sum": "sum",
   "table_transaction_header_delete": "delete",
 
+  "toast_success_add": "Balance successfully added",
+  "toast_success_add_transaction": "Created new transaction",
+  "toast_success_delete_transaction": "Transaction was successfully delete",
+
   "error_validation_description": "Description is required",
   "error_validation_category": "Category is required",
   "error_validation_sum_positive": "Sum must be a positive number",

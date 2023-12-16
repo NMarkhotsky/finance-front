@@ -54,7 +54,7 @@ export const BalanceForm = () => {
   }, [initialValue, setValue, user]);
 
   const onSubmit = ({ balance }) => {
-    ShowToast('success', 'Balance successfully added');
+    ShowToast('success', t('toast_success_add'));
     dispatch(addStartBalance(balance));
   };
 

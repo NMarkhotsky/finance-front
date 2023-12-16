@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { t } from 'react';
+import { t } from 'i18next';
 import {
   Modal,
   Title,
