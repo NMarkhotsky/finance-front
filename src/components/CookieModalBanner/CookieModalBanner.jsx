@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import CookieConsent, { getCookieConsentValue } from 'react-cookie-consent';
+import { useTranslation } from 'react-i18next';
 
 export const CookieModalBanner = () => {
   const [cookiePermission, setCookiePermission] = useState(null);
-
+  const { t } = useTranslation();
   useEffect(() => {
     setCookiePermission(getCookieConsentValue('CookieConsent'));
   }, []);
@@ -14,8 +15,8 @@ export const CookieModalBanner = () => {
         (cookiePermission === 'false' && (
           <CookieConsent
             debug={true}
-            buttonText={'Accept'}
-            declineButtonText={'Decline'}
+            buttonText={t('cookie_accept')}
+            declineButtonText={t('cookie_decline')}
             buttonStyle={{
               minWidth: '100px',
               backgroundColor: 'green',
@@ -26,7 +27,7 @@ export const CookieModalBanner = () => {
             expires={365}
             overlay={true}
           >
-            This website uses cookies to enhance the user experience.
+            {t('cookie_message')}
           </CookieConsent>
         ))}
     </>

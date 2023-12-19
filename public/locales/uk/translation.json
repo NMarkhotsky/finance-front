@@ -61,6 +61,10 @@
   "toast_success_add_transaction": "Створено нову транзакцію",
   "toast_success_delete_transaction": "Транзакцію успішно видалено",
 
+  "cookie_message": "Цей веб-сайт використовує файли cookie для покращення роботи користувачів.",
+  "cookie_accept": "Приймаю",
+  "cookie_decline": "Відмовляюсь",
+
   "error_validation_description": "Потрібно вказати опис",
   "error_validation_category": "Потрібно вказати категорію",
   "error_validation_sum_positive": "Сума повинна бути додатним числом",
