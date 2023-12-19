@@ -17,6 +17,7 @@ import { logout } from '../../redux/auth/operations';
 import { ModalApproveAction } from '../../shared/components/ModalApproveAction/ModalApproveAction';
 import { ModalGlobal } from '../ModalGlobal/ModalGlobal';
 import { ToggleLanguageBar } from '../ToggleLanguageBar/ToggleLanguageBar';
+import { ToggleTheme } from '../../shared/components/ToggleTheme/ToggleTheme';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -47,6 +48,7 @@ export const Header = () => {
           <Icon iconName="icon-logo" width={90} height={31} />
         </Link>
         <ToggleLanguageBar />
+        <ToggleTheme />
         {isLoggedIn && user.name && (
           <UserWrapper>
             <UserLogo>{user.name.slice(0, 1).toUpperCase()}</UserLogo>

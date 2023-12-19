@@ -11,5 +11,5 @@ export const Title = styled.h1`
 export const Subtitle = styled.p`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${({ theme }) => theme.fontSizes.md};
-  color: #52555f;
+  color: ${({ theme }) => theme.colors.mainTextColor};
 `;
