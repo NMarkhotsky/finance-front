@@ -61,6 +61,10 @@
   "toast_success_add_transaction": "Created new transaction",
   "toast_success_delete_transaction": "Transaction was successfully delete",
 
+  "cookie_message": "This website uses cookies to enhance the user experience.",
+  "cookie_accept": "Accept",
+  "cookie_decline": "Decline",
+
   "error_validation_description": "Description is required",
   "error_validation_category": "Category is required",
   "error_validation_sum_positive": "Sum must be a positive number",
