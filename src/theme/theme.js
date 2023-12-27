@@ -48,6 +48,7 @@ export const lightTheme = {
     whiteTextColor: '#F5F6FB',
     greyTextColor: 'rgba(82, 85, 95, 0.70)',
     greyLightTextColor: '#C7CCDC',
+    titleColor: '#000000',
     red: '#E53935',
     green: '#407946',
     orange: '#FF751D',
@@ -55,11 +56,13 @@ export const lightTheme = {
     borderColor: '#FFFFFF',
     borderSecondaryColor: '#F5F6FB',
     inputBgdColor: '#F6F7FB',
+    inputTextColor: '#000000',
     inputPlaceholderColor: '#A6ABB9',
     btnBgdMainColor: '#F5F6FB',
     tableBgdMainColor: '#F5F6FB',
     btnBgdSecondaryColor: '#FF751D',
     btnGoogleColor: '#F6F7FB',
+    userLogoBgd: '#f5f6fb',
   },
   media,
   fonts,
@@ -69,7 +72,32 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  colors: {},
+  colors: {
+    mainBgdColor: '#1E1E1E', // Темний фон
+    secondaryBgdColor: '#2C2C2C', // Вторинний темний фон
+    greyLightBgdColor: '#404040', // Світлий сірий фон
+    mainTextColor: '#D9D9D9', // Основний текстовий колір
+    secondaryTextColor: '#FFFFFF', // Вторинний текстовий колір
+    darkTextColor: '#D9D9D9', // Темний текстовий колір
+    whiteTextColor: '#1E1E1E', // Білий текст
+    greyTextColor: 'rgba(217, 217, 217, 0.70)', // Сірий текст
+    greyLightTextColor: '#D9D9D9', // Світлий сірий текст
+    titleColor: '#000000', // Основний заголовок
+    red: '#FF5555', // Червоний колір
+    green: '#4CAF50', // Зелений колір
+    orange: '#FFA07A', // Оранжевий колір
+    orangeLight: '#FFDAB9', // Світлий оранжевий колір
+    borderColor: '#404040', // Колір межі
+    borderSecondaryColor: '#2C2C2C', // Вторинний колір межі
+    inputBgdColor: '#333333', // Фон введення
+    inputTextColor: '#D9D9D9', // Текст введення
+    inputPlaceholderColor: '#A6ABB9', // Колір заповнювача введення
+    btnBgdMainColor: '#1E1E1E', // Основний фон кнопки
+    tableBgdMainColor: '#1E1E1E', // Основний фон таблиці
+    btnBgdSecondaryColor: '#FFA07A', // Вторинний фон кнопки
+    btnGoogleColor: '#333333', // Колір кнопки Google
+    userLogoBgd: '#3e3f42',
+  },
   media,
   fonts,
   fontSizes,
