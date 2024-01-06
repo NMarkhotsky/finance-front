@@ -1,4 +1,72 @@
 {
+  "other_question": "Are you sure?",
   "other_cancel": "No",
-  "other_yes": "Yes"
+  "other_yes": "Yes",
+
+  "modal_leave_question": "Do you really want to leave?",
+
+  "button_login": "Log in",
+  "button_register": "Registration",
+  "button_exit": "Exit",
+  "button_confirm": "Confirm",
+  "button_enter": "enter",
+  "button_input": "Input",
+  "button_clear": "Clear",
+  "button_reports": "Reports",
+  "button_back": "Main page",
+  "button_google": "Google",
+
+  "infoBox_text": "Hello! To get started, enter the current balance of your account!",
+  "infoBox_details": "You can't spend money until you have it :)",
+
+  "text_current_period": "Current period",
+  "text_login_google": "You can log in with your Google Account",
+  "text_login_part1": "Or log in using an email and password",
+  "text_login_part2": "after registering",
+
+  "balance": "Balance",
+  "email": "Email",
+  "password": "Password",
+  "name": "Name",
+
+  "transaction_type_expenses": "Expenses",
+  "transaction_type_income": "Income",
+
+  "transaction_description_placeholder": "Product description",
+  "transaction_category_placeholder": "Product category",
+
+  "transaction_categories_expenses_transport": "Transport",
+  "transaction_categories_expenses_products": "Products",
+  "transaction_categories_expenses_health": "Health",
+  "transaction_categories_expenses_alcohol": "Alcohol",
+  "transaction_categories_expenses_entertainment": "Entertainment",
+  "transaction_categories_expenses_housing": "Housing",
+  "transaction_categories_expenses_technique": "Technique",
+  "transaction_categories_expenses_communal": "Communal, communication",
+  "transaction_categories_expenses_sports": "Sports, hobbies",
+  "transaction_categories_expenses_education": "Education",
+  "transaction_categories_expenses_other": "Other",
+
+  "transaction_categories_income_salary": "Salary",
+  "transaction_categories_income_other": "Other income",
+
+  "table_summary_header": "summary",
+  "table_transaction_header_date": "date",
+  "table_transaction_header_description": "description",
+  "table_transaction_header_category": "category",
+  "table_transaction_header_sum": "sum",
+  "table_transaction_header_delete": "delete",
+
+  "toast_success_add": "Balance successfully added",
+  "toast_success_add_transaction": "Created new transaction",
+  "toast_success_delete_transaction": "Transaction was successfully delete",
+
+  "cookie_message": "This website uses cookies to enhance the user experience.",
+  "cookie_accept": "Accept",
+  "cookie_decline": "Decline",
+
+  "error_validation_description": "Description is required",
+  "error_validation_category": "Category is required",
+  "error_validation_sum_positive": "Sum must be a positive number",
+  "error_validation_sum_required": "Sum is required"
 }

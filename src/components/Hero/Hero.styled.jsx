@@ -20,7 +20,7 @@ export const HeroTitle = styled.h1`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: ${({ theme }) => theme.fontSizes.gigantic};
 
-  color: ${({ theme }) => theme.colors.secondaryTextColor};
+  color: ${({ theme }) => theme.colors.titleColor};
 
   @media ${selectTablet} {
     font-size: 82px;
@@ -33,7 +33,7 @@ export const HeroTitle = styled.h1`
 
 export const HeroSubTitle = styled.p`
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.mainTextColor};
+  color: ${({ theme }) => theme.colors.titleColor};
   font-size: ${({ theme }) => theme.fontSizes.sm};
 
   letter-spacing: 2.88px;

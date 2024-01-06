@@ -22,6 +22,10 @@ export const HeaderContainer = styled.header`
 
     padding: 13px 16px;
   }
+
+  & > a > svg > use {
+    fill: ${({ theme }) => theme.colors.secondaryTextColor};
+  }
 `;
 
 export const UserWrapper = styled.div`
@@ -47,10 +51,13 @@ export const UserLogo = styled.span`
 
   font-family: ${({ theme }) => theme.fonts.bold};
 
-  background-color: #f5f6fb;
+  background-color: ${({ theme }) => theme.colors.userLogoBgd};
 `;
 
 export const UserName = styled.span`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
   position: relative;
 
   margin-left: 12px;
@@ -72,6 +79,19 @@ export const UserName = styled.span`
 
 export const LogoutButton = styled.button`
   margin-left: 20px;
+`;
 
+export const LogoutButtonText = styled.span`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
   text-decoration: underline;
+`;
+
+export const LogoutIconWrapper = styled.span`
+  @media ${selectTablet} {
+    display: none;
+  }
 `;

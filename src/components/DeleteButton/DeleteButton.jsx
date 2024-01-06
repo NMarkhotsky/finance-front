@@ -1,13 +1,16 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
-import { Icon } from "../../shared/components/Icon/Icon";
-import { ModalApproveAction } from "../../shared/components/ModalApproveAction/ModalApproveAction";
-import { ModalGlobal } from "../ModalGlobal/ModalGlobal";
+import { Icon } from '../../shared/components/Icon/Icon';
+import { ModalApproveAction } from '../../shared/components/ModalApproveAction/ModalApproveAction';
+import { ModalGlobal } from '../ModalGlobal/ModalGlobal';
 
-import { DeleteBtn } from "./DeleteButton.styled";
+import { DeleteBtn } from './DeleteButton.styled';
 
 export const DeleteButton = ({ onDeleteClick }) => {
+  const { t } = useTranslation();
+
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -33,7 +36,7 @@ export const DeleteButton = ({ onDeleteClick }) => {
           <ModalGlobal
             handleModal={closeModal}
             handleDelete={handleDelete}
-            title="Are you sure?"
+            title={t('other_question')}
           />
         </ModalApproveAction>
       )}

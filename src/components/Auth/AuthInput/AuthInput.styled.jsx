@@ -11,6 +11,7 @@ export const Input = styled.input`
   border-radius: 30px;
   border: transparent;
 
+  color: ${({ theme }) => theme.colors.inputTextColor};
   background-color: ${({ theme }) => theme.colors.inputBgdColor};
 
   &::placeholder {

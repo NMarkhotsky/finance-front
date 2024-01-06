@@ -5,7 +5,8 @@ axios.defaults.baseURL = BASE_URL;
 
 export const getExpenses = async () => {
   try {
-    const { data } = await axios.get("/transactions/expenses");
+
+    const { data } = await axios.get('/transactions/expenses');
 
     return data.transactions;
   } catch (error) {
@@ -16,6 +17,7 @@ export const getExpenses = async () => {
 export const getExpensesMonth = async () => {
   try {
     const response = await axios.get("/transactions/expenses/month");
+
     return response;
   } catch (error) {
     console.log(error);
@@ -24,22 +26,22 @@ export const getExpensesMonth = async () => {
 
 export const getExpensesSummary = async () => {
   try {
-    const { data } = await axios.get("/transactions/expenses/summary");
+    const { data } = await axios.get('/transactions/expenses/summary');
     return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getExpensesCategory = async (period) => {
+export const getExpensesCategory = async period => {
   const periodParams = period
     ? `?year=${period.year}&month=${period.month}`
-    : "";
+    : '';
   try {
-      const response = await axios.get(
-        "/transactions/expenses/category" + periodParams
-      );
-      return response; 
+    const response = await axios.get(
+      '/transactions/expenses/category' + periodParams
+    );
+    return response;
   } catch (error) {
     console.log(error);
   }

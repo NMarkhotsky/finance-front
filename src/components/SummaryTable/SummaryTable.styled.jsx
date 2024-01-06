@@ -1,60 +1,56 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { selectDesktop } from '../../utils/mediaRequest';
 
 export const TableContainer = styled.div`
-    width: 250px;
-    border-radius: 16px 16px 16px 0;
-    overflow: hidden;
+  width: 250px;
+  border-radius: 16px 16px 16px 0;
+  overflow: hidden;
 
-    @media ${selectDesktop} {
-        min-width: 250px;
-    }
-`
+  @media ${selectDesktop} {
+    min-width: 250px;
+  }
+`;
 
 export const Table = styled.table`
-    width: 100%;
-
-`
+  width: 100%;
+`;
 
 export const TableHead = styled.thead`
-    text-transform: uppercase;
-    height: 40px;
-    background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
-    color: ${({ theme }) => theme.colors.secondaryTextColor};
-`
+  text-transform: uppercase;
+  height: 40px;
+  background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
+`;
 
-export const TableHeadTR = styled.tr`
-`
+export const TableHeadTR = styled.tr``;
 
 export const TableHeadTH = styled.th`
-    display: ${({header}) => header === 'month' || header === 'sum' ? 'none' : null};
-`
+  display: ${({ header }) =>
+    header === 'month' || header === 'sum' ? 'none' : null};
+`;
 
-export const TableBody = styled.tbody`
+export const TableBody = styled.tbody``;
 
-`
-
-export const TableBodyTR = styled.tr`
-`
+export const TableBodyTR = styled.tr``;
 
 export const TableBodyTd = styled.td`
-    height: 40px;
-    background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
-    text-transform: uppercase;
-    /* text-align: center; */
-    width: 50%;
-    color: ${({ theme }) => theme.colors.darkTextColor};
-    padding-left: 22px;
-    padding-right: 22px;
+  height: 40px;
+  background-color: ${({ theme }) => theme.colors.tableBgdMainColor};
+  text-transform: uppercase;
+  /* text-align: center; */
+  width: 50%;
+  color: ${({ theme }) => theme.colors.darkTextColor};
+  padding-left: 22px;
+  padding-right: 22px;
 
-    &:first-child {
-        text-align: start;
-    }
+  &:first-child {
+    text-align: start;
+  }
 
-    &:last-child {
-        text-align: end;
-    }
-`
+  &:last-child {
+    text-align: end;
+  }
+`;
 
-TableHead.shouldForwardProp = (prop) => prop !== 'header';
-TableHeadTH.shouldForwardProp = (prop) => prop !== 'header';
+TableHead.shouldForwardProp = prop => prop !== 'header';
+TableHeadTH.shouldForwardProp = prop => prop !== 'header';

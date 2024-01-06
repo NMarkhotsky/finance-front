@@ -1,29 +1,31 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import {
   ContainerMain,
   Container,
   ButtonIcon,
   TabButton,
-} from "./MenuForActiveLinkOnReport.styled";
-import { Icon } from "../../shared/components/Icon/Icon";
-import { getIncomeCategory } from "../../services/incomeApi";
-import { getExpensesCategory } from "../../services/expensesApi";
-import { CategoriesList } from "../CategoriesList/CategoriesList";
+} from './MenuForActiveLinkOnReport.styled';
+import { Icon } from '../../shared/components/Icon/Icon';
+import { getIncomeCategory } from '../../services/incomeApi';
+import { getExpensesCategory } from '../../services/expensesApi';
+import { CategoriesList } from '../CategoriesList/CategoriesList';
 import {
   CATEGORIES_EXPENSES,
   CATEGORIES_INCOME,
-} from "../../constants/globalConstants";
-import { BarChartComp } from "../BarChartComp/BarChartComp";
+} from '../../constants/globalConstants';
+import { BarChartComp } from '../BarChartComp/BarChartComp';
 // import { useMyContext } from "../../utils";
-import { Loader } from "../../shared/components/Loader/Loader";
+import { Loader } from '../../shared/components/Loader/Loader';
 
 export const MenuForActiveLinkOnReport = ({ date }) => {
-  const [activeTab, setActiveTab] = useState("expenses");
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState('expenses');
   const [expensesCategoriesList, setExpensesCategoriesList] = useState([]);
   const [incomeCategoriesList, setIncomeCategoriesList] = useState([]);
 
-  const tabs = ["expenses", "income"];
+  const tabs = ['expenses', 'income'];
   const [loading, setLoading] = useState(true);
   // const { itemCategory } = useMyContext();
 
@@ -36,6 +38,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
         setLoading(true);
 
         if (activeTab === "income" && date) {
+
           const { data } = await getIncomeCategory(date);
           setIncomeCategoriesList(data.report);
         } else {
@@ -44,7 +47,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
         }
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         setLoading(false);
       }
     };
@@ -80,7 +83,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     return <Loader />;
   }
 
-  console.log("IncomeCategoriesList", incomeCategoriesList);
+  console.log('IncomeCategoriesList', incomeCategoriesList);
 
   // useEffect(() => {
   //   (async () => {
@@ -109,13 +112,13 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   //   })();
   // }, [date]);
 
-  const handleTabChange = (direction) => {
+  const handleTabChange = direction => {
     const currentIndex = tabs.indexOf(activeTab);
     let newIndex;
 
-    if (direction === "prev") {
+    if (direction === 'prev') {
       newIndex = currentIndex === 0 ? tabs.length - 1 : currentIndex - 1;
-    } else if (direction === "next") {
+    } else if (direction === 'next') {
       newIndex = currentIndex === tabs.length - 1 ? 0 : currentIndex + 1;
     }
 
@@ -126,17 +129,21 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     <section>
       <ContainerMain>
         <Container>
-          <ButtonIcon onClick={() => handleTabChange("prev")}>
+          <ButtonIcon onClick={() => handleTabChange('prev')}>
             <Icon iconName="icon-arrow-left" width={7} height={12} />
           </ButtonIcon>
-          <TabButton $active={activeTab === "expenses"}>Expenses</TabButton>
-          <TabButton $active={activeTab === "income"}>Income</TabButton>
-          <ButtonIcon onClick={() => handleTabChange("next")}>
+          <TabButton $active={activeTab === 'expenses'}>
+            {t('transaction_type_expenses')}
+          </TabButton>
+          <TabButton $active={activeTab === 'income'}>
+            {t('transaction_type_income')}
+          </TabButton>
+          <ButtonIcon onClick={() => handleTabChange('next')}>
             <Icon iconName="icon-arrow-right" width={7} height={12} />
           </ButtonIcon>
         </Container>
 
-        {activeTab === "expenses" && (
+        {activeTab === 'expenses' && (
           <CategoriesList
             categoriesList={expensesCategoriesList}
             categories={CATEGORIES_EXPENSES}
@@ -144,7 +151,7 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
             date={date}
           />
         )}
-        {activeTab === "income" && (
+        {activeTab === 'income' && (
           <CategoriesList
             categoriesList={incomeCategoriesList}
             categories={CATEGORIES_INCOME}

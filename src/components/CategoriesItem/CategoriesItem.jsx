@@ -1,4 +1,9 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import {
+  CATEGORIES_EXPENSES,
+  CATEGORIES_INCOME,
+} from '../../constants/globalConstants';
 import {
   Text,
   ImageBox,
@@ -6,11 +11,11 @@ import {
   Img,
   ItemCategories,
   Title,
-} from "./CategoriesItem.styled";
-import { Icon } from "../../shared/components/Icon/Icon";
-import { useEffect } from "react";
-import { formatSum } from "../../services/balanceFormServices";
-import { useMyContext } from "../../utils";
+} from './CategoriesItem.styled';
+import { Icon } from '../../shared/components/Icon/Icon';
+import { useEffect } from 'react';
+import { formatSum } from '../../services/balanceFormServices';
+import { useMyContext } from '../../utils';
 
 export const CategoriesItem = ({
   item,
@@ -23,8 +28,17 @@ export const CategoriesItem = ({
   // isActive,
 }) => {
   const { setCategory } = useMyContext();
+  const { t } = useTranslation();
 
+<<<<<<< HEAD
   const isActive = index === activeIndex;
+=======
+  const itemCategory = [...CATEGORIES_EXPENSES, ...CATEGORIES_INCOME].find(
+    category => category.value === item.category
+  );
+
+  // const isActive = index === activeIndex;
+>>>>>>> 57d24393f29ac4eeb3e28902b03ca8fb64de7fc0
 
   useEffect(() => {
     if (isActive) {
@@ -49,7 +63,7 @@ export const CategoriesItem = ({
             iconName="icon-circle"
             width={59}
             height={46}
-            fill={isActive ? "#ffdac0" : "#F5F6FB"}
+            fill={isActive ? '#ffdac0' : '#F5F6FB'}
           />
         </ImgBackground>
         <Img>
@@ -57,11 +71,11 @@ export const CategoriesItem = ({
             iconName={categoryObject.image}
             width="56"
             height="56"
-            fill={isActive ? "#FF751D" : "#071F41"}
+            fill={isActive ? '#FF751D' : '#071F41'}
           />
         </Img>
       </ImageBox>
-      <Title>{item.category}</Title>
+      <Title>{t(itemCategory.label)}</Title>
     </ItemCategories>
   );
 };

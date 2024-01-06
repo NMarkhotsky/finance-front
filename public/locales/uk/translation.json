@@ -1,4 +1,72 @@
 {
+  "other_question": "Ви впевнені?",
   "other_cancel": "Ні",
-  "other_yes": "Так"
+  "other_yes": "Так",
+
+  "modal_leave_question": "Ви справді хочете піти?",
+
+  "button_login": "Вхід",
+  "button_register": "Реєстрація",
+  "button_exit": "Вихід",
+  "button_confirm": "Підтвердити",
+  "button_enter": "ввести",
+  "button_input": "Зберегти",
+  "button_clear": "Очистити",
+  "button_reports": "Звіти",
+  "button_back": "На головну сторінку",
+  "button_google": "Google",
+
+  "infoBox_text": "Привіт! Для початку введіть поточний баланс вашого рахунку!",
+  "infoBox_details": "Ви не можете витрачати гроші, поки вони у вас не з'являться :)",
+
+  "text_current_period": "Поточний період",
+  "text_login_google": "Ви можете увійти за допомогою свого облікового запису Google",
+  "text_login_part1": "Або увійдіть за допомогою електронної пошти та пароля",
+  "text_login_part2": "після реєстрації",
+
+  "balance": "Баланс",
+  "email": "Електронна пошта",
+  "password": "Пароль",
+  "name": "Ім'я",
+
+  "transaction_type_expenses": "Витрати",
+  "transaction_type_income": "Доходи",
+
+  "transaction_description_placeholder": "Опис операції",
+  "transaction_category_placeholder": "Категорія операції",
+
+  "transaction_categories_expenses_transport": "Транспорт",
+  "transaction_categories_expenses_products": "Продукти",
+  "transaction_categories_expenses_health": "Здоров'я",
+  "transaction_categories_expenses_alcohol": "Алкоголь",
+  "transaction_categories_expenses_entertainment": "Розваги",
+  "transaction_categories_expenses_housing": "Житло",
+  "transaction_categories_expenses_technique": "Техніка",
+  "transaction_categories_expenses_communal": "Комунальні витрати, зв'язок",
+  "transaction_categories_expenses_sports": "Спорт, хобі",
+  "transaction_categories_expenses_education": "Освіта",
+  "transaction_categories_expenses_other": "Інше",
+
+  "transaction_categories_income_salary": "Зарплата",
+  "transaction_categories_income_other": "Інші доходи",
+
+  "table_summary_header": "підсумок",
+  "table_transaction_header_date": "дата",
+  "table_transaction_header_description": "опис",
+  "table_transaction_header_category": "категорія",
+  "table_transaction_header_sum": "сума",
+  "table_transaction_header_delete": "видалення",
+
+  "toast_success_add": "Баланс успішно додано",
+  "toast_success_add_transaction": "Створено нову транзакцію",
+  "toast_success_delete_transaction": "Транзакцію успішно видалено",
+
+  "cookie_message": "Цей веб-сайт використовує файли cookie для покращення роботи користувачів.",
+  "cookie_accept": "Приймаю",
+  "cookie_decline": "Відмовляюсь",
+
+  "error_validation_description": "Потрібно вказати опис",
+  "error_validation_category": "Потрібно вказати категорію",
+  "error_validation_sum_positive": "Сума повинна бути додатним числом",
+  "error_validation_sum_required": "Потрібно вказати суму"
 }

@@ -1,61 +1,66 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import { getAllTransactions } from '../../services/transactionsApi';
+import { formatSum } from '../../services/balanceFormServices';
+import {
+  TotalCountFormWrapper,
+  TypeCountWrapper,
+  TypeCountTitle,
+  TypeCountSum,
+} from './TotalCountForm.styled';
 
-import { getAllTransactions } from "../../services/transactionsApi";
+export const TotalCountForm = ({ date }) => {
+  const { t } = useTranslation();
 
-import { formatSum } from "../../services/balanceFormServices";
+  const [data, setData] = useState([]);
 
-import { TotalCountFormWrapper, TypeCountWrapper, TypeCountTitle, TypeCountSum } from "./TotalCountForm.styled";
-
-export const TotalCountForm = ({date}) => {
-    
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const getTransactions = async (date) => {
-            const { transactions } = await getAllTransactions(date);
-            const totals = countTotalSums(transactions);
-            setData(totals)
-        }
-        if (date) {
-            getTransactions(date);
-        }
-
-    }, [date])
-
-    const countTotalSums = (transactions) => {
-
-        let totals = { income: 0, expense: 0 };
-
-        const totalSums = transactions.reduce((total, transaction) => {
-            
-            transaction.type === 'income' ?
-                total.income += Number(transaction.sum) :
-                total.expense += Number(transaction.sum);
-
-            return total;
-        }, totals)
-
-        totalSums.income = formatSum(totalSums.income);
-        totalSums.expense = formatSum(totalSums.expense);
-
-        return totalSums
+  useEffect(() => {
+    const getTransactions = async date => {
+      const { transactions } = await getAllTransactions(date);
+      const totals = countTotalSums(transactions);
+      setData(totals);
+    };
+    if (date) {
+      getTransactions(date);
     }
+  }, [date]);
 
-    return (
-        <TotalCountFormWrapper>
-            <TypeCountWrapper>
-                <TypeCountTitle>Expenses:</TypeCountTitle>
-                {data && <TypeCountSum type={'expense'}>- {data.expense} грн</TypeCountSum>}
-            </TypeCountWrapper>
-            <TypeCountWrapper>
-                <TypeCountTitle>Income:</TypeCountTitle>
-                {data && <TypeCountSum type={'income'}>+ {data.income} грн</TypeCountSum>}
-            </TypeCountWrapper>
-        </TotalCountFormWrapper>
-    )
-}
+  const countTotalSums = transactions => {
+    let totals = { income: 0, expense: 0 };
+
+    const totalSums = transactions.reduce((total, transaction) => {
+      transaction.type === 'income'
+        ? (total.income += Number(transaction.sum))
+        : (total.expense += Number(transaction.sum));
+
+      return total;
+    }, totals);
+
+    totalSums.income = formatSum(totalSums.income);
+    totalSums.expense = formatSum(totalSums.expense);
+
+    return totalSums;
+  };
+
+  return (
+    <TotalCountFormWrapper>
+      <TypeCountWrapper>
+        <TypeCountTitle>{t('transaction_type_expenses')}:</TypeCountTitle>
+        {data && (
+          <TypeCountSum type={'expense'}>- {data.expense} грн</TypeCountSum>
+        )}
+      </TypeCountWrapper>
+      <TypeCountWrapper>
+        <TypeCountTitle>{t('transaction_type_income')}:</TypeCountTitle>
+        {data && (
+          <TypeCountSum type={'income'}>+ {data.income} грн</TypeCountSum>
+        )}
+      </TypeCountWrapper>
+    </TotalCountFormWrapper>
+  );
+};
 
 TotalCountForm.propTypes = {
-    date: PropTypes.any,
-}
+  date: PropTypes.any,
+};

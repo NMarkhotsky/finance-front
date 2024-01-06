@@ -4,7 +4,7 @@ import { selectTablet, selectDesktop } from '../../../utils';
 export const BackgroundWrapperAuth = styled.div`
   position: absolute;
 
-  background-color: #f5f6fb;
+  background-color: ${({ theme }) => theme.colors.whiteLightBgdColor};
   width: 100%;
   height: 635px;
   top: 0;
@@ -44,7 +44,7 @@ export const Container = styled.div`
 export const BackgroundWrapperMain = styled.div`
   position: absolute;
 
-  background-color: #f5f6fb;
+  background-color: ${({ theme }) => theme.colors.whiteLightBgdColor};
   width: 100%;
   height: 635px;
   top: 0;
