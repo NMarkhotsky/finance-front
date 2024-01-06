@@ -28,15 +28,14 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
   // const { itemCategory } = useMyContext();
 
   useEffect(() => {
-    if (Object.keys(date).length === 0 || !date) return;
-  }, [date]);
-
-  useEffect(() => {
+    if (Object.keys(date).length === 0 || !date) {
+      return;
+    }
     const fetchData = async () => {
       try {
         setLoading(true);
 
-        if (activeTab === "income") {
+        if (activeTab === "income" && date) {
           const { data } = await getIncomeCategory(date);
           setIncomeCategoriesList(data.report);
         } else {
@@ -50,8 +49,32 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
       }
     };
 
-    fetchData();
+  fetchData(date);
+
   }, [date, activeTab]);
+
+  // useEffect(() => {
+
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
+
+  //       if (activeTab === "income") {
+  //         const { data } = await getIncomeCategory(date);
+  //         setIncomeCategoriesList(data.report);
+  //       } else {
+  //         const { data } = await getExpensesCategory(date);
+  //         setExpensesCategoriesList(data.report);
+  //       }
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [date, activeTab]);
 
   if (loading) {
     return <Loader />;

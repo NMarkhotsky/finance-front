@@ -17,13 +17,14 @@ export const CategoriesItem = ({
   categoryObject,
   activeTab,
   handleItemClick,
-  // index,
+  activeIndex,
+  index,
   date,
-  isActive,
+  // isActive,
 }) => {
   const { setCategory } = useMyContext();
 
-  // const isActive = index === activeIndex;
+  const isActive = index === activeIndex;
 
   useEffect(() => {
     if (isActive) {
@@ -79,4 +80,5 @@ CategoriesItem.propTypes = {
   date: PropTypes.any,
   handleItemClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
+  activeIndex: PropTypes.number.isRequired
 };

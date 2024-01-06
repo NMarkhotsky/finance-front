@@ -11,47 +11,12 @@ export const CategoriesList = ({
   date
 }) => {
 
-  const [activeCategory, setActiveCategory] = useState(categoriesList[0]?.category);
-  const [categoryList, setCategoryList] = useState(categoriesList); 
-
-  const { setHasCategories } = useMyContext();
-
-  useEffect(() => {
-    if(categoryList.length === 0) {
-      setHasCategories(true); 
-    }
-  })
-//   useEffect(() => {
-// if(categoryList !== categoriesList) {
-//   setCategoryList(categoriesList); 
-// }
-
-// const hasActiveCategory = categoriesList.some(item => item.category === activeCategory);
-//       if (!hasActiveCategory) {
-//         setActiveCategory(categoriesList[0]?.category);
-//       }
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [date, categoriesList])
-
-useEffect(() => {
-  if (JSON.stringify(categoryList) !== JSON.stringify(categoriesList)) {
-    setCategoryList(categoriesList);
-  }
-
-  const hasActiveCategory = categoriesList.some(item => item.category === activeCategory);
-  if (!hasActiveCategory) {
-    setActiveCategory(categoriesList[0]?.category);
-  }
-}, [date, categoriesList, categoryList, activeCategory]);
-
-  const handleItemClick = (category) => {
-    setActiveCategory(category);
-  };
+  const [activeIndex, setActiveIndex] = useState(0); 
 
   return (
 
       <ListCategories>
-        {categoryList.map((item, idx) => {
+        {categoriesList.map((item, idx) => {
   
     const categoryObject = categories.find(
       (category) => category.value === item.category
@@ -63,16 +28,20 @@ useEffect(() => {
               index={idx}
               item={item}
               categoryObject={categoryObject}
-              handleItemClick={(index, category) => handleItemClick(index, category)}
+              // handleItemClick={(index, category) => handleItemClick(index, category)}
               activeTab={activeTab}
               date={date}
-              isActive={item.category === activeCategory}
+              // isActive={item.category === activeCategory}
+              isActive={idx === activeIndex}
+              setActiveIndex={setActiveIndex}
             />
           );
         })}
       </ListCategories>
   );
 };
+
+
 
 CategoriesList.propTypes = {
   categoriesList: PropTypes.array.isRequired,

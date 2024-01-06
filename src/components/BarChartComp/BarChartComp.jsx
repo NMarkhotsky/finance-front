@@ -35,7 +35,7 @@ const measureText14HelveticaNeue = (text, fontSize) => {
 export const BarChartComp = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
-  
+
   const { itemCategory, hasCategories } = useMyContext();
 
   console.log("itemCategoryBarChart", itemCategory);
