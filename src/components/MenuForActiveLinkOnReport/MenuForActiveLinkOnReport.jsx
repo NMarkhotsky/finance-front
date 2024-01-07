@@ -59,8 +59,6 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     return <Loader />;
   }
 
-  console.log('IncomeCategoriesList', incomeCategoriesList);
-
   // useEffect(() => {
   //   (async () => {
   //     try {
@@ -105,16 +103,16 @@ export const MenuForActiveLinkOnReport = ({ date }) => {
     <section>
       <ContainerMain>
         <Container>
-          <ButtonIcon onClick={() => handleTabChange('prev')}>
+          <ButtonIcon onClick={() => handleTabChange("prev")}>
             <Icon iconName="icon-arrow-left" width={7} height={12} />
           </ButtonIcon>
-          <TabButton $active={activeTab === 'expenses'}>
-            {t('transaction_type_expenses')}
+          <TabButton $active={activeTab === "expenses"}>
+            {t("transaction_type_expenses")}
           </TabButton>
-          <TabButton $active={activeTab === 'income'}>
-            {t('transaction_type_income')}
+          <TabButton $active={activeTab === "income"}>
+            {t("transaction_type_income")}
           </TabButton>
-          <ButtonIcon onClick={() => handleTabChange('next')}>
+          <ButtonIcon onClick={() => handleTabChange("next")}>
             <Icon iconName="icon-arrow-right" width={7} height={12} />
           </ButtonIcon>
         </Container>

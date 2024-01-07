@@ -36,10 +36,7 @@ export const BarChartComp = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [dataTransactions, setDataTransactions] = useState([]);
   
-  const { itemCategory, hasCategories } = useMyContext();
-
-  console.log("itemCategoryBarChart", itemCategory);
-  console.log("hasCategories", hasCategories);
+  const { itemCategory } = useMyContext();
 
   useEffect(() => {
     if (Object.keys(itemCategory).length === 0 || !itemCategory) {
@@ -49,28 +46,25 @@ export const BarChartComp = () => {
 
   useEffect(() => {
     (async () => {
-      if (
-        itemCategory.activeTab &&
-        itemCategory.item &&
-        itemCategory.item.category &&
-        itemCategory.date
-      ) {
+
+      if (itemCategory.date && Object.keys(itemCategory).length !== 0) {
         if (itemCategory.activeTab === "expenses") {
           const { report } = await getExpensesDescription(
-            { category: itemCategory.item.category },
+            { category: itemCategory.activeCategory },
             itemCategory.date
           );
           setDataTransactions(report);
         } else {
           const { report } = await getIncomeDescription(
-            { category: itemCategory.item.category },
+            { category: itemCategory.activeCategory },
             itemCategory.date
           );
           setDataTransactions(report);
         }
       }
+    
     })();
-  }, [itemCategory.activeTab, itemCategory.item, itemCategory.date]);
+  }, [itemCategory]);
 
   useEffect(() => {
     if (dataTransactions.length === 0) {

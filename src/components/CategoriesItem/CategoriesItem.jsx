@@ -13,7 +13,6 @@ import {
   Title,
 } from './CategoriesItem.styled';
 import { Icon } from '../../shared/components/Icon/Icon';
-import { useEffect } from 'react';
 import { formatSum } from '../../services/balanceFormServices';
 import { useMyContext } from '../../utils';
 
@@ -22,7 +21,6 @@ export const CategoriesItem = ({
   categoryObject,
   activeTab,
   handleItemClick,
-  // index,
   date,
   isActive,
 }) => {
@@ -32,15 +30,6 @@ export const CategoriesItem = ({
   const itemCategory = [...CATEGORIES_EXPENSES, ...CATEGORIES_INCOME].find(
     category => category.value === item.category
   );
-
-  // const isActive = index === activeIndex;
-
-  useEffect(() => {
-    if (isActive) {
-      setCategory({ item, activeTab, date });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive, item, activeTab, date]);
 
   const handleClick = () => {
     setCategory({ item, activeTab, date });
