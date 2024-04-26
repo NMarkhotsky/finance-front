@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth/useAuth';
-import { useTranslation } from 'react-i18next';
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth/useAuth";
+import { useTranslation } from "react-i18next";
 import {
   HeaderContainer,
   LogoutButton,
@@ -11,13 +11,13 @@ import {
   UserWrapper,
   LogoutButtonText,
   LogoutIconWrapper,
-} from './Header.styled';
-import { Icon } from '../../shared/components/Icon/Icon';
-import { logout } from '../../redux/auth/operations';
-import { ModalApproveAction } from '../../shared/components/ModalApproveAction/ModalApproveAction';
-import { ModalGlobal } from '../ModalGlobal/ModalGlobal';
-import { ToggleLanguageBar } from '../ToggleLanguageBar/ToggleLanguageBar';
-import { ToggleTheme } from '../../shared/components/ToggleTheme/ToggleTheme';
+} from "./Header.styled";
+import { Icon } from "../../shared/components/Icon/Icon";
+import { logout } from "../../redux/auth/operations";
+import { ModalApproveAction } from "../../shared/components/ModalApproveAction/ModalApproveAction";
+import { ModalGlobal } from "../ModalGlobal/ModalGlobal";
+import { ToggleLanguageBar } from "../ToggleLanguageBar/ToggleLanguageBar";
+// import { ToggleTheme } from '../../shared/components/ToggleTheme/ToggleTheme';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -44,17 +44,17 @@ export const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <Link to={'/'}>
+        <Link to={"/"}>
           <Icon iconName="icon-logo" width={90} height={31} />
         </Link>
         <ToggleLanguageBar />
-        <ToggleTheme />
+        {/* <ToggleTheme /> */}
         {isLoggedIn && user.name && (
           <UserWrapper>
             <UserLogo>{user.name.slice(0, 1).toUpperCase()}</UserLogo>
             <UserName>{user.name}</UserName>
             <LogoutButton type="button" onClick={openModal}>
-              <LogoutButtonText>{t('button_exit')}</LogoutButtonText>
+              <LogoutButtonText>{t("button_exit")}</LogoutButtonText>
               <LogoutIconWrapper>
                 <Icon iconName="logout" width={16} height={16} />
               </LogoutIconWrapper>
@@ -67,7 +67,7 @@ export const Header = () => {
           <ModalGlobal
             handleModal={closeModal}
             handleDelete={handleLogout}
-            title={t('modal_leave_question')}
+            title={t("modal_leave_question")}
           />
         </ModalApproveAction>
       )}
